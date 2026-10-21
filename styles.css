@@ -364,24 +364,15 @@ footer .wrap { display: flex; justify-content: space-between; flex-wrap: wrap; g
 .compare td.n { color: var(--dim); }
 @media (max-width: 560px) { .compare th, .compare td { padding: 10px; font-size: 0.85rem; } }
 
-/* hero phone: a real phone's shape (19.5:9, thin bezel, camera island, side buttons), bigger on wide screens */
-.phone { width: min(340px, 84vw); aspect-ratio: 9 / 19.5; border-radius: 52px; border: 10px solid #15171c; box-shadow: var(--shadow), 0 0 0 2px #2f333d, inset 0 0 0 1px #000; padding: 54px 16px 16px; overflow: visible; }
-.phone::before, .phone::after { content: ""; position: absolute; width: 4px; border-radius: 2px; background: #2f333d; }
-.phone::before { left: -14px; top: 120px; height: 56px; box-shadow: 0 70px 0 #2f333d; }
-.phone::after { right: -14px; top: 150px; height: 84px; }
-.phone .island { position: absolute; top: 14px; left: 50%; width: 96px; height: 28px; margin-left: -48px; border-radius: 16px; background: #000; }
-.phone .bar { display: none; }
-@media (min-width: 1100px) { .phone { zoom: 1.18; } }
+/* hero phone card icons (sport, nutrition) */
+.ph-card .food { display: grid; place-items: center; background: rgba(0, 180, 216, 0.16); }
+.ph-card .food svg { width: 26px; height: 26px; fill: none; stroke: #00b4d8; stroke-width: 1.7; stroke-linejoin: round; stroke-linecap: round; }
 
 /* 3D rep loops as video (opaque, on the tile colour) */
 video.vid { display: block; width: 100%; aspect-ratio: 1; object-fit: cover; background: var(--tile); }
 .form-photo { background: var(--tile); }
 .form-photo video.vid { max-height: 560px; }
 /* the hero phone, bigger on wide screens */
-.ph-tabs { display: grid; grid-template-columns: repeat(5, 1fr); margin: 6px -16px -16px; padding: 10px 6px 18px; border-top: 1px solid #22252d; background: #0f1015; border-radius: 0 0 42px 42px; }
-.ph-tabs span { display: flex; flex-direction: column; align-items: center; gap: 3px; font-size: 0.62rem; font-weight: 600; color: #8e92a1; }
-.ph-tabs span.on { color: #ff5a60; }
-.ph-tabs svg { width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linejoin: round; stroke-linecap: round; }
 /* the journey: each bar names its world under the rank */
 .ladder li { flex-direction: row; justify-content: center; gap: 2px; }
 .ladder li small { display: block; writing-mode: vertical-rl; transform: rotate(180deg); font: 600 0.68rem var(--body); color: #fff; opacity: 0.85; white-space: nowrap; text-shadow: 0 1px 3px rgba(0, 0, 0, 0.6); }
