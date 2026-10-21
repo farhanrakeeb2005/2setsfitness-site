@@ -392,7 +392,7 @@ const RANKS = [['⛺', 'Bronze', 0], ['🧊', 'Silver', 500], ['🏔️', 'Gold'
 const HEAT = { quads: 3, glutes: 3, hamstrings: 2, calves: 3, hip_flexors: 1, spinal_erectors: 2, abs: 1, chest: 1, front_delts: 1, lats: 1, upper_back: 1 };
 const HEAT_COLORS = ['#2A2D36', '#3D7BFF', '#3DDC97', '#FF8A3D', '#E31E24'];
 const HEAT_LABELS = ['No load', 'Low', 'Moderate', 'High', 'Maximum'];
-const CHAT0 = [{ me: false, h: 'Hi Farhan. Tell me your goal and I will build you a plan. I can see your week: Full Body A, Full Body B, Isometrics and football on Saturday.' }];
+const CHAT0 = [{ me: false, h: 'Hi Alex. Tell me your goal and I will build you a plan. I can see your week: Full Body A, Full Body B, Isometrics and football on Saturday.' }];
 const REPLIES = [
   [/plan|block|strength/i, '<b>Week 1, Foundation:</b> Full Body A and B, 3 × 8 at a weight you could do 12 times.<br><b>Week 2, Build:</b> add 2.5 kg to upper-body lifts, 5 kg to lower.<br><b>Week 3, Push:</b> top sets of 5, same weights.<br><b>Week 4, Deload:</b> back to 3 × 8, then test.'],
   [/stall|plateau|stuck/i, 'Squat has gone 80 kg for three sessions. Try <b>3 × 5 at 82.5 kg</b>, then a back-off set of 8 at 70 kg. If it stalls twice more, take a lighter week and add pause squats.'],
@@ -507,7 +507,7 @@ function homeHtml() {
     : today.rest ? `<div class="card"><div class="lbl">Rest & recovery</div><div class="h2" style="margin:6px 0">Rest day</div><div class="dim">Easy mobility keeps you moving. Open the Recovery tile below.</div></div>`
     : `<div class="card"><div class="lbl">Today</div><div class="h2" style="margin:6px 0">Nothing planned today</div><div class="dim">Pick a routine or plan your week.</div><div style="margin-top:12px"><button class="btn ghost" data-a="goto" data-v="track">Edit schedule</button></div></div>`;
   const qt = (a, v, icn, bg, fg, t1, t2, wide) => `<button class="qt ${wide ? 'wide' : ''}" data-a="${a}" data-v="${v}"><div class="qi" style="background:${bg};color:${fg}">${ic(icn)}</div><b>${t1}</b><span>${t2}</span></button>`;
-  return `<div class="hero"><div class="row" style="align-items:flex-start"><div class="avatar"><span>F</span></div><div class="sp" style="min-width:0"><div class="gm">GOOD MORNING</div><div class="nm">FARHAN</div><span class="rankpill">⛺ BRONZE</span></div><div><button class="gear" data-a="open" data-v="settings" aria-label="Settings">${ic('gear')}</button><div class="pts"><b>${S.points}</b><small>POINTS</small></div></div></div>
+  return `<div class="hero"><div class="row" style="align-items:flex-start"><div class="avatar"><span>F</span></div><div class="sp" style="min-width:0"><div class="gm">GOOD MORNING</div><div class="nm">ALEX</div><span class="rankpill">⛺ BRONZE</span></div><div><button class="gear" data-a="open" data-v="settings" aria-label="Settings">${ic('gear')}</button><div class="pts"><b>${S.points}</b><small>POINTS</small></div></div></div>
   <div class="ranks">${RANKS.map((r, i) => `<div class="rk ${i === 0 ? 'cur' : ''}">${r[0]}</div>${i < 5 ? '<div class="ln"></div>' : ''}`).join('')}</div>
   <div class="rbar"><i style="width:${Math.min(100, S.points / 5)}%"></i></div><div class="rlab"><span>Bronze</span><em>${500 - S.points} pts to Silver</em><span>Silver</span></div>
   <div class="stats3"><div><b>${S.streak}</b><small>STREAK</small></div><div><b>${S.sessions.length}</b><small>SESSIONS</small></div><div><b>–</b><small>FORM SCORE</small></div></div></div>
@@ -581,7 +581,7 @@ function competeHtml() {
 function profileHtml() {
   const ft = (cm) => { const i = Math.round(cm / 2.54); return `${Math.floor(i / 12)}′ ${i % 12}″`; };
   return `<div class="pad"><div class="row"><h1 class="h1 sp">Profile</h1><button class="gear" data-a="open" data-v="settings" aria-label="Settings" style="margin:0">${ic('gear')}</button></div></div>
-  <div class="card"><div class="row"><div class="avatar"><span>F</span></div><div class="sp"><div class="h2">Farhan</div><div class="dim">Build muscle · ${S.hUnit === 'ftin' ? ft(178) : '178 cm'} · 69 ${S.units}</div><span class="pill" style="margin-top:6px">Advanced</span></div></div></div>
+  <div class="card"><div class="row"><div class="avatar"><span>F</span></div><div class="sp"><div class="h2">Alex</div><div class="dim">Build muscle · ${S.hUnit === 'ftin' ? ft(178) : '178 cm'} · 69 ${S.units}</div><span class="pill" style="margin-top:6px">Advanced</span></div></div></div>
   <div class="card"><div class="row"><div style="font-size:34px">⛺</div><div class="sp"><b style="color:var(--rank);font-size:17px">Bronze</b><div class="dim">${S.points} pts · ${500 - S.points} to Silver</div></div></div></div>
   <div class="card"><b>Personal records</b>${[['Squat', 100], ['Bench press', 60], ['Romanian deadlift', 70]].map((r) => `<div class="set"><span>${r[0]}</span><b>${r[1]} ${S.units}</b></div>`).join('')}</div>
   <div class="card"><div class="row"><b class="sp">Body measurements</b><button class="chip" data-a="toast" data-v="Measurements are saved on your phone and backed up">+ Log</button></div><div class="tint" style="margin:12px 0 0">${ic('info')}<span>It's been a week. Tap to log this week's measurements.</span></div></div>
