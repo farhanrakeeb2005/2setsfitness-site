@@ -24,10 +24,12 @@
       <a class="brand" href="#top"><img src="img/icon.png" alt="" width="44" height="44"><span><b>2</b>SetsFitness</span></a>
       <ul>
         <li><a href="#features">Features</a></li>
+        <li><a href="#compete">Compete</a></li>
         <li><a href="#try">Try it</a></li>
         <li><a href="#how">How it works</a></li>
         <li><a href="#exercises">Exercises</a></li>
         <li><a href="#faq">Questions</a></li>
+        <li><a href="#contact">Contact</a></li>
       </ul>
       <a class="btn primary" href="#try">Try the app</a>
     </div>
@@ -74,32 +76,19 @@
       </div>
 
       <div class="grid">
-        <article class="tile w4">
-          <span class="tag">Form Coach</span>
-          <h3>Your phone watches your reps</h3>
-          <p>Prop your phone up and train. The camera reads your body, counts reps, and tells you what to fix by voice. Squat, lunge, push-up and deadlift today. The video is processed on your phone and is never uploaded.</p>
-          <div class="form-vis">
-            <svg class="pose" viewBox="0 0 240 200" role="img" aria-label="Illustration: a body outline with joints tracked during a squat, knee angle 92 degrees">
-              <line class="floor" x1="20" y1="184" x2="220" y2="184"/>
-              <g class="bones">
-                <line x1="118" y1="38" x2="112" y2="72"/>   <!-- neck to hip line (torso) -->
-                <line x1="112" y1="72" x2="150" y2="118"/>  <!-- torso to hip -->
-                <line x1="150" y1="118" x2="104" y2="132"/> <!-- thigh -->
-                <line x1="104" y1="132" x2="112" y2="182"/> <!-- shin -->
-                <line x1="112" y1="72" x2="148" y2="86"/>   <!-- arm -->
-                <line x1="148" y1="86" x2="170" y2="82"/>
-              </g>
-              <path class="arc" d="M 92 134 A 18 18 0 0 1 112 150"/>
-              <g class="joints">
-                <circle cx="118" cy="30" r="9"/><circle cx="112" cy="72" r="5"/><circle cx="150" cy="118" r="5"/>
-                <circle cx="104" cy="132" r="5"/><circle cx="112" cy="182" r="5"/><circle cx="148" cy="86" r="4"/><circle cx="170" cy="82" r="4"/>
-              </g>
-              <text x="40" y="128" class="deg">92°</text>
-            </svg>
+        <article class="tile w4 formtile">
+          <div class="form-photo">
+            <img src="img/form-coach.png" alt="The 3D fighter mid-squat with the camera coach's joint markers drawn on the body and the knee angle, 75 degrees" width="900" height="900" loading="lazy">
+          </div>
+          <div class="form-copy">
+            <span class="tag">Form Coach</span>
+            <h3>Your phone watches your reps</h3>
+            <p>Prop your phone up and train. The camera finds your joints, counts reps, measures the angles and tells you what to fix by voice. Squat, lunge, push-up and deadlift today. The video is processed on your phone and is never uploaded.</p>
             <div class="form-side">
               <div class="ring" style="--p:80" role="img" aria-label="8 of 10 reps, illustration"><div><span>8<small>OF 10</small></span></div></div>
               <div class="chips"><span class="chip go">Chest up</span><span class="chip">Knees out</span><span class="chip">Depth reached</span></div>
             </div>
+            <p class="fine">Picture: the app's own fighter with sample joint markers.</p>
           </div>
         </article>
 
@@ -108,41 +97,77 @@
           <h3>Shown in 3D. Always modest.</h3>
           <p>Pick skin tone and kit colour, plus a hijab colour. Your fighter's build follows your training.</p>
           <div class="pair">
-            <figure><img src="img/ex/squat.webp" alt="3D fighter doing a squat" width="300" height="300" loading="lazy"></figure>
-            <figure><img src="img/ex-f/squat.webp" alt="3D female fighter doing a squat in modest kit" width="300" height="300" loading="lazy"></figure>
+            <figure><img src="img/ex/squat.webp" alt="3D fighter doing a squat" width="720" height="720" loading="lazy"></figure>
+            <figure><img src="img/ex-f/squat.webp" alt="3D female fighter doing a squat in modest kit" width="720" height="720" loading="lazy"></figure>
           </div>
         </article>
 
-        <article class="tile w2">
-          <span class="tag">Library</span>
-          <h3>232 exercises, each demonstrated</h3>
-          <p>Tap a muscle on the body chart, zoom in, and see every exercise for it with a 3D demo and a written guide.</p>
-          <div class="minis">
-            <figure><img src="img/ex/hip-thrust.webp" alt="Hip thrust" width="200" height="200" loading="lazy"></figure>
-            <figure><img src="img/ex/lat-pulldown.webp" alt="Lat pulldown" width="200" height="200" loading="lazy"></figure>
-            <figure><img src="img/ex/battle-rope.webp" alt="Battle rope" width="200" height="200" loading="lazy"></figure>
+        <article class="tile w3">
+          <span class="tag">Quick actions</span>
+          <h3>Everything one tap from Home</h3>
+          <p>Seven shortcuts sit right under your week: the things you reach for mid-session.</p>
+          <ul class="qa" aria-label="The seven quick actions">
+            <li style="--c:#3DDC97"><i><svg viewBox="0 0 24 24"><circle cx="12" cy="13" r="7"/><path d="M12 9v4l2.5 2M9.5 3h5"/></svg></i><b>Rest timer</b><small>Time your rest between sets</small></li>
+            <li style="--c:#7B61FF"><i><svg viewBox="0 0 24 24"><circle cx="12" cy="5" r="2.5"/><path d="M5 10h14M9 10v11M15 10v11M9 15h6"/></svg></i><b>Muscle map</b><small>See which muscles you train</small></li>
+            <li style="--c:#F5A623"><i><svg viewBox="0 0 24 24"><path d="M20 14.5A8 8 0 1 1 9.5 4 6.5 6.5 0 0 0 20 14.5Z"/></svg></i><b>Recovery</b><small>Log sleep, soreness, energy</small></li>
+            <li style="--c:#00B4D8"><i><svg viewBox="0 0 24 24"><path d="M12 7c-3-2-8-1-8 5 0 5 3 9 5.5 9 1.2 0 1.5-.6 2.5-.6s1.3.6 2.5.6c2.5 0 5.5-4 5.5-9 0-6-5-7-8-5ZM12 7c0-2 1-3.5 3-4"/></svg></i><b>Nutrition</b><small>Log protein and calories</small></li>
+            <li style="--c:#22C55E"><i><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="m12 8 3.5 2.5-1.3 4H9.8l-1.3-4L12 8Zm0-5v5m6.500 1.500L15.500 10.500M5.500 9.500l3 1M9.800 14.500 7.500 19m6.700-4.500 2.300 4.500"/></svg></i><b>Sports</b><small>Drills for your sport</small></li>
+            <li style="--c:#EC4899"><i><svg viewBox="0 0 24 24"><rect x="2.5" y="6" width="13" height="12" rx="3"/><path d="m15.5 10.5 6-3.5v10l-6-3.5"/></svg></i><b>Form check</b><small>AI camera coach for your reps</small></li>
+            <li style="--c:#E5484D"><i><svg viewBox="0 0 24 24"><rect x="3" y="7" width="18" height="13" rx="3"/><path d="M9 7V5.500A1.500 1.500 0 0 1 10.500 4h3A1.500 1.500 0 0 1 15 5.500V7M12 10.500v6M9 13.500h6"/></svg></i><b>Pain guide</b><small>Tap where it hurts</small></li>
+          </ul>
+        </article>
+
+        <article class="tile w3 muscle">
+          <span class="tag">Muscle map</span>
+          <h3>See what you trained this week</h3>
+          <p>Every muscle is coloured by how hard you worked it, front and back. Tap one for the exercises that hit it, zoom in for the small ones, and spot what you've been skipping. 29 muscles, from neck to tibialis.</p>
+          <div class="mm">
+            <img src="img/muscle-map.svg" alt="Front and back body chart, quads, glutes and calves coloured as heavily trained" width="214" height="222" loading="lazy">
+            <ul class="legend" aria-label="Colour key">
+              <li><i style="background:#3D7BFF"></i>Light</li><li><i style="background:#3DDC97"></i>Moderate</li><li><i style="background:#FF8A3D"></i>Heavy</li><li><i style="background:#E31E24"></i>Peak</li>
+            </ul>
           </div>
+        </article>
+
+        <article class="tile w2 nutri">
+          <span class="tag">Nutrition</span>
+          <h3>Protein, calories, water</h3>
+          <p>Daily targets from your goal and bodyweight. Log in seconds, scan a barcode, or tap a common food.</p>
+          <div class="macros" role="img" aria-label="Sample day: 2,140 of 2,600 calories, protein 128 of 150 grams, carbs 240 of 300, fat 62 of 80, 6 of 8 glasses of water">
+            <div class="kcal" style="--p:82"><div><span>2,140<small>OF 2,600 KCAL</small></span></div></div>
+            <dl>
+              <div><dt>Protein</dt><dd><i style="--w:85%;--c:#E31E24"></i></dd><span>128 / 150 g</span></div>
+              <div><dt>Carbs</dt><dd><i style="--w:80%;--c:#3D7BFF"></i></dd><span>240 / 300 g</span></div>
+              <div><dt>Fat</dt><dd><i style="--w:78%;--c:#F5A623"></i></dd><span>62 / 80 g</span></div>
+            </dl>
+          </div>
+          <div class="glasses" aria-hidden="true"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i><span>6 of 8 glasses</span></div>
+        </article>
+
+        <article class="tile w2 pain">
+          <span class="tag">Pain and injury guide</span>
+          <h3>Tap where it hurts</h3>
+          <p>Pick the spot on the body chart. You get warning signs first, then what to do today and gentle exercises your fighter shows you. General guidance, not a diagnosis.</p>
+          <img class="painmap" src="img/pain-map.svg" alt="Body chart with tappable pain areas marked in red" width="214" height="222" loading="lazy">
+          <ul class="steps"><li>26 body areas</li><li>Training around it, from your own routines</li><li>Pain diary with a 14-day trend</li></ul>
         </article>
 
         <article class="tile w2">
           <span class="tag">Planning</span>
           <h3>Gym and sport, same week</h3>
           <p>Put a workout and a football session on the same day. Log the sport with minutes and effort, and it counts toward your points and stats.</p>
-          <ul class="steps"><li>Full Body A and B</li><li>Isometric holds with a timer</li><li>Weight goes up when you hit your reps</li></ul>
+          <ul class="steps"><li>Full Body A and B</li><li>Isometric holds with a timer</li><li>Weight goes up when you hit your reps</li><li>Rest-day suggestions and a weekly summary</li></ul>
         </article>
 
-        <article class="tile w2">
-          <span class="tag">Pain and injury guide</span>
-          <h3>Tap where it hurts</h3>
-          <p>Pick the spot on the body chart. You get warning signs first, then what to do today and gentle exercises your fighter shows you. It's general guidance, not a diagnosis.</p>
-          <ul class="steps"><li>26 body areas</li><li>Training around it, using your own routines</li><li>A pain diary with a 14-day trend</li></ul>
-        </article>
-
-        <article class="tile red w3">
-          <span class="tag">Compete</span>
-          <h3>Climb from Bronze to Legend</h3>
-          <p>Points for workouts, sport sessions, records and recovery. Rank up, beat your own bests, and watch the leaderboard.</p>
-          <div class="ranks" aria-label="Ranks"><span>Bronze</span><span>Silver</span><span>Gold</span><span>Platinum</span><span>Diamond</span><span>Elite</span><span>Legend</span></div>
+        <article class="tile w3">
+          <span class="tag">Library</span>
+          <h3>232 exercises, each demonstrated</h3>
+          <p>Tap a muscle on the body chart, zoom in, and see every exercise for it with a 3D demo and a written guide.</p>
+          <div class="minis">
+            <figure><img src="img/ex/hip-thrust.webp" alt="Hip thrust" width="720" height="720" loading="lazy"></figure>
+            <figure><img src="img/ex/pull-up.webp" alt="Pull-up" width="720" height="720" loading="lazy"></figure>
+            <figure><img src="img/ex/battle-rope.webp" alt="Battle rope" width="720" height="720" loading="lazy"></figure>
+          </div>
         </article>
 
         <article class="tile w3">
@@ -151,6 +176,72 @@
           <p>Describe your goal and get a training plan, a way past a plateau, or a sport-specific session. It knows your week, your routines and your level.</p>
           <ul class="steps"><li>Plateau alerts when a lift stalls</li><li>Muscle heat map of your week</li><li>Weekly summary every Sunday</li></ul>
         </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="compete band-dark" id="compete">
+    <div class="wrap">
+      <div class="sec-head">
+        <p class="eyebrow">Compete</p>
+        <h2>Climb Everest, one workout at a time</h2>
+        <p>Every rank is a camp on the mountain. Points come from workouts, sport sessions, records, recovery and streaks, and they never reset.</p>
+      </div>
+
+      <div class="cgrid">
+        <div class="ccard rankcard">
+          <span class="lbl">Your rank</span>
+          <div class="rk"><b style="color:#A8A9AD">SILVER</b><span>Khumbu Icefall · 5,486 m</span></div>
+          <div class="pts">1,580<small>total points</small></div>
+          <div class="bar" role="img" aria-label="1,580 of 2,000 points, 420 to Gold"><i style="--w:79%"></i></div>
+          <p>420 pts to <b style="color:#F5A623">Gold</b></p>
+          <ul class="how-pts">
+            <li><span>Workout</span><b>50 + 5 a set</b></li>
+            <li><span>Sport session</span><b>20 + a point a minute</b></li>
+            <li><span>New personal record</span><b>+25</b></li>
+            <li><span>Form check, 90+ score</span><b>+25</b></li>
+            <li><span>Recovery or nutrition logged</span><b>+20 / +10</b></li>
+            <li><span>7, 14, 30 day streak</span><b>+30 / +75 / +150</b></li>
+          </ul>
+          <p class="fine">Sample numbers.</p>
+        </div>
+
+        <div class="ccard ladder">
+          <span class="lbl">The ladder</span>
+          <ol aria-label="The nine ranks and their altitude">
+            <li style="--h:14%;--c:#CD7F32"><b>Bronze</b><small>Base Camp · 5,364 m</small></li>
+            <li style="--h:22%;--c:#A8A9AD" class="you"><b>Silver</b><small>Icefall · 5,486 m</small></li>
+            <li style="--h:32%;--c:#F5A623"><b>Gold</b><small>Camp II · 6,500 m</small></li>
+            <li style="--h:42%;--c:#00B4D8"><b>Platinum</b><small>Camp III · 7,200 m</small></li>
+            <li style="--h:54%;--c:#7B61FF"><b>Diamond</b><small>Death Zone · 8,000 m</small></li>
+            <li style="--h:66%;--c:#E31E24"><b>Elite</b><small>South Summit · 8,750 m</small></li>
+            <li style="--h:78%;--c:#FF6D00"><b>Legend</b><small>Hillary Step · 8,790 m</small></li>
+            <li style="--h:90%;--c:#CC00FF"><b>Mythic</b><small>True Summit · 8,849 m</small></li>
+            <li style="--h:100%;--c:#FF003C"><b>Immortal</b><small>Beyond the Summit</small></li>
+          </ol>
+        </div>
+
+        <div class="ccard board">
+          <span class="lbl">Leaderboard</span>
+          <table>
+            <caption class="sr">Sample worldwide leaderboard</caption>
+            <tbody>
+              <tr><td>1</td><td>Amira S.</td><td><em style="color:#FF6D00">Legend</em></td><td>61,240</td></tr>
+              <tr><td>2</td><td>Jonas K.</td><td><em style="color:#E31E24">Elite</em></td><td>48,905</td></tr>
+              <tr><td>3</td><td>Priya N.</td><td><em style="color:#7B61FF">Diamond</em></td><td>12,310</td></tr>
+              <tr class="me"><td>47</td><td>You</td><td><em style="color:#A8A9AD">Silver</em></td><td>1,580</td></tr>
+              <tr><td>48</td><td>Liam O.</td><td><em style="color:#A8A9AD">Silver</em></td><td>1,544</td></tr>
+            </tbody>
+          </table>
+          <ul class="mini-feats">
+            <li>Weekly challenges with progress bars</li>
+            <li>Achievements to unlock</li>
+            <li>Boss ladder: fight a boss at each rank</li>
+            <li>Personal-record medals and a weekly trend</li>
+          </ul>
+          <p class="soon-note"><span>Coming soon</span> Friends: add people by code and race them on your own leaderboard.</p>
+          <p class="fine">Sample names and numbers.</p>
+        </div>
       </div>
     </div>
   </section>
@@ -194,18 +285,18 @@
         <p>From squats to battle ropes, landmine presses to neck holds. A small sample of the 232.</p>
       </div>
       <div class="wall">
-        <figure><img src="img/ex/squat.webp" alt="Squat" width="300" height="300" loading="lazy"><figcaption>Squat</figcaption></figure>
-        <figure><img src="img/ex/deadlift.webp" alt="Deadlift" width="300" height="300" loading="lazy"><figcaption>Deadlift</figcaption></figure>
-        <figure><img src="img/ex/landmine-press.webp" alt="Landmine press" width="300" height="300" loading="lazy"><figcaption>Landmine press</figcaption></figure>
-        <figure><img src="img/ex/hip-thrust.webp" alt="Hip thrust" width="300" height="300" loading="lazy"><figcaption>Hip thrust</figcaption></figure>
-        <figure><img src="img/ex/lat-pulldown.webp" alt="Lat pulldown" width="300" height="300" loading="lazy"><figcaption>Lat pulldown</figcaption></figure>
-        <figure><img src="img/ex/battle-rope.webp" alt="Battle rope" width="300" height="300" loading="lazy"><figcaption>Battle rope</figcaption></figure>
-        <figure><img src="img/ex/boxing-bag.webp" alt="Heavy bag" width="300" height="300" loading="lazy"><figcaption>Heavy bag</figcaption></figure>
-        <figure><img src="img/ex/plank.webp" alt="Plank" width="300" height="300" loading="lazy"><figcaption>Plank</figcaption></figure>
-        <figure><img src="img/ex/burpee.webp" alt="Burpee" width="300" height="300" loading="lazy"><figcaption>Burpee</figcaption></figure>
-        <figure><img src="img/ex/box-jump-plyo.webp" alt="Box jump" width="300" height="300" loading="lazy"><figcaption>Box jump</figcaption></figure>
-        <figure><img src="img/ex/tib-raise.webp" alt="Tibialis raise" width="300" height="300" loading="lazy"><figcaption>Tibialis raise</figcaption></figure>
-        <figure><img src="img/ex/front-squat.webp" alt="Front squat" width="300" height="300" loading="lazy"><figcaption>Front squat</figcaption></figure>
+        <figure><img src="img/ex/squat.webp" alt="Squat" width="720" height="720" loading="lazy"><figcaption>Squat</figcaption></figure>
+        <figure><img src="img/ex/deadlift.webp" alt="Deadlift" width="720" height="720" loading="lazy"><figcaption>Deadlift</figcaption></figure>
+        <figure><img src="img/ex/landmine-press.webp" alt="Landmine press" width="720" height="720" loading="lazy"><figcaption>Landmine press</figcaption></figure>
+        <figure><img src="img/ex/hip-thrust.webp" alt="Hip thrust" width="720" height="720" loading="lazy"><figcaption>Hip thrust</figcaption></figure>
+        <figure><img src="img/ex/lat-pulldown.webp" alt="Lat pulldown" width="720" height="720" loading="lazy"><figcaption>Lat pulldown</figcaption></figure>
+        <figure><img src="img/ex/battle-rope.webp" alt="Battle rope" width="720" height="720" loading="lazy"><figcaption>Battle rope</figcaption></figure>
+        <figure><img src="img/ex/boxing-bag.webp" alt="Heavy bag" width="720" height="720" loading="lazy"><figcaption>Heavy bag</figcaption></figure>
+        <figure><img src="img/ex/push-up.webp" alt="Push-up" width="720" height="720" loading="lazy"><figcaption>Push-up</figcaption></figure>
+        <figure><img src="img/ex/burpee.webp" alt="Burpee" width="720" height="720" loading="lazy"><figcaption>Burpee</figcaption></figure>
+        <figure><img src="img/ex/box-jump-plyo.webp" alt="Box jump" width="720" height="720" loading="lazy"><figcaption>Box jump</figcaption></figure>
+        <figure><img src="img/ex/tib-raise.webp" alt="Tibialis raise" width="720" height="720" loading="lazy"><figcaption>Tibialis raise</figcaption></figure>
+        <figure><img src="img/ex/front-squat.webp" alt="Front squat" width="720" height="720" loading="lazy"><figcaption>Front squat</figcaption></figure>
       </div>
       <p class="wall-note">Each one has a written guide, the muscles it works, and whether it builds strength, power, endurance or mobility.</p>
     </div>
@@ -232,6 +323,24 @@
       </div>
     </div>
   </section>
+  <section id="contact" class="contact">
+    <div class="wrap">
+      <div class="sec-head"><p class="eyebrow">Contact</p><h2>Questions, feedback or a bug?</h2><p>Write to us. A real person reads every message, and replies within a few days.</p></div>
+      <form class="cform" id="cform" novalidate>
+        <label>Your name<input name="name" autocomplete="name" placeholder="Alex"></label>
+        <label>What is it about?
+          <select name="topic"><option>Feedback or an idea</option><option>Something is broken</option><option>A question about the app</option><option>Press or partnership</option></select>
+        </label>
+        <label class="full">Message<textarea name="msg" rows="5" placeholder="Tell us what's on your mind"></textarea></label>
+        <div class="full actions">
+          <button class="btn primary" type="submit">Send by email</button>
+          <button class="btn" type="button" id="gmail">Open in Gmail</button>
+          <span class="note" id="cnote" role="status"></span>
+        </div>
+      </form>
+      <p class="fine">This opens your own email app (or Gmail) with the message filled in, so nothing is stored on this page.</p>
+    </div>
+  </section>
 </main>
 
 <div class="closing band-dark">
@@ -251,5 +360,25 @@
     <span>Made with dedication.</span>
   </div>
 </footer>
+<script>
+(function () {
+  var to = ['trrfarhan', 'gmail.com'].join('@');
+  var f = document.getElementById('cform'), note = document.getElementById('cnote');
+  function parts() {
+    var d = new FormData(f), name = String(d.get('name') || '').trim(), msg = String(d.get('msg') || '').trim();
+    return { su: '2SetsFitness: ' + d.get('topic'), body: msg + (name ? '\n\n' + name : ''), ok: msg.length > 0 };
+  }
+  function check(p) { note.textContent = p.ok ? '' : 'Write a message first.'; return p.ok; }
+  f.addEventListener('submit', function (e) {
+    e.preventDefault();
+    var p = parts(); if (!check(p)) return;
+    location.href = 'mailto:' + to + '?subject=' + encodeURIComponent(p.su) + '&body=' + encodeURIComponent(p.body);
+  });
+  document.getElementById('gmail').addEventListener('click', function () {
+    var p = parts(); if (!check(p)) return;
+    window.open('https://mail.google.com/mail/?view=cm&fs=1&to=' + encodeURIComponent(to) + '&su=' + encodeURIComponent(p.su) + '&body=' + encodeURIComponent(p.body), '_blank', 'noopener');
+  });
+})();
+</script>
 </body>
 </html>
