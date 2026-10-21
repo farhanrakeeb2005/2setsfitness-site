@@ -397,3 +397,10 @@ footer .wrap { display: flex; justify-content: space-between; flex-wrap: wrap; g
 .pa-bar i { display: block; width: 16%; height: 100%; background: #cd7f32; }
 .pa-rank small { color: #555868; font-size: 0.68rem; }
 .phone .cap { color: #6b6e7b; margin-top: 2px; }
+
+/* 3D rep loops as video (opaque, on the tile colour) */
+video.vid { display: block; width: 100%; aspect-ratio: 1; object-fit: cover; background: var(--tile); }
+.form-photo { background: var(--tile); }
+.form-photo video.vid { max-height: 560px; }
+/* the hero phone, bigger on wide screens */
+@media (min-width: 900px) { .phone { zoom: 1.22; } }
