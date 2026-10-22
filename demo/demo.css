@@ -245,3 +245,8 @@ a { color: inherit; }
 .dm-tbtns { display: flex; gap: 6px; }
 .dm-outline { display: flex; align-items: center; gap: 4px; border: 1.5px solid var(--a-red) !important; color: var(--a-red) !important; font-weight: 800; border-radius: 20px; padding: 6px 12px !important; font-size: 13px; }
 .dm-tbtns .dm-start { font-size: 13px; padding: 6px 14px !important; }
+
+/* the injury guide demo: what the app adds */
+.dm-more { background: #f4f5f8; }
+.dm-more p { margin: 6px 0 0; color: #33363f; font-size: 14px; }
+.dm-more .dm-sheet-note { font-weight: 800; color: var(--a-ink); }
