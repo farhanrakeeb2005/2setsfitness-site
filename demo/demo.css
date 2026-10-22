@@ -88,7 +88,7 @@ a { color: inherit; }
 .dm-chips { display: flex; flex-wrap: wrap; gap: 6px; margin: 10px 0; }
 .dm-chips span { background: rgba(255,255,255,.18); border-radius: 14px; padding: 4px 10px; font-size: 12.5px; max-width: 140px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .dm-reward { font-weight: 800; font-size: 14px; }
-.dm-hero-stage { width: 150px; margin-right: -18px; flex-shrink: 0; }
+.dm-hero-stage { width: 165px; margin-right: -12px; flex-shrink: 0; }
 .dm-stats { display: flex; gap: 18px; font-size: 12.5px; margin: 6px 0 12px; opacity: .95; }
 .dm-stats b { font-size: 15px; font-weight: 900; }
 .dm-primary { width: 100%; height: 50px; border-radius: 14px; background: #fff !important; color: var(--d) !important; display: flex; align-items: center; justify-content: center; gap: 10px; font-weight: 900; font-size: 17px; }
@@ -233,3 +233,15 @@ a { color: inherit; }
 .dm-float { position: absolute; z-index: 30; transform: translateX(-50%); color: var(--a-red); font-weight: 900; font-size: 18px; pointer-events: none; animation: dm-up 1.2s ease-out forwards; text-shadow: 0 1px 0 #fff; }
 @keyframes dm-up { to { transform: translate(-50%, -60px); opacity: 0; } }
 @media (prefers-reduced-motion: reduce) { .dm *, .dm-toast, .dm-float { animation: none !important; transition: none !important; } }
+
+/* "needs the app" sheet (Snap meal, Scan barcode, your own routines) */
+.dm-sheet-bg { position: absolute; inset: 0; z-index: 40; background: rgba(20, 20, 22, .5); display: flex; align-items: flex-end; animation: dm-in .2s ease-out; }
+.dm-sheet { width: 100%; background: var(--a-surface); border-radius: 24px 24px 0 0; padding: 22px 20px 20px; text-align: center; }
+.dm-sheet-ic { width: 56px; height: 56px; margin: 0 auto 8px; border-radius: 16px; display: grid; place-items: center; background: #fdecec; color: var(--a-red); }
+.dm-sheet h3 { margin: 4px 0 6px; font-size: 20px; font-weight: 900; }
+.dm-sheet p { margin: 0 0 10px; color: #33363f; }
+.dm-sheet .dm-sheet-note { font-weight: 800; color: var(--a-ink); }
+.dm-store { display: inline-block; margin: 2px 4px 4px; padding: 6px 12px; border-radius: 16px; background: var(--a-surface2); font-size: 12.5px; color: var(--a-dim); font-weight: 700; }
+.dm-tbtns { display: flex; gap: 6px; }
+.dm-outline { display: flex; align-items: center; gap: 4px; border: 1.5px solid var(--a-red) !important; color: var(--a-red) !important; font-weight: 800; border-radius: 20px; padding: 6px 12px !important; font-size: 13px; }
+.dm-tbtns .dm-start { font-size: 13px; padding: 6px 14px !important; }
