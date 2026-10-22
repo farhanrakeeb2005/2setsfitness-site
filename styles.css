@@ -382,3 +382,6 @@ video.vid { display: block; width: 100%; aspect-ratio: 1; object-fit: cover; bac
 
 /* the real-app screen recording, in a phone frame */
 .try-phone video.vid.tour { width: min(360px, 86vw); aspect-ratio: 540 / 1054; height: auto; object-fit: contain; border-radius: 40px; border: 10px solid #15171c; box-shadow: var(--shadow), 0 0 0 2px #2f333d; background: #f2f3f7; margin: 0 auto; }
+
+/* the "Try it yourself" link to the browser demo (demo/) */
+.try-note { color: var(--dim); font-size: 15px; margin-left: 10px; }

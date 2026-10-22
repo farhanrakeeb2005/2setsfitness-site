@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Try 2SetsFitness</title>
+<meta name="description" content="Try the 2SetsFitness app in your browser: today's quest, the 3D coach, Muscle Map, the injury guide and ranks. Sample data, no sign-up.">
+<meta name="theme-color" content="#050505">
+<link rel="icon" href="../img/favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Barlow:wght@400;500;600;700;800&display=swap">
+<link rel="stylesheet" href="demo.css?v=1">
+</head>
+<body>
+<header class="pg-top">
+  <a class="pg-brand" href="../"><img src="../img/icon.png" alt="" width="36" height="36"><span><b>2</b>SetsFitness</span></a>
+  <a class="pg-back" href="../">Back to the site</a>
+</header>
+<main class="pg">
+  <section class="pg-copy">
+    <p class="pg-eyebrow">Try the app</p>
+    <h1>The real app, in your browser</h1>
+    <p>Everything here runs on the same code as the phone: the 3D coach, the day themes, the injury guide and the ranks. The data is a sample, so tap anything. Nothing is saved.</p>
+    <ol class="pg-steps">
+      <li><b>Pick a day</b> in This week: Home changes colour and pose with it.</li>
+      <li><b>Start quest</b> and complete sets: the 3D coach shows every rep.</li>
+      <li><b>Muscle Map</b>: spin the body, see your week in heat.</li>
+      <li><b>Injury guide</b>: tap where it hurts, get a plan and watch the exercises.</li>
+    </ol>
+    <p class="pg-small">Drag the fighter sideways to turn it.</p>
+  </section>
+  <div class="pg-phone">
+    <div class="pg-frame"><div id="demo" class="dm" aria-label="2SetsFitness app demo"></div></div>
+  </div>
+</main>
+<noscript><p class="pg-copy">The demo needs JavaScript.</p></noscript>
+<script src="demo.js?v=1"></script>
+<script>
+  try { window.TwoSetsDemo.mount(document.getElementById('demo'), { fighterUrl: 'assets/fighter_male.glb' }); }
+  catch (e) { document.getElementById('demo').innerHTML = '<p class="dm-foot">The demo could not start in this browser.</p>'; console.error(e); }
+</script>
+</body>
+</html>
