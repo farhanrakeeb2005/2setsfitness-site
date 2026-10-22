@@ -250,3 +250,5 @@ a { color: inherit; }
 .dm-more { background: #f4f5f8; }
 .dm-more p { margin: 6px 0 0; color: #33363f; font-size: 14px; }
 .dm-more .dm-sheet-note { font-weight: 800; color: var(--a-ink); }
+
+.dm-applink { text-align: center; font-size: 13px; color: var(--a-dim); margin: 12px 8px 0; }
