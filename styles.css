@@ -393,3 +393,10 @@ video.vid { display: block; width: 100%; aspect-ratio: 1; object-fit: cover; bac
   .wall figure { transition: scale 0.3s; }
   .wall figure:hover { scale: 1.04; }
 }
+
+/* wider screens: the whole page a little bigger, so a laptop or monitor
+   doesn't look zoomed out (phones and tablets stay as they are) */
+@media (min-width: 1280px) { html { zoom: 1.12; } }
+@media (min-width: 1500px) { html { zoom: 1.22; } }
+@media (min-width: 1800px) { html { zoom: 1.35; } }
+@media (min-width: 2300px) { html { zoom: 1.6; } }
