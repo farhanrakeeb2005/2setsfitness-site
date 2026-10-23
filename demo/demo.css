@@ -252,3 +252,7 @@ a { color: inherit; }
 .dm-more .dm-sheet-note { font-weight: 800; color: var(--a-ink); }
 
 .dm-applink { text-align: center; font-size: 13px; color: var(--a-dim); margin: 12px 8px 0; }
+/* a recovery day's or a match's summary: what was done */
+.dm-sumlist { list-style: none; padding: 0; margin: 14px auto 4px; max-width: 260px; text-align: left; }
+.dm-sumlist li { display: flex; align-items: center; gap: 10px; padding: 9px 0; border-bottom: 1px solid rgba(127,127,127,0.18); font-weight: 600; }
+.dm-sumlist li svg { color: #3DDC97; flex: none; }

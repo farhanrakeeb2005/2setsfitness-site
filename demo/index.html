@@ -3,14 +3,15 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Try 2SetsFitness</title>
+<title>2SetsFitness Demo</title>
 <meta name="description" content="Try the 2SetsFitness app in your browser: today's quest, the 3D coach, Muscle Map, the injury guide and ranks. Sample data, no sign-up.">
 <meta name="theme-color" content="#050505">
 <link rel="icon" href="../img/favicon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Barlow:wght@400;500;600;700;800&display=swap">
-<link rel="stylesheet" href="demo.css?v=5">
+<link rel="preload" href="assets/fighter_male.glb?v=9" as="fetch" crossorigin>
+<link rel="stylesheet" href="demo.css?v=6">
 </head>
 <body>
 <header class="pg-top">
@@ -19,7 +20,7 @@
 </header>
 <main class="pg">
   <section class="pg-copy">
-    <p class="pg-eyebrow">Try the app</p>
+    <p class="pg-eyebrow">Try the demo app</p>
     <h1>The real app, in your browser</h1>
     <p>Everything here runs on the same code as the phone: the 3D coach, the day themes, the injury guide and the ranks. The data is a sample, so tap anything. Nothing is saved.</p>
     <ol class="pg-steps">
@@ -35,9 +36,9 @@
   </div>
 </main>
 <noscript><p class="pg-copy">The demo needs JavaScript.</p></noscript>
-<script src="demo.js?v=8"></script>
+<script src="demo.js?v=9"></script>
 <script>
-  try { window.TwoSetsDemo.mount(document.getElementById('demo'), { fighterUrl: 'assets/fighter_male.glb' }); }
+  try { window.TwoSetsDemo.mount(document.getElementById('demo'), { fighterUrl: 'assets/fighter_male.glb?v=9' }); }
   catch (e) { document.getElementById('demo').innerHTML = '<p class="dm-foot">The demo could not start in this browser.</p>'; console.error(e); }
 </script>
 </body>
