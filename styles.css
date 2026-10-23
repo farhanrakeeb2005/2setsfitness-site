@@ -91,11 +91,11 @@ p { margin: 0; }
 .hero { position: relative; overflow: hidden; padding-bottom: 72px; }
 .hero::before {                       /* the slash */
   content: ""; position: absolute; right: 12%; top: -10%; width: 34%; height: 130%;
-  background: linear-gradient(180deg, #e31e24, #8f0f13); transform: skewX(-14deg); opacity: 0.95;
+  background: linear-gradient(180deg, #e31e24, #8f0f13); transform: translateY(calc(var(--sy, 0%) + var(--sp, 0%))) skewX(-14deg); opacity: 0.95;
 }
 .hero::after {
   content: ""; position: absolute; right: 4%; top: -10%; width: 3%; height: 130%;
-  background: #fff; transform: skewX(-14deg); opacity: 0.9;
+  background: #fff; transform: translateY(calc(var(--sy, 0%) * 1.25 + var(--sp, 0%) * 1.6)) skewX(-14deg); opacity: 0.9;
 }
 .hero .hero-grid { position: relative; z-index: 2; display: grid; grid-template-columns: 1.15fr 0.85fr; gap: 40px; align-items: center; padding-top: 28px; }
 .hero h1 { font-size: clamp(2.8rem, 6.4vw, 5.3rem); font-weight: 800; letter-spacing: -0.005em; }
@@ -385,3 +385,21 @@ video.vid { display: block; width: 100%; aspect-ratio: 1; object-fit: cover; bac
 
 /* the "Try it yourself" link to the browser demo (demo/) */
 .try-note { color: var(--dim); font-size: 15px; margin-left: 10px; }
+
+/* ---------- motion (anim.js) ---------- */
+@property --sy { syntax: '<percentage>'; inherits: false; initial-value: 0%; }
+@property --sp { syntax: '<percentage>'; inherits: false; initial-value: 0%; }
+@property --p { syntax: '<number>'; inherits: false; initial-value: 0; }
+.scroll-prog { position: fixed; left: 0; top: 0; height: 3px; width: 100%; z-index: 50; background: linear-gradient(90deg, #e31e24, #ff5a60); transform: scaleX(0); transform-origin: left center; pointer-events: none; }
+.anim .hero h1 span { will-change: transform; }
+.anim .phone { will-change: transform; }
+.btn { transition: box-shadow 0.25s, border-color 0.25s; }
+.btn.primary:hover { box-shadow: 0 8px 28px rgba(227, 30, 36, 0.45); }
+.btn:not(.primary):not(.soon):hover { border-color: var(--accent-ink); }
+/* hover uses translate/scale (not transform), so it never fights GSAP's tweens */
+.tile { transition: translate 0.35s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.35s; }
+@media (hover: hover) and (prefers-reduced-motion: no-preference) {
+  .tile:hover { translate: 0 -6px; box-shadow: 0 18px 40px rgba(0, 0, 0, 0.12); }
+  .wall figure { transition: scale 0.3s; }
+  .wall figure:hover { scale: 1.04; }
+}
