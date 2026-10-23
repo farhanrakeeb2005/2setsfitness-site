@@ -215,7 +215,7 @@ section { padding-block: 92px; }
 .faq p { color: var(--dim); margin-top: 10px; }
 
 /* closing band + footer */
-.closing { margin: 0 max(16px, calc((100vw - 1160px) / 2)) 40px; border-radius: 32px; padding: 90px 20px; text-align: center; position: relative; overflow: hidden; color: #fff;
+.closing { width: calc(100% - 32px); max-width: 1160px; margin: 0 auto 40px; border-radius: 32px; padding: 90px 20px; text-align: center; position: relative; overflow: hidden; color: #fff;
   background: radial-gradient(80% 120% at 80% 0%, #ff5a60 0%, transparent 55%), linear-gradient(135deg, #e31e24, #9a1014); box-shadow: 0 30px 60px rgba(227, 30, 36, 0.25); }
 .closing .btn.soon { background: rgba(255, 255, 255, 0.16); border-color: rgba(255, 255, 255, 0.4); color: #fff; box-shadow: none; }
 .closing h2 { font-size: clamp(2.8rem, 8vw, 6rem); font-weight: 800; }
