@@ -457,3 +457,5 @@ video.vid, .float video { background: #ececf1; }
 @media (max-width: 760px) { .b2 { display: none; } }
 @media (min-width: 1024px) { .stage .b4 { left: calc(50% - 82px); right: auto; top: 250px; } }
 @media (min-width: 761px) and (max-width: 1023px) { .b4 { display: none; } }
+/* a laptop or desktop: the phone video fits on the screen with the copy beside it */
+@media (min-width: 1024px) { .try-phone video.vid.tour { width: 300px; } }
