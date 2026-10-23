@@ -11,42 +11,42 @@
     var hero = document.querySelector('.hero');
     document.documentElement.classList.add('anim');
 
-    // ---------- hero: the slash sweeps down, the headline rises line by line ----------
-    var intro = gsap.timeline({ defaults: { ease: 'power4.out' } });
-    intro
-      .fromTo(hero, { '--sy': '-110%' }, { '--sy': '0%', duration: 1.1, ease: 'expo.out' })
-      .from('.nav .brand, .nav li, .nav .btn', { y: -20, opacity: 0, stagger: 0.04, duration: 0.6 }, 0.15)
-      .from('.hero .eyebrow', { x: -30, opacity: 0, duration: 0.6 }, 0.3)
-      .from('.hero h1 span', { yPercent: 110, opacity: 0, rotate: 3, stagger: 0.12, duration: 1 }, 0.35)
-      .from('.hero .lede', { y: 24, opacity: 0, duration: 0.8 }, 0.75)
-      .from('.hero .cta > *', { y: 20, opacity: 0, scale: 0.94, stagger: 0.07, duration: 0.6 }, 0.85)
-      .from('.hero .facts li', { x: -16, opacity: 0, stagger: 0.08, duration: 0.5 }, 1.0)
-      .from('.hero .phone', { y: 120, rotate: 8, opacity: 0, duration: 1.3, ease: 'expo.out' }, 0.4)
-      .from('.phone > *:not(.cap)', { y: 18, opacity: 0, stagger: 0.07, duration: 0.5 }, 0.95)
-      .from('.ph-prog i', { scaleX: 0, transformOrigin: 'left center', duration: 1.1 }, 1.3);
+    // ---------- hero: headline rises line by line, the clips fly in, badges pop ----------
+    gsap.timeline({ defaults: { ease: 'power3.out' } })
+      .from('.nav .brand, .nav li, .nav .btn', { y: -16, opacity: 0, stagger: 0.04, duration: 0.6 }, 0)
+      .from('.hero .pill', { y: -20, opacity: 0, duration: 0.6 }, 0.1)
+      .from('.hero h1 span', { yPercent: 60, opacity: 0, stagger: 0.12, duration: 0.9 }, 0.2)
+      .from('.hero .lede', { y: 24, opacity: 0, duration: 0.8 }, 0.55)
+      .from('.hero .cta > *, .hero .facts li', { y: 18, opacity: 0, stagger: 0.07, duration: 0.6 }, 0.7)
+      .from('.f1', { y: 160, opacity: 0, duration: 1.2, ease: 'expo.out' }, 0.6)
+      .from('.f2', { x: 140, y: 60, opacity: 0, duration: 1.2, ease: 'expo.out' }, 0.8)
+      .from('.f3', { x: -140, y: 60, opacity: 0, duration: 1.2, ease: 'expo.out' }, 0.8)
+      .from('.badge', { scale: 0, opacity: 0, stagger: 0.18, duration: 0.6, ease: 'back.out(2)' }, 1.3);
 
-    // the phone floats, leans toward the pointer, and drifts up as you scroll away
-    var phone = document.querySelector('.hero .phone');
-    gsap.to(phone, { y: '-=12', duration: 2.6, ease: 'sine.inOut', yoyo: true, repeat: -1, delay: 1.8 });
+    // the badges bob gently; the side clips drift up at different speeds as you scroll
+    $('.badge').forEach(function (b, i) {
+      gsap.to(b, { y: i % 2 ? 10 : -10, duration: 2.4 + i * 0.3, yoyo: true, repeat: -1, ease: 'sine.inOut', delay: 2 });
+    });
+    [['.f1', -8], ['.f2', -25], ['.f3', -40]].forEach(function (p) {
+      gsap.to(p[0], { yPercent: p[1], ease: 'none', scrollTrigger: { trigger: '.stage', start: 'top 60%', end: 'bottom top', scrub: true } });
+    });
+    // the clips lean toward the pointer
     if (window.matchMedia('(pointer: fine)').matches) {
-      var rx = gsap.quickTo(phone, 'rotationX', { duration: 0.8, ease: 'power3' });
-      var ry = gsap.quickTo(phone, 'rotationY', { duration: 0.8, ease: 'power3' });
-      gsap.set(phone, { transformPerspective: 900 });
-      hero.addEventListener('pointermove', function (e) {
-        var r = hero.getBoundingClientRect();
-        ry(((e.clientX - r.left) / r.width - 0.5) * 16);
-        rx(-((e.clientY - r.top) / r.height - 0.5) * 12);
+      var stage = document.querySelector('.stage');
+      var tilt = $('.float').map(function (f) {
+        gsap.set(f, { transformPerspective: 900 });
+        return [gsap.quickTo(f, 'rotationY', { duration: 0.8, ease: 'power3' }), gsap.quickTo(f, 'rotationX', { duration: 0.8, ease: 'power3' })];
       });
-      hero.addEventListener('pointerleave', function () { rx(0); ry(0); });
+      hero.addEventListener('pointermove', function (e) {
+        var r = stage.getBoundingClientRect(), x = (e.clientX - r.left) / r.width - 0.5, y = (e.clientY - r.top) / r.height - 0.5;
+        tilt.forEach(function (t) { t[0](x * 14); t[1](-y * 10); });
+      });
+      hero.addEventListener('pointerleave', function () { tilt.forEach(function (t) { t[0](0); t[1](0); }); });
     }
-    gsap.to('.hero .hero-grid > div:first-child', {
-      yPercent: -12, opacity: 0.25, ease: 'none',
-      scrollTrigger: { trigger: hero, start: 'top top', end: 'bottom top', scrub: true },
-    });
-    gsap.fromTo(hero, { '--sp': '0%' }, {
-      '--sp': '18%', ease: 'none',
-      scrollTrigger: { trigger: hero, start: 'top top', end: 'bottom top', scrub: true },
-    });
+
+    // the bar under the nav shows once the page has moved
+    var nav = document.querySelector('.nav');
+    ScrollTrigger.create({ start: 10, onToggle: function (st) { nav.classList.toggle('scrolled', st.isActive); } });
 
     // ---------- a red progress line across the top as you read ----------
     var prog = document.createElement('div');
