@@ -431,3 +431,15 @@ video.vid { display: block; width: 100%; aspect-ratio: 1; object-fit: cover; bac
   .wall-note { text-align: center; }
   section { padding-block: 80px; }
 }
+
+/* videos are pictures here, not players: no picture-in-picture or cast
+   button when one is tapped (Android Chrome showed one), no controls */
+video { pointer-events: none; }
+video::-webkit-media-controls, video::-webkit-media-controls-enclosure { display: none !important; }
+
+/* the exercise tiles: a clearer edge and shadow, so each stands out on the page */
+.wall figure, .pair figure, .minis figure, .float {
+  border: 1px solid #d9dce5;
+  box-shadow: 0 1px 2px rgba(16, 18, 24, 0.06), 0 12px 28px rgba(16, 18, 24, 0.13);
+}
+video.vid, .float video { background: #ececf1; }
