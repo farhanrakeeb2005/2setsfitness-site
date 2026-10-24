@@ -463,3 +463,35 @@ video.vid, .float video { background: #ececf1; }
 .duel-note { border-style: solid; color: var(--ink); line-height: 1.55; }
 .duel-note span { background: var(--accent); border-color: var(--accent); color: #fff; }
 .duel-note i { display: block; margin-top: 6px; color: var(--dim); }
+
+/* ── Train together: challenges, proof snaps, friends, fuel check ── */
+.together-head { margin: 64px 0 22px; }
+.together-head h3 { font-size: clamp(1.9rem, 4vw, 2.8rem); font-weight: 800; }
+.race, .snapcard, .friendrow, .notif { margin-top: auto; border-radius: 18px; }
+.race { background: var(--surface-2); padding: 16px; display: grid; gap: 10px; }
+.race-top b { display: block; color: var(--ink); }
+.race-top small { color: var(--dim); }
+.race-row { display: grid; grid-template-columns: 44px 1fr 36px; align-items: center; gap: 10px; font-weight: 700; color: var(--ink); }
+.race-row span { color: var(--dim); font-weight: 600; }
+.race-row i { height: 9px; border-radius: 6px; background: var(--line); overflow: hidden; }
+.race-row em { display: block; height: 100%; border-radius: 6px; background: var(--accent); }
+.race-row em.them { background: #9aa0ad; }
+.race-row b { text-align: right; }
+.race-btn { justify-self: start; background: var(--accent); color: #fff; font-weight: 800; padding: 8px 16px; border-radius: 999px; font-size: 0.92rem; }
+.snapcard { height: 190px; position: relative; overflow: hidden; display: flex; flex-direction: column; justify-content: flex-end; align-items: center; gap: 12px; padding: 16px;
+  background: radial-gradient(120% 90% at 30% 20%, #4a5568 0%, #1f2430 60%, #12151c 100%); }
+.snap-sticker { background: var(--accent); color: #fff; font-weight: 800; padding: 8px 14px; border-radius: 999px; font-size: 0.95rem; }
+.snap-bar { display: flex; gap: 8px; }
+.snap-bar span { background: rgba(255,255,255,.16); color: #fff; font-weight: 700; font-size: 0.8rem; padding: 5px 12px; border-radius: 999px; }
+.friendrow { background: var(--surface-2); padding: 16px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px; }
+.fcode small { display: block; color: var(--dim); font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase; font-weight: 700; }
+.fcode b { font-size: 1.35rem; letter-spacing: 0.08em; color: var(--ink); }
+.chips { display: flex; gap: 8px; }
+.chips span { display: flex; align-items: center; gap: 6px; background: #fff; color: #15171c; font-weight: 700; font-size: 0.85rem; padding: 4px 11px 4px 4px; border-radius: 999px; box-shadow: 0 2px 8px rgba(0,0,0,.12); }
+.chips i { display: grid; place-items: center; width: 22px; height: 22px; border-radius: 50%; background: #2563eb; color: #fff; font-style: normal; font-size: 0.75rem; }
+.notif { background: var(--surface-2); padding: 14px 16px; display: grid; gap: 4px; border-left: 4px solid var(--accent); }
+.notif b { color: var(--ink); }
+.notif span { color: var(--dim); font-size: 0.95rem; }
+.honest-line { text-align: center; color: var(--dim); margin-top: 22px; font-style: italic; }
+.honest-line b { color: var(--ink); font-style: normal; }
+@media (min-width: 1024px) { .together-head { text-align: center; margin-inline: auto; } }
