@@ -459,3 +459,7 @@ video.vid, .float video { background: #ececf1; }
 @media (min-width: 761px) and (max-width: 1023px) { .b4 { display: none; } }
 /* a laptop or desktop: the phone video fits on the screen with the copy beside it */
 @media (min-width: 1024px) { .try-phone video.vid.tour { width: 300px; } }
+/* challenges: a solid note (it is here now), the red New tag */
+.duel-note { border-style: solid; color: var(--ink); line-height: 1.55; }
+.duel-note span { background: var(--accent); border-color: var(--accent); color: #fff; }
+.duel-note i { display: block; margin-top: 6px; color: var(--dim); }
