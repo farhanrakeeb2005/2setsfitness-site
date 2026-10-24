@@ -82,18 +82,12 @@
 <p>Other signed-in users can also tap your name to open your player profile. It shows your name, your leaderboard picture (your emoji, or a small copy of your profile photo if you set one), your points, rank and place, the month you joined, how your fighter looks (its colours, hairstyle and outfit), and a summary your phone works out from your logs: how many workouts and sport sessions you have logged, your current and best streak, how many personal records you have, and your three most-logged sports (with sessions and hours) and exercises (with how many workouts they were in). It does not show your logs themselves, your weights, body measurements, photos, meals, email or anything else.</p>
 <p>If you don't want to be seen, turn off Settings &rarr; Data &amp; privacy &rarr; Show me on the leaderboard: you are then left off the leaderboard and your profile can't be opened by anyone else. You can also use a nickname as your name, or use the app without an account.</p>
 
-<h3>2.8 Challenges and proof snaps</h3>
+<h3>2.8 Challenges and friends</h3>
 <p>You can challenge another signed-in player from their profile. Our server stores the challenge (who sent it, who it is for, what it is, how many days, any points or forfeit on it) and works out the result. For a target or routine challenge it reads, from your backed-up workouts and sports sessions, only the reps, distances and routine names logged during the challenge. Your opponent sees your progress toward the goal, not your logs.</p>
-<p>During a challenge, or for two weeks after one, you can send your opponent a <strong>proof snap</strong>: a photo taken with the app's camera (not from your gallery), with an optional short caption. It works like this:</p>
-<ul>
-  <li>Before delivery the photo is checked automatically by our AI provider, Anthropic, for nudity, sexual content, violence and similar content. A photo that fails is not delivered and not kept.</li>
-  <li>The photo is stored on our server only until it is seen. It can be opened once; it is deleted as soon as it is closed, or at the latest 10 minutes after it was opened. An unopened snap is deleted after 24 hours. The app does not save it to either phone.</li>
-  <li>Screenshots and screen recordings of a snap are blocked on Android. iPhones don't allow apps to block them, so if someone takes a screenshot, the sender is told. Anyone can still photograph a screen with another device, so only send what you'd be happy for your opponent to keep.</li>
-  <li>You can report a snap. A reported snap is kept for up to 30 days so we can review it, and the sender is blocked for you. You can block any player: no snaps or challenges between you, either way. You can turn off receiving snaps in Settings.</li>
-</ul>
+<p>You can add friends by their friend code or by searching their name (only players shown on the leaderboard can be found). We store who has asked whom and who is friends; your friends see your name, picture, rank and points, and where you are on the rank journey map. You can remove a friend at any time. You can also block any player: no challenges or friend requests between you, either way, and you stop being friends. Blocked players are listed in Settings, where you can unblock them.</p>
 
 <h3>2.9 Notifications and alarms</h3>
-<p>Workout reminders, streak reminders (for example "Don't break your 20-day streak"), the evening fuel check, rest timers and alarms are scheduled on your phone from your own data. Nothing is sent to us to schedule them. Challenge and snap notifications (for example "Sam challenged you") are sent by our server through Firebase Cloud Messaging: for that we store your phone's push token and app language with your account, and delete the token when you sign out. We do not use push notifications for tracking or advertising. You can turn reminders off in Settings or in your phone's notification settings.</p>
+<p>Workout reminders, streak reminders (for example "Don't break your 20-day streak"), the evening fuel check, rest timers and alarms are scheduled on your phone from your own data. Nothing is sent to us to schedule them. Challenge notifications (for example "Sam challenged you") are sent by our server through Firebase Cloud Messaging: for that we store your phone's push token and app language with your account, and delete the token when you sign out. We do not use push notifications for tracking or advertising. You can turn reminders off in Settings or in your phone's notification settings.</p>
 
 <h3>2.10 Emails</h3>
 <p>Account holders may receive a welcome email and occasional app update emails. Every update email has a one-click unsubscribe link.</p>
@@ -114,8 +108,8 @@
   <tr><th>Provider</th><th>What for</th><th>Data</th></tr>
   <tr><td>Google Firebase (Authentication, Cloud Firestore, Cloud Messaging)</td><td>Sign-in, phone verification, cloud backup and challenge notifications</td><td>Account details (email, name, phone number if verified), backed-up app data, push tokens</td></tr>
   <tr><td>Google Cloud Run (London region)</td><td>Hosting our server</td><td>Requests the app makes to our server</td></tr>
-  <tr><td>Neon (PostgreSQL database, London region)</td><td>Our server's database</td><td>Account ID and email, profile, schedule, points, leaderboard entries and picture, your public player profile summary, challenges, proof snaps (until seen, see 2.8), blocks, push tokens, synced logs, AI request records</td></tr>
-  <tr><td>Anthropic</td><td>AI coaching, meal scan and proof snap checks</td><td>The content of AI requests (section 2.4) and proof snap photos (section 2.8)</td></tr>
+  <tr><td>Neon (PostgreSQL database, London region)</td><td>Our server's database</td><td>Account ID and email, profile, schedule, points, leaderboard entries and picture, your public player profile summary, challenges, friends, blocks, push tokens, synced logs, AI request records</td></tr>
+  <tr><td>Anthropic</td><td>AI coaching and meal scan</td><td>The content of AI requests (section 2.4)</td></tr>
   <tr><td>Google (Gmail)</td><td>Sending account and update emails</td><td>Email address, name</td></tr>
   <tr><td>Open Food Facts</td><td>Barcode lookups</td><td>The barcode number only</td></tr>
   <tr><td>[PAYMENT PROVIDER, when subscriptions launch]</td><td>Processing subscriptions</td><td>Purchase details. We never see your full card number.</td></tr>
@@ -131,7 +125,6 @@
   <li>Account, backup and server data are kept while you have an account. Delete account in the app removes them straight away; if you email us instead, we delete them within 30 days. Copies in our providers' backups expire on their normal schedules.</li>
   <li>AI request records (account ID, feature, time) are kept for up to 90 days.</li>
   <li>Meal photos are not stored on our server.</li>
-  <li>Proof snaps are deleted once seen (at the latest 10 minutes after opening) or after 24 hours unopened; a reported snap is kept for up to 30 days for review. Records of who sent a snap to whom, without the photo, are deleted after 7 days.</li>
   <li>Finished challenges are shown for 14 days and kept while you have an account.</li>
 </ul>
 

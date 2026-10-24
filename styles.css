@@ -495,3 +495,8 @@ video.vid, .float video { background: #ececf1; }
 .honest-line { text-align: center; color: var(--dim); margin-top: 22px; font-style: italic; }
 .honest-line b { color: var(--ink); font-style: normal; }
 @media (min-width: 1024px) { .together-head { text-align: center; margin-inline: auto; } }
+.quicklog { margin-top: auto; border-radius: 18px; background: var(--surface-2); padding: 16px; display: grid; gap: 12px; }
+.quicklog > b { color: var(--ink); }
+.ql-chips { display: flex; gap: 8px; }
+.ql-chips span { border: 1px solid var(--line); background: var(--surface); color: var(--ink); font-weight: 800; padding: 6px 14px; border-radius: 999px; }
+.ql-chips span.on { background: var(--accent); border-color: var(--accent); color: #fff; }
