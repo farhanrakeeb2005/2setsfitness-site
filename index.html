@@ -69,8 +69,24 @@
   .end h2 { font-size:clamp(2.2rem,5.6vw,4rem); margin-bottom:24px; }
   .end small { display:block; color:var(--soft); margin-top:14px; }
 
-  footer { border-top:1px solid #f0d6d8; padding:26px 0 40px; display:flex; justify-content:space-between; flex-wrap:wrap; gap:12px; color:var(--soft); font-size:.95rem; }
-  footer a { color:var(--soft); margin-right:18px; }
+  .faq { max-width:780px; margin:0 auto; display:grid; gap:26px; }
+  .faq h3 { margin:0 0 6px; font-size:1.2rem; font-weight:800; letter-spacing:-.01em; }
+  .faq p { margin:0; color:var(--soft); }
+  .faq p a { color:var(--ink); }
+  .faq .more { text-align:center; margin-top:8px; }
+  footer { border-top:1px solid #f0d6d8; padding:44px 0 34px; color:var(--soft); font-size:.95rem; }
+  .ftop { display:grid; grid-template-columns:1.6fr 1fr 1fr 1fr; gap:28px; }
+  .fbrand .logo { margin-bottom:10px; color:var(--ink); }
+  .fbrand p { margin:0 0 10px; max-width:30ch; }
+  .fver { font:500 .78rem/1.4 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; letter-spacing:.14em; text-transform:uppercase; }
+  .ficons { display:flex; gap:10px; margin-top:16px; }
+  .ficons a { width:44px; height:44px; border-radius:50%; background:var(--card); border:1px solid #f0d6d8; display:grid; place-items:center; color:var(--ink); }
+  .fcol b { display:block; font-size:.78rem; letter-spacing:.16em; text-transform:uppercase; color:var(--soft); margin-bottom:12px; }
+  .fcol a, .fcol span { display:block; color:var(--ink); opacity:.8; text-decoration:none; padding:5px 0; }
+  .fcol a:hover { opacity:1; text-decoration:underline; }
+  .fcol small { font-size:.75rem; background:#fbe3e3; color:var(--red); border-radius:999px; padding:1px 8px; margin-left:6px; }
+  .fbot { display:flex; justify-content:space-between; flex-wrap:wrap; gap:10px; border-top:1px solid #f0d6d8; margin-top:34px; padding-top:20px; }
+  .fbot a { color:var(--soft); text-decoration:none; }
 
   .contact { max-width:780px; margin:0 auto; }
   .cform { display:grid; grid-template-columns:1fr 1fr; gap:16px; }
@@ -103,6 +119,8 @@
 
   @media (max-width:820px) {
     .cform { grid-template-columns:1fr; }
+    .ftop { grid-template-columns:1fr 1fr; }
+    .fbrand { grid-column:1 / -1; }
     .links a:not(.btn) { display:none; }
     .stack > div { grid-column:span 6 !important; }
     .big { grid-template-columns:1fr; text-align:center; }
@@ -114,7 +132,7 @@
 <div class="wrap">
   <nav>
     <a class="logo" href="#"><img src="img/icon.png" alt="">2SetsFitness</a>
-    <div class="links"><a href="#features">Features</a><a href="#friends">Friends</a><a class="btn sm" href="demo/index.html">Try the demo</a></div>
+    <div class="links"><a href="#features">Features</a><a href="#friends">Friends</a><a href="#faq">FAQ</a><a class="btn sm" href="demo/index.html">Try the demo</a></div>
   </nav>
 
   <header class="hero">
@@ -164,6 +182,22 @@
     <p class="honest">Reps are on trust. <b>The only person you cheat is yourself.</b></p>
   </section>
 
+  <section class="blk" id="faq">
+    <h2>Questions.</h2>
+    <p class="sub">The short answers.</p>
+    <div class="faq">
+      <div><h3>Is it free?</h3><p>Yes. 2SetsFitness is free to download and use. No card needed.</p></div>
+      <div><h3>Where can I get it?</h3><p>Android first, on Google Play very soon. iPhone is coming later. Until then, <a href="demo/index.html">try the demo</a> in your browser.</p></div>
+      <div><h3>Does Form Coach record me?</h3><p>No. The camera counts and checks your reps on your phone, and the video never leaves it.</p></div>
+      <div><h3>How do points work?</h3><p>Workouts, sport sessions and a good night's sleep all earn points toward your next rank. Sleeping 7 to 9 hours earns the most.</p></div>
+      <div><h3>How do challenges work?</h3><p>Add a friend by code, pick a target like 100 push-ups or 10 km, and race. The winner takes the points. It runs on trust: the only person you cheat is yourself.</p></div>
+      <div><h3>What happens to my data?</h3><p>Your training stays on your phone unless you make an account to back it up. Read the <a href="privacy/index.html">privacy policy</a> for the details.</p></div>
+      <div><h3>Which languages does it speak?</h3><p>25, from English and Arabic to Urdu and Turkish.</p></div>
+      <div><h3>How do I delete my account?</h3><p>In the app, go to Settings, then Account, then Delete account. No app? <a href="delete-account/index.html">Here's how to ask us</a>.</p></div>
+      <p class="more">Still stuck? <a href="#contact">Write to us</a>.</p>
+    </div>
+  </section>
+
   <section class="blk" id="contact">
     <h2>Questions, feedback or a bug?</h2>
     <p class="sub">Write to us. A real person reads every message.</p>
@@ -186,8 +220,18 @@
   </section>
 
   <footer>
-    <div><a href="privacy/index.html">Privacy</a><a href="terms/index.html">Terms</a><a href="#contact">Contact</a></div>
-    <div>© 2026 2SetsFitness</div>
+    <div class="ftop">
+      <div class="fbrand">
+        <a class="logo" href="#"><img src="img/icon.png" alt="">2SetsFitness</a>
+        <p>Built around your week, your sport and your goals.</p>
+        <div class="fver">Android · v1.4.0 · Free</div>
+        <div class="ficons"><a href="#contact" aria-label="Contact us"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg></a></div>
+      </div>
+      <div class="fcol" role="navigation" aria-label="Product"><b>Product</b><a href="#features">Features</a><a href="#friends">Friends &amp; challenges</a><a href="demo/index.html">Try the demo</a><span>Google Play<small>soon</small></span></div>
+      <div class="fcol" role="navigation" aria-label="Help"><b>Help</b><a href="#faq">FAQ</a><a href="#contact">Contact</a><a href="delete-account/index.html">Delete account</a></div>
+      <div class="fcol" role="navigation" aria-label="Legal"><b>Legal</b><a href="privacy/index.html">Privacy policy</a><a href="terms/index.html">Terms</a></div>
+    </div>
+    <div class="fbot"><span>© 2026 2SetsFitness · All rights reserved</span><a href="#">Back to top ↑</a></div>
   </footer>
 </div>
 <script>
