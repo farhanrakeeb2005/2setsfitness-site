@@ -84,6 +84,8 @@
   .actions button.main { background:var(--red); border-color:var(--red); color:#fff; }
   .note { color:var(--soft); }
   .note.err { color:var(--red); font-weight:600; }
+  /* (the form's display:grid would beat the hidden attribute: the sent form stayed on screen) */
+  [hidden] { display:none !important; }
   .hp { position:absolute; left:-9999px; width:1px; height:1px; overflow:hidden; }
   .cdone { background:var(--card); border-radius:24px; padding:28px; text-align:center; }
   .cdone h3 { margin:0 0 6px; font-size:1.5rem; }
@@ -204,7 +206,7 @@
       website: d.get('website') || '', ms: Date.now() - opened,
     };
     if (!body.name) return say('Add your name.', true);
-    if (!/^[^@s]+@[^@s]+.[^@s]+$/.test(body.email)) return say('Add an email address we can reply to.', true);
+    if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(body.email)) return say('Add an email address we can reply to.', true);
     if (body.message.length < 5) return say('Write a message first.', true);
     btn.disabled = true; say('Sending...');
     fetch(API, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body) })
@@ -212,7 +214,10 @@
       .then(function (res) {
         if (!res.ok) throw new Error(res.j.error || 'Could not send right now.');
         document.getElementById('cto').textContent = body.email;
-        f.hidden = true; document.getElementById('cdone').hidden = false;
+        say('');
+        var done = document.getElementById('cdone');
+        f.hidden = true; done.hidden = false;
+        done.scrollIntoView({ behavior: 'smooth', block: 'center' });
       })
       .catch(function (err) {
         btn.disabled = false;
