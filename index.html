@@ -3,444 +3,183 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>2SetsFitness | Train smarter. Track everything. Compete globally.</title>
-<meta name="description" content="2SetsFitness is a training app with an on-device camera form coach, 232 exercises demonstrated by your own 3D fighter, gym and sport planning, a pain and injury guide, and ranks to climb.">
-<meta name="theme-color" content="#f4f5f8">
-<meta property="og:title" content="2SetsFitness">
-<meta property="og:description" content="Train smarter. Track everything. Compete globally.">
-<meta property="og:type" content="website">
+<title>2SetsFitness · Your body. Your pace. Your app.</title>
+<meta name="description" content="A fitness app with a 3D coach, one plan for gym and sport, sleep points and friends to race. Free, Android first.">
 <link rel="icon" href="img/favicon.png">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Barlow:wght@400;500;600;700&display=swap">
-<script>/* a laptop or desktop: the page is laid out 1440px wide and scaled to fill the window, whatever its size or browser zoom; phones and tablets keep their own layout */(function(){function fit(){var w=window.innerWidth;document.documentElement.style.zoom=w>=1024?(w/1440).toFixed(3):"";}fit();addEventListener("resize",fit);})();</script>
-  <link rel="stylesheet" href="styles.css?v=20261024k">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;800&display=swap" rel="stylesheet">
+<style>
+  :root { --bg:#fff1f1; --ink:#2a1216; --soft:#7a5a5e; --card:#ffffff; --red:#d64532; --deep:#1b7fa8; --clip:#eeedf1; }
+  * { box-sizing:border-box; margin:0; }
+  html { scroll-behavior:smooth; }
+  body { background:var(--bg); color:var(--ink); font:18px/1.55 Outfit, system-ui, sans-serif; }
+  a { color:inherit; }
+  .wrap { max-width:1080px; margin:0 auto; padding:0 20px; }
+  video { display:block; }
+
+  nav { display:flex; justify-content:space-between; align-items:center; padding:20px 0; }
+  .logo { display:flex; gap:10px; align-items:center; font-weight:800; text-decoration:none; }
+  .logo img { width:34px; height:34px; border-radius:10px; }
+  .links { display:flex; gap:26px; align-items:center; }
+  .links a { text-decoration:none; color:var(--soft); font-weight:500; }
+  .btn { display:inline-block; background:var(--red); color:#fff !important; padding:14px 26px; border-radius:999px; text-decoration:none; font-weight:600; }
+  .btn.sm { padding:10px 18px; }
+  .ghost { display:inline-block; padding:14px 18px; color:var(--soft); text-decoration:none; }
+  h1, h2 { font-weight:800; letter-spacing:-.02em; line-height:1.05; }
+
+  .hero { text-align:center; padding:30px 0 70px; }
+  .orb { width:min(400px,78vw); aspect-ratio:1; margin:0 auto; border-radius:50%; overflow:hidden; background:var(--clip); box-shadow:0 30px 70px rgba(214,69,50,.16); }
+  .orb video { width:100%; height:100%; object-fit:contain; }
+  .hero h1 { font-size:clamp(2.6rem,6.4vw,4.6rem); max-width:14ch; margin:34px auto 12px; }
+  .hero p { color:var(--soft); font-size:1.15rem; }
+  .ctas { margin-top:26px; }
+
+  section.blk { padding:70px 0; }
+  .blk h2 { font-size:clamp(2rem,4.6vw,3.2rem); text-align:center; margin-bottom:10px; }
+  .blk .sub { color:var(--soft); text-align:center; margin-bottom:36px; }
+
+  .stack { display:grid; grid-template-columns:repeat(6,1fr); gap:16px; }
+  .stack > div { background:var(--card); border-radius:28px; padding:26px; overflow:hidden; }
+  .big { grid-column:span 4; display:grid; grid-template-columns:1fr 1fr; align-items:center; gap:18px; }
+  .big b, .sm b, .tall b { display:block; font-size:1.5rem; font-weight:800; line-height:1.15; }
+  .big span, .sm span, .tall span { color:var(--soft); }
+  .big video { width:100%; aspect-ratio:1; object-fit:contain; border-radius:50%; background:var(--clip); }
+  .tall { grid-column:span 2; display:flex; flex-direction:column; justify-content:space-between; }
+  .tall video { width:72%; aspect-ratio:1; object-fit:contain; border-radius:50%; background:var(--clip); margin:0 auto 14px; }
+  .sm { grid-column:span 2; }
+  .sm i { font-style:normal; font-size:1.8rem; display:block; margin-bottom:8px; }
+
+  .chat { max-width:460px; margin:0 auto; display:grid; gap:10px; }
+  .chat p { padding:13px 17px; border-radius:22px; background:var(--card); max-width:82%; }
+  .chat .me { background:var(--red); color:#fff; margin-left:auto; border-bottom-right-radius:6px; }
+  .chat .them { border-bottom-left-radius:6px; }
+
+  .phone { width:min(280px,72vw); margin:0 auto; border:9px solid #15171c; border-radius:38px; overflow:hidden; background:#f2f3f7; aspect-ratio:540/1054; display:grid; place-items:center; text-align:center; color:var(--soft); padding:20px; }
+
+  .race { max-width:520px; margin:0 auto; background:var(--card); border-radius:28px; padding:26px; display:grid; gap:14px; }
+  .race .r { display:grid; grid-template-columns:60px 1fr 44px; gap:12px; align-items:center; font-weight:600; }
+  .race i { height:10px; border-radius:6px; background:#f3e3e4; overflow:hidden; }
+  .race em { display:block; height:100%; border-radius:6px; background:var(--red); }
+  .race em.t { background:var(--deep); }
+  .race small { color:var(--soft); }
+  .honest { text-align:center; margin-top:22px; font-style:italic; color:var(--soft); }
+  .honest b { font-style:normal; color:var(--ink); }
+
+  .end { text-align:center; padding:90px 0 100px; }
+  .end h2 { font-size:clamp(2.2rem,5.6vw,4rem); margin-bottom:24px; }
+  .end small { display:block; color:var(--soft); margin-top:14px; }
+
+  footer { border-top:1px solid #f0d6d8; padding:26px 0 40px; display:flex; justify-content:space-between; flex-wrap:wrap; gap:12px; color:var(--soft); font-size:.95rem; }
+  footer a { color:var(--soft); margin-right:18px; }
+
+  .contact { max-width:780px; margin:0 auto; }
+  .cform { display:grid; grid-template-columns:1fr 1fr; gap:16px; }
+  .cform label { display:grid; gap:8px; font-weight:600; }
+  .cform .full { grid-column:1 / -1; }
+  .cform input, .cform select, .cform textarea { font:inherit; color:var(--ink); background:var(--card); border:1px solid #f0d6d8; border-radius:18px; padding:14px 16px; }
+  .cform textarea { resize:vertical; }
+  .cform input:focus, .cform select:focus, .cform textarea:focus { outline:2px solid var(--red); outline-offset:1px; }
+  .actions { display:flex; flex-wrap:wrap; gap:10px; align-items:center; }
+  .actions button { font:inherit; font-weight:600; border-radius:999px; padding:13px 22px; cursor:pointer; border:1px solid #f0d6d8; background:var(--card); color:var(--ink); }
+  .actions button.main { background:var(--red); border-color:var(--red); color:#fff; }
+  .note { color:var(--soft); }
+  .fine { color:var(--soft); font-size:.92rem; margin-top:14px; }
+  .closing { margin:40px 0 60px; border-radius:34px; padding:80px 24px; text-align:center; color:#fff; background:radial-gradient(120% 120% at 80% 0%, #f06a5a 0%, #d64532 45%, #a3262a 100%); box-shadow:0 30px 70px rgba(214,69,50,.25); }
+  .closing h2 { font-size:clamp(2.4rem,6.4vw,4.6rem); margin-bottom:14px; }
+  .closing h2 span { color:#ffd9d4; }
+  .closing p { opacity:.92; font-size:1.15rem; }
+  .closing .row { margin-top:28px; display:flex; flex-wrap:wrap; gap:12px; justify-content:center; }
+  .closing .row a, .closing .row span { padding:13px 22px; border-radius:999px; text-decoration:none; font-weight:600; }
+  .closing .row a { background:#fff; color:var(--red); }
+  .closing .row span { background:rgba(255,255,255,.14); border:1px solid rgba(255,255,255,.3); }
+  .closing .row small { opacity:.8; margin-left:6px; font-weight:400; }
+
+  @media (max-width:820px) {
+    .cform { grid-template-columns:1fr; }
+    .links a:not(.btn) { display:none; }
+    .stack > div { grid-column:span 6 !important; }
+    .big { grid-template-columns:1fr; text-align:center; }
+    .big video { width:72%; margin:0 auto; }
+  }
+</style>
 </head>
 <body>
-<a class="skip" href="#features">Skip to the features</a>
+<div class="wrap">
+  <nav>
+    <a class="logo" href="#"><img src="img/icon.png" alt="">2SetsFitness</a>
+    <div class="links"><a href="#features">Features</a><a href="#friends">Friends</a><a class="btn sm" href="demo/index.html">Try the demo</a></div>
+  </nav>
 
-<nav class="nav" aria-label="Main">
-  <div class="wrap">
-    <a class="brand" href="#top"><img src="img/icon.png" alt="" width="44" height="44"><span><b>2</b>SetsFitness</span></a>
-    <ul>
-      <li><a href="#features">Features</a></li>
-      <li><a href="#why">Why us</a></li>
-      <li><a href="#compete">Compete</a></li>
-      <li><a href="#try">See it</a></li>
-      <li><a href="#how">How it works</a></li>
-      <li><a href="#exercises">Exercises</a></li>
-      <li><a href="#faq">Questions</a></li>
-      <li><a href="#contact">Contact</a></li>
-    </ul>
-    <a class="btn primary" href="demo/index.html">Try the app</a>
-  </div>
-</nav>
+  <header class="hero">
+    <div class="orb"><video autoplay muted loop playsinline poster="img/vid/hero-mid.jpg" src="img/vid/hero-mid.mp4" aria-label="A 3D fighter doing a front squat"></video></div>
+    <h1>Your body. Your pace. Your app.</h1>
+    <p>Built around your week, your sport and your goals.</p>
+    <div class="ctas"><a class="btn" href="demo/index.html">Try the demo</a><a class="ghost" href="#">Coming soon to Google Play</a></div>
+  </header>
 
-<header class="hero">
-
-  <div class="wrap hero-top" id="top">
-    <span class="pill"><i></i> Coming soon to Google Play</span>
-    <h1><span>Train smarter.</span><span>Track everything.</span><span class="red">Compete globally.</span></h1>
-    <p class="lede">A camera coach that watches your form on your phone, a 3D fighter that shows every exercise and grows as you train, and a plan that fits your gym days and your sport on the same week.</p>
-    <div class="cta" id="get">
-      <a class="btn primary" href="demo/index.html">Try it in your browser</a>
-      <a class="btn" href="#try">Watch it</a>
-    </div>
-    <ul class="facts">
-      <li>232 exercises with 3D demos</li>
-      <li>25 languages</li>
-      <li>Camera video never leaves your phone</li>
-    </ul>
-  </div>
-  <div class="stage" aria-hidden="true">
-    <div class="float f2"><video disablepictureinpicture disableremoteplayback controlslist="nodownload nofullscreen noremoteplayback" muted loop playsinline autoplay poster="img/vid/hero-her2.jpg" src="img/vid/hero-her2.mp4"></video></div>
-    <div class="float f1"><video disablepictureinpicture disableremoteplayback controlslist="nodownload nofullscreen noremoteplayback" muted loop playsinline autoplay poster="img/vid/hero-mid.jpg" src="img/vid/hero-mid.mp4"></video></div>
-    <div class="float f3"><video disablepictureinpicture disableremoteplayback controlslist="nodownload nofullscreen noremoteplayback" muted loop playsinline autoplay poster="img/vid/hero-curly2.jpg" src="img/vid/hero-curly2.mp4"></video></div>
-    <div class="badge b2"><span class="dot" style="background:#e31e24">+25</span><div>New record<small>Deadlift 140 kg</small></div></div>
-    <div class="badge b3"><span class="dot" style="background:#f5a623">🔥</span><div>7-day streak<small>Trained every day</small></div></div>
-    <div class="badge b4"><span class="dot" style="background:#a8a9ad">▲</span><div>Rank up<small>Bronze → Silver</small></div></div>
-  </div>
-</header>
-
-<main>
-  <section id="features">
-    <div class="wrap">
-      <div class="sec-head">
-        <p class="eyebrow">What's inside</p>
-        <h2>Built for people who actually train</h2>
-        <p>Strength days, sport days, rest days and sore days, all in one place.</p>
-      </div>
-
-      <div class="grid">
-        <article class="tile w4 formtile">
-          <div class="form-photo">
-            <video disablepictureinpicture disableremoteplayback controlslist="nodownload nofullscreen noremoteplayback" class="vid" muted loop playsinline preload="none" poster="img/vid/air-squat-skeleton.jpg" data-src="img/vid/air-squat-skeleton.mp4" aria-label="The 3D fighter doing a squat, with the camera coach's joint markers and knee angle updating on every frame"></video>
-          </div>
-          <div class="form-copy">
-            <span class="tag">Form Coach</span>
-            <h3>Your phone watches your reps</h3>
-            <p>Prop your phone up and train. The camera finds your joints, counts reps, measures the angles and tells you what to fix by voice. Squat, lunge, push-up and deadlift today. The video is processed on your phone and is never uploaded.</p>
-            <div class="form-side">
-              <div class="ring" style="--p:80" role="img" aria-label="8 of 10 reps, illustration"><div><span>8<small>OF 10</small></span></div></div>
-              <div class="chips"><span class="chip go">Chest up</span><span class="chip">Knees out</span><span class="chip">Depth reached</span></div>
-            </div>
-            <p class="fine">Picture: the app's own fighter with sample joint markers.</p>
-          </div>
-        </article>
-
-        <article class="tile w2">
-          <span class="tag">Your fighter</span>
-          <h3>Shown in 3D. Always modest.</h3>
-          <p>Pick skin tone and kit colour, with modest options including a hijab. Your fighter's build follows your training.</p>
-          <div class="pair">
-            <figure><video disablepictureinpicture disableremoteplayback controlslist="nodownload nofullscreen noremoteplayback" class="vid" muted loop playsinline preload="none" poster="img/vid/squat.jpg?v=7" data-src="img/vid/squat.mp4?v=7" aria-label="3D fighter doing a squat, animated"></video></figure>
-            <figure><video disablepictureinpicture disableremoteplayback controlslist="nodownload nofullscreen noremoteplayback" class="vid" muted loop playsinline preload="none" poster="img/vid/squat-female.jpg?v=8" data-src="img/vid/squat-female.mp4?v=8" aria-label="3D female fighter doing a squat, animated"></video></figure>
-          </div>
-        </article>
-
-        <article class="tile w3">
-          <span class="tag">Quick actions</span>
-          <h3>Everything one tap from Home</h3>
-          <p>Seven shortcuts sit right under your week: the things you reach for mid-session.</p>
-          <ul class="qa" aria-label="The seven quick actions">
-            <li style="--c:#3DDC97"><i><svg viewBox="0 0 24 24"><circle cx="12" cy="13" r="7"/><path d="M12 9v4l2.5 2M9.5 3h5"/></svg></i><b>Rest timer</b><small>Time your rest between sets</small></li>
-            <li style="--c:#7B61FF"><i><svg viewBox="0 0 24 24"><circle cx="12" cy="5" r="2.5"/><path d="M5 10h14M9 10v11M15 10v11M9 15h6"/></svg></i><b>Muscle map</b><small>See which muscles you train</small></li>
-            <li style="--c:#F5A623"><i><svg viewBox="0 0 24 24"><path d="M20 14.5A8 8 0 1 1 9.5 4 6.5 6.5 0 0 0 20 14.5Z"/></svg></i><b>Recovery</b><small>Log sleep, soreness, energy</small></li>
-            <li style="--c:#00B4D8"><i><svg viewBox="0 0 24 24"><path d="M12 7c-3-2-8-1-8 5 0 5 3 9 5.5 9 1.2 0 1.5-.6 2.5-.6s1.3.6 2.5.6c2.5 0 5.5-4 5.5-9 0-6-5-7-8-5ZM12 7c0-2 1-3.5 3-4"/></svg></i><b>Nutrition</b><small>Log protein and calories</small></li>
-            <li style="--c:#22C55E"><i><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="m12 8 3.5 2.5-1.3 4H9.8l-1.3-4L12 8Zm0-5v5m6.500 1.500L15.500 10.500M5.500 9.500l3 1M9.800 14.500 7.500 19m6.700-4.500 2.300 4.500"/></svg></i><b>Sports</b><small>Drills for your sport</small></li>
-            <li style="--c:#EC4899"><i><svg viewBox="0 0 24 24"><rect x="2.5" y="6" width="13" height="12" rx="3"/><path d="m15.5 10.5 6-3.5v10l-6-3.5"/></svg></i><b>Form check</b><small>AI camera coach for your reps</small></li>
-            <li style="--c:#E5484D"><i><svg viewBox="0 0 24 24"><rect x="3" y="7" width="18" height="13" rx="3"/><path d="M9 7V5.500A1.500 1.500 0 0 1 10.500 4h3A1.500 1.500 0 0 1 15 5.500V7M12 10.500v6M9 13.500h6"/></svg></i><b>Pain guide</b><small>Tap where it hurts</small></li>
-          </ul>
-        </article>
-
-        <article class="tile w3 muscle">
-          <span class="tag">Muscle map</span>
-          <h3>See what you trained this week</h3>
-          <p>Every muscle is coloured by how hard you worked it, front and back. Tap one for the exercises that hit it, zoom in for the small ones, and spot what you've been skipping. 29 muscles, from neck to tibialis.</p>
-          <div class="mm">
-            <img src="img/muscle-map.svg" alt="Front and back body chart, quads, glutes and calves coloured as heavily trained" width="214" height="222" loading="lazy">
-            <ul class="legend" aria-label="Colour key">
-              <li><i style="background:#3D7BFF"></i>Light</li><li><i style="background:#3DDC97"></i>Moderate</li><li><i style="background:#FF8A3D"></i>Heavy</li><li><i style="background:#E31E24"></i>Peak</li>
-            </ul>
-          </div>
-        </article>
-
-        <article class="tile w2 nutri">
-          <span class="tag">Nutrition</span>
-          <h3>Protein, calories, water</h3>
-          <p>Daily targets from your goal and bodyweight. Log in seconds, or tap a common food. Short on protein by evening? A 7 pm fuel check nudges you, and the AI coach says how to catch up.</p>
-          <div class="scan" aria-label="Scan a barcode with your camera to log a food">
-            <svg viewBox="0 0 64 40" aria-hidden="true"><g fill="currentColor"><rect x="4" y="4" width="2" height="32"/><rect x="8" y="4" width="4" height="32"/><rect x="14" y="4" width="1.5" height="32"/><rect x="18" y="4" width="3" height="32"/><rect x="23" y="4" width="1.5" height="32"/><rect x="27" y="4" width="4" height="32"/><rect x="33" y="4" width="2" height="32"/><rect x="37" y="4" width="1.5" height="32"/><rect x="41" y="4" width="4" height="32"/><rect x="47" y="4" width="2" height="32"/><rect x="51" y="4" width="3" height="32"/><rect x="56" y="4" width="1.5" height="32"/></g><rect class="beam" x="0" y="19" width="64" height="2"/></svg>
-            <div><b>Scan your food</b><small>Point the camera at a barcode and the calories and protein fill in.</small></div>
-          </div>
-          <div class="macros" role="img" aria-label="Sample day: 2,140 of 2,600 calories, protein 128 of 150 grams, carbs 240 of 300, fat 62 of 80, 6 of 8 glasses of water">
-            <div class="kcal" style="--p:82"><div><span>2,140<small>OF 2,600 KCAL</small></span></div></div>
-            <dl>
-              <div><dt>Protein</dt><dd><i style="--w:85%;--c:#E31E24"></i></dd><span>128 / 150 g</span></div>
-              <div><dt>Carbs</dt><dd><i style="--w:80%;--c:#3D7BFF"></i></dd><span>240 / 300 g</span></div>
-              <div><dt>Fat</dt><dd><i style="--w:78%;--c:#F5A623"></i></dd><span>62 / 80 g</span></div>
-            </dl>
-          </div>
-          <div class="glasses" aria-hidden="true"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i><span>6 of 8 glasses</span></div>
-        </article>
-
-        <article class="tile w2 pain">
-          <span class="tag">Pain and injury guide</span>
-          <h3>Tap where it hurts</h3>
-          <p>Pick the spot on the body chart. You get warning signs first, then what to do today and gentle exercises your fighter shows you. General guidance, not a diagnosis.</p>
-          <img class="painmap" src="img/pain-map.svg" alt="Body chart with tappable pain areas marked in red" width="214" height="222" loading="lazy">
-          <ul class="steps"><li>26 body areas</li><li>Training around it, from your own routines</li><li>Pain diary with a 14-day trend</li></ul>
-        </article>
-
-        <article class="tile w2">
-          <span class="tag">Planning</span>
-          <h3>Gym and sport, same week</h3>
-          <p>Put a workout and a football session on the same day. Log the sport with minutes and effort, and it counts toward your points and stats.</p>
-          <ul class="steps"><li>Full Body A and B</li><li>Isometric holds with a timer</li><li>Weight goes up when you hit your reps</li><li>Rest-day suggestions and a weekly summary</li></ul>
-        </article>
-
-        <article class="tile w3">
-          <span class="tag">Library</span>
-          <h3>232 exercises, each demonstrated</h3>
-          <p>Tap a muscle on the body chart, zoom in, and see every exercise for it with a 3D demo and a written guide.</p>
-          <div class="minis">
-            <figure><video disablepictureinpicture disableremoteplayback controlslist="nodownload nofullscreen noremoteplayback" class="vid" muted loop playsinline preload="none" poster="img/vid/hip-thrust-her.jpg?v=8" data-src="img/vid/hip-thrust-her.mp4?v=8" aria-label="Hip thrust, a female fighter, animated"></video></figure>
-            <figure><video disablepictureinpicture disableremoteplayback controlslist="nodownload nofullscreen noremoteplayback" class="vid" muted loop playsinline preload="none" poster="img/vid/pull-up.jpg?v=7" data-src="img/vid/pull-up.mp4?v=7" aria-label="Pull-up, animated"></video></figure>
-            <figure><video disablepictureinpicture disableremoteplayback controlslist="nodownload nofullscreen noremoteplayback" class="vid" muted loop playsinline preload="none" poster="img/vid/battle-rope.jpg?v=7" data-src="img/vid/battle-rope.mp4?v=7" aria-label="Battle rope, animated"></video></figure>
-          </div>
-        </article>
-
-        <article class="tile w3">
-          <span class="tag">AI coach</span>
-          <h3>Ask for a plan, get one</h3>
-          <p>Describe your goal and get a training plan, a way past a plateau, or a sport-specific session. It knows your week, your routines and your level.</p>
-          <ul class="steps"><li>Plateau alerts when a lift stalls</li><li>Muscle heat map of your week</li><li>Weekly summary every Sunday</li></ul>
-        </article>
-      </div>
+  <section class="blk" id="features">
+    <h2>Everything you need. Nothing you don't.</h2>
+    <p class="sub">Open, train, done. We remember the rest.</p>
+    <div class="stack">
+      <div class="big"><div><b>Every rep, shown in 3D.</b><span>Watch it, then do it. No guessing.</span></div>
+        <video autoplay muted loop playsinline poster="img/vid/deadlift.jpg" src="img/vid/deadlift.mp4" aria-label="A 3D fighter doing a deadlift"></video></div>
+      <div class="tall"><video autoplay muted loop playsinline poster="img/vid/heavy-bag.jpg" src="img/vid/heavy-bag.mp4" aria-label="A 3D fighter hitting a heavy bag"></video><div><b>Gym and sport, one plan.</b><span>Football, boxing, wrestling, more.</span></div></div>
+      <div class="sm"><i>😴</i><b>Sleep well, score more.</b><span>7–9 hours earns the most points.</span></div>
+      <div class="sm"><i>🥗</i><b>Snap a meal.</b><span>See the protein in seconds.</span></div>
+      <div class="sm"><i>🩹</i><b>Tap where it hurts.</b><span>Get a plan for today.</span></div>
     </div>
   </section>
 
-  <section class="why" id="why">
-    <div class="wrap">
-      <div class="sec-head">
-        <p class="eyebrow">Why 2SetsFitness</p>
-        <h2>One app instead of five</h2>
-        <p>Most people juggle a workout log, a calorie counter, a sport tracker and YouTube for technique. This puts them in one place, and adds things the others don't do.</p>
-      </div>
-      <div class="why-grid">
-        <div><b>A coach that sees you</b><p>Form Coach counts reps and corrects your form through the camera, on the phone. No video is uploaded, ever.</p></div>
-        <div><b>Every exercise shown, not described</b><p>232 exercises demonstrated by a 3D fighter you design, with modest kit options built in, not bolted on.</p></div>
-        <div><b>Gym and sport together</b><p>Football, boxing or swimming sit in the same week as your lifts, and count toward your points and recovery.</p></div>
-        <div><b>Training around pain</b><p>Tap where it hurts for warning signs, what to do today, and how to keep training with your own routines.</p></div>
-        <div><b>A reason to come back</b><p>Nine ranks across nine worlds, boss fights, challenges and a worldwide leaderboard. Points never reset.</p></div>
-        <div><b>Works offline, in your language</b><p>Everything saves on your phone first and backs up when you're online. 25 languages, including Arabic and Urdu.</p></div>
-      </div>
-      <table class="compare">
-        <caption class="sr">2SetsFitness compared with a typical workout-log app</caption>
-        <thead><tr><th></th><th>2SetsFitness</th><th>Typical workout log</th></tr></thead>
-        <tbody>
-          <tr><td>Camera form feedback</td><td class="y">Yes, on your phone</td><td class="n">No</td></tr>
-          <tr><td>3D demo for every exercise</td><td class="y">232</td><td class="n">Photos or links</td></tr>
-          <tr><td>Sport sessions in the plan</td><td class="y">Yes, with effort and minutes</td><td class="n">Gym only</td></tr>
-          <tr><td>Nutrition and barcode scanning</td><td class="y">Built in</td><td class="n">A second app</td></tr>
-          <tr><td>Pain and injury guide</td><td class="y">26 body areas</td><td class="n">No</td></tr>
-          <tr><td>Ranks and leaderboard</td><td class="y">9 ranks, worldwide</td><td class="n">Streaks at most</td></tr>
-        </tbody>
-      </table>
+  <section class="blk">
+    <h2>A coach that knows you.</h2>
+    <p class="sub">Ask anything. It knows your week.</p>
+    <div class="chat">
+      <p class="me">Did wrestling tonight. What now?</p>
+      <p class="them">Nice work. Get 40 g of protein in and sleep 7–9 hours. Keep tomorrow light.</p>
     </div>
   </section>
 
-  <section class="compete" id="compete">
-    <div class="wrap">
-      <div class="sec-head">
-        <p class="eyebrow">Compete</p>
-        <h2>From the desert to the edge of the universe</h2>
-        <p>Every rank is a new world on your journey map, from the Desert Kingdom to the ocean floor, the Moon, Mars and deep space, with a boss to beat in each. Points come from workouts, sport sessions, records, recovery and streaks, and they never reset.</p>
-      </div>
-
-      <div class="cgrid">
-        <div class="ccard rankcard">
-          <span class="lbl">Your rank</span>
-          <div class="rk"><b style="color:#7a7c84">SILVER</b><span>World 2 · Abyss Ocean</span></div>
-          <div class="pts">1,580<small>total points</small></div>
-          <div class="bar" role="img" aria-label="1,580 of 2,000 points, 420 to Gold"><i style="--w:79%"></i></div>
-          <p>420 pts to <b style="color:#F5A623">Gold</b></p>
-          <ul class="how-pts">
-            <li><span>Workout</span><b>50 + 5 a set</b></li>
-            <li><span>Sport session</span><b>20 + a point a minute</b></li>
-            <li><span>New personal record</span><b>+25</b></li>
-            <li><span>Form check, 90+ score</span><b>+25</b></li>
-            <li><span>Recovery or nutrition logged</span><b>+20 / +10</b></li>
-            <li><span>7, 14, 30 day streak</span><b>+30 / +75 / +150</b></li>
-          </ul>
-          <p class="fine">Sample numbers.</p>
-        </div>
-
-        <div class="ccard ladder">
-          <span class="lbl">The journey</span>
-          <ol aria-label="The nine ranks and their worlds">
-            <li style="--h:28%;--c:#CD7F32"><b>Bronze</b><small>Desert Kingdom</small></li>
-            <li style="--h:33%;--c:#8e9097" class="you"><b>Silver</b><small>Abyss Ocean</small></li>
-            <li style="--h:40%;--c:#F5A623"><b>Gold</b><small>Summit</small></li>
-            <li style="--h:48%;--c:#00B4D8"><b>Platinum</b><small>Neon Tower</small></li>
-            <li style="--h:57%;--c:#7B61FF"><b>Diamond</b><small>Hollow Earth</small></li>
-            <li style="--h:66%;--c:#E31E24"><b>Elite</b><small>Orbit &amp; Moon</small></li>
-            <li style="--h:78%;--c:#FF6D00"><b>Legend</b><small>Mars &amp; the Belt</small></li>
-            <li style="--h:90%;--c:#CC00FF"><b>Mythic</b><small>Deep Space</small></li>
-            <li style="--h:100%;--c:#FF003C"><b>Immortal</b><small>Edge of the Universe</small></li>
-          </ol>
-        </div>
-
-        <div class="ccard board">
-          <span class="lbl">Leaderboard</span>
-          <table>
-            <caption class="sr">Sample worldwide leaderboard</caption>
-            <tbody>
-              <tr><td>1</td><td>Amira S.</td><td><em style="color:#FF6D00">Legend</em></td><td>61,240</td></tr>
-              <tr><td>2</td><td>Jonas K.</td><td><em style="color:#E31E24">Elite</em></td><td>48,905</td></tr>
-              <tr><td>3</td><td>Priya N.</td><td><em style="color:#7B61FF">Diamond</em></td><td>12,310</td></tr>
-              <tr class="me"><td>47</td><td>You</td><td><em style="color:#7a7c84">Silver</em></td><td>1,580</td></tr>
-              <tr><td>48</td><td>Liam O.</td><td><em style="color:#7a7c84">Silver</em></td><td>1,544</td></tr>
-            </tbody>
-          </table>
-          <ul class="mini-feats">
-            <li>Weekly challenges with progress bars</li>
-            <li>Achievements to unlock</li>
-            <li>Boss ladder: fight a boss at each rank</li>
-            <li>Personal-record medals and a weekly trend</li>
-          </ul>
-                    <p class="fine">Sample names and numbers.</p>
-        </div>
-      </div>
-
-      <div class="sec-head together-head">
-        <p class="eyebrow">New · Train together</p>
-        <h3>Challenge your friends</h3>
-      </div>
-      <div class="grid together">
-        <article class="tile w3">
-          <span class="tag">Challenges</span>
-          <h3>First to 100 push-ups</h3>
-          <p>Race a friend to a target (push-ups, squats, sit-ups, a 10 km run or ride), through one of your routines, or for the most points, over 1 to 14 days. Put points on it, a forfeit, or both.</p>
-          <div class="race" role="img" aria-label="Sample race: you 62 of 100 push-ups, your friend 48, two days left">
-            <div class="race-top"><b>100 push-ups in 3 days</b><small>2 days left · Forfeit: loser does 50 burpees</small></div>
-            <div class="race-row"><span>You</span><i><em style="width:62%"></em></i><b>62</b></div>
-            <div class="race-row"><span>Sam</span><i><em class="them" style="width:48%"></em></i><b>48</b></div>
-            <div class="race-btn">+ Log push-ups</div>
-          </div>
-        </article>
-
-        <article class="tile w3">
-          <span class="tag">Quick log</span>
-          <h3>Did 30? Log 30.</h3>
-          <p>Every target race has its own Log button: tap 10, 20, 30 or 50 push-ups, or type the km you ran, and both race bars move. Workouts in Track and runs in Sports count too.</p>
-          <div class="quicklog" role="img" aria-label="The log sheet: quick buttons for 10, 20, 30 and 50 push-ups">
-            <b>Log push-ups</b>
-            <div class="ql-chips"><span>10</span><span>20</span><span class="on">30</span><span>50</span></div>
-            <div class="race-btn">✓ Log it</div>
-          </div>
-        </article>
-
-        <article class="tile w3">
-          <span class="tag">Friends</span>
-          <h3>Add by code or name</h3>
-          <p>Share your friend code or search a name, then see your friends' ranks and find them on your rank journey map, at the checkpoint they've reached.</p>
-          <div class="friendrow" role="img" aria-label="A friend code and two friends shown on the journey map">
-            <div class="fcode"><small>Your friend code</small><b>2S-4F9A1C</b></div>
-            <div class="chips"><span><i>S</i>Sam</span><span><i>P</i>Priya</span></div>
-          </div>
-        </article>
-
-        <article class="tile w3">
-          <span class="tag">Fuel check</span>
-          <h3>A nudge at 7 pm</h3>
-          <p>Short on protein for the day? One quiet notification at 7 pm says how far off you are, and the AI coach suggests a way to catch up tonight. Turn it off any time in Settings.</p>
-          <div class="notif" role="img" aria-label="Sample notification: 70 of 140 grams of protein so far today">
-            <b>Fuel check</b><span>70 g of 140 g protein so far today. A protein-rich dinner gets you back on track.</span>
-          </div>
-        </article>
-      </div>
-      <p class="honest-line">Reps are on trust. <b>The only person you cheat is yourself.</b></p>
-    </div>
+  <section class="blk">
+    <h2>The whole app in a minute.</h2>
+    <p class="sub">Recorded on a real phone.</p>
+    <div class="phone"><div>New highlights video coming soon.<br><br><a class="btn" href="demo/index.html">Try the demo</a></div></div>
   </section>
 
-  <section class="try" id="try">
-    <div class="wrap try-grid">
-      <div class="try-copy">
-        <p class="eyebrow">See it in action</p>
-        <h2>The highlights, on a real phone</h2>
-        <p>Recorded on an Android phone, sped up: under a minute through what matters most.</p>
-        <ul class="steps">
-          <li>A quest for today, and fuel to match it</li>
-          <li>Muscle Map: what you trained this week, in 360°</li>
-          <li>Challenge a friend: first to 100 push-ups</li>
-          <li>Log reps from the race, then find friends on your journey map</li>
-        </ul>
-        <p><a class="btn primary" href="demo/index.html">Try demo</a> <span class="try-note">In your browser, no sign-up</span></p>
-      </div>
-      <div class="try-phone"><a class="btn primary" href="demo/index.html">Try the demo in your browser</a></div>
+  <section class="blk" id="friends">
+    <h2>Better with friends.</h2>
+    <p class="sub">Add them by code. Race them to a target. Find them on your rank map.</p>
+    <div class="race">
+      <b>First to 100 push-ups</b>
+      <div class="r"><span>You</span><i><em style="width:62%"></em></i><span>62</span></div>
+      <div class="r"><span>Sam</span><i><em class="t" style="width:48%"></em></i><span>48</span></div>
+      <small>2 days left · Loser does 50 burpees</small>
     </div>
+    <p class="honest">Reps are on trust. <b>The only person you cheat is yourself.</b></p>
   </section>
 
-  <section class="how" id="how">
-    <div class="wrap">
-      <div class="sec-head">
-        <p class="eyebrow">How it works</p>
-        <h2>From first set to rank-up</h2>
-      </div>
-      <ol>
-        <li><h3>Set up in a minute</h3><p>Tell it your goal, level, gym or sport, and body. Your fighter and your first week are ready.</p></li>
-        <li><h3>Train with a coach</h3><p>Follow your routine with 3D demos, hold timers and spoken cues. Turn the camera on for form feedback.</p></li>
-        <li><h3>See it add up</h3><p>Your sets, muscles, records and sport sessions turn into points, ranks and a weekly review.</p></li>
-      </ol>
-    </div>
+  <section class="blk" id="contact">
+    <h2>Questions, feedback or a bug?</h2>
+    <p class="sub">Write to us. A real person reads every message.</p>
+    <form class="cform contact" id="cform" novalidate>
+      <label>Your name<input name="name" autocomplete="name" placeholder="Alex"></label>
+      <label>What is it about?<select name="topic"><option>Feedback or an idea</option><option>Something is broken</option><option>A question about the app</option><option>Press or partnership</option></select></label>
+      <label class="full">Message<textarea name="msg" rows="5" placeholder="Tell us what's on your mind"></textarea></label>
+      <div class="full actions"><button class="main" type="submit">Write it in Gmail</button><button type="button" id="mailto">Use my email app</button><button type="button" id="copy">Copy address</button><span class="note" id="cnote" role="status"></span></div>
+    </form>
+    <p class="fine contact">Prefer your own way? Write to <a id="addr" href="#contact"></a>. Gmail opens with your message filled in; nothing is stored on this page.</p>
   </section>
 
-  <section id="exercises">
-    <div class="wrap">
-      <div class="sec-head">
-        <p class="eyebrow">The library</p>
-        <h2>Every move, drawn on your fighter</h2>
-        <p>From squats to battle ropes, landmine presses to neck holds. A small sample of the 232.</p>
-      </div>
-      <div class="wall">
-        <figure><video disablepictureinpicture disableremoteplayback controlslist="nodownload nofullscreen noremoteplayback" class="vid" muted loop playsinline preload="none" poster="img/vid/squat.jpg?v=7" data-src="img/vid/squat.mp4?v=7" aria-label="Squat, animated"></video><figcaption>Squat</figcaption></figure>
-        <figure><video disablepictureinpicture disableremoteplayback controlslist="nodownload nofullscreen noremoteplayback" class="vid" muted loop playsinline preload="none" poster="img/vid/deadlift.jpg?v=7" data-src="img/vid/deadlift.mp4?v=7" aria-label="Deadlift, animated"></video><figcaption>Deadlift</figcaption></figure>
-        <figure><video disablepictureinpicture disableremoteplayback controlslist="nodownload nofullscreen noremoteplayback" class="vid" muted loop playsinline preload="none" poster="img/vid/landmine-press.jpg?v=7" data-src="img/vid/landmine-press.mp4?v=7" aria-label="Landmine press, animated"></video><figcaption>Landmine press</figcaption></figure>
-        <figure><video disablepictureinpicture disableremoteplayback controlslist="nodownload nofullscreen noremoteplayback" class="vid" muted loop playsinline preload="none" poster="img/vid/hip-thrust.jpg?v=7" data-src="img/vid/hip-thrust.mp4?v=7" aria-label="Hip thrust, animated"></video><figcaption>Hip thrust</figcaption></figure>
-        <figure><video disablepictureinpicture disableremoteplayback controlslist="nodownload nofullscreen noremoteplayback" class="vid" muted loop playsinline preload="none" poster="img/vid/lat-pulldown.jpg?v=8" data-src="img/vid/lat-pulldown.mp4?v=8" aria-label="Lat pulldown, animated"></video><figcaption>Lat pulldown</figcaption></figure>
-        <figure><video disablepictureinpicture disableremoteplayback controlslist="nodownload nofullscreen noremoteplayback" class="vid" muted loop playsinline preload="none" poster="img/vid/battle-rope.jpg?v=7" data-src="img/vid/battle-rope.mp4?v=7" aria-label="Battle rope, animated"></video><figcaption>Battle rope</figcaption></figure>
-        <figure><video disablepictureinpicture disableremoteplayback controlslist="nodownload nofullscreen noremoteplayback" class="vid" muted loop playsinline preload="none" poster="img/vid/heavy-bag.jpg?v=7" data-src="img/vid/heavy-bag.mp4?v=7" aria-label="Heavy bag, animated"></video><figcaption>Heavy bag</figcaption></figure>
-        <figure><video disablepictureinpicture disableremoteplayback controlslist="nodownload nofullscreen noremoteplayback" class="vid" muted loop playsinline preload="none" poster="img/vid/push-up.jpg?v=8" data-src="img/vid/push-up.mp4?v=8" aria-label="Push-up, animated"></video><figcaption>Push-up</figcaption></figure>
-        <figure><video disablepictureinpicture disableremoteplayback controlslist="nodownload nofullscreen noremoteplayback" class="vid" muted loop playsinline preload="none" poster="img/vid/burpee.jpg?v=7" data-src="img/vid/burpee.mp4?v=7" aria-label="Burpee, animated"></video><figcaption>Burpee</figcaption></figure>
-        <figure><video disablepictureinpicture disableremoteplayback controlslist="nodownload nofullscreen noremoteplayback" class="vid" muted loop playsinline preload="none" poster="img/vid/box-jump.jpg?v=8" data-src="img/vid/box-jump.mp4?v=8" aria-label="Box jump, animated"></video><figcaption>Box jump</figcaption></figure>
-        <figure><video disablepictureinpicture disableremoteplayback controlslist="nodownload nofullscreen noremoteplayback" class="vid" muted loop playsinline preload="none" poster="img/vid/tibialis-raise.jpg?v=7" data-src="img/vid/tibialis-raise.mp4?v=7" aria-label="Tibialis raise, animated"></video><figcaption>Tibialis raise</figcaption></figure>
-        <figure><video disablepictureinpicture disableremoteplayback controlslist="nodownload nofullscreen noremoteplayback" class="vid" muted loop playsinline preload="none" poster="img/vid/front-squat.jpg?v=7" data-src="img/vid/front-squat.mp4?v=7" aria-label="Front squat, animated"></video><figcaption>Front squat</figcaption></figure>
-      </div>
-      <p class="wall-note">Each one has a written guide, the muscles it works, and whether it builds strength, power, endurance or mobility.</p>
-    </div>
-  </section>
-
-  <section id="privacy" style="padding-top:0">
-    <div class="wrap">
-      <div class="strip">
-        <div><h3>Your video stays put</h3><p>Form Coach runs on your phone. Camera video is not recorded or uploaded.</p></div>
-        <div><h3>Your data is yours</h3><p>Everything saves on your phone first, then backs up to your own account when you're online.</p></div>
-        <div><h3>25 languages</h3><p>Arabic, Urdu, Spanish, French, Portuguese, Turkish, German, Hindi, Japanese, Korean and more.</p></div>
-      </div>
-    </div>
-  </section>
-
-  <section id="faq" style="padding-top:0">
-    <div class="wrap">
-      <div class="sec-head"><p class="eyebrow">Questions</p><h2>Quick answers</h2></div>
-      <div class="faq">
-        <details><summary>Does the camera record me?</summary><p>No. The form analysis runs on your phone while you train. Nothing is recorded or sent anywhere.</p></details>
-        <details><summary>Can I use it for sport, not only the gym?</summary><p>Yes. Add football, boxing, swimming and other sports to your week, log them with minutes and effort, and they feed your points and your fighter's stats.</p></details>
-        <details><summary>How do challenges count my reps and runs?</summary><p>From what you log: a workout with push-ups in Track, a run in Sports with its distance, or the quick Log button on the challenge itself. Reps are on trust, with a cap per set and per day. The only person you cheat is yourself.</p></details>
-        <details><summary>Is the pain guide medical advice?</summary><p>No. It's general self-care guidance with clear warning signs, and it tells you when to see a doctor or physio.</p></details>
-        <details><summary>When can I get it?</summary><p>The app is in testing. Store listings are coming, and this page will link to them when they're live.</p></details>
-      </div>
-    </div>
-  </section>
-  <section id="contact" class="contact">
-    <div class="wrap">
-      <div class="sec-head"><p class="eyebrow">Contact</p><h2>Questions, feedback or a bug?</h2><p>Write to us. A real person reads every message, and replies within a few days.</p></div>
-      <form class="cform" id="cform" novalidate>
-        <label>Your name<input name="name" autocomplete="name" placeholder="Alex"></label>
-        <label>What is it about?
-          <select name="topic"><option>Feedback or an idea</option><option>Something is broken</option><option>A question about the app</option><option>Press or partnership</option></select>
-        </label>
-        <label class="full">Message<textarea name="msg" rows="5" placeholder="Tell us what's on your mind"></textarea></label>
-        <div class="full actions">
-          <button class="btn primary" type="submit" id="gmail">Write it in Gmail</button>
-          <button class="btn" type="button" id="mailto">Use my email app</button>
-          <button class="btn" type="button" id="copy">Copy address</button>
-          <span class="note" id="cnote" role="status"></span>
-        </div>
-      </form>
-      <p class="fine">Prefer your own way? Write to <a id="addr" href="#contact"></a>. Gmail opens in a new tab with your message filled in, so nothing is stored on this page.</p>
-    </div>
-  </section>
-</main>
-
-<div class="closing">
-  <div class="wrap">
+  <section class="closing">
     <h2>Two sets. <span>Then another.</span></h2>
     <p>Train smarter, track everything, and see how far you climb.</p>
-    <div class="cta">
-      <span class="btn soon" role="note">Google Play <small>coming soon</small></span>
-      <span class="btn soon" role="note">App Store <small>coming soon</small></span>
-    </div>
-  </div>
-</div>
+    <div class="row"><a href="demo/index.html">Try the demo</a><span>Google Play <small>coming soon</small></span><span>App Store <small>coming soon</small></span></div>
+  </section>
 
-<footer>
-  <div class="wrap">
-    <span>© 2026 2SetsFitness</span>
-    <span><a href="privacy/index.html">Privacy</a> · <a href="terms/index.html">Terms</a></span>
-  </div>
-</footer>
+  <footer>
+    <div><a href="privacy/index.html">Privacy</a><a href="terms/index.html">Terms</a><a href="#contact">Contact</a></div>
+    <div>© 2026 2SetsFitness</div>
+  </footer>
+</div>
 <script>
 (function () {
   var to = ['trrfarhan', 'gmail.com'].join('@');
@@ -451,13 +190,12 @@
     return { su: '2SetsFitness: ' + d.get('topic'), body: msg + (name ? '\n\n' + name : ''), ok: msg.length > 0 };
   }
   function check(p) { note.textContent = p.ok ? '' : 'Write a message first.'; return p.ok; }
-  function gmail() {
-    var p = parts(); if (!check(p)) return;
+  f.addEventListener('submit', function (e) {
+    e.preventDefault(); var p = parts(); if (!check(p)) return;
     var url = 'https://mail.google.com/mail/?view=cm&fs=1&to=' + encodeURIComponent(to) + '&su=' + encodeURIComponent(p.su) + '&body=' + encodeURIComponent(p.body);
     if (!window.open(url, '_blank', 'noopener')) location.href = url;
     note.textContent = 'Gmail is open in a new tab. Press Send there.';
-  }
-  f.addEventListener('submit', function (e) { e.preventDefault(); gmail(); });
+  });
   document.getElementById('mailto').addEventListener('click', function () {
     var p = parts(); if (!check(p)) return;
     location.href = 'mailto:' + to + '?subject=' + encodeURIComponent(p.su) + '&body=' + encodeURIComponent(p.body);
@@ -468,20 +206,6 @@
     if (navigator.clipboard) navigator.clipboard.writeText(to).then(ok, function () { note.textContent = to; }); else note.textContent = to;
   });
 })();
-(function () {
-  // 3D rep loops: each video loads when it comes near the screen and plays only while visible
-  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  [].slice.call(document.querySelectorAll('video.vid')).forEach(function (v) {
-    new IntersectionObserver(function (en) {
-      var on = en[0].isIntersecting;
-      if (on && !v.src) { v.src = v.dataset.src; }
-      if (reduce) return;
-      if (on) { var p = v.play(); if (p && p.catch) p.catch(function () {}); } else v.pause();
-    }, { rootMargin: '200px' }).observe(v);
-  });
-})();
 </script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
-<script src="anim.js?v=3" defer></script>
 </body>
 </html>
