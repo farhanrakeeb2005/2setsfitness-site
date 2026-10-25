@@ -83,6 +83,11 @@
   .actions button { font:inherit; font-weight:600; border-radius:999px; padding:13px 22px; cursor:pointer; border:1px solid #f0d6d8; background:var(--card); color:var(--ink); }
   .actions button.main { background:var(--red); border-color:var(--red); color:#fff; }
   .note { color:var(--soft); }
+  .note.err { color:var(--red); font-weight:600; }
+  .hp { position:absolute; left:-9999px; width:1px; height:1px; overflow:hidden; }
+  .cdone { background:var(--card); border-radius:24px; padding:28px; text-align:center; }
+  .cdone h3 { margin:0 0 6px; font-size:1.5rem; }
+  .actions button:disabled { opacity:.6; cursor:wait; }
   .fine { color:var(--soft); font-size:.92rem; margin-top:14px; }
   .closing { margin:40px 0 60px; border-radius:34px; padding:80px 24px; text-align:center; color:#fff; background:radial-gradient(120% 120% at 80% 0%, #f06a5a 0%, #d64532 45%, #a3262a 100%); box-shadow:0 30px 70px rgba(214,69,50,.25); }
   .closing h2 { font-size:clamp(2.4rem,6.4vw,4.6rem); margin-bottom:14px; }
@@ -161,12 +166,15 @@
     <h2>Questions, feedback or a bug?</h2>
     <p class="sub">Write to us. A real person reads every message.</p>
     <form class="cform contact" id="cform" novalidate>
-      <label>Your name<input name="name" autocomplete="name" placeholder="Alex"></label>
-      <label>What is it about?<select name="topic"><option>Feedback or an idea</option><option>Something is broken</option><option>A question about the app</option><option>Press or partnership</option></select></label>
-      <label class="full">Message<textarea name="msg" rows="5" placeholder="Tell us what's on your mind"></textarea></label>
-      <div class="full actions"><button class="main" type="submit">Write it in Gmail</button><button type="button" id="mailto">Use my email app</button><button type="button" id="copy">Copy address</button><span class="note" id="cnote" role="status"></span></div>
+      <label>Your name<input name="name" autocomplete="name" placeholder="Alex" required maxlength="80"></label>
+      <label>Your email<input name="email" type="email" autocomplete="email" placeholder="alex@example.com" required maxlength="200"></label>
+      <label class="full">What is it about?<select name="topic"><option>Feedback or an idea</option><option>Something is broken</option><option>A question about the app</option><option>Press or partnership</option></select></label>
+      <label class="full">Message<textarea name="message" rows="5" placeholder="Tell us what's on your mind" required maxlength="4000"></textarea></label>
+      <label class="hp" aria-hidden="true">Website<input name="website" tabindex="-1" autocomplete="off"></label>
+      <div class="full actions"><button class="main" type="submit" id="csend">Send message</button><span class="note" id="cnote" role="status"></span></div>
     </form>
-    <p class="fine contact">Prefer your own way? Write to <a id="addr" href="#contact"></a>. Gmail opens with your message filled in; nothing is stored on this page.</p>
+    <div class="cdone contact" id="cdone" hidden><h3>Thanks, message sent.</h3><p class="note">We'll reply to <b id="cto"></b>, usually within a day or two.</p></div>
+    <p class="fine contact">We only use your email to reply to you. Or write to us directly at <a id="addr" href="#contact"></a>.</p>
   </section>
 
   <section class="closing">
@@ -182,28 +190,34 @@
 </div>
 <script>
 (function () {
+  var API = 'https://twosetsfitness-api-608365314707.europe-west2.run.app/contact';
   var to = ['trrfarhan', 'gmail.com'].join('@');
-  var f = document.getElementById('cform'), note = document.getElementById('cnote');
+  var f = document.getElementById('cform'), note = document.getElementById('cnote'), btn = document.getElementById('csend');
   var addr = document.getElementById('addr'); addr.textContent = to; addr.href = 'mailto:' + to;
-  function parts() {
-    var d = new FormData(f), name = String(d.get('name') || '').trim(), msg = String(d.get('msg') || '').trim();
-    return { su: '2SetsFitness: ' + d.get('topic'), body: msg + (name ? '\n\n' + name : ''), ok: msg.length > 0 };
-  }
-  function check(p) { note.textContent = p.ok ? '' : 'Write a message first.'; return p.ok; }
+  var opened = Date.now();
+  function say(t, err) { note.textContent = t; note.className = 'note' + (err ? ' err' : ''); }
   f.addEventListener('submit', function (e) {
-    e.preventDefault(); var p = parts(); if (!check(p)) return;
-    var url = 'https://mail.google.com/mail/?view=cm&fs=1&to=' + encodeURIComponent(to) + '&su=' + encodeURIComponent(p.su) + '&body=' + encodeURIComponent(p.body);
-    if (!window.open(url, '_blank', 'noopener')) location.href = url;
-    note.textContent = 'Gmail is open in a new tab. Press Send there.';
-  });
-  document.getElementById('mailto').addEventListener('click', function () {
-    var p = parts(); if (!check(p)) return;
-    location.href = 'mailto:' + to + '?subject=' + encodeURIComponent(p.su) + '&body=' + encodeURIComponent(p.body);
-    note.textContent = 'If nothing opened, use Gmail or copy the address.';
-  });
-  document.getElementById('copy').addEventListener('click', function () {
-    function ok() { note.textContent = 'Copied ' + to; }
-    if (navigator.clipboard) navigator.clipboard.writeText(to).then(ok, function () { note.textContent = to; }); else note.textContent = to;
+    e.preventDefault();
+    var d = new FormData(f), body = {
+      name: String(d.get('name') || '').trim(), email: String(d.get('email') || '').trim(),
+      topic: d.get('topic'), message: String(d.get('message') || '').trim(),
+      website: d.get('website') || '', ms: Date.now() - opened,
+    };
+    if (!body.name) return say('Add your name.', true);
+    if (!/^[^@s]+@[^@s]+.[^@s]+$/.test(body.email)) return say('Add an email address we can reply to.', true);
+    if (body.message.length < 5) return say('Write a message first.', true);
+    btn.disabled = true; say('Sending...');
+    fetch(API, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body) })
+      .then(function (r) { return r.json().catch(function () { return {}; }).then(function (j) { return { ok: r.ok, j: j }; }); })
+      .then(function (res) {
+        if (!res.ok) throw new Error(res.j.error || 'Could not send right now.');
+        document.getElementById('cto').textContent = body.email;
+        f.hidden = true; document.getElementById('cdone').hidden = false;
+      })
+      .catch(function (err) {
+        btn.disabled = false;
+        say((err && err.message && !/fetch|network/i.test(err.message) ? err.message : 'Could not send right now.') + ' You can email us at ' + to + '.', true);
+      });
   });
 })();
 </script>
