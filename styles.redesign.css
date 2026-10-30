@@ -1,0 +1,395 @@
+/* ============================================================================
+   2SetsFitness — marketing site redesign
+   ----------------------------------------------------------------------------
+   Goal: a calmer, more premium light theme. One headline + one supporting line
+   + one visual per section, consistent CTAs down the scroll, strong hierarchy
+   and restraint. Phone-first, 16px side gutters, no horizontal scroll.
+
+   Reuses the current site's font (Outfit) and keeps the red accent, moved to
+   the brand-canonical #E31E24. Colours live as tokens on :root. Light only.
+   ========================================================================== */
+
+:root {
+  /* surfaces */
+  --bg:        #ffffff;          /* page */
+  --bg-soft:   #fbf6f6;          /* tinted bands behind sections */
+  --surface:   #ffffff;          /* cards */
+  --surface-2: #f3eeee;          /* inset wells, media backdrops */
+  --line:      #ece3e3;          /* hairlines */
+  --tile:      #efeaea;          /* backdrop behind 3D clips */
+
+  /* ink */
+  --ink:  #1c1113;               /* headings / body */
+  --dim:  #74595d;               /* muted copy — ~6:1 on white */
+
+  /* brand */
+  --accent:     #e31e24;         /* the red */
+  --accent-ink: #c8161c;         /* red for text/links — ~5.3:1 on white */
+  --on-accent:  #ffffff;
+
+  /* support */
+  --good: #16a34a;
+  --cool: #1b7fa8;               /* opponent / secondary data colour */
+
+  /* elevation */
+  --shadow: 0 30px 60px rgba(28, 17, 19, 0.12);
+  --soft:   0 1px 0 var(--line), 0 10px 28px rgba(28, 17, 19, 0.06);
+  --ring:   0 10px 24px rgba(227, 30, 36, 0.25);
+
+  /* type — reuse the current site's Outfit stack */
+  --font: "Outfit", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+
+  --radius: 26px;
+  color-scheme: light;
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font: 400 17px/1.55 var(--font);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  overflow-x: hidden;               /* belt-and-braces against sideways scroll */
+}
+img, svg, video { display: block; max-width: 100%; }
+a { color: inherit; }
+p { margin: 0; }
+h1, h2, h3 {
+  margin: 0;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  line-height: 1.04;
+  text-wrap: balance;
+}
+
+/* accessible focus + skip link */
+:focus-visible { outline: 3px solid var(--accent-ink); outline-offset: 3px; border-radius: 8px; }
+.skip {
+  position: absolute; left: -999px; top: 10px; z-index: 60;
+  background: var(--accent); color: var(--on-accent);
+  padding: 10px 16px; border-radius: 10px; font-weight: 600; text-decoration: none;
+}
+.skip:focus { left: 12px; }
+
+/* screen-reader-only text */
+.sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+
+/* ---------- layout shell: one place that owns the 16px side gutters ---------- */
+.wrap {
+  width: 100%;
+  max-width: 1120px;
+  margin-inline: auto;
+  padding-inline: max(16px, env(safe-area-inset-left, 0px)) max(16px, env(safe-area-inset-right, 0px));
+}
+
+/* ---------- buttons ---------- */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+  min-height: 50px; padding: 0 24px;
+  border: 1px solid var(--line); border-radius: 999px;
+  background: var(--surface); color: var(--ink);
+  font: 700 1rem var(--font); text-decoration: none; cursor: pointer;
+  box-shadow: var(--soft);
+  transition: transform .2s ease, box-shadow .25s ease, border-color .2s ease;
+}
+.btn:hover { transform: translateY(-1px); }
+.btn.primary { background: var(--accent); border-color: var(--accent); color: var(--on-accent); box-shadow: var(--ring); }
+.btn.primary:hover { box-shadow: 0 14px 32px rgba(227, 30, 36, 0.4); }
+.btn.ghost { background: transparent; border-color: transparent; box-shadow: none; color: var(--dim); }
+.btn.ghost:hover { color: var(--ink); border-color: var(--line); }
+.btn.sm { min-height: 42px; padding: 0 18px; font-size: .95rem; }
+.btn small { font-weight: 500; opacity: .8; }
+
+.cta-row { display: flex; flex-wrap: wrap; gap: 12px; }
+
+/* ---------- top nav (sticky, frosted) ---------- */
+.nav {
+  position: sticky; top: 0; z-index: 40;
+  background: color-mix(in srgb, var(--bg) 85%, transparent);
+  -webkit-backdrop-filter: blur(14px); backdrop-filter: blur(14px);
+  border-bottom: 1px solid transparent;
+}
+.nav.scrolled { border-bottom-color: var(--line); }
+.nav .wrap { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding-block: 14px; }
+.brand { display: flex; align-items: center; gap: 7px; text-decoration: none; font-weight: 800; font-size: 1.25rem; letter-spacing: -0.02em; }
+.brand img { width: 36px; height: 36px; border-radius: 10px; }
+.brand b { color: var(--accent); }
+.nav-links { display: flex; align-items: center; gap: 24px; }
+.nav-links a:not(.btn) { text-decoration: none; color: var(--dim); font-weight: 500; }
+.nav-links a:not(.btn):hover { color: var(--ink); }
+/* on small screens the text links collapse; the demo button stays */
+@media (max-width: 760px) { .nav-links a:not(.btn) { display: none; } }
+
+/* ---------- section rhythm ---------- */
+section { padding-block: clamp(56px, 10vw, 100px); }
+.band { background: var(--bg-soft); }
+
+.sec-head { max-width: 46rem; margin: 0 auto clamp(28px, 5vw, 48px); text-align: center; }
+.eyebrow {
+  display: inline-block; margin-bottom: 14px;
+  font-weight: 700; font-size: .8rem; letter-spacing: 0.16em; text-transform: uppercase;
+  color: var(--accent-ink);
+}
+.sec-head h2 { font-size: clamp(2rem, 6vw, 3.4rem); }
+.sec-head p { margin-top: 14px; color: var(--dim); font-size: 1.12rem; }
+
+/* ============================================================================
+   HERO — confident headline, one supporting line, primary CTA + "coming soon",
+   and the hero video framed in a clean orb with a soft gradient backdrop.
+   ========================================================================== */
+.hero { position: relative; overflow: hidden; padding-top: clamp(32px, 6vw, 56px); }
+.hero-inner { display: grid; gap: clamp(28px, 6vw, 40px); align-items: center; text-align: center; }
+
+.hero h1 { font-size: clamp(2.6rem, 9vw, 4.6rem); }
+.hero h1 .red { color: var(--accent); }
+.hero .lede { max-width: 34rem; margin: 18px auto 0; color: var(--dim); font-size: clamp(1.05rem, 3.4vw, 1.25rem); }
+.hero .cta-row { margin-top: 28px; justify-content: center; }
+
+/* trust facts under the CTA — short, honest, no card */
+.facts {
+  display: flex; flex-wrap: wrap; justify-content: center; gap: 8px 22px;
+  margin: 26px 0 0; padding: 0; list-style: none;
+  color: var(--dim); font-size: .98rem;
+}
+.facts li { display: inline-flex; align-items: center; gap: 9px; }
+.facts li::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: var(--accent); }
+
+/* the framed hero visual: a soft gradient halo behind a rounded "orb" */
+.hero-visual { position: relative; display: grid; place-items: center; }
+.hero-visual::before {
+  content: ""; position: absolute; inset: 0;
+  background: radial-gradient(60% 60% at 50% 45%, rgba(227, 30, 36, 0.18), transparent 70%);
+  filter: blur(6px);
+}
+.orb {
+  position: relative;
+  width: min(380px, 80vw); aspect-ratio: 1;
+  border-radius: 50%; overflow: hidden;
+  background: var(--tile);
+  box-shadow: var(--shadow), inset 0 0 0 1px rgba(255, 255, 255, 0.6);
+}
+.orb video { width: 100%; height: 100%; object-fit: contain; }
+/* a small floating "live" chip to make the hero feel like product, not mockup */
+.orb-chip {
+  position: absolute; left: 50%; bottom: 14px; transform: translateX(-50%);
+  display: inline-flex; align-items: center; gap: 8px;
+  background: var(--surface); border: 1px solid var(--line); border-radius: 999px;
+  padding: 7px 14px; font-weight: 600; font-size: .85rem; box-shadow: var(--soft);
+}
+.orb-chip i { width: 8px; height: 8px; border-radius: 50%; background: var(--good); box-shadow: 0 0 0 4px rgba(22, 163, 74, 0.18); }
+
+/* desktop: words left, visual right, fits one screen */
+@media (min-width: 900px) {
+  .hero-inner { grid-template-columns: 1fr 1fr; text-align: left; }
+  .hero .lede { margin-inline: 0; }
+  .hero .cta-row, .facts { justify-content: flex-start; }
+  .facts { justify-content: flex-start; }
+  .orb { width: min(440px, 42vw); }
+}
+
+/* ============================================================================
+   FEATURE SHOWCASE — one big tile + smaller supporting tiles.
+   ========================================================================== */
+.grid { display: grid; grid-template-columns: repeat(6, 1fr); gap: 16px; }
+.tile {
+  grid-column: span 6;                /* phone: full width, stacked */
+  background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius);
+  padding: 24px; box-shadow: var(--soft);
+  display: flex; flex-direction: column; gap: 14px; min-width: 0;
+  transition: transform .3s cubic-bezier(.2,.8,.2,1), box-shadow .3s;
+}
+@media (hover: hover) and (prefers-reduced-motion: no-preference) {
+  .tile:hover { transform: translateY(-5px); box-shadow: 0 24px 50px rgba(28, 17, 19, 0.12); }
+}
+.tile .tag { font-weight: 700; font-size: .76rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent-ink); }
+.tile h3 { font-size: 1.5rem; }
+.tile p { color: var(--dim); }
+
+/* the big hero feature: avatar + highlighted muscles */
+.tile.feature-big { gap: 20px; }
+.feature-big .duo { display: grid; grid-template-columns: 1fr; gap: 16px; align-items: center; }
+.media {
+  border-radius: 20px; overflow: hidden; background: var(--tile);
+  border: 1px solid var(--line);
+}
+.media video, .media img { width: 100%; aspect-ratio: 1; object-fit: contain; background: var(--tile); }
+.muscle-figure { margin: 0; }
+.muscle-figure img { padding: 10px; aspect-ratio: auto; max-height: 300px; object-fit: contain; }
+
+/* small supporting tiles get an icon */
+.tile .ic { font-size: 1.8rem; line-height: 1; }
+
+/* widths on wider screens: one big 2/3 tile, a tall 1/3 tile, then a row of three */
+@media (min-width: 760px) {
+  .tile.w-lg { grid-column: span 4; }
+  .tile.w-tall { grid-column: span 2; }
+  .tile.w-sm { grid-column: span 2; }
+  .feature-big .duo { grid-template-columns: 1.1fr 0.9fr; }
+}
+
+/* ============================================================================
+   SPLIT SECTION — headline + supporting line on one side, one visual the other.
+   Used for the AI coach and the gym-and-sport sections.
+   ========================================================================== */
+.split { display: grid; gap: clamp(28px, 5vw, 48px); align-items: center; }
+.split .copy h2 { font-size: clamp(1.9rem, 5vw, 3rem); }
+.split .copy p { margin-top: 14px; color: var(--dim); font-size: 1.1rem; max-width: 34rem; }
+.split .copy .cta-row { margin-top: 24px; }
+.split .list { margin: 16px 0 0; padding: 0; list-style: none; display: grid; gap: 10px; }
+.split .list li { display: flex; gap: 10px; color: var(--dim); }
+.split .list li::before { content: ""; flex: none; width: 8px; height: 8px; margin-top: 8px; border-radius: 2px; background: var(--accent); transform: skewX(-12deg); }
+@media (min-width: 860px) {
+  .split { grid-template-columns: 1fr 1fr; }
+  .split.flip .copy { order: 2; }
+}
+
+/* the chat visual for the AI coach */
+.chat { display: grid; gap: 12px; background: var(--surface-2); border: 1px solid var(--line); border-radius: var(--radius); padding: 20px; }
+.chat .bubble { max-width: 84%; padding: 13px 17px; border-radius: 20px; font-size: 1rem; line-height: 1.45; box-shadow: var(--soft); }
+.chat .them { background: var(--surface); border-bottom-left-radius: 6px; }
+.chat .me { background: var(--accent); color: var(--on-accent); margin-left: auto; border-bottom-right-radius: 6px; box-shadow: var(--ring); }
+.chat .meta { font-size: .8rem; color: var(--dim); text-align: center; }
+
+/* a plain framed video for the split visual */
+.frame { border-radius: var(--radius); overflow: hidden; background: var(--tile); border: 1px solid var(--line); box-shadow: var(--soft); }
+.frame video { width: 100%; aspect-ratio: 4/3; object-fit: contain; background: var(--tile); }
+
+/* ============================================================================
+   FRIENDS & COMPETITION — a race card visual + a tiny leaderboard + honest line.
+   ========================================================================== */
+.race { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 22px; box-shadow: var(--soft); display: grid; gap: 14px; }
+.race .race-title { font-weight: 800; font-size: 1.15rem; }
+.race .r { display: grid; grid-template-columns: 56px 1fr 40px; gap: 12px; align-items: center; font-weight: 600; }
+.race .track { height: 10px; border-radius: 6px; background: var(--surface-2); overflow: hidden; }
+.race .track i { display: block; height: 100%; border-radius: 6px; background: var(--accent); }
+.race .track i.cool { background: var(--cool); }
+.race .num { text-align: right; font-variant-numeric: tabular-nums; }
+.race small { color: var(--dim); }
+
+/* tiny leaderboard beside the race on wide screens */
+.board { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 22px; box-shadow: var(--soft); }
+.board h3 { font-size: 1.15rem; margin-bottom: 8px; }
+.board table { width: 100%; border-collapse: collapse; }
+.board td { padding: 10px 4px; border-top: 1px solid var(--line); font-size: .96rem; }
+.board td:first-child { width: 2em; color: var(--dim); font-weight: 700; }
+.board td:last-child { text-align: right; font-weight: 700; font-variant-numeric: tabular-nums; }
+.board tr.me td { background: rgba(227, 30, 36, 0.12); }
+.board tr.me td:first-child { border-radius: 8px 0 0 8px; }
+.board tr.me td:last-child { border-radius: 0 8px 8px 0; }
+
+.compete-grid { display: grid; gap: 16px; }
+@media (min-width: 860px) { .compete-grid { grid-template-columns: 1.3fr 1fr; align-items: start; } }
+
+.honest { text-align: center; margin-top: 24px; font-style: italic; color: var(--dim); }
+.honest b { font-style: normal; color: var(--ink); }
+
+/* ============================================================================
+   EXERCISE WALL — product-in-use grid of the app's own 3D thumbnails.
+   ========================================================================== */
+/* even rows at every width (12 tiles): 2 · 3 · 4 · 6 per row, never an orphan */
+.wall { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
+@media (min-width: 560px)  { .wall { grid-template-columns: repeat(3, 1fr); } }
+@media (min-width: 760px)  { .wall { grid-template-columns: repeat(4, 1fr); } }
+@media (min-width: 1000px) { .wall { grid-template-columns: repeat(6, 1fr); } }
+.wall figure { margin: 0; position: relative; border-radius: 18px; overflow: hidden; background: var(--tile); border: 1px solid var(--line); box-shadow: var(--soft); }
+/* contain, not cover: show the whole figure the same way in every tile, with
+   room at the foot for the caption so it never sits on the figure */
+.wall img { width: 100%; aspect-ratio: 1; object-fit: contain; padding: 10px 10px 26px; box-sizing: border-box; }
+.wall figcaption {
+  position: absolute; left: 0; right: 0; bottom: 9px; margin: 0 auto; width: fit-content;
+  background: var(--surface); color: var(--ink);
+  font-size: .76rem; font-weight: 700; padding: 3px 11px; border-radius: 999px;
+  box-shadow: 0 4px 12px rgba(28, 17, 19, 0.12);
+}
+.wall-note { text-align: center; margin-top: 20px; color: var(--dim); }
+@media (hover: hover) and (prefers-reduced-motion: no-preference) {
+  .wall figure { transition: transform .3s; }
+  .wall figure:hover { transform: scale(1.03); }
+}
+
+/* ============================================================================
+   FAQ — honest, short answers, native disclosure widgets.
+   ========================================================================== */
+.faq { max-width: 46rem; margin-inline: auto; }
+.faq details { border-bottom: 1px solid var(--line); }
+.faq summary {
+  cursor: pointer; list-style: none;
+  display: flex; align-items: center; justify-content: space-between; gap: 16px;
+  padding: 20px 0; font-weight: 700; font-size: 1.15rem;
+}
+.faq summary::-webkit-details-marker { display: none; }
+.faq summary::after { content: "+"; color: var(--accent-ink); font-size: 1.6rem; line-height: 1; flex: none; }
+.faq details[open] summary::after { content: "\2013"; }
+.faq details p { color: var(--dim); padding-bottom: 20px; margin-top: -4px; }
+.faq details p a { color: var(--accent-ink); }
+
+/* ============================================================================
+   CONTACT — a real person reads every message (ported from the live site).
+   ========================================================================== */
+.contact-form { max-width: 46rem; margin-inline: auto; display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.contact-form label { display: grid; gap: 7px; font-weight: 600; font-size: .92rem; }
+.contact-form .full { grid-column: 1 / -1; }
+.contact-form input, .contact-form select, .contact-form textarea {
+  font: 400 1rem var(--font); color: var(--ink);
+  background: var(--surface); border: 1px solid var(--line); border-radius: 14px;
+  padding: 13px 15px; width: 100%;
+}
+.contact-form textarea { resize: vertical; }
+.contact-form .actions { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; }
+.note { color: var(--dim); font-size: .92rem; }
+.note.err { color: var(--accent-ink); font-weight: 600; }
+.hp { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
+[hidden] { display: none !important; }
+.done { max-width: 46rem; margin-inline: auto; background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 26px; text-align: center; box-shadow: var(--soft); }
+.done h3 { font-size: 1.4rem; margin-bottom: 6px; }
+.fine { max-width: 46rem; margin: 16px auto 0; color: var(--dim); font-size: .92rem; text-align: center; }
+.fine a { color: var(--accent-ink); }
+button:disabled { opacity: .6; cursor: wait; }
+@media (max-width: 600px) { .contact-form { grid-template-columns: 1fr; } }
+
+/* ============================================================================
+   CLOSING CTA — strong red gradient band, repeated CTAs.
+   ========================================================================== */
+.closing {
+  width: calc(100% - 32px); max-width: 1120px; margin: 0 auto;
+  border-radius: 34px; padding: clamp(56px, 10vw, 92px) 24px; text-align: center;
+  color: #fff; position: relative; overflow: hidden;
+  background: radial-gradient(90% 120% at 80% 0%, #ff5a60 0%, transparent 55%),
+              linear-gradient(135deg, #e31e24, #9a1014);
+  box-shadow: 0 30px 60px rgba(227, 30, 36, 0.25);
+}
+.closing h2 { font-size: clamp(2.3rem, 8vw, 4.6rem); }
+.closing h2 span { color: #ffd9da; }
+.closing p { max-width: 34rem; margin: 16px auto 0; color: #ffe3e4; font-size: 1.1rem; }
+.closing .cta-row { justify-content: center; margin-top: 28px; }
+.closing .btn { background: #fff; color: var(--accent-ink); border-color: #fff; }
+.closing .btn.soon { background: rgba(255, 255, 255, 0.16); border-color: rgba(255, 255, 255, 0.4); color: #fff; box-shadow: none; }
+
+/* ============================================================================
+   FOOTER — Product / Help / Legal columns.
+   ========================================================================== */
+footer { border-top: 1px solid var(--line); padding-block: 44px 36px; color: var(--dim); font-size: .95rem; }
+.ftop { display: grid; grid-template-columns: 1fr; gap: 30px; }
+.fbrand .brand { margin-bottom: 10px; color: var(--ink); }
+.fbrand p { max-width: 30ch; margin-bottom: 12px; }
+.fver { font: 500 .76rem/1.4 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; letter-spacing: .14em; text-transform: uppercase; }
+.fcols { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+.fcol b { display: block; font-size: .76rem; letter-spacing: .16em; text-transform: uppercase; color: var(--dim); margin-bottom: 12px; }
+.fcol a, .fcol span { display: block; color: var(--ink); opacity: .82; text-decoration: none; padding: 5px 0; }
+.fcol a:hover { opacity: 1; text-decoration: underline; }
+.fcol .pill { font-size: .72rem; background: #fbe3e3; color: var(--accent-ink); border-radius: 999px; padding: 1px 8px; margin-left: 6px; }
+.fbot { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 10px; border-top: 1px solid var(--line); margin-top: 32px; padding-top: 20px; }
+.fbot a { color: var(--dim); text-decoration: none; }
+@media (min-width: 760px) { .ftop { grid-template-columns: 1.6fr 2fr; } }
+
+/* ============================================================================
+   Media players are decorative here — behave like silent looping pictures:
+   no controls, no picture-in-picture / cast button, no pointer interaction.
+   ========================================================================== */
+video { pointer-events: none; }
+video::-webkit-media-controls, video::-webkit-media-controls-enclosure { display: none !important; }
+
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }

@@ -3,238 +3,385 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>2SetsFitness · Your body. Your pace. Your app.</title>
-<meta name="description" content="A fitness app with a 3D coach, one plan for gym and sport, sleep points and friends to race. Free, Android first.">
+<title>2SetsFitness · Train on your own avatar. Free.</title>
+<meta name="description" content="A free fitness app with a 3D coach on your own avatar, an AI that knows your week, one plan for gym and sport, sleep points, and friends to race. Android first.">
+
+<!-- Social preview. NOTE: img/og.png does not exist yet — a 1200x630 share
+     image would make links look better when shared. (Asset to create.) -->
+<meta property="og:title" content="2SetsFitness — train on your own avatar">
+<meta property="og:description" content="Free fitness app: 3D coach, AI that knows your week, gym and sport in one plan, friends to race.">
+<meta property="og:type" content="website">
+
 <link rel="icon" href="img/favicon.png">
-<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;800&display=swap" rel="stylesheet">
-<style>
-  :root { --bg:#fff1f1; --ink:#2a1216; --soft:#7a5a5e; --card:#ffffff; --red:#d64532; --deep:#1b7fa8; --clip:#eeedf1; }
-  * { box-sizing:border-box; margin:0; }
-  html { scroll-behavior:smooth; }
-  body { background:var(--bg); color:var(--ink); font:18px/1.55 Outfit, system-ui, sans-serif; }
-  a { color:inherit; }
-  .wrap { max-width:1080px; margin:0 auto; padding:0 20px; }
-  video { display:block; }
-
-  nav { display:flex; justify-content:space-between; align-items:center; padding:20px 0; }
-  .logo { display:flex; gap:10px; align-items:center; font-weight:800; text-decoration:none; }
-  .logo img { width:34px; height:34px; border-radius:10px; }
-  .links { display:flex; gap:26px; align-items:center; }
-  .links a { text-decoration:none; color:var(--soft); font-weight:500; }
-  .btn { display:inline-block; background:var(--red); color:#fff !important; padding:14px 26px; border-radius:999px; text-decoration:none; font-weight:600; }
-  .btn.sm { padding:10px 18px; }
-  .ghost { display:inline-block; padding:14px 18px; color:var(--soft); text-decoration:none; }
-  h1, h2 { font-weight:800; letter-spacing:-.02em; line-height:1.05; }
-
-  .hero { text-align:center; padding:30px 0 70px; }
-  .orb { width:min(400px,78vw); aspect-ratio:1; margin:0 auto; border-radius:50%; overflow:hidden; background:var(--clip); box-shadow:0 30px 70px rgba(214,69,50,.16); }
-  .orb video { width:100%; height:100%; object-fit:contain; }
-  .hero h1 { font-size:clamp(2.6rem,6.4vw,4.6rem); max-width:14ch; margin:34px auto 12px; }
-  .hero p { color:var(--soft); font-size:1.15rem; }
-  .ctas { margin-top:26px; }
-
-  section.blk { padding:70px 0; }
-  .blk h2 { font-size:clamp(2rem,4.6vw,3.2rem); text-align:center; margin-bottom:10px; }
-  .blk .sub { color:var(--soft); text-align:center; margin-bottom:36px; }
-
-  .stack { display:grid; grid-template-columns:repeat(6,1fr); gap:16px; }
-  .stack > div { background:var(--card); border-radius:28px; padding:26px; overflow:hidden; }
-  .big { grid-column:span 4; display:grid; grid-template-columns:1fr 1fr; align-items:center; gap:18px; }
-  .big b, .sm b, .tall b { display:block; font-size:1.5rem; font-weight:800; line-height:1.15; }
-  .big span, .sm span, .tall span { color:var(--soft); }
-  .big video { width:100%; aspect-ratio:1; object-fit:contain; border-radius:50%; background:var(--clip); }
-  .tall { grid-column:span 2; display:flex; flex-direction:column; justify-content:space-between; }
-  .tall video { width:72%; aspect-ratio:1; object-fit:contain; border-radius:50%; background:var(--clip); margin:0 auto 14px; }
-  .sm { grid-column:span 2; }
-  .sm i { font-style:normal; font-size:1.8rem; display:block; margin-bottom:8px; }
-
-  .chat { max-width:460px; margin:0 auto; display:grid; gap:10px; }
-  .chat p { padding:13px 17px; border-radius:22px; background:var(--card); max-width:82%; }
-  .chat .me { background:var(--red); color:#fff; margin-left:auto; border-bottom-right-radius:6px; }
-  .chat .them { border-bottom-left-radius:6px; }
-
-  .phone { width:min(280px,72vw); margin:0 auto; border:9px solid #15171c; border-radius:38px; overflow:hidden; background:#f2f3f7; aspect-ratio:540/1054; display:grid; place-items:center; text-align:center; color:var(--soft); padding:20px; }
-
-  .race { max-width:520px; margin:0 auto; background:var(--card); border-radius:28px; padding:26px; display:grid; gap:14px; }
-  .race .r { display:grid; grid-template-columns:60px 1fr 44px; gap:12px; align-items:center; font-weight:600; }
-  .race i { height:10px; border-radius:6px; background:#f3e3e4; overflow:hidden; }
-  .race em { display:block; height:100%; border-radius:6px; background:var(--red); }
-  .race em.t { background:var(--deep); }
-  .race small { color:var(--soft); }
-  .honest { text-align:center; margin-top:22px; font-style:italic; color:var(--soft); }
-  .honest b { font-style:normal; color:var(--ink); }
-
-  .end { text-align:center; padding:90px 0 100px; }
-  .end h2 { font-size:clamp(2.2rem,5.6vw,4rem); margin-bottom:24px; }
-  .end small { display:block; color:var(--soft); margin-top:14px; }
-
-  .faq { max-width:780px; margin:0 auto; display:grid; gap:26px; }
-  .faq h3 { margin:0 0 6px; font-size:1.2rem; font-weight:800; letter-spacing:-.01em; }
-  .faq p { margin:0; color:var(--soft); }
-  .faq p a { color:var(--ink); }
-  .faq .more { text-align:center; margin-top:8px; }
-  footer { border-top:1px solid #f0d6d8; padding:44px 0 34px; color:var(--soft); font-size:.95rem; }
-  .ftop { display:grid; grid-template-columns:1.6fr 1fr 1fr 1fr; gap:28px; }
-  .fbrand .logo { margin-bottom:10px; color:var(--ink); }
-  .fbrand p { margin:0 0 10px; max-width:30ch; }
-  .fver { font:500 .78rem/1.4 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; letter-spacing:.14em; text-transform:uppercase; }
-  .ficons { display:flex; gap:10px; margin-top:16px; }
-  .ficons a { width:44px; height:44px; border-radius:50%; background:var(--card); border:1px solid #f0d6d8; display:grid; place-items:center; color:var(--ink); }
-  .fcol b { display:block; font-size:.78rem; letter-spacing:.16em; text-transform:uppercase; color:var(--soft); margin-bottom:12px; }
-  .fcol a, .fcol span { display:block; color:var(--ink); opacity:.8; text-decoration:none; padding:5px 0; }
-  .fcol a:hover { opacity:1; text-decoration:underline; }
-  .fcol small { font-size:.75rem; background:#fbe3e3; color:var(--red); border-radius:999px; padding:1px 8px; margin-left:6px; }
-  .fbot { display:flex; justify-content:space-between; flex-wrap:wrap; gap:10px; border-top:1px solid #f0d6d8; margin-top:34px; padding-top:20px; }
-  .fbot a { color:var(--soft); text-decoration:none; }
-
-  .contact { max-width:780px; margin:0 auto; }
-  .cform { display:grid; grid-template-columns:1fr 1fr; gap:16px; }
-  .cform label { display:grid; gap:8px; font-weight:600; }
-  .cform .full { grid-column:1 / -1; }
-  .cform input, .cform select, .cform textarea { font:inherit; color:var(--ink); background:var(--card); border:1px solid #f0d6d8; border-radius:18px; padding:14px 16px; }
-  .cform textarea { resize:vertical; }
-  .cform input:focus, .cform select:focus, .cform textarea:focus { outline:2px solid var(--red); outline-offset:1px; }
-  .actions { display:flex; flex-wrap:wrap; gap:10px; align-items:center; }
-  .actions button { font:inherit; font-weight:600; border-radius:999px; padding:13px 22px; cursor:pointer; border:1px solid #f0d6d8; background:var(--card); color:var(--ink); }
-  .actions button.main { background:var(--red); border-color:var(--red); color:#fff; }
-  .note { color:var(--soft); }
-  .note.err { color:var(--red); font-weight:600; }
-  /* (the form's display:grid would beat the hidden attribute: the sent form stayed on screen) */
-  [hidden] { display:none !important; }
-  .hp { position:absolute; left:-9999px; width:1px; height:1px; overflow:hidden; }
-  .cdone { background:var(--card); border-radius:24px; padding:28px; text-align:center; }
-  .cdone h3 { margin:0 0 6px; font-size:1.5rem; }
-  .actions button:disabled { opacity:.6; cursor:wait; }
-  .fine { color:var(--soft); font-size:.92rem; margin-top:14px; }
-  .closing { margin:40px 0 60px; border-radius:34px; padding:80px 24px; text-align:center; color:#fff; background:radial-gradient(120% 120% at 80% 0%, #f06a5a 0%, #d64532 45%, #a3262a 100%); box-shadow:0 30px 70px rgba(214,69,50,.25); }
-  .closing h2 { font-size:clamp(2.4rem,6.4vw,4.6rem); margin-bottom:14px; }
-  .closing h2 span { color:#ffd9d4; }
-  .closing p { opacity:.92; font-size:1.15rem; }
-  .closing .row { margin-top:28px; display:flex; flex-wrap:wrap; gap:12px; justify-content:center; }
-  .closing .row a, .closing .row span { padding:13px 22px; border-radius:999px; text-decoration:none; font-weight:600; }
-  .closing .row a { background:#fff; color:var(--red); }
-  .closing .row span { background:rgba(255,255,255,.14); border:1px solid rgba(255,255,255,.3); }
-  .closing .row small { opacity:.8; margin-left:6px; font-weight:400; }
-
-  @media (max-width:820px) {
-    .cform { grid-template-columns:1fr; }
-    .ftop { grid-template-columns:1fr 1fr; }
-    .fbrand { grid-column:1 / -1; }
-    .links a:not(.btn) { display:none; }
-    .stack > div { grid-column:span 6 !important; }
-    .big { grid-template-columns:1fr; text-align:center; }
-    .big video { width:72%; margin:0 auto; }
-  }
-</style>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<!-- reuse the current site's display font (Outfit) -->
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.redesign.css">
 </head>
 <body>
-<div class="wrap">
-  <nav>
-    <a class="logo" href="#"><img src="img/icon.png" alt="">2SetsFitness</a>
-    <div class="links"><a href="#features">Features</a><a href="#friends">Friends</a><a href="#faq">FAQ</a><a class="btn sm" href="demo/index.html">Try the demo</a></div>
-  </nav>
+<a class="skip" href="#main">Skip to content</a>
 
-  <header class="hero">
-    <div class="orb"><video autoplay muted loop playsinline poster="img/vid/hero-mid.jpg" src="img/vid/hero-mid.mp4" aria-label="A 3D fighter doing a front squat"></video></div>
-    <h1>Your body. Your pace. Your app.</h1>
-    <p>Built around your week, your sport and your goals.</p>
-    <div class="ctas"><a class="btn" href="demo/index.html">Try the demo</a><a class="ghost" href="#">Coming soon to Google Play</a></div>
-  </header>
+<!-- ======================= NAV ======================= -->
+<header class="nav" id="nav">
+  <div class="wrap">
+    <a class="brand" href="#top"><img src="img/icon.png" alt="">2Sets<b>Fitness</b></a>
+    <nav class="nav-links" aria-label="Primary">
+      <a href="#features">Features</a>
+      <a href="#coach">AI coach</a>
+      <a href="#friends">Friends</a>
+      <a href="#faq">FAQ</a>
+      <a class="btn primary sm" href="demo/index.html">Try the demo</a>
+    </nav>
+  </div>
+</header>
 
-  <section class="blk" id="features">
-    <h2>Everything you need. Nothing you don't.</h2>
-    <p class="sub">Open, train, done. We remember the rest.</p>
-    <div class="stack">
-      <div class="big"><div><b>Every rep, shown in 3D.</b><span>Watch it, then do it. No guessing.</span></div>
-        <video autoplay muted loop playsinline poster="img/vid/deadlift.jpg" src="img/vid/deadlift.mp4" aria-label="A 3D fighter doing a deadlift"></video></div>
-      <div class="tall"><video autoplay muted loop playsinline poster="img/vid/heavy-bag.jpg" src="img/vid/heavy-bag.mp4" aria-label="A 3D fighter hitting a heavy bag"></video><div><b>Gym and sport, one plan.</b><span>Football, boxing, wrestling, more.</span></div></div>
-      <div class="sm"><i>😴</i><b>Sleep well, score more.</b><span>7–9 hours earns the most points.</span></div>
-      <div class="sm"><i>🥗</i><b>Snap a meal.</b><span>See the protein in seconds.</span></div>
-      <div class="sm"><i>🩹</i><b>Tap where it hurts.</b><span>Get a plan for today.</span></div>
+<main id="main">
+  <span id="top"></span>
+
+  <!-- ======================= HERO ======================= -->
+  <section class="hero">
+    <div class="wrap hero-inner">
+      <div class="hero-copy">
+        <h1>Every rep, on <span class="red">your own</span> body.</h1>
+        <p class="lede">A 3D coach that shows each exercise on your avatar, an AI that knows your week, and one plan for the gym and your sport. Free, Android first.</p>
+        <div class="cta-row">
+          <a class="btn primary" href="demo/index.html">Try the demo</a>
+          <a class="btn soon" href="#" aria-disabled="true">Coming soon to Google Play</a>
+        </div>
+        <ul class="facts">
+          <li>Free, no card</li>
+          <li>Private by default</li>
+          <li>25 languages</li>
+        </ul>
+      </div>
+
+      <!-- framed hero visual: the existing hero clip in a clean orb + halo -->
+      <div class="hero-visual">
+        <div class="orb">
+          <video autoplay muted loop playsinline preload="metadata"
+                 poster="img/vid/hero-mid.jpg" src="img/vid/hero-mid.mp4"
+                 aria-label="A 3D avatar performing a front squat"></video>
+          <span class="orb-chip"><i></i>Working muscles, live</span>
+        </div>
+      </div>
     </div>
   </section>
 
-  <section class="blk">
-    <h2>A coach that knows you.</h2>
-    <p class="sub">Ask anything. It knows your week.</p>
-    <div class="chat">
-      <p class="me">Did wrestling tonight. What now?</p>
-      <p class="them">Nice work. Get 40 g of protein in and sleep 7–9 hours. Keep tomorrow light.</p>
+  <!-- ======================= FEATURE SHOWCASE ======================= -->
+  <section id="features" class="band">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="eyebrow">What's inside</span>
+        <h2>Everything you need. Nothing you don't.</h2>
+        <p>Open, train, done. The app remembers the rest.</p>
+      </div>
+
+      <div class="grid">
+        <!-- ONE big feature tile: avatar + highlighted muscles -->
+        <article class="tile feature-big w-lg">
+          <span class="tag">On your own avatar</span>
+          <h3>Every exercise, shown in 3D — on you.</h3>
+          <p>Watch the movement on your own avatar, then do it. The muscles you're working light up as you train. No filmed strangers, no guessing.</p>
+          <div class="duo">
+            <div class="media">
+              <video autoplay muted loop playsinline preload="none"
+                     poster="img/vid/deadlift.jpg" src="img/vid/deadlift.mp4"
+                     aria-label="A 3D avatar performing a deadlift"></video>
+            </div>
+            <figure class="media muscle-figure">
+              <!-- muscle-map.svg highlights the worked muscles -->
+              <img src="img/muscle-map.svg" alt="Body map with the worked muscles highlighted in red">
+            </figure>
+          </div>
+        </article>
+
+        <!-- tall supporting tile: gym AND sport -->
+        <article class="tile w-tall">
+          <span class="tag">One plan</span>
+          <div class="media">
+            <video autoplay muted loop playsinline preload="none"
+                   poster="img/vid/heavy-bag.jpg" src="img/vid/heavy-bag.mp4"
+                   aria-label="A 3D avatar hitting a heavy bag"></video>
+          </div>
+          <h3>Gym and sport, together.</h3>
+          <p>Football, boxing, wrestling, running, cycling and more — all in the same week.</p>
+        </article>
+
+        <!-- row of three small tiles -->
+        <article class="tile w-sm">
+          <span class="ic" aria-hidden="true">🥗</span>
+          <h3>Snap a meal.</h3>
+          <p>Point your camera for instant protein and calories. Forgot to log? Just say what you ate.</p>
+        </article>
+        <article class="tile w-sm">
+          <span class="ic" aria-hidden="true">😴</span>
+          <h3>Sleep &amp; recovery.</h3>
+          <p>Rest is scored too. Seven to nine hours earns the most points toward your rank.</p>
+        </article>
+        <article class="tile w-sm">
+          <span class="ic" aria-hidden="true">🩹</span>
+          <h3>Tap where it hurts.</h3>
+          <p>Point to the sore spot and get a safer plan for today, not a shrug.</p>
+        </article>
+      </div>
     </div>
   </section>
 
-  <section class="blk">
-    <h2>The whole app in a minute.</h2>
-    <p class="sub">Recorded on a real phone.</p>
-    <div class="phone"><div>New highlights video coming soon.<br><br><a class="btn" href="demo/index.html">Try the demo</a></div></div>
-  </section>
-
-  <section class="blk" id="friends">
-    <h2>Better with friends.</h2>
-    <p class="sub">Add them by code. Race them to a target. Find them on your rank map.</p>
-    <div class="race">
-      <b>First to 100 push-ups</b>
-      <div class="r"><span>You</span><i><em style="width:62%"></em></i><span>62</span></div>
-      <div class="r"><span>Sam</span><i><em class="t" style="width:48%"></em></i><span>48</span></div>
-      <small>2 days left · Loser does 50 burpees</small>
-    </div>
-    <p class="honest">Reps are on trust. <b>The only person you cheat is yourself.</b></p>
-  </section>
-
-  <section class="blk" id="faq">
-    <h2>Questions.</h2>
-    <p class="sub">The short answers.</p>
-    <div class="faq">
-      <div><h3>Is it free?</h3><p>Yes. 2SetsFitness is free to download and use. No card needed.</p></div>
-      <div><h3>Where can I get it?</h3><p>Android first, on Google Play very soon. iPhone is coming later. Until then, <a href="demo/index.html">try the demo</a> in your browser.</p></div>
-      <div><h3>Does Form Coach record me?</h3><p>No. The camera counts and checks your reps on your phone, and the video never leaves it.</p></div>
-      <div><h3>How do points work?</h3><p>Workouts, sport sessions and a good night's sleep all earn points toward your next rank. Sleeping 7 to 9 hours earns the most.</p></div>
-      <div><h3>How do challenges work?</h3><p>Add a friend by code, pick a target like 100 push-ups or 10 km, and race. The winner takes the points. It runs on trust: the only person you cheat is yourself.</p></div>
-      <div><h3>What happens to my data?</h3><p>Your training stays on your phone unless you make an account to back it up. Read the <a href="privacy/index.html">privacy policy</a> for the details.</p></div>
-      <div><h3>Which languages does it speak?</h3><p>25, from English and Arabic to Urdu and Turkish.</p></div>
-      <div><h3>How do I delete my account?</h3><p>In the app, go to Settings, then Account, then Delete account. No app? <a href="delete-account/index.html">Here's how to ask us</a>.</p></div>
-      <p class="more">Still stuck? <a href="#contact">Write to us</a>.</p>
+  <!-- ======================= AI COACH (split) ======================= -->
+  <section id="coach">
+    <div class="wrap split">
+      <div class="copy">
+        <span class="eyebrow">AI coach</span>
+        <h2>A coach that knows your week.</h2>
+        <p>Between-set tips, form scored by your phone camera, and ask-anything chat. It remembers what you trained, so the advice actually fits.</p>
+        <ul class="list">
+          <li>Between-set tips while you rest</li>
+          <li>Form scored by the camera — the video never leaves your phone</li>
+          <li>Ask anything, any time</li>
+        </ul>
+        <div class="cta-row">
+          <a class="btn primary" href="demo/index.html">Try the demo</a>
+        </div>
+      </div>
+      <div class="chat" aria-label="Example coach conversation">
+        <p class="bubble me">Did wrestling tonight. What now?</p>
+        <p class="bubble them">Nice work. Get 40 g of protein in and sleep 7–9 hours. Keep tomorrow light — mobility and an easy walk.</p>
+        <p class="meta">An example of the between-session chat.</p>
+      </div>
     </div>
   </section>
 
-  <section class="blk" id="contact">
-    <h2>Questions, feedback or a bug?</h2>
-    <p class="sub">Write to us. A real person reads every message.</p>
-    <form class="cform contact" id="cform" novalidate>
-      <label>Your name<input name="name" autocomplete="name" placeholder="Alex" required maxlength="80"></label>
-      <label>Your email<input name="email" type="email" autocomplete="email" placeholder="alex@example.com" required maxlength="200"></label>
-      <label class="full">What is it about?<select name="topic"><option>Feedback or an idea</option><option>Something is broken</option><option>A question about the app</option><option>Press or partnership</option></select></label>
-      <label class="full">Message<textarea name="message" rows="5" placeholder="Tell us what's on your mind" required maxlength="4000"></textarea></label>
-      <label class="hp" aria-hidden="true">Website<input name="website" tabindex="-1" autocomplete="off"></label>
-      <div class="full actions"><button class="main" type="submit" id="csend">Send message</button><span class="note" id="cnote" role="status"></span></div>
-    </form>
-    <div class="cdone contact" id="cdone" hidden><h3>Thanks, message sent.</h3><p class="note">We'll reply to <b id="cto"></b>, usually within a day or two.</p></div>
-    <p class="fine contact">We only use your email to reply to you. Or write to us directly at <a id="addr" href="#contact"></a>.</p>
+  <!-- ======================= GYM & SPORT (split, flipped) ======================= -->
+  <section class="band">
+    <div class="wrap split flip">
+      <div class="copy">
+        <span class="eyebrow">Built around you</span>
+        <h2>Lift and play, one honest plan.</h2>
+        <p>Your sport sessions and your lifts live in the same week, so nothing double-counts and nothing gets forgotten. Log a workout you missed just by describing it in words or voice.</p>
+        <div class="cta-row">
+          <a class="btn" href="demo/index.html">See it in the demo</a>
+        </div>
+      </div>
+      <div class="frame">
+        <video autoplay muted loop playsinline preload="none"
+               poster="img/vid/front-squat.jpg" src="img/vid/front-squat.mp4"
+               aria-label="A 3D avatar performing a front squat"></video>
+      </div>
+    </div>
   </section>
 
-  <section class="closing">
-    <h2>Two sets. <span>Then another.</span></h2>
-    <p>Train smarter, track everything, and see how far you climb.</p>
-    <div class="row"><a href="demo/index.html">Try the demo</a><span>Google Play <small>coming soon</small></span><span>App Store <small>coming soon</small></span></div>
+  <!-- ======================= FRIENDS & COMPETITION ======================= -->
+  <section id="friends">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="eyebrow">Better together</span>
+        <h2>Add friends. Race them. Climb.</h2>
+        <p>Add by friend code, race to a target with real stakes, and watch your rank on the map. Streaks, a leaderboard, and boss fights when you rank up.</p>
+      </div>
+
+      <div class="compete-grid">
+        <!-- the race card visual -->
+        <div class="race" aria-label="Example challenge">
+          <div class="race-title">First to 100 push-ups</div>
+          <div class="r">
+            <span>You</span>
+            <span class="track"><i style="width:62%"></i></span>
+            <span class="num">62</span>
+          </div>
+          <div class="r">
+            <span>Sam</span>
+            <span class="track"><i class="cool" style="width:48%"></i></span>
+            <span class="num">48</span>
+          </div>
+          <small>2 days left · Loser does 50 burpees</small>
+        </div>
+
+        <!-- a tiny leaderboard beside it -->
+        <div class="board" aria-label="Example leaderboard">
+          <h3>This week</h3>
+          <table>
+            <tbody>
+              <tr><td>1</td><td>Priya</td><td>3,210</td></tr>
+              <tr class="me"><td>2</td><td>You</td><td>2,980</td></tr>
+              <tr><td>3</td><td>Sam</td><td>2,640</td></tr>
+              <tr><td>4</td><td>Omar</td><td>2,115</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <p class="honest">Reps are on trust. <b>The only person you cheat is yourself.</b></p>
+    </div>
   </section>
 
-  <footer>
+  <!-- ======================= EXERCISE WALL ======================= -->
+  <section class="band">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="eyebrow">Hundreds of moves</span>
+        <h2>Pick it. See it. Do it.</h2>
+        <p>Every exercise rendered on the same avatar, lifts and sport alike.</p>
+      </div>
+      <!-- product-in-use thumbnails (all real files in img/thumbs/) -->
+      <div class="wall">
+        <figure><img src="img/thumbs/squat.webp" alt="" loading="lazy"><figcaption>Squat</figcaption></figure>
+        <figure><img src="img/thumbs/deadlift.webp" alt="" loading="lazy"><figcaption>Deadlift</figcaption></figure>
+        <figure><img src="img/thumbs/bench.webp" alt="" loading="lazy"><figcaption>Bench</figcaption></figure>
+        <figure><img src="img/thumbs/front-squat.webp" alt="" loading="lazy"><figcaption>Front squat</figcaption></figure>
+        <figure><img src="img/thumbs/hip-thrust.webp" alt="" loading="lazy"><figcaption>Hip thrust</figcaption></figure>
+        <figure><img src="img/thumbs/chinup.webp" alt="" loading="lazy"><figcaption>Chin-up</figcaption></figure>
+        <figure><img src="img/thumbs/lunge.webp" alt="" loading="lazy"><figcaption>Lunge</figcaption></figure>
+        <figure><img src="img/thumbs/plank.webp" alt="" loading="lazy"><figcaption>Plank</figcaption></figure>
+        <figure><img src="img/thumbs/boxing-bag.webp" alt="" loading="lazy"><figcaption>Boxing</figcaption></figure>
+        <figure><img src="img/thumbs/burpee.webp" alt="" loading="lazy"><figcaption>Burpee</figcaption></figure>
+        <figure><img src="img/thumbs/cycling.webp" alt="" loading="lazy"><figcaption>Cycling</figcaption></figure>
+        <figure><img src="img/thumbs/battle-rope.webp" alt="" loading="lazy"><figcaption>Battle rope</figcaption></figure>
+      </div>
+      <p class="wall-note">And many more — the same clean avatar for every single one.</p>
+    </div>
+  </section>
+
+  <!-- ======================= FAQ ======================= -->
+  <section id="faq">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="eyebrow">Questions</span>
+        <h2>The short, honest answers.</h2>
+      </div>
+      <div class="faq">
+        <details open>
+          <summary>Is it really free?</summary>
+          <p>Yes. 2SetsFitness is free to download and use. No card needed.</p>
+        </details>
+        <details>
+          <summary>Where can I get it?</summary>
+          <p>Android first, on Google Play very soon. iPhone is coming later. Until then, <a href="demo/index.html">try the demo</a> in your browser.</p>
+        </details>
+        <details>
+          <summary>Does the camera record me?</summary>
+          <p>No. Form Coach counts and checks your reps on your phone, and the video never leaves it.</p>
+        </details>
+        <details>
+          <summary>How do points work?</summary>
+          <p>Workouts, sport sessions and a good night's sleep all earn points toward your next rank. Sleeping seven to nine hours earns the most.</p>
+        </details>
+        <details>
+          <summary>How do challenges work?</summary>
+          <p>Add a friend by code, pick a target like 100 push-ups or 10 km, and race. The winner takes the points. It runs on trust: the only person you cheat is yourself.</p>
+        </details>
+        <details>
+          <summary>What happens to my data?</summary>
+          <p>Your training stays on your phone unless you make an account to back it up. Read the <a href="privacy/index.html">privacy policy</a> for the details.</p>
+        </details>
+        <details>
+          <summary>Which languages does it speak?</summary>
+          <p>25, from English and Arabic to Urdu and Turkish.</p>
+        </details>
+        <details>
+          <summary>How do I delete my account?</summary>
+          <p>In the app: Settings, then Account, then Delete account. No app? <a href="delete-account/index.html">Here's how to ask us</a>.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================= CONTACT (ported from the live site) ======================= -->
+  <section id="contact" class="band">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="eyebrow">Say hello</span>
+        <h2>Questions, feedback or a bug?</h2>
+        <p>Write to us. A real person reads every message.</p>
+      </div>
+      <form class="contact-form" id="cform" novalidate>
+        <label>Your name<input name="name" autocomplete="name" placeholder="Alex" required maxlength="80"></label>
+        <label>Your email<input name="email" type="email" autocomplete="email" placeholder="alex@example.com" required maxlength="200"></label>
+        <label class="full">What is it about?
+          <select name="topic">
+            <option>Feedback or an idea</option>
+            <option>Something is broken</option>
+            <option>A question about the app</option>
+            <option>Press or partnership</option>
+          </select>
+        </label>
+        <label class="full">Message<textarea name="message" rows="5" placeholder="Tell us what's on your mind" required maxlength="4000"></textarea></label>
+        <!-- honeypot: real people leave this blank -->
+        <label class="hp" aria-hidden="true">Website<input name="website" tabindex="-1" autocomplete="off"></label>
+        <div class="full actions">
+          <button class="btn primary" type="submit" id="csend">Send message</button>
+          <span class="note" id="cnote" role="status"></span>
+        </div>
+      </form>
+      <div class="done" id="cdone" hidden>
+        <h3>Thanks, message sent.</h3>
+        <p class="note">We'll reply to <b id="cto"></b>, usually within a day or two.</p>
+      </div>
+      <p class="fine">We only use your email to reply to you. Or write to us directly at <a id="addr" href="#contact"></a>.</p>
+    </div>
+  </section>
+
+  <!-- ======================= CLOSING CTA ======================= -->
+  <section style="padding-block: clamp(32px,7vw,64px)">
+    <div class="closing">
+      <h2>Two sets. <span>Then another.</span></h2>
+      <p>Train smarter, track everything, and see how far you climb.</p>
+      <div class="cta-row">
+        <a class="btn" href="demo/index.html">Try the demo</a>
+        <span class="btn soon">Google Play <small>coming soon</small></span>
+      </div>
+    </div>
+  </section>
+</main>
+
+<!-- ======================= FOOTER ======================= -->
+<footer>
+  <div class="wrap">
     <div class="ftop">
       <div class="fbrand">
-        <a class="logo" href="#"><img src="img/icon.png" alt="">2SetsFitness</a>
+        <a class="brand" href="#top"><img src="img/icon.png" alt="">2Sets<b>Fitness</b></a>
         <p>Built around your week, your sport and your goals.</p>
         <div class="fver">Android · v1.4.0 · Free</div>
-        <div class="ficons"><a href="#contact" aria-label="Contact us"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg></a></div>
       </div>
-      <div class="fcol" role="navigation" aria-label="Product"><b>Product</b><a href="#features">Features</a><a href="#friends">Friends &amp; challenges</a><a href="demo/index.html">Try the demo</a><span>Google Play<small>soon</small></span></div>
-      <div class="fcol" role="navigation" aria-label="Help"><b>Help</b><a href="#faq">FAQ</a><a href="#contact">Contact</a><a href="delete-account/index.html">Delete account</a></div>
-      <div class="fcol" role="navigation" aria-label="Legal"><b>Legal</b><a href="privacy/index.html">Privacy policy</a><a href="terms/index.html">Terms</a></div>
+      <div class="fcols">
+        <nav class="fcol" aria-label="Product">
+          <b>Product</b>
+          <a href="#features">Features</a>
+          <a href="#coach">AI coach</a>
+          <a href="#friends">Friends &amp; challenges</a>
+          <a href="demo/index.html">Try the demo</a>
+          <span>Google Play<span class="pill">soon</span></span>
+        </nav>
+        <nav class="fcol" aria-label="Help">
+          <b>Help</b>
+          <a href="#faq">FAQ</a>
+          <a href="#contact">Contact</a>
+          <a href="delete-account/index.html">Delete account</a>
+        </nav>
+        <nav class="fcol" aria-label="Legal">
+          <b>Legal</b>
+          <a href="privacy/index.html">Privacy policy</a>
+          <a href="terms/index.html">Terms</a>
+        </nav>
+      </div>
     </div>
-    <div class="fbot"><span>© 2026 2SetsFitness · All rights reserved</span><a href="#">Back to top ↑</a></div>
-  </footer>
-</div>
+    <div class="fbot">
+      <span>© 2026 2SetsFitness · All rights reserved</span>
+      <a href="#top">Back to top ↑</a>
+    </div>
+  </div>
+</footer>
+
 <script>
+/* -------- nav shadow on scroll -------- */
+(function () {
+  var nav = document.getElementById('nav');
+  var onScroll = function () { nav.classList.toggle('scrolled', window.scrollY > 8); };
+  onScroll();
+  window.addEventListener('scroll', onScroll, { passive: true });
+})();
+
+/* -------- contact form (ported unchanged from the live index.html) -------- */
 (function () {
   var API = 'https://twosetsfitness-api-608365314707.europe-west2.run.app/contact';
   var to = ['trrfarhan', 'gmail.com'].join('@');
