@@ -174,7 +174,7 @@ section { padding-block: clamp(56px, 10vw, 100px); }
 .orb video { width: 100%; height: 100%; object-fit: contain; }
 /* a small floating "live" chip to make the hero feel like product, not mockup */
 .orb-chip {
-  position: absolute; left: 50%; bottom: 14px; transform: translateX(-50%);
+  position: absolute; left: 50%; bottom: 8%; transform: translateX(-50%); white-space: nowrap;
   display: inline-flex; align-items: center; gap: 8px;
   background: var(--surface); border: 1px solid var(--line); border-radius: 999px;
   padding: 7px 14px; font-weight: 600; font-size: .85rem; box-shadow: var(--soft);
