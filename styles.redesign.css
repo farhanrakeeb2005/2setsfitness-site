@@ -480,3 +480,34 @@ video::-webkit-media-controls, video::-webkit-media-controls-enclosure { display
   .see-row .shot:first-child .phone { width: 100%; }
 }
 .fcol .nowrap { white-space: nowrap; }
+
+/* the features grid, rebalanced: 12 columns on wide screens */
+@media (min-width: 760px) {
+  .grid { grid-template-columns: repeat(12, 1fr); gap: 18px; }
+  .tile.w-full { grid-column: span 12; }
+  .tile.w-main { grid-column: span 7; }
+  .tile.w-side { grid-column: span 5; }
+  .tile.w-sm { grid-column: span 6; }
+}
+@media (min-width: 1000px) {
+  .tile.w-sm { grid-column: span 3; }
+  .big-split { display: grid; grid-template-columns: 0.85fr 1.15fr; gap: 28px; align-items: center; }
+  .big-split .big-copy { display: grid; gap: 14px; align-content: start; }
+}
+.big-split .duo { margin: 0; }
+.big-copy .plates { margin-top: 6px; }
+/* the sport tile: its photo fills the space beside the builds */
+.sport-tile .media.dark.tall { flex: 1; display: flex; }
+.sport-tile .media.dark.tall img { aspect-ratio: auto; height: 100%; min-height: 240px; object-fit: cover; object-position: center 30%; }
+/* the builds' photos fill their tile, as tall as the sport tile beside it */
+@media (min-width: 760px) {
+  .builds-tile .builds { flex: 1; }
+  .builds-tile .builds figure { height: 100%; }
+  .builds-tile .builds img { height: 100%; min-height: 220px; aspect-ratio: auto; object-position: center 40%; }
+}
+/* phones: the small tiles two to a row, tighter */
+@media (max-width: 759px) {
+  .tile.w-sm { grid-column: span 3; padding: 16px; gap: 8px; }
+  .tile.w-sm h3 { font-size: 1.05rem; }
+  .tile.w-sm p { font-size: .88rem; }
+}

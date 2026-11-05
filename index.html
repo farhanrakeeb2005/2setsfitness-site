@@ -17,7 +17,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <!-- reuse the current site's display font (Outfit) -->
 <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="styles.redesign.css?v=5">
+<link rel="stylesheet" href="styles.redesign.css?v=8">
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
@@ -78,37 +78,31 @@
 
       <div class="grid">
         <!-- ONE big feature tile: an x-ray + the bar loading up -->
-        <article class="tile feature-big w-lg">
+        <article class="tile feature-big w-full">
+          <div class="big-split">
+          <div class="big-copy">
           <span class="tag">In x-ray</span>
           <h3>Every exercise, with its muscles lit up.</h3>
           <p>256 exercises, each with its own photo and x-ray. Dark red is what the move trains most, light red the muscles that help. Tap for the names, or the ? for the steps.</p>
+          <figure class="plates" aria-label="The bar loading up as the weight goes up">
+            <div class="plate-row">
+              <img src="img/x/plates-light.webp" alt="5 kg a side" loading="lazy">
+              <img src="img/x/plates-mid.webp" alt="20 kg a side" loading="lazy">
+              <img src="img/x/plates-heavy.webp" alt="60 kg a side" loading="lazy">
+            </div>
+            <figcaption><b>The bar loads up with you.</b> Add weight and the plates on the bar grow, about one plate at a time.</figcaption>
+          </figure>
+          </div>
           <div class="duo">
             <div class="media dark">
               <img src="img/x/deadlift-xray.webp" alt="A deadlift in x-ray with the working muscles lit in red" loading="lazy">
             </div>
-            <figure class="plates" aria-label="The bar loading up as the weight goes up">
-              <div class="plate-row">
-                <img src="img/x/plates-light.webp" alt="5 kg a side" loading="lazy">
-                <img src="img/x/plates-mid.webp" alt="20 kg a side" loading="lazy">
-                <img src="img/x/plates-heavy.webp" alt="60 kg a side" loading="lazy">
-              </div>
-              <figcaption><b>The bar loads up with you.</b> Add weight and the plates on the bar grow, about one plate at a time.</figcaption>
-            </figure>
+
+          </div>
           </div>
         </article>
-
-        <!-- tall supporting tile: gym AND sport -->
-        <article class="tile w-tall">
-          <span class="tag">One plan</span>
-          <div class="media dark tall">
-            <img src="img/x/boxing.webp" alt="Hitting a heavy bag" loading="lazy">
-          </div>
-          <h3>Gym and sport, together.</h3>
-          <p>Football, boxing, wrestling, running, cycling and more — all in the same week.</p>
-        </article>
-
         <!-- row of three small tiles -->
-        <article class="tile w-lg builds-tile">
+        <article class="tile w-main builds-tile">
           <span class="tag">A body like yours</span>
           <h3>The pictures match you.</h3>
           <p>Beginner, athletic or bigger: the person in the pictures follows your height, weight and level.</p>
@@ -118,7 +112,21 @@
             <figure><img src="img/x/build-heavier.webp?v=2" alt="" loading="lazy"><figcaption>Bigger</figcaption></figure>
           </div>
         </article>
-        <article class="tile w-tall">
+        <!-- tall supporting tile: gym AND sport -->
+        <article class="tile w-side sport-tile">
+          <span class="tag">One plan</span>
+          <div class="media dark tall">
+            <img src="img/x/boxing.webp" alt="Hitting a heavy bag" loading="lazy">
+          </div>
+          <h3>Gym and sport, together.</h3>
+          <p>Football, boxing, wrestling, running, cycling and more — all in the same week.</p>
+        </article>
+        <article class="tile w-sm">
+          <span class="ic" aria-hidden="true">📸</span>
+          <h3>Scan your physique.</h3>
+          <p>One photo: a body-fat range, your level, a starting rank and a 12-week graph. The photo is never stored.</p>
+        </article>
+        <article class="tile w-sm">
           <span class="ic" aria-hidden="true">⏱️</span>
           <h3>Timers that talk.</h3>
           <p>Cardio and holds count you in, a word a second, call halfway and the last 3, 2, 1. Intervals and pace, too.</p>
