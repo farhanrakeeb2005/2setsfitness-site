@@ -518,3 +518,5 @@ video::-webkit-media-controls, video::-webkit-media-controls-enclosure { display
 .phone-shot .phone { width: min(300px, 78vw); }
 .phone-shot figcaption { text-align: center; color: var(--dim); font-size: .95rem; max-width: 30ch; }
 .compete-grid { align-items: center; }
+/* small tiles: every screen the same shape, cropped from the top */
+.tile.w-sm .tile-shot { aspect-ratio: 4 / 3; object-fit: cover; object-position: top; }
