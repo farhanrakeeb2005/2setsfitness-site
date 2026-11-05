@@ -3,13 +3,13 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>2SetsFitness · Train on your own avatar. Free.</title>
-<meta name="description" content="A free fitness app with a 3D coach on your own avatar, an AI that knows your week, one plan for gym and sport, sleep points, and friends to race. Android first.">
+<title>2SetsFitness · See every muscle you train. Free.</title>
+<meta name="description" content="A free fitness app: every exercise in x-ray with the muscles it works lit up, plates that grow with your weight, an AI coach that knows your week, one plan for gym and sport, and friends to race. Android first.">
 
 <!-- Social preview. NOTE: img/og.png does not exist yet — a 1200x630 share
      image would make links look better when shared. (Asset to create.) -->
-<meta property="og:title" content="2SetsFitness — train on your own avatar">
-<meta property="og:description" content="Free fitness app: 3D coach, AI that knows your week, gym and sport in one plan, friends to race.">
+<meta property="og:title" content="2SetsFitness — see every muscle you train">
+<meta property="og:description" content="Free fitness app: every exercise in x-ray, an AI coach that knows your week, gym and sport in one plan, friends to race.">
 <meta property="og:type" content="website">
 
 <link rel="icon" href="img/favicon.png">
@@ -43,8 +43,8 @@
   <section class="hero">
     <div class="wrap hero-inner">
       <div class="hero-copy">
-        <h1>Every rep, on <span class="red">your own</span> body.</h1>
-        <p class="lede">A 3D coach that shows each exercise on your avatar, an AI that knows your week, and one plan for the gym and your sport. Free, Android first.</p>
+        <h1>See <span class="red">every muscle</span> you train.</h1>
+        <p class="lede">Every exercise in x-ray: the main muscles in dark red, the helpers in light red. The bar loads up with your weight, the body looks like yours, and an AI coach knows your week. Free, Android first.</p>
         <div class="cta-row">
           <a class="btn primary" href="demo/index.html">Try the demo</a>
           <a class="btn soon" href="#" aria-disabled="true">Coming soon to Google Play</a>
@@ -56,13 +56,11 @@
         </ul>
       </div>
 
-      <!-- framed hero visual: the existing hero clip in a clean orb + halo -->
+      <!-- framed hero visual: a squat in x-ray in a clean orb + halo -->
       <div class="hero-visual">
-        <div class="orb">
-          <video autoplay muted loop playsinline preload="metadata"
-                 poster="img/vid/hero-fighter.png" src="img/vid/hero-fighter.mp4"
-                 aria-label="The app's 3D fighter doing a barbell squat, with plates coloured by weight"></video>
-          <span class="orb-chip"><i></i>Working muscles, live</span>
+        <div class="orb dark">
+          <img src="img/x/hero-xray.webp" alt="A barbell squat in x-ray: the quads, glutes and hamstrings lit in red" fetchpriority="high">
+          <span class="orb-chip"><i class="main"></i>Main <i class="help"></i>Helpers</span>
         </div>
       </div>
     </div>
@@ -78,20 +76,22 @@
       </div>
 
       <div class="grid">
-        <!-- ONE big feature tile: avatar + highlighted muscles -->
+        <!-- ONE big feature tile: an x-ray + the bar loading up -->
         <article class="tile feature-big w-lg">
-          <span class="tag">On your own avatar</span>
-          <h3>Every exercise, shown in 3D — on you.</h3>
-          <p>Watch the movement on your own avatar, then do it. The muscles you're working light up as you train. No filmed strangers, no guessing.</p>
+          <span class="tag">In x-ray</span>
+          <h3>Every exercise, with its muscles lit up.</h3>
+          <p>256 exercises, each with its own photo and x-ray. Dark red is what the move trains most, light red the muscles that help. Tap for the names, or the ? for the steps.</p>
           <div class="duo">
-            <div class="media">
-              <video autoplay muted loop playsinline preload="none"
-                     poster="img/vid/deadlift.jpg" src="img/vid/deadlift.mp4"
-                     aria-label="A 3D avatar performing a deadlift"></video>
+            <div class="media dark">
+              <img src="img/x/deadlift-xray.webp" alt="A deadlift in x-ray with the working muscles lit in red" loading="lazy">
             </div>
-            <figure class="media muscle-figure">
-              <!-- muscle-map.svg highlights the worked muscles -->
-              <img src="img/muscle-map.svg" alt="Body map with the worked muscles highlighted in red">
+            <figure class="plates" aria-label="The bar loading up as the weight goes up">
+              <div class="plate-row">
+                <img src="img/x/plates-light.webp" alt="5 kg a side" loading="lazy">
+                <img src="img/x/plates-mid.webp" alt="20 kg a side" loading="lazy">
+                <img src="img/x/plates-heavy.webp" alt="60 kg a side" loading="lazy">
+              </div>
+              <figcaption><b>The bar loads up with you.</b> Add weight and the plates on the bar grow, about one plate at a time.</figcaption>
             </figure>
           </div>
         </article>
@@ -99,20 +99,33 @@
         <!-- tall supporting tile: gym AND sport -->
         <article class="tile w-tall">
           <span class="tag">One plan</span>
-          <div class="media">
-            <video autoplay muted loop playsinline preload="none"
-                   poster="img/vid/heavy-bag.jpg" src="img/vid/heavy-bag.mp4"
-                   aria-label="A 3D avatar hitting a heavy bag"></video>
+          <div class="media dark tall">
+            <img src="img/x/boxing.webp" alt="Hitting a heavy bag" loading="lazy">
           </div>
           <h3>Gym and sport, together.</h3>
           <p>Football, boxing, wrestling, running, cycling and more — all in the same week.</p>
         </article>
 
         <!-- row of three small tiles -->
+        <article class="tile w-lg builds-tile">
+          <span class="tag">A body like yours</span>
+          <h3>The pictures match you.</h3>
+          <p>Beginner, athletic or bigger: the person in the pictures follows your height, weight and level.</p>
+          <div class="builds">
+            <figure><img src="img/x/build-beginner.webp" alt="" loading="lazy"><figcaption>Beginner</figcaption></figure>
+            <figure><img src="img/x/build-athletic.webp" alt="" loading="lazy"><figcaption>Athletic</figcaption></figure>
+            <figure><img src="img/x/build-heavier.webp" alt="" loading="lazy"><figcaption>Bigger</figcaption></figure>
+          </div>
+        </article>
+        <article class="tile w-tall">
+          <span class="ic" aria-hidden="true">⏱️</span>
+          <h3>Timers that talk.</h3>
+          <p>Cardio and holds count you in, a word a second, call halfway and the last 3, 2, 1. Intervals and pace, too.</p>
+        </article>
         <article class="tile w-sm">
           <span class="ic" aria-hidden="true">🥗</span>
           <h3>Snap a meal.</h3>
-          <p>Point your camera for instant protein and calories. Forgot to log? Just say what you ate.</p>
+          <p>Point your camera for protein and calories. Had seconds? Type "2 bowls of this". Forgot to log? Just say what you ate.</p>
         </article>
         <article class="tile w-sm">
           <span class="ic" aria-hidden="true">😴</span>
@@ -123,6 +136,21 @@
           <span class="ic" aria-hidden="true">🩹</span>
           <h3>Tap where it hurts.</h3>
           <p>Point to the sore spot and get a safer plan for today, not a shrug.</p>
+        </article>
+        <article class="tile w-sm">
+          <span class="ic" aria-hidden="true">📥</span>
+          <h3>Bring your history.</h3>
+          <p>Import from Strong, Hevy or FitNotes, or paste your notes. Export it all as CSV any time.</p>
+        </article>
+        <article class="tile w-sm">
+          <span class="ic" aria-hidden="true">🏋️</span>
+          <h3>Plates, worked out.</h3>
+          <p>Warm-ups, drop sets, RPE, and a plate calculator that knows your bar and the plates you own.</p>
+        </article>
+        <article class="tile w-sm">
+          <span class="ic" aria-hidden="true">⏰</span>
+          <h3>An alarm that gets you up.</h3>
+          <p>A workout alarm on the alarm volume, with a sleep tracker that knows when you used your phone.</p>
         </article>
       </div>
     </div>
@@ -163,10 +191,8 @@
           <a class="btn" href="demo/index.html">See it in the demo</a>
         </div>
       </div>
-      <div class="frame">
-        <video autoplay muted loop playsinline preload="none"
-               poster="img/vid/front-squat.jpg" src="img/vid/front-squat.mp4"
-               aria-label="A 3D avatar mid-squat with its working muscles glowing"></video>
+      <div class="frame dark">
+        <img src="img/x/front-squat-xray.webp" alt="A front squat in x-ray with its working muscles lit" loading="lazy">
       </div>
     </div>
   </section>
@@ -219,26 +245,26 @@
   <section class="band">
     <div class="wrap">
       <div class="sec-head">
-        <span class="eyebrow">Hundreds of moves</span>
+        <span class="eyebrow">256 exercises</span>
         <h2>Pick it. See it. Do it.</h2>
-        <p>Every exercise rendered on the same avatar, lifts and sport alike.</p>
+        <p>A real photo and an x-ray for every one, lifts and sport alike.</p>
       </div>
       <!-- product-in-use thumbnails (all real files in img/thumbs/) -->
-      <div class="wall">
-        <figure><img src="img/thumbs/squat.webp" alt="" loading="lazy"><figcaption>Squat</figcaption></figure>
-        <figure><img src="img/thumbs/deadlift.webp" alt="" loading="lazy"><figcaption>Deadlift</figcaption></figure>
-        <figure><img src="img/thumbs/bench.webp" alt="" loading="lazy"><figcaption>Bench</figcaption></figure>
-        <figure><img src="img/thumbs/front-squat.webp" alt="" loading="lazy"><figcaption>Front squat</figcaption></figure>
-        <figure><img src="img/thumbs/hip-thrust.webp" alt="" loading="lazy"><figcaption>Hip thrust</figcaption></figure>
-        <figure><img src="img/thumbs/chinup.webp" alt="" loading="lazy"><figcaption>Chin-up</figcaption></figure>
-        <figure><img src="img/thumbs/lunge.webp" alt="" loading="lazy"><figcaption>Lunge</figcaption></figure>
-        <figure><img src="img/thumbs/plank.webp" alt="" loading="lazy"><figcaption>Plank</figcaption></figure>
-        <figure><img src="img/thumbs/boxing-bag.webp" alt="" loading="lazy"><figcaption>Boxing</figcaption></figure>
-        <figure><img src="img/thumbs/burpee.webp" alt="" loading="lazy"><figcaption>Burpee</figcaption></figure>
-        <figure><img src="img/thumbs/cycling.webp" alt="" loading="lazy"><figcaption>Cycling</figcaption></figure>
-        <figure><img src="img/thumbs/battle-rope.webp" alt="" loading="lazy"><figcaption>Battle rope</figcaption></figure>
+      <div class="wall dark">
+        <figure><img src="img/x/wall/squat.webp" alt="" loading="lazy"><figcaption>Squat</figcaption></figure>
+        <figure><img src="img/x/wall/deadlift.webp" alt="" loading="lazy"><figcaption>Deadlift</figcaption></figure>
+        <figure><img src="img/x/wall/bench.webp" alt="" loading="lazy"><figcaption>Bench</figcaption></figure>
+        <figure><img src="img/x/wall/front-squat.webp" alt="" loading="lazy"><figcaption>Front squat</figcaption></figure>
+        <figure><img src="img/x/wall/hip-thrust.webp" alt="" loading="lazy"><figcaption>Hip thrust</figcaption></figure>
+        <figure><img src="img/x/wall/chinup.webp" alt="" loading="lazy"><figcaption>Chin-up</figcaption></figure>
+        <figure><img src="img/x/wall/lunge.webp" alt="" loading="lazy"><figcaption>Lunge</figcaption></figure>
+        <figure><img src="img/x/wall/plank.webp" alt="" loading="lazy"><figcaption>Plank</figcaption></figure>
+        <figure><img src="img/x/wall/boxing-bag.webp" alt="" loading="lazy"><figcaption>Boxing</figcaption></figure>
+        <figure><img src="img/x/wall/burpee.webp" alt="" loading="lazy"><figcaption>Burpee</figcaption></figure>
+        <figure><img src="img/x/wall/cycling.webp" alt="" loading="lazy"><figcaption>Cycling</figcaption></figure>
+        <figure><img src="img/x/wall/battle-rope.webp" alt="" loading="lazy"><figcaption>Battle rope</figcaption></figure>
       </div>
-      <p class="wall-note">And many more — the same clean avatar for every single one.</p>
+      <p class="wall-note">And the rest, from cable crunches to Turkish get-ups, each with its steps and a YouTube search.</p>
     </div>
   </section>
 
@@ -263,8 +289,12 @@
           <p>No. Form Coach counts and checks your reps on your phone, and the video never leaves it.</p>
         </details>
         <details>
+          <summary>Can I bring my workouts from another app?</summary>
+          <p>Yes. Import a Strong, Hevy or FitNotes export, or paste workouts from your notes, and your routines come with them. You can export everything as CSV too.</p>
+        </details>
+        <details>
           <summary>How do points work?</summary>
-          <p>Workouts, sport sessions and a good night's sleep all earn points toward your next rank. Sleeping seven to nine hours earns the most.</p>
+          <p>Workouts, sport sessions, stretches and a good night's sleep all earn points toward your next rank, harder sessions more. Up to 500 a day, so nobody can farm the leaderboard.</p>
         </details>
         <details>
           <summary>How do challenges work?</summary>
@@ -341,7 +371,7 @@
       <div class="fbrand">
         <a class="brand" href="#top"><img src="img/icon.png" alt=""><span class="word">2Sets<b>Fitness</b></span></a>
         <p>Built around your week, your sport and your goals.</p>
-        <div class="fver">Android · v1.4.0 · Free</div>
+        <div class="fver">Android · v1.7.85 · Free</div>
       </div>
       <div class="fcols">
         <nav class="fcol" aria-label="Product">

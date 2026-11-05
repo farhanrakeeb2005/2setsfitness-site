@@ -393,3 +393,31 @@ video { pointer-events: none; }
 video::-webkit-media-controls, video::-webkit-media-controls-enclosure { display: none !important; }
 
 @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+
+
+/* ============================================================================
+   The app's pictures (2026-11-05): photos and x-rays on the app's dark studio
+   backdrop (img/x/, tools/export_pics.cjs), framed dark on the light page.
+   ========================================================================== */
+:root { --studio: #141a2a; }
+.orb.dark { background: var(--studio); }
+.orb img { width: 100%; height: 100%; object-fit: cover; }
+.orb-chip i.main { background: #C4121A; box-shadow: 0 0 0 4px rgba(196, 18, 26, 0.18); }
+.orb-chip i.help { background: #FF8F86; box-shadow: 0 0 0 4px rgba(255, 143, 134, 0.22); margin-left: 6px; }
+.media.dark, .frame.dark, .wall.dark figure { background: var(--studio); border-color: transparent; }
+.media.dark img { aspect-ratio: 4/3; object-fit: cover; background: var(--studio); }
+.media.dark.tall img { aspect-ratio: 3/4; }
+.frame img { width: 100%; aspect-ratio: 4/3; object-fit: cover; background: var(--studio); }
+.wall.dark img { padding: 0; object-fit: cover; background: var(--studio); }
+.wall.dark figcaption { color: #fff; background: linear-gradient(transparent, rgba(5, 8, 13, 0.75)); }
+.plates { margin: 0; display: grid; gap: 12px; }
+.plate-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+/* the x-ray over the row of plates, not beside it */
+.feature-big .duo { grid-template-columns: 1fr !important; }
+.plate-row img { width: 100%; aspect-ratio: 3/2; object-fit: cover; border-radius: 12px; background: var(--studio); }
+.plates figcaption { color: var(--dim); font-size: .95rem; }
+.plates figcaption b { color: var(--ink, inherit); }
+.builds { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+.builds figure { margin: 0; border-radius: 16px; overflow: hidden; background: var(--studio); position: relative; }
+.builds img { width: 100%; aspect-ratio: 1; object-fit: cover; }
+.builds figcaption { position: absolute; left: 0; right: 0; bottom: 0; padding: 6px; text-align: center; font-weight: 700; font-size: .85rem; color: #fff; background: linear-gradient(transparent, rgba(5, 8, 13, 0.8)); }
