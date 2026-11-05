@@ -535,3 +535,13 @@ video::-webkit-media-controls, video::-webkit-media-controls-enclosure { display
 .ex-muscles .dot.main { background: #C4121A; }
 .ex-muscles .dot.help { background: #FF8F86; }
 .ex-muscles .sep { color: var(--dim); margin: 0 6px; }
+
+/* "Also in the app": the smaller features as one compact list under the x-ray tiles */
+.tile.also { padding: 22px 24px; gap: 14px; }
+.also-h { font-size: 1.1rem; margin: 0; }
+.also-list { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: 1fr; gap: 12px 28px; }
+.also-list li { display: flex; gap: 12px; align-items: flex-start; font-size: .92rem; line-height: 1.4; color: var(--dim); }
+.also-list li b { color: #1c1214; }
+.also-list .ic { font-size: 1.25rem; line-height: 1.2; flex: none; }
+@media (min-width: 640px) { .also-list { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (min-width: 1000px) { .also-list { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
