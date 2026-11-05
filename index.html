@@ -28,10 +28,11 @@
     <a class="brand" href="#top"><img src="img/icon.png" alt=""><span class="word">2Sets<b>Fitness</b></span></a>
     <nav class="nav-links" aria-label="Primary">
       <a href="#features">Features</a>
+      <a href="#see">See it</a>
       <a href="#coach">AI coach</a>
       <a href="#friends">Friends</a>
       <a href="#faq">FAQ</a>
-      <a class="btn primary sm" href="demo/index.html">Try the demo</a>
+      <a class="btn primary sm" href="https://fitness-app-5c48a.web.app" rel="noopener">Open the app</a>
     </nav>
   </div>
 </header>
@@ -46,8 +47,8 @@
         <h1>See <span class="red">every muscle</span> you train.</h1>
         <p class="lede">Every exercise in x-ray: the main muscles in dark red, the helpers in light red. The bar loads up with your weight, the body looks like yours, and an AI coach knows your week. Free, Android first.</p>
         <div class="cta-row">
-          <a class="btn primary" href="demo/index.html">Try the demo</a>
-          <a class="btn soon" href="#" aria-disabled="true">Coming soon to Google Play</a>
+          <a class="btn primary big" href="https://fitness-app-5c48a.web.app" rel="noopener">Try it free in your browser</a>
+          <a class="btn soon" href="#see" >Watch it in 45 seconds</a>
         </div>
         <ul class="facts">
           <li>Free, no card</li>
@@ -56,12 +57,12 @@
         </ul>
       </div>
 
-      <!-- framed hero visual: a squat in x-ray in a clean orb + halo -->
-      <div class="hero-visual">
-        <div class="orb dark">
-          <img src="img/x/hero-xray.webp" alt="A barbell squat in x-ray: the quads, glutes and hamstrings lit in red" fetchpriority="high">
-          <span class="orb-chip"><i class="main"></i>Main <i class="help"></i>Helpers</span>
-        </div>
+      <!-- hero visual: the real app (screenshots of the web app), a workout in
+           x-ray in front, Home behind -->
+      <div class="hero-visual phones">
+        <figure class="phone back"><img src="img/app/home.webp" alt="The app's Home screen: today's Push Day, workout and sleep" width="390" height="844"></figure>
+        <figure class="phone front"><img src="img/app/muscles.webp" alt="A bench press in x-ray with its main muscles listed" width="390" height="844" fetchpriority="high"></figure>
+        <span class="orb-chip"><i class="main"></i>Main <i class="help"></i>Helpers</span>
       </div>
     </div>
   </section>
@@ -156,6 +157,29 @@
     </div>
   </section>
 
+  <!-- ======================= SEE IT (real screens + video) ======================= -->
+  <section id="see">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="eyebrow">The real app</span>
+        <h2>See it before you sign up.</h2>
+        <p>Recorded from the app itself, not a mockup. Tap play, or <a href="https://fitness-app-5c48a.web.app" rel="noopener">try it yourself</a>.</p>
+      </div>
+      <div class="see">
+        <figure class="phone video">
+          <video controls muted playsinline preload="none" poster="img/app/howitworks.jpg" src="img/app/howitworks.mp4"
+                 aria-label="45 seconds of the app: a workout in x-ray, adding weight, the rest timer, the plan, profile and ranks"></video>
+        </figure>
+        <div class="shots">
+          <figure class="phone sm"><img src="img/app/heavy.webp" alt="" loading="lazy" width="390" height="844"><figcaption>Add weight, the plates grow</figcaption></figure>
+          <figure class="phone sm"><img src="img/app/done.webp" alt="" loading="lazy" width="390" height="844"><figcaption>Rest timer and what you gained</figcaption></figure>
+          <figure class="phone sm"><img src="img/app/plan.webp" alt="" loading="lazy" width="390" height="844"><figcaption>Every exercise and set</figcaption></figure>
+          <figure class="phone sm"><img src="img/app/compete.webp" alt="" loading="lazy" width="390" height="844"><figcaption>Ranks and friends</figcaption></figure>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- ======================= AI COACH (split) ======================= -->
   <section id="coach">
     <div class="wrap split">
@@ -169,7 +193,7 @@
           <li>Ask anything, any time</li>
         </ul>
         <div class="cta-row">
-          <a class="btn primary" href="demo/index.html">Try the demo</a>
+          <a class="btn primary" href="https://fitness-app-5c48a.web.app" rel="noopener">Try it in your browser</a>
         </div>
       </div>
       <div class="chat" aria-label="Example coach conversation">
@@ -188,7 +212,7 @@
         <h2>Lift and play, one honest plan.</h2>
         <p>Your sport sessions and your lifts live in the same week, so nothing double-counts and nothing gets forgotten. Log a workout you missed just by describing it in words or voice.</p>
         <div class="cta-row">
-          <a class="btn" href="demo/index.html">See it in the demo</a>
+          <a class="btn" href="https://fitness-app-5c48a.web.app" rel="noopener">Open the app</a>
         </div>
       </div>
       <div class="frame dark">
@@ -282,7 +306,7 @@
         </details>
         <details>
           <summary>Where can I get it?</summary>
-          <p>Android first, on Google Play very soon. iPhone is coming later. Until then, <a href="demo/index.html">try the demo</a> in your browser.</p>
+          <p>Android first, on Google Play very soon. iPhone is coming later. Until then, <a href="https://fitness-app-5c48a.web.app" rel="noopener">use it in your browser</a>: the same app, free.</p>
         </details>
         <details>
           <summary>Does the camera record me?</summary>
@@ -343,10 +367,7 @@
           <span class="note" id="cnote" role="status"></span>
         </div>
       </form>
-      <div class="done" id="cdone" hidden>
-        <h3>Thanks, message sent.</h3>
-        <p class="note">We'll reply to <b id="cto"></b>, usually within a day or two.</p>
-      </div>
+      <div class="done" id="cdone" hidden role="status"></div>
       <p class="fine">We only use your email to reply to you. Or write to us directly at <a id="addr" href="#contact"></a>.</p>
     </div>
   </section>
@@ -357,7 +378,7 @@
       <h2>Two sets. <span>Then another.</span></h2>
       <p>Train smarter, track everything, and see how far you climb.</p>
       <div class="cta-row">
-        <a class="btn" href="demo/index.html">Try the demo</a>
+        <a class="btn primary" href="https://fitness-app-5c48a.web.app" rel="noopener">Try it in your browser</a>
         <span class="btn soon">Google Play <small>coming soon</small></span>
       </div>
     </div>
@@ -379,7 +400,7 @@
           <a href="#features">Features</a>
           <a href="#coach">AI coach</a>
           <a href="#friends">Friends &amp; challenges</a>
-          <a href="demo/index.html">Try the demo</a>
+          <a href="https://fitness-app-5c48a.web.app" rel="noopener">Open the app</a>
           <span>Google Play<span class="pill">soon</span></span>
         </nav>
         <nav class="fcol" aria-label="Help">
@@ -434,9 +455,12 @@
       .then(function (r) { return r.json().catch(function () { return {}; }).then(function (j) { return { ok: r.ok, j: j }; }); })
       .then(function (res) {
         if (!res.ok) throw new Error(res.j.error || 'Could not send right now.');
-        document.getElementById('cto').textContent = body.email;
         say('');
         var done = document.getElementById('cdone');
+        var h = document.createElement('h3'); h.textContent = 'Thanks, message sent.';
+        var n = document.createElement('p'); n.className = 'note';
+        n.textContent = 'We\u2019ll reply to ' + body.email + ', usually within a day or two.';
+        done.replaceChildren(h, n);
         f.hidden = true; done.hidden = false;
         done.scrollIntoView({ behavior: 'smooth', block: 'center' });
       })
