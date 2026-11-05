@@ -17,7 +17,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <!-- reuse the current site's display font (Outfit) -->
 <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="styles.redesign.css">
+<link rel="stylesheet" href="styles.redesign.css?v=3">
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
@@ -165,18 +165,20 @@
         <h2>See it before you sign up.</h2>
         <p>Recorded from the app itself, not a mockup. Tap play, or <a href="https://fitness-app-5c48a.web.app" rel="noopener">try it yourself</a>.</p>
       </div>
-      <div class="see">
-        <figure class="phone video" id="howVid">
-          <video muted playsinline preload="none" poster="img/app/howitworks.jpg" src="img/app/howitworks.mp4"
-                 aria-label="45 seconds of the app: a workout in x-ray, adding weight, the rest timer, the plan, profile and ranks"></video>
-          <button class="play" type="button" aria-label="Play the 45-second walkthrough"><span aria-hidden="true"></span></button>
+      <!-- one even row: the 45 s video, then four real screens; captions under the frames -->
+      <div class="see-row">
+        <figure class="shot">
+          <div class="phone video" id="howVid">
+            <video muted playsinline preload="none" poster="img/app/howitworks.jpg" src="img/app/howitworks.mp4"
+                   aria-label="45 seconds of the app: a workout in x-ray, adding weight, the rest timer, the plan, profile and ranks"></video>
+            <button class="play" type="button" aria-label="Play the 45-second walkthrough"><span aria-hidden="true"></span></button>
+          </div>
+          <figcaption>Watch the 45-second tour</figcaption>
         </figure>
-        <div class="shots">
-          <figure class="phone sm"><img src="img/app/heavy.webp" alt="" loading="lazy" width="390" height="844"><figcaption>Add weight, the plates grow</figcaption></figure>
-          <figure class="phone sm"><img src="img/app/done.webp" alt="" loading="lazy" width="390" height="844"><figcaption>Rest timer and what you gained</figcaption></figure>
-          <figure class="phone sm"><img src="img/app/plan.webp" alt="" loading="lazy" width="390" height="844"><figcaption>Every exercise and set</figcaption></figure>
-          <figure class="phone sm"><img src="img/app/compete.webp" alt="" loading="lazy" width="390" height="844"><figcaption>Ranks and friends</figcaption></figure>
-        </div>
+        <figure class="shot"><div class="phone"><img src="img/app/heavy.webp" alt="Bench press at 120 kg: three big plates a side on the x-ray" loading="lazy" width="390" height="844"></div><figcaption>Add weight, the plates grow</figcaption></figure>
+        <figure class="shot"><div class="phone"><img src="img/app/done.webp" alt="The rest timer with the muscles the set worked" loading="lazy" width="390" height="844"></div><figcaption>Rest timer and what you gained</figcaption></figure>
+        <figure class="shot"><div class="phone"><img src="img/app/plan.webp" alt="The workout plan: every exercise and set" loading="lazy" width="390" height="844"></div><figcaption>Every exercise and set</figcaption></figure>
+        <figure class="shot"><div class="phone"><img src="img/app/compete.webp" alt="Compete: your rank and achievements" loading="lazy" width="390" height="844"></div><figcaption>Ranks and friends</figcaption></figure>
       </div>
     </div>
   </section>
