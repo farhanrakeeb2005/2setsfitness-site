@@ -17,7 +17,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <!-- reuse the current site's display font (Outfit) -->
 <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="styles.redesign.css?v=11">
+<link rel="stylesheet" href="styles.redesign.css?v=12">
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
@@ -50,6 +50,7 @@
           <a class="btn primary big" href="https://fitness-app-5c48a.web.app" rel="noopener">Try it free in your browser</a>
           <a class="btn soon" href="#see" >Watch it in 50 seconds</a>
         </div>
+        <p class="cta-note">🔒 No account needed. Your training stays on your phone unless you make one to back it up.</p>
         <ul class="facts">
           <li>Free, no card</li>
           <li>Private by default</li>
@@ -86,16 +87,29 @@
           <p>256 exercises, each with its own photo and x-ray. Dark red is what the move trains most, light red the muscles that help. Tap for the names, or the ? for the steps.</p>
           <figure class="plates" aria-label="The bar loading up as the weight goes up">
             <div class="plate-row">
-              <img src="img/x/plates-light.webp" alt="5 kg a side" loading="lazy">
-              <img src="img/x/plates-mid.webp" alt="20 kg a side" loading="lazy">
-              <img src="img/x/plates-heavy.webp" alt="60 kg a side" loading="lazy">
+              <img src="img/x/plates-light.webp?v=2" alt="5 kg a side" loading="lazy">
+              <img src="img/x/plates-mid.webp?v=2" alt="20 kg a side" loading="lazy">
+              <img src="img/x/plates-heavy.webp?v=2" alt="60 kg a side" loading="lazy">
             </div>
             <figcaption><b>The bar loads up with you.</b> Add weight and the plates on the bar grow, about one plate at a time.</figcaption>
           </figure>
           </div>
           <div class="duo">
             <div class="media dark">
-              <img src="img/x/deadlift-xray.webp" alt="A deadlift in x-ray with the working muscles lit in red" loading="lazy">
+              <img id="exImg" src="img/x/ex-deadlift.webp" alt="Deadlift in x-ray: glutes, hamstrings and lower back lit dark red" loading="lazy" width="900" height="675">
+            </div>
+            <div class="ex-try">
+              <div class="ex-chips" role="group" aria-label="Try an exercise">
+                <button type="button" class="on" aria-pressed="true" data-ex="deadlift">Deadlift</button>
+                <button type="button" aria-pressed="false" data-ex="bench">Bench press</button>
+                <button type="button" aria-pressed="false" data-ex="squat">Squat</button>
+                <button type="button" aria-pressed="false" data-ex="ohp">Overhead press</button>
+                <button type="button" aria-pressed="false" data-ex="lat-pulldown">Lat pulldown</button>
+                <button type="button" aria-pressed="false" data-ex="barbell-curl">Barbell curl</button>
+                <button type="button" aria-pressed="false" data-ex="hip-thrust">Hip thrust</button>
+                <button type="button" aria-pressed="false" data-ex="shrug">Shrug</button>
+              </div>
+              <p class="ex-muscles" id="exMuscles" aria-live="polite"></p>
             </div>
 
           </div>
@@ -430,6 +444,37 @@
 <script>
 /* -------- the walkthrough video: a big play button, then the normal controls -------- */
 (function () {
+  // the x-ray tile's exercise picker
+  (function () {
+    var EX = {
+      'deadlift': ['Deadlift', ['Glutes', 'Hamstrings', 'Lower back'], ['Upper back', 'Lats', 'Quads']],
+      'bench': ['Bench press', ['Chest', 'Triceps', 'Front delts'], []],
+      'squat': ['Squat', ['Quads', 'Glutes', 'Hamstrings'], ['Lower back', 'Abs']],
+      'ohp': ['Overhead press', ['Front delts', 'Triceps', 'Side delts'], ['Upper back']],
+      'lat-pulldown': ['Lat pulldown', ['Lats', 'Biceps'], ['Upper back', 'Rear delts']],
+      'barbell-curl': ['Barbell curl', ['Biceps'], ['Forearms']],
+      'hip-thrust': ['Hip thrust', ['Glutes', 'Hamstrings'], ['Quads']],
+      'shrug': ['Shrug', ['Traps'], ['Forearms']]
+    };
+    var img = document.getElementById('exImg'), out = document.getElementById('exMuscles');
+    if (!img || !out) return;
+    var chips = document.querySelectorAll('.ex-chips button');
+    function show(id) {
+      var e = EX[id]; if (!e) return;
+      img.src = 'img/x/ex-' + id + '.webp';
+      img.alt = e[0] + ' in x-ray: ' + e[1].join(', ').toLowerCase() + ' lit dark red';
+      out.innerHTML = '<span class="dot main"></span><b>Main:</b> ' + e[1].join(', ') +
+        (e[2].length ? ' <span class="sep">·</span> <span class="dot help"></span><b>Helpers:</b> ' + e[2].join(', ') : '');
+      for (var i = 0; i < chips.length; i++) {
+        var on = chips[i].getAttribute('data-ex') === id;
+        chips[i].classList.toggle('on', on); chips[i].setAttribute('aria-pressed', on ? 'true' : 'false');
+      }
+    }
+    for (var i = 0; i < chips.length; i++) chips[i].addEventListener('click', function () { show(this.getAttribute('data-ex')); });
+    // the next ones load before they're tapped
+    Object.keys(EX).forEach(function (k) { var p = new Image(); p.src = 'img/x/ex-' + k + '.webp'; });
+    show('deadlift');
+  })();
   var box = document.getElementById('howVid'); if (!box) return;
   var v = box.querySelector('video'), b = box.querySelector('.play');
   b.addEventListener('click', function () { v.controls = true; v.muted = false; box.classList.add('playing'); v.play(); });
