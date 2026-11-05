@@ -479,3 +479,4 @@ video::-webkit-media-controls, video::-webkit-media-controls-enclosure { display
   .see-row .shot:first-child { grid-column: auto; }
   .see-row .shot:first-child .phone { width: 100%; }
 }
+.fcol .nowrap { white-space: nowrap; }
