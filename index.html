@@ -17,7 +17,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <!-- reuse the current site's display font (Outfit) -->
 <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="styles.redesign.css?v=8">
+<link rel="stylesheet" href="styles.redesign.css?v=9">
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
@@ -122,12 +122,12 @@
           <p>Football, boxing, wrestling, running, cycling and more — all in the same week.</p>
         </article>
         <article class="tile w-sm">
-          <span class="ic" aria-hidden="true">📸</span>
+          <img class="tile-shot" src="img/app/tile-physique.webp" alt="The physique scan's progress card: score 31 of 100, Silver, +3 since last week" loading="lazy">
           <h3>Scan your physique.</h3>
           <p>One photo: a body-fat range, your level, a starting rank and a 12-week graph. The photo is never stored.</p>
         </article>
         <article class="tile w-sm">
-          <span class="ic" aria-hidden="true">⏱️</span>
+          <img class="tile-shot" src="img/app/tile-timer.webp" alt="The hold timer counting a wall sit: 21 seconds to go" loading="lazy">
           <h3>Timers that talk.</h3>
           <p>Cardio and holds count you in, a word a second, call halfway and the last 3, 2, 1. Intervals and pace, too.</p>
         </article>
@@ -207,11 +207,10 @@
           <a class="btn primary" href="https://fitness-app-5c48a.web.app" rel="noopener">Try it in your browser</a>
         </div>
       </div>
-      <div class="chat" aria-label="Example coach conversation">
-        <p class="bubble me">Did wrestling tonight. What now?</p>
-        <p class="bubble them">Nice work. Get 40 g of protein in and sleep 7–9 hours. Keep tomorrow light — mobility and an easy walk.</p>
-        <p class="meta">An example of the between-session chat.</p>
-      </div>
+      <figure class="phone-shot">
+        <div class="phone"><img src="img/app/coach.webp" alt="The AI coach in the app answering how to hit today's protein after Push Day" loading="lazy" width="390" height="844"></div>
+        <figcaption>The coach in the app: it knows today was Push Day and what's left to eat.</figcaption>
+      </figure>
     </div>
   </section>
 
@@ -226,9 +225,10 @@
           <a class="btn" href="https://fitness-app-5c48a.web.app" rel="noopener">Open the app</a>
         </div>
       </div>
-      <div class="frame dark">
-        <img src="img/x/front-squat-xray.webp" alt="A front squat in x-ray with its working muscles lit" loading="lazy">
-      </div>
+      <figure class="phone-shot">
+        <div class="phone"><img src="img/app/home.webp" alt="Home: today's Push Day, the week, workout fuel and water" loading="lazy" width="390" height="844"></div>
+        <figcaption>Home: today's plan, your week and what to eat, in one place.</figcaption>
+      </figure>
     </div>
   </section>
 
@@ -258,18 +258,11 @@
           <small>2 days left · Loser does 50 burpees</small>
         </div>
 
-        <!-- a tiny leaderboard beside it -->
-        <div class="board" aria-label="Example leaderboard">
-          <h3>This week</h3>
-          <table>
-            <tbody>
-              <tr><td>1</td><td>Priya</td><td>3,210</td></tr>
-              <tr class="me"><td>2</td><td>You</td><td>2,980</td></tr>
-              <tr><td>3</td><td>Sam</td><td>2,640</td></tr>
-              <tr><td>4</td><td>Omar</td><td>2,115</td></tr>
-            </tbody>
-          </table>
-        </div>
+        <!-- the real Compete screen beside it -->
+        <figure class="phone-shot">
+          <div class="phone"><img src="img/app/compete.webp" alt="Compete: your rank, points to the next rank and achievements" loading="lazy" width="390" height="844"></div>
+          <figcaption>Your rank, the points to the next one, and achievements.</figcaption>
+        </figure>
       </div>
 
       <p class="honest">Reps are on trust. <b>The only person you cheat is yourself.</b></p>
@@ -379,7 +372,7 @@
         </div>
       </form>
       <div class="done" id="cdone" hidden role="status"></div>
-      <p class="fine">We only use your email to reply to you. Or write to us directly at <a id="addr" href="#contact"></a>.</p>
+      <p class="fine">We only use your email to reply to you. Or <a id="addr" href="#contact">email us directly</a>.</p>
     </div>
   </section>
 
@@ -403,7 +396,7 @@
       <div class="fbrand">
         <a class="brand" href="#top"><img src="img/icon.png" alt=""><span class="word">2Sets<b>Fitness</b></span></a>
         <p>Built around your week, your sport and your goals.</p>
-        <div class="fver">Android · v1.7.85 · Free</div>
+        <div class="fver">Android · v1.7.88 · Free</div>
       </div>
       <div class="fcols">
         <nav class="fcol" aria-label="Product">
@@ -456,7 +449,7 @@
   var API = 'https://twosetsfitness-api-608365314707.europe-west2.run.app/contact';
   var to = ['trrfarhan', 'gmail.com'].join('@');
   var f = document.getElementById('cform'), note = document.getElementById('cnote'), btn = document.getElementById('csend');
-  var addr = document.getElementById('addr'); addr.textContent = to; addr.href = 'mailto:' + to;
+  var addr = document.getElementById('addr'); addr.href = 'mailto:' + to;
   var opened = Date.now();
   function say(t, err) { note.textContent = t; note.className = 'note' + (err ? ' err' : ''); }
   f.addEventListener('submit', function (e) {
