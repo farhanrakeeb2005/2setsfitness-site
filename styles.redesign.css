@@ -454,3 +454,13 @@ video::-webkit-media-controls, video::-webkit-media-controls-enclosure { display
   .hero-visual.phones .front { transform: translateX(52%) rotate(2deg); }
   .hero-visual.phones .orb-chip { bottom: 6px; }
 }
+
+/* the walkthrough video: tappable, with its own controls once playing (the
+   page hides controls on its background clips) */
+.phone.video video { pointer-events: auto; }
+.phone.video:not(.playing) video::-webkit-media-controls { display: none !important; }
+.phone.video.playing video::-webkit-media-controls, .phone.video.playing video::-webkit-media-controls-enclosure { display: flex !important; }
+.phone.video .play { position: absolute; inset: 0; margin: auto; width: 92px; height: 92px; border-radius: 50%; border: 0; cursor: pointer; background: #E31E24; box-shadow: 0 0 0 10px rgba(227, 30, 36, 0.25), 0 18px 40px rgba(0, 0, 0, 0.45); display: grid; place-items: center; transition: transform .2s; }
+.phone.video .play:hover { transform: scale(1.06); }
+.phone.video .play span { width: 0; height: 0; margin-left: 7px; border-style: solid; border-width: 17px 0 17px 28px; border-color: transparent transparent transparent #fff; }
+.phone.video.playing .play { display: none; }
