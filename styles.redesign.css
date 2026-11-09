@@ -553,3 +553,17 @@ video::-webkit-media-controls, video::-webkit-media-controls-enclosure { display
 /* one phone left in the row (the 50 s tour, under the launch video): centred */
 .see-row, .see-row { grid-template-columns: minmax(0, 1fr); }
 @media (min-width: 900px) { .see-row { grid-template-columns: minmax(0, 1fr); } .see-row .shot:first-child .phone { width: 300px; } }
+
+/* sections without a phone screenshot: the copy stands alone, centred */
+.split.solo { grid-template-columns: minmax(0, 1fr) !important; justify-items: center; text-align: center; }
+.split.solo .copy { max-width: 40rem; order: 0 !important; }
+.split.solo .copy p { margin-inline: auto; }
+.split.solo .list { justify-content: center; }
+.split.solo .cta-row { justify-content: center; }
+.compete-grid.solo { grid-template-columns: minmax(0, 1fr) !important; max-width: 640px; margin-inline: auto; }
+.trailer { position: relative; }
+.tplay { position: absolute; inset: 0; margin: auto; width: 96px; height: 96px; border: 0; border-radius: 50%; background: #E31B23; box-shadow: 0 0 0 14px rgba(227, 27, 35, .25), 0 16px 40px rgba(0, 0, 0, .45); cursor: pointer; transition: transform .2s; }
+.tplay:hover { transform: scale(1.06); }
+.tplay span { position: absolute; left: 38px; top: 30px; border-style: solid; border-width: 18px 0 18px 30px; border-color: transparent transparent transparent #fff; }
+.trailer.playing .tplay { display: none; }
+@media (max-width: 600px) { .tplay { width: 68px; height: 68px; } .tplay span { left: 27px; top: 21px; border-width: 13px 0 13px 21px; } }

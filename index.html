@@ -17,7 +17,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <!-- reuse the current site's display font (Outfit) -->
 <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="styles.redesign.css?v=15">
+<link rel="stylesheet" href="styles.redesign.css?v=16">
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
@@ -161,25 +161,14 @@
         <h2>See it before you sign up.</h2>
         <p>Recorded from the app itself, not a mockup. Tap play, or <a href="https://fitness-app-5c48a.web.app" rel="noopener">try it yourself</a>.</p>
       </div>
-      <!-- the 25 s launch video (made from the real screens), then the 50 s tour -->
-      <div class="trailer"><video controls playsinline preload="none" poster="img/app/trailer.jpg?v=2" src="img/app/trailer.mp4?v=2" aria-label="25-second launch video: every muscle in x-ray, pictures that match your build, an AI coach that knows your week, and ranks to climb with friends"></video></div>
-      <!-- the 50 s tour in a phone -->
-      <div class="see-row">
-        <figure class="shot">
-          <div class="phone video" id="howVid">
-            <video muted playsinline preload="none" poster="img/app/howitworks.jpg?v=3" src="img/app/howitworks.mp4?v=3"
-                   aria-label="50 seconds of the app: Home, a workout in x-ray, the muscles it works, the rest timer, the AI coach, the physique scan and ranks"></video>
-            <button class="play" type="button" aria-label="Play the 50-second walkthrough"><span aria-hidden="true"></span></button>
-          </div>
-          <figcaption>Watch the 50-second tour</figcaption>
-        </figure>
-      </div>
+      <!-- the 25 s launch video, made from the real screens -->
+      <div class="trailer" id="trailer"><video playsinline preload="metadata" poster="img/app/trailer.jpg?v=2" src="img/app/trailer.mp4?v=2" aria-label="25-second launch video: every muscle in x-ray, pictures that match your build, an AI coach that knows your week, and ranks to climb with friends"></video><button class="tplay" type="button" aria-label="Play the 25-second video"><span aria-hidden="true"></span></button></div>
     </div>
   </section>
 
   <!-- ======================= AI COACH (split) ======================= -->
   <section id="coach">
-    <div class="wrap split">
+    <div class="wrap split solo">
       <div class="copy">
         <span class="eyebrow">AI coach</span>
         <h2>A coach that knows your week.</h2>
@@ -193,16 +182,12 @@
           <a class="btn primary" href="https://fitness-app-5c48a.web.app" rel="noopener">Try it in your browser</a>
         </div>
       </div>
-      <figure class="phone-shot">
-        <div class="phone"><img src="img/app/coach.webp" alt="The AI coach in the app answering how to hit today's protein after Push Day" loading="lazy" width="390" height="844"></div>
-        <figcaption>The coach in the app: it knows today was Push Day and what's left to eat.</figcaption>
-      </figure>
     </div>
   </section>
 
   <!-- ======================= GYM & SPORT (split, flipped) ======================= -->
   <section class="band">
-    <div class="wrap split flip">
+    <div class="wrap split solo">
       <div class="copy">
         <span class="eyebrow">Built around you</span>
         <h2>Lift and play, one honest plan.</h2>
@@ -211,10 +196,6 @@
           <a class="btn" href="https://fitness-app-5c48a.web.app" rel="noopener">Open the app</a>
         </div>
       </div>
-      <figure class="phone-shot">
-        <div class="phone"><img src="img/app/home.webp" alt="Home: today's Push Day, the week, workout fuel and water" loading="lazy" width="390" height="844"></div>
-        <figcaption>Home: today's plan, your week and what to eat, in one place.</figcaption>
-      </figure>
     </div>
   </section>
 
@@ -227,7 +208,7 @@
         <p>Add by friend code, race to a target with real stakes, and watch your rank on the map. Streaks, a leaderboard, and boss fights when you rank up.</p>
       </div>
 
-      <div class="compete-grid">
+      <div class="compete-grid solo">
         <!-- the race card visual -->
         <div class="race" aria-label="Example challenge">
           <div class="race-title">First to 100 push-ups</div>
@@ -243,12 +224,6 @@
           </div>
           <small>2 days left · Loser does 50 burpees</small>
         </div>
-
-        <!-- the real Compete screen beside it -->
-        <figure class="phone-shot">
-          <div class="phone"><img src="img/app/compete.webp" alt="Compete: your rank, points to the next rank and achievements" loading="lazy" width="390" height="844"></div>
-          <figcaption>Your rank, the points to the next one, and achievements.</figcaption>
-        </figure>
       </div>
 
       <p class="honest">Reps are on trust. <b>The only person you cheat is yourself.</b></p>
@@ -447,6 +422,7 @@
     Object.keys(EX).forEach(function (k) { var p = new Image(); p.src = 'img/x/ex-' + k + '.webp'; });
     show('deadlift');
   })();
+  var t = document.getElementById('trailer'); if (t) { var tv = t.querySelector('video'); t.querySelector('.tplay').addEventListener('click', function () { tv.controls = true; t.classList.add('playing'); tv.play(); }); }
   var box = document.getElementById('howVid'); if (!box) return;
   var v = box.querySelector('video'), b = box.querySelector('.play');
   b.addEventListener('click', function () { v.controls = true; v.muted = false; box.classList.add('playing'); v.play(); });
