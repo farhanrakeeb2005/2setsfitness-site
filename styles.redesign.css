@@ -566,4 +566,6 @@ video::-webkit-media-controls, video::-webkit-media-controls-enclosure { display
 .tplay:hover { transform: scale(1.06); }
 .tplay span { position: absolute; left: 38px; top: 30px; border-style: solid; border-width: 18px 0 18px 30px; border-color: transparent transparent transparent #fff; }
 .trailer.playing .tplay { display: none; }
+.trailer.playing video { pointer-events: auto; cursor: pointer; }
+.trailer.playing video::-webkit-media-controls, .trailer.playing video::-webkit-media-controls-enclosure { display: flex !important; }
 @media (max-width: 600px) { .tplay { width: 68px; height: 68px; } .tplay span { left: 27px; top: 21px; border-width: 13px 0 13px 21px; } }

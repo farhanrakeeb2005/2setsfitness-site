@@ -17,7 +17,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <!-- reuse the current site's display font (Outfit) -->
 <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="styles.redesign.css?v=16">
+<link rel="stylesheet" href="styles.redesign.css?v=17">
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
@@ -421,7 +421,7 @@
     Object.keys(EX).forEach(function (k) { var p = new Image(); p.src = 'img/x/ex-' + k + '.webp'; });
     show('deadlift');
   })();
-  var t = document.getElementById('trailer'); if (t) { var tv = t.querySelector('video'); t.querySelector('.tplay').addEventListener('click', function () { tv.controls = true; t.classList.add('playing'); tv.play(); }); }
+  var t = document.getElementById('trailer'); if (t) { var tv = t.querySelector('video'); t.querySelector('.tplay').addEventListener('click', function () { tv.controls = true; t.classList.add('playing'); tv.play(); }); tv.addEventListener('ended', function () { t.classList.remove('playing'); tv.controls = false; tv.load(); }); }
   var box = document.getElementById('howVid'); if (!box) return;
   var v = box.querySelector('video'), b = box.querySelector('.play');
   b.addEventListener('click', function () { v.controls = true; v.muted = false; box.classList.add('playing'); v.play(); });
