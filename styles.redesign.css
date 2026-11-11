@@ -91,7 +91,7 @@ h1, h2, h3 {
   min-height: 50px; padding: 0 24px;
   border: 1px solid var(--line); border-radius: 999px;
   background: var(--surface); color: var(--ink);
-  font: 700 1rem var(--font); text-decoration: none; cursor: pointer;
+  font: 700 1rem var(--font); text-decoration: none; cursor: pointer; white-space: nowrap;
   box-shadow: var(--soft);
   transition: transform .2s ease, box-shadow .25s ease, border-color .2s ease;
 }
@@ -121,7 +121,7 @@ h1, h2, h3 {
 .nav-links a:not(.btn) { text-decoration: none; color: var(--dim); font-weight: 500; }
 .nav-links a:not(.btn):hover { color: var(--ink); }
 /* on small screens the text links collapse; the demo button stays */
-@media (max-width: 760px) { .nav-links a:not(.btn) { display: none; } }
+@media (max-width: 760px) { .nav-links a:not(.btn) { display: none; } .hide-sm { display: none; } .btn.sm { min-height: 40px; padding: 0 15px; font-size: .9rem; } }
 
 /* ---------- section rhythm ---------- */
 section { padding-block: clamp(56px, 10vw, 100px); }
