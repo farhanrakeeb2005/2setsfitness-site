@@ -25,7 +25,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <!-- reuse the current site's display font (Outfit) -->
 <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="styles.redesign.css?v=25">
+<link rel="stylesheet" href="styles.redesign.css?v=26">
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
@@ -321,6 +321,22 @@
           <p class="price-small">The AI costs real money to run, so those higher limits will one day need a plan: <b>&pound;4.99 a month</b>, <b>&pound;39.99 a year</b>, or <b>&pound;79.99 once</b> for life, &pound;49.99 for early supporters. The first week will be free, one per account. You will hear about any change well before it happens.</p>
         </article>
       </div>
+
+      <!-- the list: an address, a confirmation email, and nothing until it is clicked -->
+      <div class="notify" id="notify">
+        <div class="notify-copy">
+          <h3>Want to know before anything changes?</h3>
+          <p>Leave your email and we will write when Premium has a date and a final price, and when something worth knowing gets built. Nothing else, and never your address to anyone.</p>
+        </div>
+        <form class="notify-form" id="nform" novalidate>
+          <label class="sr-only" for="nemail">Your email</label>
+          <input id="nemail" name="email" type="email" autocomplete="email" placeholder="you@example.com" required maxlength="200">
+          <!-- honeypot: real people leave this blank -->
+          <label class="hp" aria-hidden="true">Website<input name="website" tabindex="-1" autocomplete="off"></label>
+          <button class="btn primary" type="submit" id="nsend">Keep me posted</button>
+        </form>
+        <p class="notify-note" id="nnote" role="status">We send a confirmation email first, so nobody can put you on a list. One tap gets you off it again, from any email we send.</p>
+      </div>
     </div>
   </section>
 
@@ -510,6 +526,37 @@
   var onScroll = function () { nav.classList.toggle('scrolled', window.scrollY > 8); };
   onScroll();
   window.addEventListener('scroll', onScroll, { passive: true });
+})();
+
+/* -------- keep me posted: the updates list (API /updates) -------- */
+(function () {
+  var API = 'https://twosetsfitness-api-608365314707.europe-west2.run.app/updates';
+  var f = document.getElementById('nform');
+  if (!f) return;
+  var note = document.getElementById('nnote'), btn = document.getElementById('nsend');
+  var opened = Date.now();
+  function say(t, err) { note.textContent = t; note.className = 'notify-note' + (err ? ' err' : ''); }
+  f.addEventListener('submit', function (e) {
+    e.preventDefault();
+    var d = new FormData(f);
+    var email = String(d.get('email') || '').trim();
+    if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) return say('Add an email address we can reach you at.', true);
+    btn.disabled = true; say('Sending...');
+    fetch(API, {
+      method: 'POST', headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email: email, source: 'pricing', website: d.get('website') || '', ms: Date.now() - opened }),
+    })
+      .then(function (r) { return r.json().catch(function () { return {}; }).then(function (j) { return { ok: r.ok, j: j }; }); })
+      .then(function (res) {
+        if (!res.ok) throw new Error(res.j.error || 'Could not sign you up right now.');
+        f.hidden = true;
+        say('Check your inbox. Tap the link in the email and you are on the list; until then we have sent you nothing else.');
+      })
+      .catch(function (err) {
+        btn.disabled = false;
+        say((err && err.message && !/fetch|network/i.test(err.message) ? err.message : 'Could not sign you up right now.') + ' Try again in a moment.', true);
+      });
+  });
 })();
 
 /* -------- contact form (ported unchanged from the live index.html) -------- */
