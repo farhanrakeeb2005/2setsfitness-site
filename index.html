@@ -4,10 +4,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>2SetsFitness · See every muscle you train. Free.</title>
-<meta name="description" content="A free fitness app: every exercise in x-ray with the muscles it works lit up, plates that grow with your weight, an AI coach that knows your week, one plan for gym and sport, and friends to race. Free in your browser today; Android on Google Play soon.">
+<meta name="description" content="A free fitness app: every exercise in x-ray with the muscles it works lit up, plates that grow with your weight, an AI coach that knows your week, one plan for gym and sport, and friends to race. Free in your browser on any phone or computer; Android in early access.">
 
-<!-- Social preview. NOTE: img/og.png does not exist yet — a 1200x630 share
-     image would make links look better when shared. (Asset to create.) -->
+<!-- Social preview (img/og.png, 1200x630). -->
 <meta property="og:title" content="2SetsFitness — see every muscle you train">
 <meta property="og:description" content="Free fitness app: every exercise in x-ray, an AI coach that knows your week, gym and sport in one plan, friends to race.">
 <meta property="og:type" content="website">
@@ -26,10 +25,24 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <!-- reuse the current site's display font (Outfit) -->
 <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="styles.redesign.css?v=24">
+<link rel="stylesheet" href="styles.redesign.css?v=25">
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
+
+<!-- ANDROID AVAILABILITY ------------------------------------------------
+     The Play listing is private while the app is in closed testing:
+     play.google.com/store/apps/details?id=com.twosetsfitness.app answers
+     404 "We are sorry, the requested URL was not found" to anyone who is
+     not a tester. Every "Get it on Google Play" button on this page was
+     therefore sending visitors to a dead end, so they now point at the
+     browser app, which anyone can use, and Android is offered as early
+     access through the contact form (which also feeds the tester count
+     Google wants to see before production).
+     WHEN THE APP IS LIVE ON PLAY: grep ANDROID-CTA and put the Play link
+     back at each of those spots (nav, hero, pricing, closing, footer).
+     The link itself: https://play.google.com/store/apps/details?id=com.twosetsfitness.app
+--------------------------------------------------------------------- -->
 
 <!-- ======================= NAV ======================= -->
 <header class="nav" id="nav">
@@ -42,7 +55,8 @@
       <a href="#friends">Friends</a>
       <a href="#pricing">Pricing</a>
       <a href="#faq">FAQ</a>
-      <a class="btn primary sm" href="https://play.google.com/store/apps/details?id=com.twosetsfitness.app" rel="noopener"><span class="hide-sm">Get it on&nbsp;</span>Google Play</a>
+      <!-- ANDROID-CTA -->
+      <a class="btn primary sm" href="https://fitness-app-5c48a.web.app" rel="noopener">Try it free</a>
     </nav>
   </div>
 </header>
@@ -62,8 +76,9 @@
         </div>
         <p class="cta-note">🔒 A free account saves your workouts. We never sell your data or show ads.</p>
         <ul class="facts">
-          <li>Works in your browser now</li>
-          <li>Android early access</li>
+          <li>Any browser, phone or computer</li>
+          <!-- ANDROID-CTA -->
+          <li>Android in early access — <a href="#contact">ask for an invite</a></li>
           <li>Free, no card</li>
           <li>25 languages</li>
         </ul>
@@ -203,7 +218,8 @@
         <h2>Lift and play, one honest plan.</h2>
         <p>Your sport sessions and your lifts live in the same week, so nothing double-counts and nothing gets forgotten. Log a workout you missed just by describing it in words or voice.</p>
         <div class="cta-row">
-          <a class="btn" href="https://play.google.com/store/apps/details?id=com.twosetsfitness.app" rel="noopener">Get it on Google Play</a>
+          <!-- ANDROID-CTA -->
+          <a class="btn" href="https://fitness-app-5c48a.web.app" rel="noopener">Try it in your browser</a>
         </div>
       </div>
     </div>
@@ -274,10 +290,10 @@
       <div class="sec-head">
         <span class="eyebrow">Pricing</span>
         <h2>Free. All of it.</h2>
-        <p>Every part of 2SetsFitness is free right now. No card, nothing locked. Premium is coming, and it is free while it is being built.</p>
+        <p>Every part of the app is free today. No card, nothing locked, no ads.</p>
       </div>
 
-      <div class="price-grid">
+      <div class="price-grid two">
         <article class="tile">
           <span class="tag">Free</span>
           <h3>The whole app</h3>
@@ -287,55 +303,24 @@
             <li>Form Coach: your camera counts and scores your reps, on your phone</li>
             <li>An AI coach and one weekly plan for gym and sport</li>
             <li>Friends, ranks, leaderboards and challenges</li>
+            <li>25 languages, no ads, no trackers</li>
           </ul>
-          <p class="price-small">25 languages, no ads, no trackers.</p>
-          <a class="btn primary price-cta" href="https://play.google.com/store/apps/details?id=com.twosetsfitness.app" rel="noopener">Get it on Google Play</a>
+          <!-- ANDROID-CTA -->
+          <a class="btn primary price-cta" href="https://fitness-app-5c48a.web.app" rel="noopener">Start free in your browser</a>
         </article>
 
         <article class="tile tile-soon">
-          <span class="tag">Coming soon</span>
+          <span class="tag">Coming later</span>
           <h3>Premium</h3>
-          <p class="price-line"><s>&pound;4.99<span class="per">/month</span></s> <b>Free for now</b></p>
-          <p class="price-sub">or &pound;39.99 a year, a third off the monthly price</p>
+          <p class="price-line"><b>Free while it is being built</b></p>
           <ul class="price-list">
-            <li>Everything in the free app</li>
-            <li>The AI coach with a much higher daily limit</li>
-            <li>More meals read from a photo</li>
-            <li>More physique scans</li>
-            <li>What is being built next, first</li>
-            <li>Cancel any time in Google Play</li>
+            <li>Everything in the free app, and all of that stays free</li>
+            <li>A much higher daily limit on the AI coach</li>
+            <li>More meals read from a photo, more physique scans</li>
           </ul>
-          <p class="price-small">Premium is more of what you already have, not a wall around it. Everything in the free plan stays free. The AI costs real money to run, so these higher limits will one day sit behind a plan, and you will hear it from us well before anything changes.</p>
-        </article>
-
-        <article class="tile tile-soon">
-          <span class="tag">Coming soon</span>
-          <h3>Lifetime Premium</h3>
-          <p class="price-line"><s>&pound;79.99<span class="per"> once</span></s> <b>Free for now</b></p>
-          <p class="price-sub">&pound;49.99 for early supporters when it launches</p>
-          <ul class="price-list">
-            <li>Everything in Premium</li>
-            <li>Premium AI limits, for life</li>
-            <li>One payment, nothing to remember or cancel</li>
-            <li>Stays with your account, on any phone</li>
-            <li>Supports one person building this</li>
-          </ul>
-          <p class="price-small">For anyone who would rather own it than rent it. Not for sale yet, and the app is free in the meantime.</p>
+          <p class="price-small">The AI costs real money to run, so those higher limits will one day need a plan: <b>&pound;4.99 a month</b>, <b>&pound;39.99 a year</b>, or <b>&pound;79.99 once</b> for life, &pound;49.99 for early supporters. The first week will be free, one per account. You will hear about any change well before it happens.</p>
         </article>
       </div>
-
-      <article class="tile tile-soon trial">
-        <div class="trial-head">
-          <span class="tag">Coming with Premium</span>
-          <h3>Try Premium free for a week</h3>
-          <p class="price-small">Pick the free trial when Premium launches and the first week costs nothing. One free week per person, ever, tied to your 2SetsFitness account and your Google Play account.</p>
-        </div>
-        <ol class="trial-steps">
-          <li><b>Days 1 to 7: free</b><span>Everything in Premium, nothing to pay.</span></li>
-          <li><b>Day 8: Premium starts</b><span>&pound;4.99 a month or &pound;39.99 a year, and Google Play reminds you before the first payment.</span></li>
-          <li><b>Change your mind any time</b><span>Cancel or ask for a refund whenever you like, and the week you had stays yours.</span></li>
-        </ol>
-      </article>
     </div>
   </section>
 
@@ -352,7 +337,7 @@
         </details>
         <details>
           <summary>Where can I get it?</summary>
-          <p>Android first, on Google Play. On an iPhone, or on a computer, <a href="https://fitness-app-5c48a.web.app" rel="noopener">use it in your browser</a>, free and with no install. Add it to your home screen and it opens full screen with its own icon, like any other app.</p>
+          <p><a href="https://fitness-app-5c48a.web.app" rel="noopener">Use it in your browser</a> right now, free, on any phone or computer, with nothing to install. Add it to your home screen and it opens full screen with its own icon, like any other app. The Android app is in early access while Google reviews it for public release: <a href="#contact">ask us for an invite</a> and we will add you.</p>
         </details>
         <details>
           <summary>What is different in the browser?</summary>
@@ -404,6 +389,7 @@
         <label class="full">What is it about?
           <select name="topic">
             <option>Feedback or an idea</option>
+            <option>Join Android early access</option>
             <option>Something is broken</option>
             <option>A question about the app</option>
             <option>Press or partnership</option>
@@ -429,7 +415,8 @@
       <p>Train smarter, track everything, and see how far you climb.</p>
       <div class="cta-row">
         <a class="btn primary" href="https://fitness-app-5c48a.web.app" rel="noopener">Try it in your browser</a>
-        <a class="btn" href="https://play.google.com/store/apps/details?id=com.twosetsfitness.app" rel="noopener">Get it on Google Play</a>
+        <!-- ANDROID-CTA -->
+        <a class="btn" href="#contact">Ask for Android early access</a>
       </div>
     </div>
   </section>
@@ -442,7 +429,8 @@
       <div class="fbrand">
         <a class="brand" href="#top"><img src="img/icon.png" alt=""><span class="word">2Sets<b>Fitness</b></span></a>
         <p>Built around your week, your sport and your goals.</p>
-        <div class="fver">Android · v1.7.88 · Free</div>
+        <p>Made in the UK by one developer, not a company. Write to us and a person reads it: <a id="addr2" href="#contact">email us</a>.</p>
+        <div class="fver">Android v1.9.5 · early access · Free</div>
       </div>
       <div class="fcols">
         <nav class="fcol" aria-label="Product">
@@ -450,7 +438,9 @@
           <a href="#features">Features</a>
           <a href="#coach">AI coach</a>
           <a href="#friends">Friends &amp; challenges</a>
-          <a href="https://play.google.com/store/apps/details?id=com.twosetsfitness.app" rel="noopener">Get it on Google Play</a>
+          <!-- ANDROID-CTA -->
+          <a href="https://fitness-app-5c48a.web.app" rel="noopener">Use it in your browser</a>
+          <a href="#contact">Android early access</a>
         </nav>
         <nav class="fcol" aria-label="Help">
           <b>Help</b>
@@ -528,6 +518,7 @@
   var to = ['trrfarhan', 'gmail.com'].join('@');
   var f = document.getElementById('cform'), note = document.getElementById('cnote'), btn = document.getElementById('csend');
   var addr = document.getElementById('addr'); addr.href = 'mailto:' + to;
+  var addr2 = document.getElementById('addr2'); if (addr2) addr2.href = 'mailto:' + to;
   var opened = Date.now();
   function say(t, err) { note.textContent = t; note.className = 'note' + (err ? ' err' : ''); }
   f.addEventListener('submit', function (e) {

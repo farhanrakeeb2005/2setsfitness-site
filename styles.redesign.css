@@ -156,6 +156,7 @@ section { padding-block: clamp(56px, 10vw, 100px); }
 }
 .facts li { display: inline-flex; align-items: center; gap: 9px; }
 .facts li::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: var(--accent); }
+.facts a { color: var(--accent-ink); font-weight: 700; text-decoration: underline; text-underline-offset: 3px; }
 
 /* the framed hero visual: a soft gradient halo behind a rounded "orb" */
 .hero-visual { position: relative; display: grid; place-items: center; }
@@ -209,6 +210,7 @@ section { padding-block: clamp(56px, 10vw, 100px); }
 .tile p { color: var(--dim); }
 .price-grid { display: grid; grid-template-columns: 1fr; gap: 16px; }
 @media (min-width: 900px) { .price-grid { grid-template-columns: repeat(3, 1fr); } }
+@media (min-width: 900px) { .price-grid.two { grid-template-columns: repeat(2, 1fr); } }
 .price-grid .tile { grid-column: auto; }   /* .tile spans the page grid; here it is its own */
 .tile-soon { border: 1px dashed var(--line); background: transparent; box-shadow: none; }
 .price-note {
