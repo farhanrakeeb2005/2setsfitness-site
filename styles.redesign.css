@@ -218,6 +218,10 @@ section { padding-block: clamp(56px, 10vw, 100px); }
   letter-spacing: .06em; text-transform: uppercase;
 }
 .price-small { font-size: .92rem; line-height: 1.55; }
+.price-line { display: flex; align-items: baseline; flex-wrap: wrap; gap: 10px; margin: 2px 0 4px; }
+.price-line s { color: var(--muted, #9899a8); font-size: 1.7rem; font-weight: 800; letter-spacing: -.02em; text-decoration-thickness: 2px; }
+.price-line s .per { font-size: .5em; font-weight: 600; letter-spacing: 0; }
+.price-line b { color: var(--accent-ink); font-size: 1.05rem; font-weight: 800; }
 .price-list { list-style: none; margin: 4px 0 8px; padding: 0; display: grid; gap: 10px; }
 .price-list li { position: relative; padding-left: 26px; color: var(--dim); line-height: 1.5; }
 .price-list li::before {
