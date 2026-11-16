@@ -212,6 +212,25 @@ section { padding-block: clamp(56px, 10vw, 100px); }
 @media (min-width: 900px) { .price-grid { grid-template-columns: repeat(3, 1fr); } }
 @media (min-width: 900px) { .price-grid.two { grid-template-columns: repeat(2, 1fr); } }
 
+/* "put it on your home screen": the two sets of steps */
+.howto { display: grid; grid-template-columns: 1fr; gap: 16px; }
+@media (min-width: 900px) { .howto { grid-template-columns: repeat(2, 1fr); } }
+.howto .tile { grid-column: auto; }
+.steps { counter-reset: step; list-style: none; margin: 4px 0 0; padding: 0; display: grid; gap: 14px; }
+.steps li {
+  counter-increment: step; position: relative; padding-left: 42px;
+  color: var(--dim); font-size: 1rem; line-height: 1.6;
+}
+.steps li::before {
+  content: counter(step); position: absolute; left: 0; top: -1px;
+  width: 28px; height: 28px; border-radius: 50%;
+  display: grid; place-items: center;
+  background: var(--accent); color: var(--on-accent, #fff);
+  font-size: .9rem; font-weight: 800;
+}
+.steps b { color: var(--ink); }
+.howto-note { margin: 18px auto 0; max-width: 52ch; text-align: center; color: var(--dim); font-size: .98rem; line-height: 1.6; }
+
 /* "keep me posted": the updates list under the plans */
 .notify {
   margin-top: 16px; padding: clamp(18px, 3vw, 26px);
