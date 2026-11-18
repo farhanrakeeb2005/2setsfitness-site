@@ -39,15 +39,52 @@
 .picker .sp { flex: 1 1 auto; }
 .picker .warn { font-size: .74rem; opacity: .7; }
 
-/* the scene sits behind the hero */
-.hero { position: relative; isolation: isolate; }
-.scene { position: absolute; inset: 0; z-index: 0; overflow: hidden; pointer-events: none; }
+/* the scene sits behind the WHOLE page, the nav and the logo included */
+.scene { position: fixed; inset: 0; z-index: 0; overflow: hidden; pointer-events: none; }
 .scene svg, .scene img.photo {
   position: absolute; inset: 0; width: 100%; height: 100%;
   object-fit: cover; display: block;
 }
 .scene .scrim { position: absolute; inset: 0; }
-.hero .wrap { position: relative; z-index: 1; }
+.nav, main, .sheet { position: relative; z-index: 1; }
+
+/* the hero fills the screen, so the picture is the page and not a band */
+body[data-scene]:not([data-scene="none"]) .hero {
+  min-height: calc(100svh - 128px);
+  display: flex; align-items: center;
+}
+body[data-scene]:not([data-scene="none"]) .hero > .wrap { width: 100%; }
+
+/* over a photograph the nav drops its white blur and goes light */
+body[data-scene]:not([data-scene="none"]) .nav {
+  background: transparent; -webkit-backdrop-filter: none; backdrop-filter: none;
+  border-bottom-color: transparent;
+}
+body[data-scene]:not([data-scene="none"]) .nav .brand { color: #fff; }
+body[data-scene]:not([data-scene="none"]) .nav-links a:not(.btn) { color: #ded7d6; }
+body[data-scene]:not([data-scene="none"]) .nav-links a:not(.btn):hover { color: #fff; }
+
+/* out to the corners: a wider field and a bigger gutter than the live site */
+body[data-scene]:not([data-scene="none"]) .nav .wrap,
+body[data-scene]:not([data-scene="none"]) .hero .wrap {
+  max-width: 1460px;
+  padding-inline: max(22px, env(safe-area-inset-left, 0px)) max(22px, env(safe-area-inset-right, 0px));
+}
+@media (min-width: 1100px) {
+  body[data-scene]:not([data-scene="none"]) .nav .wrap,
+  body[data-scene]:not([data-scene="none"]) .hero .wrap {
+    padding-inline: clamp(32px, 4.4vw, 76px);
+  }
+  body[data-scene]:not([data-scene="none"]) .hero-inner {
+    grid-template-columns: 1.06fr 0.94fr;
+    gap: clamp(40px, 5vw, 76px);
+  }
+  body[data-scene]:not([data-scene="none"]) .hero h1 {
+    font-size: clamp(3.1rem, 5.4vw, 5.2rem); max-width: 15ch; line-height: 1.02;
+  }
+  body[data-scene]:not([data-scene="none"]) .hero .lede { max-width: 44rem; font-size: 1.22rem; }
+  body[data-scene]:not([data-scene="none"]) .facts { max-width: 46rem; row-gap: 10px; }
+}
 
 /* with a scene on, the hero copy flips to light so it stays readable */
 body[data-scene]:not([data-scene="none"]) .hero { padding-bottom: clamp(36px, 7vw, 72px); }
@@ -95,6 +132,10 @@ body[data-scene="none"] .scene { display: none; }
   <span class="warn" id="warn" hidden>Drawing — no photo at <code>img/bg/</code> for this one</span>
 </div>
 
+<!-- the backdrop for the whole page: it has to sit outside main so the nav
+     and the logo sit on it rather than in front of a white bar -->
+<div class="scene" id="scene" aria-hidden="true"></div>
+
 <header class="nav" id="nav">
   <div class="wrap">
     <a class="brand" href="index.html"><img src="img/icon.png" alt=""><span class="word">2Sets<b>Fitness</b></span></a>
@@ -111,7 +152,6 @@ body[data-scene="none"] .scene { display: none; }
 <main id="main">
   <!-- the live hero, unchanged, with the scene behind it -->
   <section class="hero">
-    <div class="scene" id="scene" aria-hidden="true"></div>
     <div class="wrap hero-inner">
       <div class="hero-copy">
         <h1>See <span class="red">every muscle</span> you train.</h1>
