@@ -1,0 +1,284 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>2SetsFitness · Hero background drafts</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="icon" href="img/favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<!-- the live site's own stylesheet: this page is the real hero, not a copy -->
+<link rel="stylesheet" href="styles.redesign.css?v=27">
+<style>
+/* ---------------------------------------------------------------------
+   Hero background drafts. Nothing here touches styles.redesign.css; it
+   all hangs off body[data-scene]. Delete this file before launch, or
+   keep it as the place new backgrounds get tried.
+
+   REAL PHOTOGRAPHS: drop a file at img/bg/<scene>.jpg (summit, edge,
+   desert, neon, deep) and it takes over from the drawing automatically.
+   Nothing else to change. 2400px wide, landscape, dark-ish.
+--------------------------------------------------------------------- */
+.picker {
+  position: sticky; top: 0; z-index: 60;
+  background: #14100f; color: #f4efee;
+  padding: 10px max(16px, env(safe-area-inset-left, 0px));
+  display: flex; gap: 8px; align-items: center; flex-wrap: wrap;
+  font-family: Outfit, system-ui, sans-serif;
+}
+.picker b { font-size: .72rem; letter-spacing: .14em; text-transform: uppercase; opacity: .62; }
+.picker button {
+  font: inherit; font-size: .8rem; font-weight: 600;
+  background: transparent; color: #cfc7c5; border: 1px solid #39302e;
+  border-radius: 999px; padding: 6px 13px; cursor: pointer;
+}
+.picker button:hover { color: #fff; border-color: #6a5a57; }
+.picker button[aria-pressed="true"] { background: #e31e24; border-color: #e31e24; color: #fff; }
+.picker .sp { flex: 1 1 auto; }
+.picker .warn { font-size: .74rem; opacity: .7; }
+
+/* the scene sits behind the hero */
+.hero { position: relative; isolation: isolate; }
+.scene { position: absolute; inset: 0; z-index: 0; overflow: hidden; pointer-events: none; }
+.scene svg, .scene img.photo {
+  position: absolute; inset: 0; width: 100%; height: 100%;
+  object-fit: cover; display: block;
+}
+.scene .scrim { position: absolute; inset: 0; }
+.hero .wrap { position: relative; z-index: 1; }
+
+/* with a scene on, the hero copy flips to light so it stays readable */
+body[data-scene]:not([data-scene="none"]) .hero { padding-bottom: clamp(36px, 7vw, 72px); }
+body[data-scene]:not([data-scene="none"]) .hero h1,
+body[data-scene]:not([data-scene="none"]) .hero .lede,
+body[data-scene]:not([data-scene="none"]) .hero .facts li,
+body[data-scene]:not([data-scene="none"]) .hero .cta-note { color: #fff; }
+body[data-scene]:not([data-scene="none"]) .hero .lede,
+body[data-scene]:not([data-scene="none"]) .hero .facts li,
+body[data-scene]:not([data-scene="none"]) .hero .cta-note { color: #e9e3e2; }
+body[data-scene]:not([data-scene="none"]) .hero h1 .red { color: #ff5257; }
+body[data-scene]:not([data-scene="none"]) .hero .btn.soon {
+  background: rgba(255,255,255,.1); border-color: rgba(255,255,255,.34); color: #fff;
+}
+body[data-scene]:not([data-scene="none"]) .hero .facts a { color: #ff8488; }
+body[data-scene="none"] .scene { display: none; }
+
+.sheet {
+  background: #fbf6f6; border-top: 1px solid #efe3e3;
+  padding: 34px max(16px, env(safe-area-inset-left, 0px)) 60px;
+  font-family: Outfit, system-ui, sans-serif;
+}
+.sheet .in { max-width: 62rem; margin: 0 auto; }
+.sheet h2 { font-size: 1.3rem; margin: 0 0 12px; }
+.sheet ul { margin: 0; padding-left: 20px; display: grid; gap: 9px; }
+.sheet li { font-size: .92rem; line-height: 1.6; color: #5a4b4d; }
+.sheet b { color: #1c1113; }
+.sheet code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: .85em;
+  background: #fff; border: 1px solid #efe3e3; border-radius: 5px; padding: 1px 5px;
+}
+@media (prefers-reduced-motion: reduce) { * { animation: none !important; } }
+</style>
+</head>
+<body data-scene="summit">
+
+<div class="picker">
+  <b>Hero background</b>
+  <button type="button" data-scene="summit" aria-pressed="true">Summit</button>
+  <button type="button" data-scene="edge" aria-pressed="false">Edge</button>
+  <button type="button" data-scene="desert" aria-pressed="false">Desert</button>
+  <button type="button" data-scene="neon" aria-pressed="false">Neon</button>
+  <button type="button" data-scene="deep" aria-pressed="false">Deep</button>
+  <button type="button" data-scene="none" aria-pressed="false">None (live site)</button>
+  <span class="sp"></span>
+  <span class="warn" id="warn">Drawn placeholders — drop a photo in <code>img/bg/</code> and it takes over</span>
+</div>
+
+<header class="nav" id="nav">
+  <div class="wrap">
+    <a class="brand" href="index.html"><img src="img/icon.png" alt=""><span class="word">2Sets<b>Fitness</b></span></a>
+    <nav class="nav-links" aria-label="Primary">
+      <a href="index.html#features">Features</a>
+      <a href="index.html#see">See it</a>
+      <a href="index.html#coach">AI coach</a>
+      <a href="index.html#pricing">Pricing</a>
+      <a class="btn primary sm" href="https://fitness-app-5c48a.web.app" rel="noopener">Try it free</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+  <!-- the live hero, unchanged, with the scene behind it -->
+  <section class="hero">
+    <div class="scene" id="scene" aria-hidden="true"></div>
+    <div class="wrap hero-inner">
+      <div class="hero-copy">
+        <h1>See <span class="red">every muscle</span> you train.</h1>
+        <p class="lede">Every exercise in x-ray: the main muscles in dark red, the helpers in light red. The bar loads up with your weight, the body looks like yours, and an AI coach knows your week. Free, and working in your browser today.</p>
+        <div class="cta-row">
+          <a class="btn primary big" href="https://fitness-app-5c48a.web.app" rel="noopener">Try it free in your browser</a>
+          <a class="btn soon" href="index.html#see">Watch it in 50 seconds</a>
+        </div>
+        <p class="cta-note">🔒 A free account saves your workouts. We never sell your data or show ads.</p>
+        <ul class="facts">
+          <li>Any browser, phone or computer</li>
+          <li>Android in early access — <a href="index.html#contact">ask for an invite</a></li>
+          <li>Free, no card</li>
+          <li>25 languages</li>
+        </ul>
+      </div>
+
+      <div class="hero-visual phones">
+        <figure class="phone back"><img src="img/app/home.webp" alt="The app's Home screen" width="390" height="844"></figure>
+        <figure class="phone front"><img src="img/app/muscles.webp" alt="A bench press in x-ray" width="390" height="844" fetchpriority="high"></figure>
+        <span class="orb-chip"><i class="main"></i>Main <i class="help"></i>Helpers</span>
+      </div>
+    </div>
+  </section>
+</main>
+
+<div class="sheet">
+  <div class="in">
+    <h2>About these five</h2>
+    <ul>
+      <li><b>They are drawings, not photographs.</b> There is no landscape photography anywhere in this repo or in the app — every image you own is an app screenshot or a 3D figure. So these are drawn in your own red, which costs nothing and recolours itself.</li>
+      <li><b>To make any of them a real photograph:</b> save a file as <code>img/bg/summit.jpg</code> (or <code>edge</code>, <code>desert</code>, <code>neon</code>, <code>deep</code>) and reload. The photo loads on top of the drawing automatically; if it is not there, the drawing stays. About 2400px wide, landscape, and on the dark side so the white copy holds up.</li>
+      <li><b>Where to get them free for commercial use:</b> Unsplash and Pexels both licence for commercial work with no attribution and no fee. Search "mountain ridge dawn", "sea cliff dusk", "sand dunes", "city skyline night", "underwater light". Pick frames with an empty left half, because the copy sits there on desktop.</li>
+      <li><b>The names are yours.</b> Summit, Edge, Desert, Neon and Deep are the scenery your rank journey already ships in <code>assets/3d/sky</code>, so the site and the app would be describing the same world.</li>
+      <li><b>The hero copy flips to white</b> whenever a scene is on, with a scrim behind it so the contrast holds whatever photograph you drop in. That is the only change to the hero; nothing in <code>styles.redesign.css</code> is touched.</li>
+    </ul>
+  </div>
+</div>
+
+<script>
+(function () {
+  // One field, 1200x600, cropped to fill. Each scene is a few layers.
+  var R = {
+    far:  '0,420 100,378 190,402 280,340 360,370 440,300 520,238 600,308 680,274 780,348 880,312 980,362 1080,330 1200,376 1200,600 0,600',
+    mid:  '0,470 120,430 230,460 320,402 410,438 510,368 600,418 690,390 800,450 910,414 1020,458 1120,432 1200,450 1200,600 0,600',
+    near: '0,524 140,490 260,518 350,472 450,504 560,440 650,484 740,456 850,510 960,480 1070,516 1170,494 1200,508 1200,600 0,600'
+  };
+  var open = '<svg viewBox="0 0 1200 600" preserveAspectRatio="xMidYMid slice" role="presentation">';
+
+  function sky(id, a, b) {
+    return '<defs><linearGradient id="' + id + '" x1="0" y1="0" x2="0" y2="1">'
+      + '<stop offset="0" stop-color="' + a + '"></stop>'
+      + '<stop offset="1" stop-color="' + b + '"></stop></linearGradient></defs>'
+      + '<rect width="1200" height="600" fill="url(#' + id + ')"></rect>';
+  }
+
+  var SCENES = {
+    // a high ridge at first light
+    summit: open + sky('s1', '#10151c', '#3a2730')
+      + '<circle cx="520" cy="268" r="92" fill="#e31e24" opacity="0.26"></circle>'
+      + '<circle cx="520" cy="268" r="42" fill="#e31e24" opacity="0.5"></circle>'
+      + '<polygon points="' + R.far + '" fill="#1b2029"></polygon>'
+      + '<polygon points="' + R.mid + '" fill="#141821"></polygon>'
+      + '<polygon points="' + R.near + '" fill="#0c0f15"></polygon>'
+      + '</svg>',
+
+    // a headland over the sea at dusk
+    edge: open + sky('s2', '#1a1420', '#53262a')
+      + '<circle cx="840" cy="372" r="58" fill="#e31e24" opacity="0.55"></circle>'
+      + '<rect y="400" width="1200" height="200" fill="#211a24"></rect>'
+      + '<rect y="400" width="1200" height="200" fill="#e31e24" opacity="0.08"></rect>'
+      + '<g fill="#0e0b12">'
+      + '<polygon points="0,318 150,300 260,348 330,336 410,392 470,420 470,600 0,600"></polygon>'
+      + '<polygon points="1200,360 1080,348 980,392 900,420 900,600 1200,600"></polygon>'
+      + '</g>'
+      + '<g stroke="#f0e7e6" stroke-width="1.2" opacity="0.14">'
+      + '<line x1="500" y1="446" x2="880" y2="446"></line>'
+      + '<line x1="540" y1="472" x2="920" y2="472"></line>'
+      + '<line x1="500" y1="500" x2="900" y2="500"></line>'
+      + '</g>'
+      + '</svg>',
+
+    // dunes, low sun, warm
+    desert: open + sky('s3', '#2a1a16', '#7a3a24')
+      + '<circle cx="380" cy="300" r="66" fill="#ffb27a" opacity="0.55"></circle>'
+      + '<path d="M0,432 Q220,382 440,432 T880,424 T1200,444 L1200,600 L0,600 Z" fill="#53291c"></path>'
+      + '<path d="M0,486 Q260,436 520,490 T1000,478 T1200,498 L1200,600 L0,600 Z" fill="#3a1b14"></path>'
+      + '<path d="M0,540 Q300,500 600,544 T1200,540 L1200,600 L0,600 Z" fill="#21100c"></path>'
+      + '</svg>',
+
+    // a city at night, red in the glow
+    neon: open + sky('s4', '#080a10', '#241018')
+      + '<circle cx="640" cy="440" r="240" fill="#e31e24" opacity="0.14"></circle>'
+      + '<g fill="#0d1017" id="sky"></g>'
+      + '<rect y="536" width="1200" height="64" fill="#06070b"></rect>'
+      + '</svg>',
+
+    // under water, light coming down
+    deep: open + sky('s5', '#06131c', '#02262e')
+      + '<g fill="#5fd4d0" opacity="0.10">'
+      + '<polygon points="180,0 300,0 150,600 20,600"></polygon>'
+      + '<polygon points="470,0 560,0 440,600 330,600"></polygon>'
+      + '<polygon points="760,0 900,0 820,600 680,600"></polygon>'
+      + '<polygon points="1020,0 1100,0 1060,600 960,600"></polygon>'
+      + '</g>'
+      + '<circle cx="640" cy="120" r="180" fill="#9beae6" opacity="0.07"></circle>'
+      + '<path d="M0,520 Q300,470 620,520 T1200,510 L1200,600 L0,600 Z" fill="#021018"></path>'
+      + '</svg>',
+
+    none: ''
+  };
+
+  // the skyline, built rather than typed out
+  (function () {
+    var bars = '', x = 0, seed = 7;
+    function rnd() { seed = (seed * 1103515245 + 12345) % 2147483648; return seed / 2147483648; }
+    while (x < 1200) {
+      var w = 26 + Math.round(rnd() * 46);
+      var h = 90 + Math.round(rnd() * 210);
+      bars += '<rect x="' + x + '" y="' + (546 - h) + '" width="' + (w - 6) + '" height="' + h + '"></rect>';
+      x += w;
+    }
+    SCENES.neon = SCENES.neon.replace('<g fill="#0d1017" id="sky"></g>', '<g fill="#0d1017">' + bars + '</g>');
+  })();
+
+  var SCRIM = {
+    summit: 'linear-gradient(180deg, rgba(8,10,14,.62) 0%, rgba(8,10,14,.34) 52%, rgba(8,10,14,.66) 100%)',
+    edge:   'linear-gradient(180deg, rgba(12,9,16,.60) 0%, rgba(12,9,16,.30) 50%, rgba(12,9,16,.70) 100%)',
+    desert: 'linear-gradient(180deg, rgba(26,12,8,.58) 0%, rgba(26,12,8,.30) 50%, rgba(26,12,8,.68) 100%)',
+    neon:   'linear-gradient(180deg, rgba(4,5,9,.62) 0%, rgba(4,5,9,.34) 50%, rgba(4,5,9,.74) 100%)',
+    deep:   'linear-gradient(180deg, rgba(2,12,18,.60) 0%, rgba(2,12,18,.32) 50%, rgba(2,12,18,.72) 100%)'
+  };
+
+  var scene = document.getElementById('scene');
+  var warn = document.getElementById('warn');
+
+  function paint(key) {
+    document.body.setAttribute('data-scene', key);
+    if (key === 'none') { scene.innerHTML = ''; warn.hidden = true; return; }
+    warn.hidden = false;
+    scene.innerHTML = SCENES[key]
+      + '<img class="photo" alt="" hidden>'
+      + '<span class="scrim" style="background:' + SCRIM[key] + '"></span>';
+    // a real photograph, if one has been dropped in, takes over from the drawing
+    var img = scene.querySelector('img.photo');
+    img.addEventListener('load', function () {
+      img.hidden = false;
+      var svg = scene.querySelector('svg');
+      if (svg) svg.style.display = 'none';
+      warn.hidden = true;
+    });
+    img.addEventListener('error', function () { img.remove(); });
+    img.src = 'img/bg/' + key + '.jpg';
+  }
+
+  Array.prototype.forEach.call(document.querySelectorAll('.picker button'), function (b) {
+    b.addEventListener('click', function () {
+      Array.prototype.forEach.call(document.querySelectorAll('.picker button'), function (o) {
+        o.setAttribute('aria-pressed', String(o === b));
+      });
+      paint(b.getAttribute('data-scene'));
+    });
+  });
+
+  paint('summit');
+})();
+</script>
+</body>
+</html>
