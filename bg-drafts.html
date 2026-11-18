@@ -17,9 +17,9 @@
    all hangs off body[data-scene]. Delete this file before launch, or
    keep it as the place new backgrounds get tried.
 
-   REAL PHOTOGRAPHS: drop a file at img/bg/<scene>.jpg (summit, edge,
-   desert, neon, deep) and it takes over from the drawing automatically.
-   Nothing else to change. 2400px wide, landscape, dark-ish.
+   The photographs live at img/bg/<scene>.jpg (summit, edge, desert, neon)
+   and load over the drawn version of the same scene, which stays as the
+   fallback. Swapping a photograph out is just replacing that one file.
 --------------------------------------------------------------------- */
 .picker {
   position: sticky; top: 0; z-index: 60;
@@ -90,10 +90,9 @@ body[data-scene="none"] .scene { display: none; }
   <button type="button" data-scene="edge" aria-pressed="false">Edge</button>
   <button type="button" data-scene="desert" aria-pressed="false">Desert</button>
   <button type="button" data-scene="neon" aria-pressed="false">Neon</button>
-  <button type="button" data-scene="deep" aria-pressed="false">Deep</button>
   <button type="button" data-scene="none" aria-pressed="false">None (live site)</button>
   <span class="sp"></span>
-  <span class="warn" id="warn">Drawn placeholders — drop a photo in <code>img/bg/</code> and it takes over</span>
+  <span class="warn" id="warn" hidden>Drawing — no photo at <code>img/bg/</code> for this one</span>
 </div>
 
 <header class="nav" id="nav">
@@ -141,13 +140,17 @@ body[data-scene="none"] .scene { display: none; }
 
 <div class="sheet">
   <div class="in">
-    <h2>About these five</h2>
+    <h2>About these four</h2>
     <ul>
-      <li><b>They are drawings, not photographs.</b> There is no landscape photography anywhere in this repo or in the app — every image you own is an app screenshot or a 3D figure. So these are drawn in your own red, which costs nothing and recolours itself.</li>
-      <li><b>To make any of them a real photograph:</b> save a file as <code>img/bg/summit.jpg</code> (or <code>edge</code>, <code>desert</code>, <code>neon</code>, <code>deep</code>) and reload. The photo loads on top of the drawing automatically; if it is not there, the drawing stays. About 2400px wide, landscape, and on the dark side so the white copy holds up.</li>
-      <li><b>Where to get them free for commercial use:</b> Unsplash and Pexels both licence for commercial work with no attribution and no fee. Search "mountain ridge dawn", "sea cliff dusk", "sand dunes", "city skyline night", "underwater light". Pick frames with an empty left half, because the copy sits there on desktop.</li>
-      <li><b>The names are yours.</b> Summit, Edge, Desert, Neon and Deep are the scenery your rank journey already ships in <code>assets/3d/sky</code>, so the site and the app would be describing the same world.</li>
-      <li><b>The hero copy flips to white</b> whenever a scene is on, with a scrim behind it so the contrast holds whatever photograph you drop in. That is the only change to the hero; nothing in <code>styles.redesign.css</code> is touched.</li>
+      <li><b>These are real photographs</b>, in <code>img/bg/</code>, each about 2000px wide and between 270KB and 550KB. They are Unsplash, which licences free for commercial use with no attribution and no fee. Source pages, in case you want to credit anyway:
+        <a href="https://unsplash.com/photos/mountain-peaks-at-dawn-with-clouds-below-tBmbZiNUtKU">summit</a>,
+        <a href="https://unsplash.com/photos/coastal-cliffs-and-ocean-waves-at-dusk-QHr4xTeV0JE">edge</a>,
+        <a href="https://unsplash.com/photos/rippled-sand-dunes-illuminated-by-warm-sunset-light-DS6lRtglcOM">desert</a>,
+        <a href="https://unsplash.com/photos/dark-stormy-clouds-over-a-city-skyline-at-night-uLv-2ZZM4W8">neon</a>.</li>
+      <li><b>Each one has its own scrim</b>, angled from the left where the headline sits. The coast shot is pale and takes a heavy one; the dunes are nearly black already and take almost none. One scrim for all four would have broken the text on at least two.</li>
+      <li><b>The names are yours.</b> Summit, Edge, Desert and Neon are scenery your rank journey already ships in <code>assets/3d/sky</code>, so the site and the app describe the same world.</li>
+      <li><b>The hero copy flips to white</b> when a scene is on, and the drawn version of each scene still sits underneath as a fallback if an image ever fails to load.</li>
+      <li><b>Nothing in <code>index.html</code> or <code>styles.redesign.css</code> changed.</b> Pick one and I will move it onto the real hero.</li>
     </ul>
   </div>
 </div>
@@ -210,18 +213,6 @@ body[data-scene="none"] .scene { display: none; }
       + '<rect y="536" width="1200" height="64" fill="#06070b"></rect>'
       + '</svg>',
 
-    // under water, light coming down
-    deep: open + sky('s5', '#06131c', '#02262e')
-      + '<g fill="#5fd4d0" opacity="0.10">'
-      + '<polygon points="180,0 300,0 150,600 20,600"></polygon>'
-      + '<polygon points="470,0 560,0 440,600 330,600"></polygon>'
-      + '<polygon points="760,0 900,0 820,600 680,600"></polygon>'
-      + '<polygon points="1020,0 1100,0 1060,600 960,600"></polygon>'
-      + '</g>'
-      + '<circle cx="640" cy="120" r="180" fill="#9beae6" opacity="0.07"></circle>'
-      + '<path d="M0,520 Q300,470 620,520 T1200,510 L1200,600 L0,600 Z" fill="#021018"></path>'
-      + '</svg>',
-
     none: ''
   };
 
@@ -238,12 +229,13 @@ body[data-scene="none"] .scene { display: none; }
     SCENES.neon = SCENES.neon.replace('<g fill="#0d1017" id="sky"></g>', '<g fill="#0d1017">' + bars + '</g>');
   })();
 
+  // one scrim per photograph, not one for all of them: the coast shot is pale
+  // and needs far more than the dunes, which are nearly black already
   var SCRIM = {
-    summit: 'linear-gradient(180deg, rgba(8,10,14,.62) 0%, rgba(8,10,14,.34) 52%, rgba(8,10,14,.66) 100%)',
-    edge:   'linear-gradient(180deg, rgba(12,9,16,.60) 0%, rgba(12,9,16,.30) 50%, rgba(12,9,16,.70) 100%)',
-    desert: 'linear-gradient(180deg, rgba(26,12,8,.58) 0%, rgba(26,12,8,.30) 50%, rgba(26,12,8,.68) 100%)',
-    neon:   'linear-gradient(180deg, rgba(4,5,9,.62) 0%, rgba(4,5,9,.34) 50%, rgba(4,5,9,.74) 100%)',
-    deep:   'linear-gradient(180deg, rgba(2,12,18,.60) 0%, rgba(2,12,18,.32) 50%, rgba(2,12,18,.72) 100%)'
+    summit: 'linear-gradient(100deg, rgba(8,11,16,.80) 0%, rgba(8,11,16,.52) 46%, rgba(8,11,16,.30) 100%)',
+    edge:   'linear-gradient(100deg, rgba(10,14,20,.86) 0%, rgba(10,14,20,.66) 44%, rgba(10,14,20,.42) 100%)',
+    desert: 'linear-gradient(100deg, rgba(14,7,4,.72) 0%, rgba(14,7,4,.46) 48%, rgba(14,7,4,.30) 100%)',
+    neon:   'linear-gradient(100deg, rgba(4,5,9,.72) 0%, rgba(4,5,9,.46) 48%, rgba(4,5,9,.34) 100%)'
   };
 
   var scene = document.getElementById('scene');
