@@ -1,0 +1,294 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>2SetsFitness · See every muscle you train</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="icon" href="img/favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wdth,wght@0,62..125,400..900;1,62..125,400..900&family=Outfit:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+/* -------------------------------------------------------------------------
+   The redesigned hero. Self-contained: it deliberately does not load
+   styles.redesign.css, because this is a different design language.
+   The figure is img/x/hero-xray.webp, already in this repo.
+   ------------------------------------------------------------------------- */
+:root {
+  --ink: #FFFFFF;
+  --dim: #C9CDD4;
+  --mute: #8A9099;
+  --red: #E31E24;
+  --red-hot: #FF2A31;
+  --line: rgba(255,255,255,0.14);
+  --bg: #0A0A0C;
+  --display: 'Archivo', system-ui, sans-serif;
+  --body: 'Outfit', system-ui, sans-serif;
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; }
+body {
+  background: var(--bg); color: var(--ink);
+  font-family: var(--body);
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+a { color: inherit; }
+:focus-visible { outline: 3px solid var(--red-hot); outline-offset: 3px; border-radius: 6px; }
+.skip {
+  position: absolute; left: -9999px; top: 0; background: var(--red); color: #fff;
+  padding: 10px 16px; z-index: 50; font-weight: 700;
+}
+.skip:focus { left: 12px; top: 12px; }
+
+.wrap {
+  width: 100%; max-width: 1480px; margin-inline: auto;
+  padding-inline: max(20px, env(safe-area-inset-left, 0px)) max(20px, env(safe-area-inset-right, 0px));
+}
+@media (min-width: 1100px) { .wrap { padding-inline: clamp(28px, 4vw, 64px); } }
+
+/* ---------- the room ---------- */
+.hero { position: relative; isolation: isolate; overflow: hidden; min-height: 100svh; display: flex; flex-direction: column; }
+.room { position: absolute; inset: 0; z-index: 0; pointer-events: none; }
+/* red strip lights down the back wall */
+.room .strip {
+  position: absolute; top: 0; width: 3px; height: 62%;
+  background: linear-gradient(180deg, rgba(227,30,36,0) 0%, var(--red-hot) 22%, rgba(227,30,36,0) 100%);
+  filter: blur(1px); opacity: .55;
+}
+.room .glow {
+  position: absolute; top: -4%; width: 190px; height: 70%;
+  background: radial-gradient(ellipse at 50% 30%, rgba(227,30,36,0.30), rgba(227,30,36,0) 70%);
+  filter: blur(26px);
+}
+.room .floor {
+  position: absolute; left: 0; right: 0; bottom: 0; height: 34%;
+  background: linear-gradient(180deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.045) 60%, rgba(255,255,255,0.02) 100%);
+}
+.room .vig {
+  position: absolute; inset: 0;
+  background: radial-gradient(ellipse 85% 70% at 62% 45%, rgba(0,0,0,0) 0%, rgba(0,0,0,0.55) 70%, rgba(6,6,8,0.92) 100%);
+}
+
+/* ---------- nav ---------- */
+.nav { position: relative; z-index: 3; }
+.nav .wrap { display: flex; align-items: center; gap: clamp(18px, 3vw, 40px); padding-block: 22px; }
+.brand { display: flex; align-items: center; gap: 14px; text-decoration: none; flex: none; }
+.brand .mk {
+  font-family: var(--display); font-style: italic; font-weight: 900; font-size: 34px;
+  color: var(--red); letter-spacing: -2px; line-height: 1;
+}
+.brand .wd { display: flex; flex-direction: column; gap: 3px; }
+.brand .wd b {
+  font-family: var(--display); font-weight: 800; font-size: 23px; letter-spacing: -0.6px; line-height: 1;
+}
+.brand .wd b i { font-style: normal; color: var(--red); font-weight: 700; }
+.brand .wd small {
+  font-size: 8.5px; font-weight: 600; letter-spacing: 3.4px; color: var(--mute); text-transform: uppercase;
+}
+.nav .bar { width: 1px; height: 40px; background: var(--line); flex: none; }
+.links { display: flex; align-items: center; gap: clamp(14px, 2.2vw, 34px); flex: 1 1 auto; }
+.links a {
+  font-size: 12.5px; font-weight: 600; letter-spacing: 1.3px; text-transform: uppercase;
+  color: var(--dim); text-decoration: none; white-space: nowrap;
+}
+.links a:hover { color: var(--ink); }
+@media (max-width: 1040px) { .links { display: none; } }
+
+.cta {
+  display: inline-flex; align-items: center; justify-content: center; gap: 11px;
+  background: var(--red); color: #fff; text-decoration: none; border-radius: 999px;
+  font-weight: 800; letter-spacing: 1.6px; text-transform: uppercase; white-space: nowrap;
+  box-shadow: 0 10px 34px rgba(227,30,36,0.38);
+}
+.cta:hover { background: var(--red-hot); }
+.cta.sm { font-size: 12.5px; padding: 14px 24px; flex: none; }
+.cta.lg { font-size: 16px; padding: 21px 38px; }
+.cta svg { flex: none; }
+
+/* ---------- the split ---------- */
+.stage { position: relative; z-index: 2; flex: 1 1 auto; display: flex; align-items: center; }
+.stage .wrap { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.04fr); gap: 20px; align-items: center; padding-block: 10px 48px; }
+@media (max-width: 1040px) {
+  .stage .wrap { grid-template-columns: minmax(0, 1fr); gap: 4px; padding-block: 6px 40px; }
+}
+
+h1 {
+  font-family: var(--display); font-style: italic; font-weight: 900;
+  font-size: clamp(3.1rem, 8.6vw, 7.2rem); line-height: 0.88; letter-spacing: -0.035em;
+  margin: 0 0 26px; text-transform: uppercase; font-stretch: 86%;
+}
+h1 .r { color: var(--red); display: block; }
+h1 .dot { color: var(--red); }
+.rule { width: 112px; height: 5px; background: var(--red); border-radius: 3px; margin-bottom: 22px; }
+.sub {
+  font-family: var(--display); font-style: italic; font-weight: 500;
+  font-size: clamp(1rem, 1.5vw, 1.32rem); line-height: 1.38; letter-spacing: 0.055em;
+  text-transform: uppercase; color: var(--dim); margin: 0 0 32px; max-width: 22ch;
+}
+.sub b { color: var(--ink); font-weight: 800; }
+
+/* feature strip */
+.feats { display: flex; align-items: stretch; margin: 0 0 34px; flex-wrap: wrap; }
+.feat {
+  display: flex; flex-direction: column; align-items: center; gap: 9px;
+  padding: 2px clamp(10px, 1.5vw, 20px); border-left: 1px solid var(--line);
+  flex: 1 1 110px; min-width: 96px;
+}
+.feat:first-child { border-left: 0; padding-left: 0; }
+.feat svg { color: var(--red); flex: none; }
+.feat span {
+  font-size: 9px; font-weight: 700; letter-spacing: 1.25px; text-transform: uppercase;
+  color: var(--dim); text-align: center; line-height: 1.42;
+}
+@media (max-width: 560px) {
+  .feats { gap: 16px 0; }
+  .feat { flex: 1 1 33%; border-left: 0; }
+}
+
+/* ---------- figure + phone ---------- */
+.shot { position: relative; min-width: 0; }
+@media (max-width: 1040px) { .shot { margin-top: 10px; } }
+.figure {
+  display: block; width: 100%; max-width: 760px; margin-inline: auto; height: auto;
+  /* the render has its own dark ground: melt its edges into the page */
+  -webkit-mask-image: radial-gradient(ellipse 72% 72% at 50% 48%, #000 52%, rgba(0,0,0,0) 86%);
+  mask-image: radial-gradient(ellipse 72% 72% at 50% 48%, #000 52%, rgba(0,0,0,0) 86%);
+}
+.arrows { position: absolute; inset: 0; pointer-events: none; }
+@media (max-width: 1040px) { .arrows { display: none; } }
+
+.phone {
+  position: absolute; right: -2%; top: 50%; transform: translateY(-50%);
+  width: min(31%, 250px); aspect-ratio: 390 / 844;
+  border-radius: 30px; padding: 7px; background: #15171B;
+  box-shadow: 0 30px 70px rgba(0,0,0,0.7), 0 0 0 1px rgba(255,255,255,0.1), 0 0 44px rgba(227,30,36,0.22);
+}
+.phone img { width: 100%; height: 100%; object-fit: cover; border-radius: 24px; display: block; }
+@media (max-width: 1040px) {
+  .phone { position: static; transform: none; width: min(58%, 230px); margin: -8% auto 0; }
+}
+
+/* ---------- the strip under the fold ---------- */
+.note { position: relative; z-index: 3; border-top: 1px solid var(--line); background: #08080A; }
+.note .wrap { padding-block: 30px 46px; display: grid; gap: 10px; }
+.note h2 { font-family: var(--display); font-weight: 700; font-size: 15px; margin: 0; letter-spacing: -0.2px; }
+.note p { margin: 0; font-size: 13px; line-height: 1.65; color: var(--mute); max-width: 76ch; }
+.note b { color: var(--dim); }
+.note a { color: #FF7175; }
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="hero" id="main">
+  <div class="room" aria-hidden="true">
+    <span class="glow" style="left:6%"></span>
+    <span class="strip" style="left:9%"></span>
+    <span class="glow" style="left:26%"></span>
+    <span class="strip" style="left:28%; height:48%"></span>
+    <span class="glow" style="right:14%"></span>
+    <span class="strip" style="right:16%; height:54%"></span>
+    <span class="strip" style="right:3%; height:40%; opacity:.38"></span>
+    <span class="floor"></span>
+    <span class="vig"></span>
+  </div>
+
+  <nav class="nav" aria-label="Primary">
+    <div class="wrap">
+      <a class="brand" href="index.html">
+        <span class="mk" aria-hidden="true">2S</span>
+        <span class="wd">
+          <b>2Sets<i>Fitness</i></b>
+          <small>More than a gym app</small>
+        </span>
+      </a>
+      <span class="bar" aria-hidden="true"></span>
+      <div class="links">
+        <a href="index.html#features">Features</a>
+        <a href="index.html#see">Exercises</a>
+        <a href="index.html#coach">Training plans</a>
+        <a href="index.html#friends">Community</a>
+        <a href="index.html#faq">Languages</a>
+      </div>
+      <a class="cta sm" href="https://fitness-app-5c48a.web.app" rel="noopener">
+        Try it free
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h13M13 6l6 6-6 6"></path></svg>
+      </a>
+    </div>
+  </nav>
+
+  <div class="stage">
+    <div class="wrap">
+
+      <div class="copy">
+        <h1>See every<span class="r">muscle</span>you train<span class="dot">.</span></h1>
+        <div class="rule" aria-hidden="true"></div>
+        <p class="sub"><b>256</b> exercises. Real photos. X-ray muscle maps.</p>
+
+        <div class="feats">
+          <div class="feat">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l2 5.2 5.2 2-5.2 2L12 17.4 10 12.2 4.8 10.2 10 8.2z"></path><path d="M18.5 15.5l.9 2.1 2.1.9-2.1.9-.9 2.1-.9-2.1-2.1-.9 2.1-.9z"></path></svg>
+            <span>AI coach that<br>knows your week</span>
+          </div>
+          <div class="feat">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 9v6M6 7v10M18 7v10M21 9v6M6 12h12"></path></svg>
+            <span>Gym + sport<br>in one plan</span>
+          </div>
+          <div class="feat">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 21h8M12 17v4M7 4h10v5a5 5 0 0 1-10 0z"></path><path d="M17 5h3v2a3 3 0 0 1-3 3M7 5H4v2a3 3 0 0 0 3 3"></path></svg>
+            <span>Friends, ranks<br>&amp; challenges</span>
+          </div>
+          <div class="feat">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><path d="M3 12h18M12 3c2.5 2.6 2.5 15.4 0 18M12 3c-2.5 2.6-2.5 15.4 0 18"></path></svg>
+            <span>25<br>languages</span>
+          </div>
+          <div class="feat">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l7.5 3v6c0 4.3-3.2 7.8-7.5 9-4.3-1.2-7.5-4.7-7.5-9V6z"></path><path d="M9.2 12l2 2 3.6-3.8"></path></svg>
+            <span>Free<br>no ads</span>
+          </div>
+        </div>
+
+        <a class="cta lg" href="https://fitness-app-5c48a.web.app" rel="noopener">
+          Try it free
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h13M13 6l6 6-6 6"></path></svg>
+        </a>
+      </div>
+
+      <div class="shot">
+        <img class="figure" src="img/x/hero-xray.webp" width="880" height="880"
+          alt="A barbell squat shown in x-ray, with the quads, glutes and core lit up in red" fetchpriority="high">
+
+        <svg class="arrows" viewBox="0 0 700 700" fill="none" aria-hidden="true" preserveAspectRatio="none">
+          <defs>
+            <marker id="ah" markerWidth="7" markerHeight="7" refX="5.4" refY="3.5" orient="auto">
+              <path d="M0 0.6 L6.4 3.5 L0 6.4 Z" fill="#FF2A31"></path>
+            </marker>
+          </defs>
+          <path d="M392 258 C 470 240, 520 236, 566 244" stroke="#FF2A31" stroke-width="2.4" stroke-linecap="round" marker-end="url(#ah)" opacity="0.95"></path>
+          <path d="M404 404 C 480 408, 524 402, 566 384" stroke="#FF2A31" stroke-width="2.4" stroke-linecap="round" marker-end="url(#ah)" opacity="0.95"></path>
+        </svg>
+
+        <div class="phone">
+          <img src="img/app/muscles.webp" width="390" height="844"
+            alt="The app showing a lift in x-ray, its main muscles in dark red and the helpers in light red">
+        </div>
+      </div>
+
+    </div>
+  </div>
+</header>
+
+<section class="note">
+  <div class="wrap">
+    <h2>This is the hero only</h2>
+    <p>Built from the design you sent, using <b>img/x/hero-xray.webp</b> — a render that was already in this repo. The gym, its strip lights and the floor are drawn in CSS, so there is no photograph to licence and nothing extra to load. The phone shows the real app screenshot you already ship.</p>
+    <p>The live page is still <a href="index.html">index.html</a>, untouched, with all nine of its sections. Say the word and I will put this hero on top of it and keep everything below — features, see it, the coach, friends, pricing, install, FAQ and contact.</p>
+    <p><b>One change I would push back on:</b> the headline in your image reads "SEE EVERY MUSCLE YOU TRAIN." and your live page already says exactly that, so nothing is lost. But "MORE THAN A GYM APP" under the logo is a new claim — it is good, and it should be the same line everywhere, including the Play listing.</p>
+  </div>
+</section>
+
+</body>
+</html>
