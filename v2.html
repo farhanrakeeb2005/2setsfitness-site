@@ -76,10 +76,7 @@ a { color: inherit; }
 .nav { position: relative; z-index: 3; }
 .nav .wrap { display: flex; align-items: center; gap: clamp(18px, 3vw, 40px); padding-block: 22px; }
 .brand { display: flex; align-items: center; gap: 14px; text-decoration: none; flex: none; }
-.brand .mk {
-  font-family: var(--display); font-style: italic; font-weight: 900; font-size: 34px;
-  color: var(--red); letter-spacing: -2px; line-height: 1;
-}
+.brand .mk { height: 42px; width: auto; display: block; }
 .brand .wd { display: flex; flex-direction: column; gap: 3px; }
 .brand .wd b {
   font-family: var(--display); font-weight: 800; font-size: 23px; letter-spacing: -0.6px; line-height: 1;
@@ -199,7 +196,7 @@ h1 .dot { color: var(--red); }
   <nav class="nav" aria-label="Primary">
     <div class="wrap">
       <a class="brand" href="index.html">
-        <span class="mk" aria-hidden="true">2S</span>
+        <img class="mk" src="img/logo-2s.png" alt="" width="433" height="230">
         <span class="wd">
           <b>2Sets<i>Fitness</i></b>
           <small>More than a gym app</small>
