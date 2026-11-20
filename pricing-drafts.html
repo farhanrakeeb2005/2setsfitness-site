@@ -1,0 +1,317 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>2SetsFitness · Pricing drafts</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="icon" href="img/favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<!-- the live site's own stylesheet: the nav, the type and the buttons here
+     are the real ones, so what this looks like is what the site looks like -->
+<link rel="stylesheet" href="styles.redesign.css?v=27">
+<style>
+/* ---------------------------------------------------------------------
+   Pricing section drafts. Nothing here touches styles.redesign.css: the
+   dark mode is the same tokens with different values, set on <body>, so
+   every shared component (nav, buttons, section rhythm) follows along
+   without a single override.
+
+   The prices are the recommended ones, not the settled ones. They live
+   in one place -- the data-m / data-y attributes on each plan -- so a
+   change is three numbers, not a rewrite.
+--------------------------------------------------------------------- */
+
+/* the draft picker, not part of the design */
+.picker {
+  position: sticky; top: 0; z-index: 60;
+  background: #14100f; color: #f4efee;
+  padding: 10px max(16px, env(safe-area-inset-left, 0px));
+  display: flex; gap: 8px; align-items: center; flex-wrap: wrap;
+  font-family: Outfit, system-ui, sans-serif;
+}
+.picker b { font-size: .72rem; letter-spacing: .14em; text-transform: uppercase; opacity: .62; }
+.picker button {
+  font: inherit; font-size: .8rem; font-weight: 600;
+  background: transparent; color: #cfc7c5; border: 1px solid #39302e;
+  border-radius: 999px; padding: 6px 13px; cursor: pointer;
+}
+.picker button:hover { color: #fff; border-color: #6a5a57; }
+.picker button[aria-pressed="true"] { background: #e31e24; border-color: #e31e24; color: #fff; }
+.picker .sp { flex: 1 1 auto; }
+.picker .note { font-size: .74rem; opacity: .7; }
+
+/* ---------- dark: the same tokens, different values ---------- */
+body[data-mode="dark"] {
+  --bg:        #0a0c10;
+  --bg-soft:   #0e1117;
+  --surface:   #13161e;
+  --surface-2: #181c25;
+  --line:      #242a36;
+  --tile:      #171b24;
+  --ink:       #f3f5f9;
+  --dim:       #99a2b2;
+  --accent:     #e31e24;
+  --accent-ink: #ff7a7d;          /* red is not readable as text on near-black */
+  --on-accent:  #ffffff;
+  --shadow: 0 30px 60px rgba(0, 0, 0, .55);
+  --soft:   0 1px 0 rgba(255,255,255,.04), 0 10px 28px rgba(0, 0, 0, .4);
+  color-scheme: dark;
+}
+body[data-mode="dark"] .nav { background: color-mix(in srgb, var(--bg) 80%, transparent); }
+
+/* ============================================================
+   PRICING
+   ============================================================ */
+.pricing .sec-head { max-width: 52rem; }
+.pricing .sec-head h2 { letter-spacing: -0.03em; line-height: 1.04; }
+
+/* ---------- the billing switch ---------- */
+.switch {
+  display: inline-flex; align-items: center; gap: 2px;
+  margin: 26px auto 0; padding: 5px;
+  background: var(--surface-2); border: 1px solid var(--line);
+  border-radius: 999px;
+}
+.switch button {
+  appearance: none; border: 0; cursor: pointer;
+  font: 600 .97rem var(--font); color: var(--dim);
+  padding: 10px 20px; border-radius: 999px; background: transparent;
+  display: inline-flex; align-items: baseline; gap: 7px;
+  transition: background .2s ease, color .2s ease;
+}
+.switch button:hover { color: var(--ink); }
+.switch button[aria-pressed="true"] {
+  background: var(--surface); color: var(--ink);
+  box-shadow: 0 1px 2px rgba(0,0,0,.18), 0 6px 16px rgba(0,0,0,.12);
+}
+.switch .save { font-size: .82rem; font-weight: 700; color: var(--accent-ink); }
+
+/* ---------- the three plans ---------- */
+/* the cards stretch to the tallest, so the three buttons sit on one line
+   (`.go { margin-top: auto }` does the pushing) rather than wherever each
+   list happens to end */
+.plans {
+  display: grid; gap: 18px; align-items: stretch;
+  grid-template-columns: repeat(3, 1fr);
+  margin-top: clamp(28px, 5vw, 44px);
+}
+@media (max-width: 960px) { .plans { grid-template-columns: 1fr; max-width: 30rem; margin-inline: auto; } }
+
+.plan {
+  position: relative;
+  display: flex; flex-direction: column; gap: 18px;
+  padding: 30px 26px 26px;
+  background: var(--surface); border: 1px solid var(--line);
+  border-radius: var(--radius);
+  box-shadow: var(--soft);
+  transition: border-color .25s ease, transform .25s ease, box-shadow .25s ease;
+}
+.plan:hover { transform: translateY(-2px); }
+
+/* the one being recommended: a ring in the brand red and a lift */
+.plan.lead {
+  border-color: color-mix(in srgb, var(--accent) 55%, transparent);
+  box-shadow: 0 0 0 1px color-mix(in srgb, var(--accent) 30%, transparent), 0 24px 60px rgba(227,30,36,.14);
+}
+body[data-mode="dark"] .plan.lead {
+  background: linear-gradient(180deg, color-mix(in srgb, var(--accent) 9%, var(--surface)), var(--surface) 60%);
+}
+/* the one-off, in the warmer gold the "launch price" chip uses */
+.plan.once { --gold: #c98a16; }
+body[data-mode="dark"] .plan.once { --gold: #f0b429; }
+.plan.once.lead {
+  border-color: color-mix(in srgb, var(--gold) 55%, transparent);
+  box-shadow: 0 0 0 1px color-mix(in srgb, var(--gold) 28%, transparent), 0 24px 60px rgba(201,138,22,.16);
+  background: var(--surface);
+}
+body[data-mode="dark"] .plan.once.lead {
+  background: linear-gradient(180deg, color-mix(in srgb, var(--gold) 10%, var(--surface)), var(--surface) 60%);
+}
+/* a plan the switch is not pointing at steps back rather than disappears */
+.plan.rests { opacity: .76; }
+
+.plan-top { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+.plan-name {
+  font-weight: 800; font-size: .82rem; letter-spacing: .15em; text-transform: uppercase;
+  color: var(--dim);
+}
+.chip {
+  font-weight: 700; font-size: .76rem; line-height: 1;
+  padding: 6px 11px; border-radius: 999px; white-space: nowrap;
+}
+.chip.rec  { color: var(--accent-ink); background: color-mix(in srgb, var(--accent) 14%, transparent); border: 1px solid color-mix(in srgb, var(--accent) 34%, transparent); }
+.chip.gold { color: var(--gold);       background: color-mix(in srgb, var(--gold) 15%, transparent);   border: 1px solid color-mix(in srgb, var(--gold) 38%, transparent); }
+
+.price { display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap; }
+.price .now { font-size: clamp(2.6rem, 7vw, 3.4rem); font-weight: 800; letter-spacing: -0.035em; line-height: 1; }
+.plan.lead .price .now { color: var(--accent-ink); }
+.plan.once .price .now { color: var(--gold); }
+.price .was { font-size: 1.4rem; font-weight: 700; color: var(--dim); text-decoration: line-through; }
+.under { margin: -8px 0 0; color: var(--dim); font-size: .98rem; }
+
+.perks { list-style: none; margin: 0; padding: 0; display: grid; gap: 13px; }
+.perks li { display: grid; grid-template-columns: 22px 1fr; gap: 10px; align-items: start; line-height: 1.45; }
+.perks svg { width: 17px; height: 17px; margin-top: 3px; color: var(--accent); }
+.plan.once .perks svg { color: var(--gold); }
+.plan:not(.lead):not(.once) .perks svg { color: var(--dim); }
+
+.plan .go { margin-top: auto; }
+.plan .btn { width: 100%; }
+.fine { margin: 10px 0 0; text-align: center; color: var(--dim); font-size: .88rem; }
+
+/* the honest note under the table */
+.footnote {
+  margin: 28px auto 0; max-width: 44rem; text-align: center;
+  color: var(--dim); font-size: .95rem;
+}
+</style>
+</head>
+<body data-mode="dark">
+
+<div class="picker">
+  <b>Draft</b>
+  <button type="button" data-mode-btn="dark"  aria-pressed="true">Dark band</button>
+  <button type="button" data-mode-btn="light" aria-pressed="false">Light (site default)</button>
+  <span class="sp"></span>
+  <span class="note">Prices are the recommended ones, not settled. Not indexed.</span>
+</div>
+
+<header class="nav" id="nav">
+  <div class="wrap">
+    <a class="brand" href="index.html"><img src="img/icon.png" alt=""><span class="word">2Sets<b>Fitness</b></span></a>
+    <nav class="nav-links" aria-label="Primary">
+      <a href="index.html#features">Features</a>
+      <a href="index.html#see">See it</a>
+      <a href="index.html#coach">AI coach</a>
+      <a href="index.html#pricing">Pricing</a>
+      <a class="btn primary sm" href="https://fitness-app-5c48a.web.app" rel="noopener">Try it free</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+<section class="pricing" id="pricing">
+  <div class="wrap">
+
+    <div class="sec-head">
+      <span class="eyebrow">Pricing</span>
+      <h2>One app for the whole thing.</h2>
+      <p>Logging every workout, your own routines and the leaderboard are free, for good.</p>
+
+      <div class="switch" role="group" aria-label="Billing period">
+        <button type="button" data-bill="m" aria-pressed="false">Monthly</button>
+        <button type="button" data-bill="y" aria-pressed="true">Yearly <span class="save">save 52%</span></button>
+        <button type="button" data-bill="o" aria-pressed="false">One&#8209;off</button>
+      </div>
+    </div>
+
+    <div class="plans">
+
+      <!-- ── Free ─────────────────────────────────────────────── -->
+      <article class="plan" id="plan-free">
+        <div class="plan-top"><span class="plan-name">Free</span></div>
+        <div class="price"><span class="now">£0</span></div>
+        <p class="under">for good, no card</p>
+        <ul class="perks">
+          <li><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 10.5l4 4 8-9"/></svg><span>Every workout logged, kept for good</span></li>
+          <li><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 10.5l4 4 8-9"/></svg><span>Your own routines and weekly schedule</span></li>
+          <li><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 10.5l4 4 8-9"/></svg><span>Points, ranks, friends and the leaderboard</span></li>
+          <li><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 10.5l4 4 8-9"/></svg><span>Three AI coach messages a day</span></li>
+        </ul>
+        <div class="go"><a class="btn" href="https://fitness-app-5c48a.web.app" rel="noopener">Start free</a></div>
+      </article>
+
+      <!-- ── Premium ──────────────────────────────────────────── -->
+      <article class="plan lead" id="plan-pro" data-m="£6.99" data-y="£3.33" data-o="£6.99"
+               data-m-under="a month, cancel any time"
+               data-y-under="a month, billed £39.99 a year"
+               data-o-under="a month, or take it for good →">
+        <div class="plan-top">
+          <span class="plan-name">Premium</span>
+          <span class="chip rec" id="rec-pro">Recommended</span>
+        </div>
+        <div class="price"><span class="now" id="pro-now">£3.33</span></div>
+        <p class="under" id="pro-under">a month, billed £39.99 a year</p>
+        <ul class="perks">
+          <li><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 10.5l4 4 8-9"/></svg><span>Ten AI coach messages a day, and it knows your week</span></li>
+          <li><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 10.5l4 4 8-9"/></svg><span>Meal photos and barcodes, counted for you</span></li>
+          <li><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 10.5l4 4 8-9"/></svg><span>Your 3D fighter, and the muscle map behind it</span></li>
+          <li><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 10.5l4 4 8-9"/></svg><span>Sleep, recovery and what to train next</span></li>
+          <li><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 10.5l4 4 8-9"/></svg><span>Form Coach watching every lift</span></li>
+        </ul>
+        <div class="go"><a class="btn primary" href="#" aria-disabled="true">Coming soon</a></div>
+        <p class="fine" id="pro-fine">7 days free, then £39.99 a year</p>
+      </article>
+
+      <!-- ── Lifetime ─────────────────────────────────────────── -->
+      <article class="plan once" id="plan-life">
+        <div class="plan-top">
+          <span class="plan-name">Lifetime</span>
+          <span class="chip gold">Launch price</span>
+        </div>
+        <div class="price"><span class="now">£89.99</span><span class="was">£119.99</span></div>
+        <p class="under">once, and nothing renews</p>
+        <ul class="perks">
+          <li><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 10.5l4 4 8-9"/></svg><span>Everything in Premium, for good</span></li>
+          <li><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 10.5l4 4 8-9"/></svg><span>One payment, no renewals, no reminders</span></li>
+          <li><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 10.5l4 4 8-9"/></svg><span>Every update after this one</span></li>
+        </ul>
+        <div class="go"><a class="btn" href="#" aria-disabled="true">Coming soon</a></div>
+        <p class="fine">The launch price is for the first 500</p>
+      </article>
+
+    </div>
+
+    <p class="footnote">Premium pays for the AI. Every coach reply and every meal photo costs us something
+      to run, which is why it has a daily allowance rather than a promise we would have to break later.</p>
+
+  </div>
+</section>
+</main>
+
+<script>
+// the picker: light is the site's own mode, dark is this band
+for (const b of document.querySelectorAll('[data-mode-btn]')) {
+  b.addEventListener('click', () => {
+    document.body.dataset.mode = b.dataset.modeBtn;
+    for (const o of document.querySelectorAll('[data-mode-btn]')) o.setAttribute('aria-pressed', String(o === b));
+  });
+}
+
+// the billing switch. Monthly and Yearly change what Premium says; One-off
+// moves the recommendation across to Lifetime rather than hiding anything,
+// so the page never jumps and nothing is ever taken off the screen.
+const pro = document.getElementById('plan-pro');
+const life = document.getElementById('plan-life');
+const now = document.getElementById('pro-now');
+const under = document.getElementById('pro-under');
+const fine = document.getElementById('pro-fine');
+const recChip = document.getElementById('rec-pro');
+
+function bill(key) {
+  now.textContent = pro.dataset[key === 'm' ? 'm' : key === 'y' ? 'y' : 'o'];
+  under.textContent = pro.dataset[key === 'm' ? 'mUnder' : key === 'y' ? 'yUnder' : 'oUnder'];
+  fine.textContent = key === 'm' ? '7 days free, then £6.99 a month'
+    : key === 'y' ? '7 days free, then £39.99 a year'
+      : 'Or pay once, on the right';
+  const oneOff = key === 'o';
+  pro.classList.toggle('lead', !oneOff);
+  pro.classList.toggle('rests', oneOff);
+  life.classList.toggle('lead', oneOff);
+  recChip.hidden = oneOff;
+  for (const b of document.querySelectorAll('[data-bill]')) b.setAttribute('aria-pressed', String(b.dataset.bill === key));
+}
+for (const b of document.querySelectorAll('[data-bill]')) b.addEventListener('click', () => bill(b.dataset.bill));
+bill('y');
+
+// the nav's hairline, as on the live site
+const nav = document.getElementById('nav');
+const onScroll = () => nav.classList.toggle('scrolled', window.scrollY > 4);
+addEventListener('scroll', onScroll, { passive: true });
+onScroll();
+</script>
+</body>
+</html>
