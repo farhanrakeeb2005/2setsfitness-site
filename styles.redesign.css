@@ -116,8 +116,22 @@ h1, h2, h3 {
 }
 .nav.scrolled { border-bottom-color: var(--line); }
 .nav .wrap { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding-block: 14px; }
-.brand { display: flex; align-items: center; gap: 7px; text-decoration: none; font-weight: 800; font-size: 1.25rem; letter-spacing: -0.02em; }
-.brand img { width: 36px; height: 36px; border-radius: 10px; }
+.brand { display: flex; align-items: center; gap: 10px; text-decoration: none; font-weight: 800; font-size: 1.25rem; letter-spacing: -0.02em; }
+/* the mark, no tile: it is already dark-on-nothing, so a rounded square behind
+   it only added padding and a second shape beside a wordmark that needs none.
+   Height is set to the wordmark cap height so the two sit on one line. */
+.brand img { height: 30px; width: auto; border-radius: 0; }
+/* the 2 is drawn in white metal, so it needs re-inking for a light page.
+   logo-2s-light.png is the same artwork with the metal inverted and the
+   red S untouched. Default is the light one, because light is the default. */
+.brand .mk-dark { display: none; }
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .brand .mk-dark { display: block; }
+  :root:not([data-theme="light"]) .brand .mk-light { display: none; }
+}
+:root[data-theme="dark"] .brand .mk-dark { display: block; }
+:root[data-theme="dark"] .brand .mk-light { display: none; }
+@media (max-width: 760px) { .brand { font-size: 1.12rem; gap: 8px; } .brand img { height: 26px; } }
 .brand b { color: var(--accent); }
 .nav-links { display: flex; align-items: center; gap: 24px; }
 .nav-links a:not(.btn) { text-decoration: none; color: var(--dim); font-weight: 500; }
