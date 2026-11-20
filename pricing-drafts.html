@@ -14,14 +14,20 @@
 <link rel="stylesheet" href="styles.redesign.css?v=27">
 <style>
 /* ---------------------------------------------------------------------
-   Pricing section drafts. Nothing here touches styles.redesign.css: the
-   dark mode is the same tokens with different values, set on <body>, so
-   every shared component (nav, buttons, section rhythm) follows along
-   without a single override.
+   Pricing section drafts.
 
-   The prices are the recommended ones, not the settled ones. They live
-   in one place -- the data-m / data-y attributes on each plan -- so a
-   change is three numbers, not a rewrite.
+   A — a Monthly / Yearly switch, three cards. One price at a time.
+   B — no switch: Free, Monthly, Yearly and Lifetime all on screen at once,
+       with Free made small so the eye starts at the paid three.
+
+   Nothing here touches styles.redesign.css. Dark is the same custom
+   properties with different values, set on <body>, so every shared
+   component follows along without a single override.
+
+   £3.49 a month is £41.99 a year, not £39.99 (that one is £3.33). The
+   per-month figure has to divide into the yearly one or it is a lie, so
+   the yearly price moved rather than the arithmetic. Prices live in one
+   place per card; changing them is changing numbers, not markup.
 --------------------------------------------------------------------- */
 
 /* the draft picker, not part of the design */
@@ -40,6 +46,7 @@
 }
 .picker button:hover { color: #fff; border-color: #6a5a57; }
 .picker button[aria-pressed="true"] { background: #e31e24; border-color: #e31e24; color: #fff; }
+.picker .div { width: 1px; align-self: stretch; background: #39302e; margin-inline: 6px; }
 .picker .sp { flex: 1 1 auto; }
 .picker .note { font-size: .74rem; opacity: .7; }
 
@@ -62,13 +69,16 @@ body[data-mode="dark"] {
 }
 body[data-mode="dark"] .nav { background: color-mix(in srgb, var(--bg) 80%, transparent); }
 
+/* one draft on screen at a time */
+body[data-draft="a"] #draft-b, body[data-draft="b"] #draft-a { display: none; }
+
 /* ============================================================
-   PRICING
+   PRICING — shared between both drafts
    ============================================================ */
 .pricing .sec-head { max-width: 52rem; }
 .pricing .sec-head h2 { letter-spacing: -0.03em; line-height: 1.04; }
 
-/* ---------- the billing switch ---------- */
+/* ---------- the billing switch (draft A only) ---------- */
 .switch {
   display: inline-flex; align-items: center; gap: 2px;
   margin: 26px auto 0; padding: 5px;
@@ -89,9 +99,8 @@ body[data-mode="dark"] .nav { background: color-mix(in srgb, var(--bg) 80%, tran
 }
 .switch .save { font-size: .82rem; font-weight: 700; color: var(--accent-ink); }
 
-/* ---------- the three plans ---------- */
-/* the cards stretch to the tallest, so the three buttons sit on one line
-   (`.go { margin-top: auto }` does the pushing) rather than wherever each
+/* ---------- the cards ---------- */
+/* stretched, so the buttons sit on one line rather than wherever each
    list happens to end */
 .plans {
   display: grid; gap: 18px; align-items: stretch;
@@ -122,16 +131,6 @@ body[data-mode="dark"] .plan.lead {
 /* the one-off, in the warmer gold the "launch price" chip uses */
 .plan.once { --gold: #c98a16; }
 body[data-mode="dark"] .plan.once { --gold: #f0b429; }
-.plan.once.lead {
-  border-color: color-mix(in srgb, var(--gold) 55%, transparent);
-  box-shadow: 0 0 0 1px color-mix(in srgb, var(--gold) 28%, transparent), 0 24px 60px rgba(201,138,22,.16);
-  background: var(--surface);
-}
-body[data-mode="dark"] .plan.once.lead {
-  background: linear-gradient(180deg, color-mix(in srgb, var(--gold) 10%, var(--surface)), var(--surface) 60%);
-}
-/* a plan the switch is not pointing at steps back rather than disappears */
-.plan.rests { opacity: .76; }
 
 .plan-top { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
 .plan-name {
@@ -162,19 +161,50 @@ body[data-mode="dark"] .plan.once.lead {
 .plan .btn { width: 100%; }
 .fine { margin: 10px 0 0; text-align: center; color: var(--dim); font-size: .88rem; }
 
-/* the honest note under the table */
 .footnote {
   margin: 28px auto 0; max-width: 44rem; text-align: center;
   color: var(--dim); font-size: .95rem;
 }
+
+/* ============================================================
+   DRAFT B — every offer at once, Free made small
+   ============================================================ */
+/* four cards need more than the site's 1120; the row is the exception,
+   the rest of the section keeps the site's width */
+#draft-b .plans-wrap { max-width: 1260px; margin-inline: auto; }
+.plans.four { grid-template-columns: 0.78fr 1fr 1.06fr 1fr; gap: 16px; }
+@media (max-width: 1180px) { .plans.four { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 720px)  { .plans.four { grid-template-columns: 1fr; max-width: 30rem; margin-inline: auto; } }
+
+/* Free steps back: a smaller number, tighter type, no shadow of its own.
+   It is there to be seen and passed over, not compared feature by feature. */
+.plan.slim {
+  align-self: start;              /* shorter than the paid three, not just narrower */
+  padding: 26px 22px 22px; gap: 14px;
+  background: transparent; box-shadow: none;
+  border-style: dashed;
+}
+.plan.slim .price .now { font-size: clamp(1.9rem, 4vw, 2.3rem); }
+.plan.slim .under { font-size: .9rem; }
+.plan.slim .perks { gap: 9px; font-size: .94rem; }
+.plan.slim .perks li { grid-template-columns: 18px 1fr; gap: 8px; }
+.plan.slim .perks svg { width: 14px; height: 14px; margin-top: 3px; }
+.plan.slim .btn { min-height: 44px; font-size: .95rem; }
+
+/* the yearly card is the point of the row, so it gets the ring and a
+   little more air than the three beside it */
+.plans.four .plan.lead { padding-inline: 28px; }
 </style>
 </head>
-<body data-mode="dark">
+<body data-mode="dark" data-draft="a">
 
 <div class="picker">
   <b>Draft</b>
-  <button type="button" data-mode-btn="dark"  aria-pressed="true">Dark band</button>
-  <button type="button" data-mode-btn="light" aria-pressed="false">Light (site default)</button>
+  <button type="button" data-draft-btn="a" aria-pressed="true">A · switch</button>
+  <button type="button" data-draft-btn="b" aria-pressed="false">B · all four</button>
+  <span class="div"></span>
+  <button type="button" data-mode-btn="dark"  aria-pressed="true">Dark</button>
+  <button type="button" data-mode-btn="light" aria-pressed="false">Light</button>
   <span class="sp"></span>
   <span class="note">Prices are the recommended ones, not settled. Not indexed.</span>
 </div>
@@ -193,7 +223,9 @@ body[data-mode="dark"] .plan.once.lead {
 </header>
 
 <main id="main">
-<section class="pricing" id="pricing">
+
+<!-- ════════════════ DRAFT A — Monthly / Yearly switch ════════════════ -->
+<section class="pricing" id="draft-a">
   <div class="wrap">
 
     <div class="sec-head">
@@ -203,15 +235,13 @@ body[data-mode="dark"] .plan.once.lead {
 
       <div class="switch" role="group" aria-label="Billing period">
         <button type="button" data-bill="m" aria-pressed="false">Monthly</button>
-        <button type="button" data-bill="y" aria-pressed="true">Yearly <span class="save">save 52%</span></button>
-        <button type="button" data-bill="o" aria-pressed="false">One&#8209;off</button>
+        <button type="button" data-bill="y" aria-pressed="true">Yearly <span class="save">save 50%</span></button>
       </div>
     </div>
 
     <div class="plans">
 
-      <!-- ── Free ─────────────────────────────────────────────── -->
-      <article class="plan" id="plan-free">
+      <article class="plan">
         <div class="plan-top"><span class="plan-name">Free</span></div>
         <div class="price"><span class="now">£0</span></div>
         <p class="under">for good, no card</p>
@@ -224,17 +254,15 @@ body[data-mode="dark"] .plan.once.lead {
         <div class="go"><a class="btn" href="https://fitness-app-5c48a.web.app" rel="noopener">Start free</a></div>
       </article>
 
-      <!-- ── Premium ──────────────────────────────────────────── -->
-      <article class="plan lead" id="plan-pro" data-m="£6.99" data-y="£3.33" data-o="£6.99"
+      <article class="plan lead" id="plan-pro" data-m="£6.99" data-y="£3.49"
                data-m-under="a month, cancel any time"
-               data-y-under="a month, billed £39.99 a year"
-               data-o-under="a month, or take it for good →">
+               data-y-under="a month, billed £41.99 a year">
         <div class="plan-top">
           <span class="plan-name">Premium</span>
-          <span class="chip rec" id="rec-pro">Recommended</span>
+          <span class="chip rec">Recommended</span>
         </div>
-        <div class="price"><span class="now" id="pro-now">£3.33</span></div>
-        <p class="under" id="pro-under">a month, billed £39.99 a year</p>
+        <div class="price"><span class="now" id="pro-now">£3.49</span></div>
+        <p class="under" id="pro-under">a month, billed £41.99 a year</p>
         <ul class="perks">
           <li><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 10.5l4 4 8-9"/></svg><span>Ten AI coach messages a day, and it knows your week</span></li>
           <li><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 10.5l4 4 8-9"/></svg><span>Meal photos and barcodes, counted for you</span></li>
@@ -243,11 +271,10 @@ body[data-mode="dark"] .plan.once.lead {
           <li><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 10.5l4 4 8-9"/></svg><span>Form Coach watching every lift</span></li>
         </ul>
         <div class="go"><a class="btn primary" href="#" aria-disabled="true">Coming soon</a></div>
-        <p class="fine" id="pro-fine">7 days free, then £39.99 a year</p>
+        <p class="fine" id="pro-fine">7 days free, then £41.99 a year</p>
       </article>
 
-      <!-- ── Lifetime ─────────────────────────────────────────── -->
-      <article class="plan once" id="plan-life">
+      <article class="plan once">
         <div class="plan-top">
           <span class="plan-name">Lifetime</span>
           <span class="chip gold">Launch price</span>
@@ -270,38 +297,116 @@ body[data-mode="dark"] .plan.once.lead {
 
   </div>
 </section>
+
+<!-- ════════════════ DRAFT B — every offer at once ════════════════ -->
+<section class="pricing" id="draft-b">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow">Pricing</span>
+      <h2>One app for the whole thing.</h2>
+      <p>Logging every workout, your own routines and the leaderboard are free, for good.
+        Pick how you pay for the rest — nothing is hidden behind a switch.</p>
+    </div>
+  </div>
+
+  <div class="wrap plans-wrap">
+    <div class="plans four">
+
+      <!-- Free, made small: seen and passed over, not compared line by line -->
+      <article class="plan slim">
+        <div class="plan-top"><span class="plan-name">Free</span></div>
+        <div class="price"><span class="now">£0</span></div>
+        <p class="under">for good, no card</p>
+        <ul class="perks">
+          <li><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 10.5l4 4 8-9"/></svg><span>Every workout, kept for good</span></li>
+          <li><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 10.5l4 4 8-9"/></svg><span>Routines and your week</span></li>
+          <li><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 10.5l4 4 8-9"/></svg><span>Friends and the leaderboard</span></li>
+          <li><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 10.5l4 4 8-9"/></svg><span>3 coach messages a day</span></li>
+        </ul>
+        <div class="go"><a class="btn" href="https://fitness-app-5c48a.web.app" rel="noopener">Start free</a></div>
+      </article>
+
+      <!-- Monthly: the decoy. Its job is to make the yearly one obvious. -->
+      <article class="plan">
+        <div class="plan-top"><span class="plan-name">Monthly</span></div>
+        <div class="price"><span class="now">£6.99</span></div>
+        <p class="under">a month, cancel any time</p>
+        <ul class="perks">
+          <li><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 10.5l4 4 8-9"/></svg><span>Everything in Premium</span></li>
+          <li><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 10.5l4 4 8-9"/></svg><span>Stop whenever you like</span></li>
+          <li><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 10.5l4 4 8-9"/></svg><span>£83.88 over a year</span></li>
+        </ul>
+        <div class="go"><a class="btn" href="#" aria-disabled="true">Coming soon</a></div>
+        <p class="fine">7 days free first</p>
+      </article>
+
+      <!-- Yearly: the one the row is built around -->
+      <article class="plan lead">
+        <div class="plan-top">
+          <span class="plan-name">Yearly</span>
+          <span class="chip rec">Save 50%</span>
+        </div>
+        <div class="price"><span class="now">£3.49</span></div>
+        <p class="under">a month, billed £41.99 a year</p>
+        <ul class="perks">
+          <li><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 10.5l4 4 8-9"/></svg><span>Ten AI coach messages a day, and it knows your week</span></li>
+          <li><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 10.5l4 4 8-9"/></svg><span>Meal photos and barcodes, counted for you</span></li>
+          <li><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 10.5l4 4 8-9"/></svg><span>Your 3D fighter, and the muscle map behind it</span></li>
+          <li><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 10.5l4 4 8-9"/></svg><span>Sleep, recovery and what to train next</span></li>
+          <li><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 10.5l4 4 8-9"/></svg><span>Form Coach watching every lift</span></li>
+        </ul>
+        <div class="go"><a class="btn primary" href="#" aria-disabled="true">Coming soon</a></div>
+        <p class="fine">7 days free, then £41.99 a year</p>
+      </article>
+
+      <!-- Lifetime -->
+      <article class="plan once">
+        <div class="plan-top">
+          <span class="plan-name">Lifetime</span>
+          <span class="chip gold">Launch price</span>
+        </div>
+        <div class="price"><span class="now">£89.99</span><span class="was">£119.99</span></div>
+        <p class="under">once, and nothing renews</p>
+        <ul class="perks">
+          <li><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 10.5l4 4 8-9"/></svg><span>Everything in Premium, for good</span></li>
+          <li><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 10.5l4 4 8-9"/></svg><span>One payment, no renewals, no reminders</span></li>
+          <li><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 10.5l4 4 8-9"/></svg><span>Every update after this one</span></li>
+        </ul>
+        <div class="go"><a class="btn" href="#" aria-disabled="true">Coming soon</a></div>
+        <p class="fine">The launch price is for the first 500</p>
+      </article>
+
+    </div>
+  </div>
+
+  <div class="wrap">
+    <p class="footnote">Premium pays for the AI. Every coach reply and every meal photo costs us something
+      to run, which is why it has a daily allowance rather than a promise we would have to break later.</p>
+  </div>
+</section>
+
 </main>
 
 <script>
-// the picker: light is the site's own mode, dark is this band
+// the picker: which draft, and light (the site's own) or the dark band
+const press = (sel, on) => { for (const b of document.querySelectorAll(sel)) b.setAttribute('aria-pressed', String(b === on)); };
+for (const b of document.querySelectorAll('[data-draft-btn]')) {
+  b.addEventListener('click', () => { document.body.dataset.draft = b.dataset.draftBtn; press('[data-draft-btn]', b); });
+}
 for (const b of document.querySelectorAll('[data-mode-btn]')) {
-  b.addEventListener('click', () => {
-    document.body.dataset.mode = b.dataset.modeBtn;
-    for (const o of document.querySelectorAll('[data-mode-btn]')) o.setAttribute('aria-pressed', String(o === b));
-  });
+  b.addEventListener('click', () => { document.body.dataset.mode = b.dataset.modeBtn; press('[data-mode-btn]', b); });
 }
 
-// the billing switch. Monthly and Yearly change what Premium says; One-off
-// moves the recommendation across to Lifetime rather than hiding anything,
-// so the page never jumps and nothing is ever taken off the screen.
+// draft A's billing switch
 const pro = document.getElementById('plan-pro');
-const life = document.getElementById('plan-life');
 const now = document.getElementById('pro-now');
 const under = document.getElementById('pro-under');
 const fine = document.getElementById('pro-fine');
-const recChip = document.getElementById('rec-pro');
-
 function bill(key) {
-  now.textContent = pro.dataset[key === 'm' ? 'm' : key === 'y' ? 'y' : 'o'];
-  under.textContent = pro.dataset[key === 'm' ? 'mUnder' : key === 'y' ? 'yUnder' : 'oUnder'];
-  fine.textContent = key === 'm' ? '7 days free, then £6.99 a month'
-    : key === 'y' ? '7 days free, then £39.99 a year'
-      : 'Or pay once, on the right';
-  const oneOff = key === 'o';
-  pro.classList.toggle('lead', !oneOff);
-  pro.classList.toggle('rests', oneOff);
-  life.classList.toggle('lead', oneOff);
-  recChip.hidden = oneOff;
+  const yearly = key === 'y';
+  now.textContent = yearly ? pro.dataset.y : pro.dataset.m;
+  under.textContent = yearly ? pro.dataset.yUnder : pro.dataset.mUnder;
+  fine.textContent = yearly ? '7 days free, then £41.99 a year' : '7 days free, then £6.99 a month';
   for (const b of document.querySelectorAll('[data-bill]')) b.setAttribute('aria-pressed', String(b.dataset.bill === key));
 }
 for (const b of document.querySelectorAll('[data-bill]')) b.addEventListener('click', () => bill(b.dataset.bill));
