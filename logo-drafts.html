@@ -1,0 +1,271 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>2SetsFitness · Lockup drafts</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="icon" href="img/favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=Archivo:ital,wdth,wght@0,62..125,400..900;1,62..125,400..900&family=Barlow+Condensed:ital,wght@0,600;0,700;1,700&family=Saira+Condensed:wght@600;700;800&family=Oswald:wght@500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.redesign.css?v=28">
+<style>
+/* ---------------------------------------------------------------------
+   Lockup drafts. Each one is shown twice: at the size it runs in the nav,
+   and large enough to judge the letterforms. Both grounds, because the
+   mark is drawn in white metal and behaves differently on each.
+
+   The problem being solved: the mark leans forward and has speed streaks;
+   the wordmark is upright and geometric. And both split dark/red, so they
+   compete rather than read as one thing.
+--------------------------------------------------------------------- */
+.picker { position: sticky; top: 0; z-index: 60; background: #14100f; color: #f4efee;
+  padding: 10px max(16px, env(safe-area-inset-left, 0px)); display: flex; gap: 8px;
+  align-items: center; flex-wrap: wrap; font-family: Outfit, system-ui, sans-serif; }
+.picker b { font-size: .72rem; letter-spacing: .14em; text-transform: uppercase; opacity: .62; }
+.picker .note { font-size: .74rem; opacity: .7; margin-left: auto; }
+
+.sheet { padding-block: 28px 64px; }
+.row { display: grid; gap: 0; border: 1px solid var(--line); border-radius: 14px;
+  overflow: hidden; margin-bottom: 18px; }
+@media (min-width: 820px) { .row { grid-template-columns: 56px 1fr 1fr; } }
+.row .id { background: var(--surface-2); display: flex; align-items: center; justify-content: center;
+  font: 800 1rem Outfit, sans-serif; color: var(--dim); padding: 10px; letter-spacing: .04em; }
+@media (max-width: 819px) { .row .id { justify-content: flex-start; padding-inline: 16px; } }
+.pane { padding: 26px 22px; display: flex; flex-direction: column; gap: 20px; justify-content: center; }
+.pane.on-light { background: #ffffff; }
+.pane.on-dark  { background: #0a0c10; }
+.pane .small { opacity: .999; }
+.cap { font: 600 .72rem Outfit, sans-serif; letter-spacing: .12em; text-transform: uppercase; }
+.on-light .cap { color: #9c8589; } .on-dark .cap { color: #6f7886; }
+.row .why { grid-column: 1 / -1; padding: 12px 18px; background: var(--surface-2);
+  font-size: .9rem; color: var(--dim); border-top: 1px solid var(--line); }
+
+/* ── the lockups ─────────────────────────────────────────────── */
+.lk { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+.lk img { display: block; width: auto; }
+.on-light .lk .d { display: none; } .on-dark .lk .l { display: none; }
+.lk .w { white-space: nowrap; }
+.on-light .lk .w { color: #191113; } .on-dark .lk .w { color: #f3f5f9; }
+
+/* A — what is live now */
+.A .w { font: 800 1.25rem/1 Outfit, sans-serif; letter-spacing: -0.02em; }
+.A .w b { color: #e31e24; } .on-dark .A .w b { color: #ff6b6f; }
+.A img { height: 30px; }
+.big .A .w { font-size: 2.6rem; } .big .A img { height: 62px; }
+
+/* B — one ink, the mark keeps the red to itself */
+.B .w { font: 800 1.25rem/1 Outfit, sans-serif; letter-spacing: -0.02em; }
+.B .w b { color: inherit; font-weight: 800; }
+.B img { height: 30px; }
+.big .B .w { font-size: 2.6rem; } .big .B img { height: 62px; }
+
+/* C — Archivo at a narrow width, italic, to pick up the mark's lean */
+.C .w { font: italic 800 1.3rem/1 Archivo, sans-serif; font-stretch: 88%; letter-spacing: -0.015em; }
+.C .w b { color: #e31e24; } .on-dark .C .w b { color: #ff6b6f; }
+.C img { height: 32px; }
+.big .C .w { font-size: 2.7rem; } .big .C img { height: 66px; }
+
+/* D — two lines, the name over a spaced-out word */
+.D { gap: 12px; } .D .stack { display: grid; gap: 2px; }
+.D .one { font: 800 1.15rem/1 Outfit, sans-serif; letter-spacing: -0.02em; }
+.on-light .D .one { color: #191113; } .on-dark .D .one { color: #f3f5f9; }
+.D .two { font: 600 .62rem/1 Outfit, sans-serif; letter-spacing: .34em; text-transform: uppercase; color: #e31e24; }
+.on-dark .D .two { color: #ff6b6f; }
+.D img { height: 34px; }
+.big .D .one { font-size: 2.3rem; } .big .D .two { font-size: 1.1rem; letter-spacing: .4em; } .big .D img { height: 72px; }
+
+/* E — condensed caps, the whole thing one width */
+.E .w { font: 700 1.5rem/1 "Barlow Condensed", sans-serif; letter-spacing: .02em; text-transform: uppercase; }
+.E .w b { color: #e31e24; } .on-dark .E .w b { color: #ff6b6f; }
+.E img { height: 30px; }
+.big .E .w { font-size: 3.1rem; } .big .E img { height: 62px; }
+
+/* F — the mark does the "2S", the word finishes it */
+.F .w { font: 800 1.25rem/1 Outfit, sans-serif; letter-spacing: -0.01em; }
+.F img { height: 34px; }
+.big .F .w { font-size: 2.6rem; } .big .F img { height: 72px; }
+
+/* G — stacked, for a square space */
+.G { flex-direction: column; gap: 7px; align-items: flex-start; }
+.G .w { font: 700 .82rem/1 Outfit, sans-serif; letter-spacing: .2em; text-transform: uppercase; }
+.G .w b { color: #e31e24; } .on-dark .G .w b { color: #ff6b6f; }
+.G img { height: 32px; }
+.big .G .w { font-size: 1.5rem; letter-spacing: .24em; } .big .G img { height: 70px; }
+
+/* H — the mark alone, given room */
+.H img { height: 34px; } .big .H img { height: 84px; }
+
+/* I — Oswald, upright and tall, a gym-poster voice */
+.I .w { font: 600 1.4rem/1 Oswald, sans-serif; letter-spacing: .01em; text-transform: uppercase; }
+.I .w b { color: #e31e24; } .on-dark .I .w b { color: #ff6b6f; }
+.I img { height: 31px; }
+.big .I .w { font-size: 2.9rem; } .big .I img { height: 64px; }
+</style>
+</head>
+<body>
+
+<div class="picker">
+  <b>Lockup drafts</b>
+  <span class="note">Each shown at nav size and large, on both grounds. Not indexed.</span>
+</div>
+
+<main class="sheet"><div class="wrap">
+
+  <div class="row">
+    <div class="id">A</div>
+    <div class="pane on-light">
+      <span class="cap">Light · nav size</span>
+      <span class="lk A"><img class="l" src="img/logo-2s-light.png" alt=""><img class="d" src="img/logo-2s.png" alt=""><span class="w">2Sets<b>Fitness</b></span></span>
+      <span class="cap">Large</span>
+      <span class="lk A big" style="font-size:0"><img class="l" src="img/logo-2s-light.png" alt="" style="height:62px"><img class="d" src="img/logo-2s.png" alt="" style="height:62px"><span class="w" style="font-size:2.6rem">2Sets<b>Fitness</b></span></span>
+    </div>
+    <div class="pane on-dark">
+      <span class="cap">Dark · nav size</span>
+      <span class="lk A"><img class="l" src="img/logo-2s-light.png" alt=""><img class="d" src="img/logo-2s.png" alt=""><span class="w">2Sets<b>Fitness</b></span></span>
+      <span class="cap">Large</span>
+      <span class="lk A"><img class="l" src="img/logo-2s-light.png" alt="" style="height:62px"><img class="d" src="img/logo-2s.png" alt="" style="height:62px"><span class="w" style="font-size:2.6rem">2Sets<b>Fitness</b></span></span>
+    </div>
+    <p class="why"><b>A — what is live now.</b> The mark splits metal/red and the wordmark splits dark/red, so you read two splits side by side. Outfit is upright and geometric; the mark leans.</p>
+  </div>
+
+  <div class="row">
+    <div class="id">B</div>
+    <div class="pane on-light">
+      <span class="cap">Light · nav size</span>
+      <span class="lk B"><img class="l" src="img/logo-2s-light.png" alt=""><img class="d" src="img/logo-2s.png" alt=""><span class="w">2Sets<b>Fitness</b></span></span>
+      <span class="cap">Large</span>
+      <span class="lk B"><img class="l" src="img/logo-2s-light.png" alt="" style="height:62px"><img class="d" src="img/logo-2s.png" alt="" style="height:62px"><span class="w" style="font-size:2.6rem">2Sets<b>Fitness</b></span></span>
+    </div>
+    <div class="pane on-dark">
+      <span class="cap">Dark · nav size</span>
+      <span class="lk B"><img class="l" src="img/logo-2s-light.png" alt=""><img class="d" src="img/logo-2s.png" alt=""><span class="w">2Sets<b>Fitness</b></span></span>
+      <span class="cap">Large</span>
+      <span class="lk B"><img class="l" src="img/logo-2s-light.png" alt="" style="height:62px"><img class="d" src="img/logo-2s.png" alt="" style="height:62px"><span class="w" style="font-size:2.6rem">2Sets<b>Fitness</b></span></span>
+    </div>
+    <p class="why"><b>B — one ink, the mark keeps the red.</b> Same type as now, but the word stops competing. One red object in the lockup instead of two.</p>
+  </div>
+
+  <div class="row">
+    <div class="id">C</div>
+    <div class="pane on-light">
+      <span class="cap">Light · nav size</span>
+      <span class="lk C"><img class="l" src="img/logo-2s-light.png" alt=""><img class="d" src="img/logo-2s.png" alt=""><span class="w">2Sets<b>Fitness</b></span></span>
+      <span class="cap">Large</span>
+      <span class="lk C"><img class="l" src="img/logo-2s-light.png" alt="" style="height:66px"><img class="d" src="img/logo-2s.png" alt="" style="height:66px"><span class="w" style="font-size:2.7rem">2Sets<b>Fitness</b></span></span>
+    </div>
+    <div class="pane on-dark">
+      <span class="cap">Dark · nav size</span>
+      <span class="lk C"><img class="l" src="img/logo-2s-light.png" alt=""><img class="d" src="img/logo-2s.png" alt=""><span class="w">2Sets<b>Fitness</b></span></span>
+      <span class="cap">Large</span>
+      <span class="lk C"><img class="l" src="img/logo-2s-light.png" alt="" style="height:66px"><img class="d" src="img/logo-2s.png" alt="" style="height:66px"><span class="w" style="font-size:2.7rem">2Sets<b>Fitness</b></span></span>
+    </div>
+    <p class="why"><b>C — italic, narrowed.</b> Archivo at 88% width, italic, so the letters lean the same way the mark does. This is the one that actually answers "fit the icon".</p>
+  </div>
+
+  <div class="row">
+    <div class="id">D</div>
+    <div class="pane on-light">
+      <span class="cap">Light · nav size</span>
+      <span class="lk D"><img class="l" src="img/logo-2s-light.png" alt=""><img class="d" src="img/logo-2s.png" alt=""><span class="stack"><span class="one">2SetsFitness</span><span class="two">More than a gym app</span></span></span>
+      <span class="cap">Large</span>
+      <span class="lk D"><img class="l" src="img/logo-2s-light.png" alt="" style="height:72px"><img class="d" src="img/logo-2s.png" alt="" style="height:72px"><span class="stack"><span class="one" style="font-size:2.3rem">2SetsFitness</span><span class="two" style="font-size:1.1rem;letter-spacing:.4em">More than a gym app</span></span></span>
+    </div>
+    <div class="pane on-dark">
+      <span class="cap">Dark · nav size</span>
+      <span class="lk D"><img class="l" src="img/logo-2s-light.png" alt=""><img class="d" src="img/logo-2s.png" alt=""><span class="stack"><span class="one">2SetsFitness</span><span class="two">More than a gym app</span></span></span>
+      <span class="cap">Large</span>
+      <span class="lk D"><img class="l" src="img/logo-2s-light.png" alt="" style="height:72px"><img class="d" src="img/logo-2s.png" alt="" style="height:72px"><span class="stack"><span class="one" style="font-size:2.3rem">2SetsFitness</span><span class="two" style="font-size:1.1rem;letter-spacing:.4em">More than a gym app</span></span></span>
+    </div>
+    <p class="why"><b>D — the tagline does the red.</b> Name in one ink, "More than a gym app" underneath in red, letterspaced. Puts the line you kept into the logo itself.</p>
+  </div>
+
+  <div class="row">
+    <div class="id">E</div>
+    <div class="pane on-light">
+      <span class="cap">Light · nav size</span>
+      <span class="lk E"><img class="l" src="img/logo-2s-light.png" alt=""><img class="d" src="img/logo-2s.png" alt=""><span class="w">2Sets<b>Fitness</b></span></span>
+      <span class="cap">Large</span>
+      <span class="lk E"><img class="l" src="img/logo-2s-light.png" alt="" style="height:62px"><img class="d" src="img/logo-2s.png" alt="" style="height:62px"><span class="w" style="font-size:3.1rem">2Sets<b>Fitness</b></span></span>
+    </div>
+    <div class="pane on-dark">
+      <span class="cap">Dark · nav size</span>
+      <span class="lk E"><img class="l" src="img/logo-2s-light.png" alt=""><img class="d" src="img/logo-2s.png" alt=""><span class="w">2Sets<b>Fitness</b></span></span>
+      <span class="cap">Large</span>
+      <span class="lk E"><img class="l" src="img/logo-2s-light.png" alt="" style="height:62px"><img class="d" src="img/logo-2s.png" alt="" style="height:62px"><span class="w" style="font-size:3.1rem">2Sets<b>Fitness</b></span></span>
+    </div>
+    <p class="why"><b>E — condensed caps.</b> Barlow Condensed, all caps. Narrow like the mark's strokes, and it reads as sportswear rather than software.</p>
+  </div>
+
+  <div class="row">
+    <div class="id">F</div>
+    <div class="pane on-light">
+      <span class="cap">Light · nav size</span>
+      <span class="lk F"><img class="l" src="img/logo-2s-light.png" alt=""><img class="d" src="img/logo-2s.png" alt=""><span class="w">etsFitness</span></span>
+      <span class="cap">Large</span>
+      <span class="lk F"><img class="l" src="img/logo-2s-light.png" alt="" style="height:72px"><img class="d" src="img/logo-2s.png" alt="" style="height:72px"><span class="w" style="font-size:2.6rem">etsFitness</span></span>
+    </div>
+    <div class="pane on-dark">
+      <span class="cap">Dark · nav size</span>
+      <span class="lk F"><img class="l" src="img/logo-2s-light.png" alt=""><img class="d" src="img/logo-2s.png" alt=""><span class="w">etsFitness</span></span>
+      <span class="cap">Large</span>
+      <span class="lk F"><img class="l" src="img/logo-2s-light.png" alt="" style="height:72px"><img class="d" src="img/logo-2s.png" alt="" style="height:72px"><span class="w" style="font-size:2.6rem">etsFitness</span></span>
+    </div>
+    <p class="why"><b>F — the mark <em>is</em> the 2S.</b> The word carries on from it instead of repeating it. Clever, and a risk: it only works if people read the mark as letters.</p>
+  </div>
+
+  <div class="row">
+    <div class="id">G</div>
+    <div class="pane on-light">
+      <span class="cap">Light · nav size</span>
+      <span class="lk G"><img class="l" src="img/logo-2s-light.png" alt=""><img class="d" src="img/logo-2s.png" alt=""><span class="w">2Sets<b>Fitness</b></span></span>
+      <span class="cap">Large</span>
+      <span class="lk G"><img class="l" src="img/logo-2s-light.png" alt="" style="height:70px"><img class="d" src="img/logo-2s.png" alt="" style="height:70px"><span class="w" style="font-size:1.5rem;letter-spacing:.24em">2Sets<b>Fitness</b></span></span>
+    </div>
+    <div class="pane on-dark">
+      <span class="cap">Dark · nav size</span>
+      <span class="lk G"><img class="l" src="img/logo-2s-light.png" alt=""><img class="d" src="img/logo-2s.png" alt=""><span class="w">2Sets<b>Fitness</b></span></span>
+      <span class="cap">Large</span>
+      <span class="lk G"><img class="l" src="img/logo-2s-light.png" alt="" style="height:70px"><img class="d" src="img/logo-2s.png" alt="" style="height:70px"><span class="w" style="font-size:1.5rem;letter-spacing:.24em">2Sets<b>Fitness</b></span></span>
+    </div>
+    <p class="why"><b>G — stacked.</b> For a square space: app store graphic, splash, social avatar. Too tall for the nav, but you need one of these anyway.</p>
+  </div>
+
+  <div class="row">
+    <div class="id">H</div>
+    <div class="pane on-light">
+      <span class="cap">Light · nav size</span>
+      <span class="lk H"><img class="l" src="img/logo-2s-light.png" alt=""><img class="d" src="img/logo-2s.png" alt=""></span>
+      <span class="cap">Large</span>
+      <span class="lk H"><img class="l" src="img/logo-2s-light.png" alt="" style="height:84px"><img class="d" src="img/logo-2s.png" alt="" style="height:84px"></span>
+    </div>
+    <div class="pane on-dark">
+      <span class="cap">Dark · nav size</span>
+      <span class="lk H"><img class="l" src="img/logo-2s-light.png" alt=""><img class="d" src="img/logo-2s.png" alt=""></span>
+      <span class="cap">Large</span>
+      <span class="lk H"><img class="l" src="img/logo-2s-light.png" alt="" style="height:84px"><img class="d" src="img/logo-2s.png" alt="" style="height:84px"></span>
+    </div>
+    <p class="why"><b>H — mark alone.</b> What you earn once people know you. Too early for the website; right for the app's own header, where they already know whose app it is.</p>
+  </div>
+
+  <div class="row">
+    <div class="id">I</div>
+    <div class="pane on-light">
+      <span class="cap">Light · nav size</span>
+      <span class="lk I"><img class="l" src="img/logo-2s-light.png" alt=""><img class="d" src="img/logo-2s.png" alt=""><span class="w">2Sets<b>Fitness</b></span></span>
+      <span class="cap">Large</span>
+      <span class="lk I"><img class="l" src="img/logo-2s-light.png" alt="" style="height:64px"><img class="d" src="img/logo-2s.png" alt="" style="height:64px"><span class="w" style="font-size:2.9rem">2Sets<b>Fitness</b></span></span>
+    </div>
+    <div class="pane on-dark">
+      <span class="cap">Dark · nav size</span>
+      <span class="lk I"><img class="l" src="img/logo-2s-light.png" alt=""><img class="d" src="img/logo-2s.png" alt=""><span class="w">2Sets<b>Fitness</b></span></span>
+      <span class="cap">Large</span>
+      <span class="lk I"><img class="l" src="img/logo-2s-light.png" alt="" style="height:64px"><img class="d" src="img/logo-2s.png" alt="" style="height:64px"><span class="w" style="font-size:2.9rem">2Sets<b>Fitness</b></span></span>
+    </div>
+    <p class="why"><b>I — Oswald caps.</b> Tall, narrow, upright. The gym-poster voice. Reads loud at small sizes, which is what a nav needs.</p>
+  </div>
+
+</div></main>
+</body>
+</html>
