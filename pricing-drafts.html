@@ -11,7 +11,9 @@
 <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 <!-- the live site's own stylesheet: the nav, the type and the buttons here
      are the real ones, so what this looks like is what the site looks like -->
-<link rel="stylesheet" href="styles.redesign.css?v=27">
+<link rel="stylesheet" href="styles.redesign.css?v=28">
+<!-- the saved light/dark choice, read before a pixel is painted -->
+<script>try{var t=localStorage.getItem('2s-theme');if(t==='dark'||t==='light')document.documentElement.dataset.theme=t;}catch(e){}</script>
 <style>
 /* ---------------------------------------------------------------------
    Pricing section drafts.
@@ -51,27 +53,8 @@
 .picker .sp { flex: 1 1 auto; }
 .picker .note { font-size: .74rem; opacity: .7; }
 
-/* ---------- dark: the same tokens, different values ---------- */
-body[data-mode="dark"] {
-  --bg:        #0a0c10;
-  --bg-soft:   #0e1117;
-  --surface:   #13161e;
-  --surface-2: #181c25;
-  --line:      #242a36;
-  --tile:      #171b24;
-  --ink:       #f3f5f9;
-  --dim:       #99a2b2;
-  --accent:     #e31e24;
-  --accent-ink: #ff7a7d;          /* red is not readable as text on near-black */
-  --on-accent:  #ffffff;
-  --shadow: 0 30px 60px rgba(0, 0, 0, .55);
-  --soft:   0 1px 0 rgba(255,255,255,.04), 0 10px 28px rgba(0, 0, 0, .4);
-  color-scheme: dark;
-}
-body[data-mode="dark"] .nav { background: color-mix(in srgb, var(--bg) 80%, transparent); }
-
-/* one draft on screen at a time */
-body[data-draft="a"] #draft-b, body[data-draft="b"] #draft-a { display: none; }
+/* (dark mode is the site's own now: styles.redesign.css, and the moon in
+   the nav. This page used to carry a copy of it.) */
 
 /* ============================================================
    PRICING — shared between both drafts
@@ -126,12 +109,16 @@ body[data-draft="a"] #draft-b, body[data-draft="b"] #draft-a { display: none; }
   border-color: color-mix(in srgb, var(--accent) 55%, transparent);
   box-shadow: 0 0 0 1px color-mix(in srgb, var(--accent) 30%, transparent), 0 24px 60px rgba(227,30,36,.14);
 }
-body[data-mode="dark"] .plan.lead {
-  background: linear-gradient(180deg, color-mix(in srgb, var(--accent) 9%, var(--surface)), var(--surface) 60%);
-}
 /* the one-off, in the warmer gold the "launch price" chip uses */
 .plan.once { --gold: #c98a16; }
-body[data-mode="dark"] .plan.once { --gold: #f0b429; }
+/* in dark the recommended card gets a faint red wash and the gold lifts,
+   under both of the theme's states: following the system, and chosen */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .plan.lead { background: linear-gradient(180deg, color-mix(in srgb, var(--accent) 9%, var(--surface)), var(--surface) 60%); }
+  :root:not([data-theme="light"]) .plan.once { --gold: #f0b429; }
+}
+:root[data-theme="dark"] .plan.lead { background: linear-gradient(180deg, color-mix(in srgb, var(--accent) 9%, var(--surface)), var(--surface) 60%); }
+:root[data-theme="dark"] .plan.once { --gold: #f0b429; }
 
 .plan-top { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
 .plan-name {
@@ -167,47 +154,13 @@ body[data-mode="dark"] .plan.once { --gold: #f0b429; }
   color: var(--dim); font-size: .95rem;
 }
 
-/* ============================================================
-   DRAFT B — every offer at once, Free made small
-   ============================================================ */
-/* four cards need more than the site's 1120; the row is the exception,
-   the rest of the section keeps the site's width */
-#draft-b .plans-wrap { max-width: 1260px; margin-inline: auto; }
-.plans.four { grid-template-columns: 0.78fr 1fr 1.06fr 1fr; gap: 16px; }
-@media (max-width: 1180px) { .plans.four { grid-template-columns: repeat(2, 1fr); } }
-@media (max-width: 720px)  { .plans.four { grid-template-columns: 1fr; max-width: 30rem; margin-inline: auto; } }
-
-/* Free steps back: a smaller number, tighter type, no shadow of its own.
-   It is there to be seen and passed over, not compared feature by feature. */
-.plan.slim {
-  align-self: start;              /* shorter than the paid three, not just narrower */
-  padding: 26px 22px 22px; gap: 14px;
-  background: transparent; box-shadow: none;
-  border-style: dashed;
-}
-.plan.slim .price .now { font-size: clamp(1.9rem, 4vw, 2.3rem); }
-.plan.slim .under { font-size: .9rem; }
-.plan.slim .perks { gap: 9px; font-size: .94rem; }
-.plan.slim .perks li { grid-template-columns: 18px 1fr; gap: 8px; }
-.plan.slim .perks svg { width: 14px; height: 14px; margin-top: 3px; }
-.plan.slim .btn { min-height: 44px; font-size: .95rem; }
-
-/* the yearly card is the point of the row, so it gets the ring and a
-   little more air than the three beside it */
-.plans.four .plan.lead { padding-inline: 28px; }
 </style>
 </head>
-<body data-mode="dark" data-draft="a">
+<body>
 
 <div class="picker">
   <b>Draft</b>
-  <button type="button" data-draft-btn="a" aria-pressed="true">A · switch</button>
-  <button type="button" data-draft-btn="b" aria-pressed="false">B · all four</button>
-  <span class="div"></span>
-  <button type="button" data-mode-btn="dark"  aria-pressed="true">Dark</button>
-  <button type="button" data-mode-btn="light" aria-pressed="false">Light</button>
-  <span class="sp"></span>
-  <span class="note">Prices are the recommended ones, not settled. Not indexed.</span>
+  <span class="note">A pricing section on the live stylesheet. Prices settled 20 Nov. Not indexed.</span>
 </div>
 
 <header class="nav" id="nav">
@@ -218,6 +171,10 @@ body[data-mode="dark"] .plan.once { --gold: #f0b429; }
       <a href="index.html#see">See it</a>
       <a href="index.html#coach">AI coach</a>
       <a href="index.html#pricing">Pricing</a>
+      <button class="theme-toggle" id="theme-toggle" type="button" aria-pressed="false" aria-label="Switch to dark mode" title="Dark mode">
+        <svg class="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 14.5A8.5 8.5 0 0 1 9.5 4a8.5 8.5 0 1 0 10.5 10.5z"/></svg>
+        <svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.6v2.2M12 19.2v2.2M4.3 4.3l1.6 1.6M18.1 18.1l1.6 1.6M2.6 12h2.2M19.2 12h2.2M4.3 19.7l1.6-1.6M18.1 5.9l1.6-1.6"/></svg>
+      </button>
       <a class="btn primary sm" href="https://fitness-app-5c48a.web.app" rel="noopener">Try it free</a>
     </nav>
   </div>
@@ -299,104 +256,10 @@ body[data-mode="dark"] .plan.once { --gold: #f0b429; }
   </div>
 </section>
 
-<!-- ════════════════ DRAFT B — every offer at once ════════════════ -->
-<section class="pricing" id="draft-b">
-  <div class="wrap">
-    <div class="sec-head">
-      <span class="eyebrow">Pricing</span>
-      <h2>One app for the whole thing.</h2>
-      <p>Logging every workout, your own routines and the leaderboard are free, for good.
-        Pick how you pay for the rest — nothing is hidden behind a switch.</p>
-    </div>
-  </div>
-
-  <div class="wrap plans-wrap">
-    <div class="plans four">
-
-      <!-- Free, made small: seen and passed over, not compared line by line -->
-      <article class="plan slim">
-        <div class="plan-top"><span class="plan-name">Free</span></div>
-        <div class="price"><span class="now">£0</span></div>
-        <p class="under">for good, no card</p>
-        <ul class="perks">
-          <li><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 10.5l4 4 8-9"/></svg><span>Every workout, kept for good</span></li>
-          <li><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 10.5l4 4 8-9"/></svg><span>Routines and your week</span></li>
-          <li><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 10.5l4 4 8-9"/></svg><span>Friends and the leaderboard</span></li>
-          <li><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 10.5l4 4 8-9"/></svg><span>3 coach messages a day</span></li>
-        </ul>
-        <div class="go"><a class="btn" href="https://fitness-app-5c48a.web.app" rel="noopener">Start free</a></div>
-      </article>
-
-      <!-- Monthly: the decoy. Its job is to make the yearly one obvious. -->
-      <article class="plan">
-        <div class="plan-top"><span class="plan-name">Monthly</span></div>
-        <div class="price"><span class="now">£5.99</span></div>
-        <p class="under">a month, cancel any time</p>
-        <ul class="perks">
-          <li><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 10.5l4 4 8-9"/></svg><span>Everything in Premium</span></li>
-          <li><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 10.5l4 4 8-9"/></svg><span>Stop whenever you like</span></li>
-          <li><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 10.5l4 4 8-9"/></svg><span>£71.88 over a year</span></li>
-        </ul>
-        <div class="go"><a class="btn" href="#" aria-disabled="true">Coming soon</a></div>
-        <p class="fine">7 days free first</p>
-      </article>
-
-      <!-- Yearly: the one the row is built around -->
-      <article class="plan lead">
-        <div class="plan-top">
-          <span class="plan-name">Yearly</span>
-          <span class="chip rec">Save 42%</span>
-        </div>
-        <div class="price"><span class="now">£3.49</span></div>
-        <p class="under">a month, billed £41.99 a year</p>
-        <ul class="perks">
-          <li><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 10.5l4 4 8-9"/></svg><span>Ten AI coach messages a day, and it knows your week</span></li>
-          <li><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 10.5l4 4 8-9"/></svg><span>Meal photos and barcodes, counted for you</span></li>
-          <li><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 10.5l4 4 8-9"/></svg><span>Your 3D fighter, and the muscle map behind it</span></li>
-          <li><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 10.5l4 4 8-9"/></svg><span>Sleep, recovery and what to train next</span></li>
-          <li><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 10.5l4 4 8-9"/></svg><span>Form Coach watching every lift</span></li>
-        </ul>
-        <div class="go"><a class="btn primary" href="#" aria-disabled="true">Coming soon</a></div>
-        <p class="fine">7 days free, then £41.99 a year</p>
-      </article>
-
-      <!-- Lifetime -->
-      <article class="plan once">
-        <div class="plan-top">
-          <span class="plan-name">Lifetime</span>
-          <span class="chip gold">Launch price</span>
-        </div>
-        <div class="price"><span class="now">£89.99</span><span class="was">£119.99</span></div>
-        <p class="under">once, and nothing renews</p>
-        <ul class="perks">
-          <li><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 10.5l4 4 8-9"/></svg><span>Everything in Premium, for good</span></li>
-          <li><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 10.5l4 4 8-9"/></svg><span>One payment, no renewals, no reminders</span></li>
-          <li><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 10.5l4 4 8-9"/></svg><span>Every update after this one</span></li>
-        </ul>
-        <div class="go"><a class="btn" href="#" aria-disabled="true">Coming soon</a></div>
-        <p class="fine">The launch price is for the first 500</p>
-      </article>
-
-    </div>
-  </div>
-
-  <div class="wrap">
-    <p class="footnote">Premium pays for the AI. Every coach reply and every meal photo costs us something
-      to run, which is why it has a daily allowance rather than a promise we would have to break later.</p>
-  </div>
-</section>
 
 </main>
 
 <script>
-// the picker: which draft, and light (the site's own) or the dark band
-const press = (sel, on) => { for (const b of document.querySelectorAll(sel)) b.setAttribute('aria-pressed', String(b === on)); };
-for (const b of document.querySelectorAll('[data-draft-btn]')) {
-  b.addEventListener('click', () => { document.body.dataset.draft = b.dataset.draftBtn; press('[data-draft-btn]', b); });
-}
-for (const b of document.querySelectorAll('[data-mode-btn]')) {
-  b.addEventListener('click', () => { document.body.dataset.mode = b.dataset.modeBtn; press('[data-mode-btn]', b); });
-}
 
 // draft A's billing switch
 const pro = document.getElementById('plan-pro');
@@ -419,5 +282,6 @@ const onScroll = () => nav.classList.toggle('scrolled', window.scrollY > 4);
 addEventListener('scroll', onScroll, { passive: true });
 onScroll();
 </script>
+<script src="theme.js" defer></script>
 </body>
 </html>
