@@ -26,8 +26,9 @@
 
    £3.49 a month is £41.99 a year, not £39.99 (that one is £3.33). The
    per-month figure has to divide into the yearly one or it is a lie, so
-   the yearly price moved rather than the arithmetic. Prices live in one
-   place per card; changing them is changing numbers, not markup.
+   the yearly price moved rather than the arithmetic. £5.99 x 12 is £71.88,
+   so the yearly saving is 42%, not half. Prices live in one place per
+   card; changing them is changing numbers, not markup.
 --------------------------------------------------------------------- */
 
 /* the draft picker, not part of the design */
@@ -235,7 +236,7 @@ body[data-mode="dark"] .plan.once { --gold: #f0b429; }
 
       <div class="switch" role="group" aria-label="Billing period">
         <button type="button" data-bill="m" aria-pressed="false">Monthly</button>
-        <button type="button" data-bill="y" aria-pressed="true">Yearly <span class="save">save 50%</span></button>
+        <button type="button" data-bill="y" aria-pressed="true">Yearly <span class="save">save 42%</span></button>
       </div>
     </div>
 
@@ -254,7 +255,7 @@ body[data-mode="dark"] .plan.once { --gold: #f0b429; }
         <div class="go"><a class="btn" href="https://fitness-app-5c48a.web.app" rel="noopener">Start free</a></div>
       </article>
 
-      <article class="plan lead" id="plan-pro" data-m="£6.99" data-y="£3.49"
+      <article class="plan lead" id="plan-pro" data-m="£5.99" data-y="£3.49"
                data-m-under="a month, cancel any time"
                data-y-under="a month, billed £41.99 a year">
         <div class="plan-top">
@@ -329,12 +330,12 @@ body[data-mode="dark"] .plan.once { --gold: #f0b429; }
       <!-- Monthly: the decoy. Its job is to make the yearly one obvious. -->
       <article class="plan">
         <div class="plan-top"><span class="plan-name">Monthly</span></div>
-        <div class="price"><span class="now">£6.99</span></div>
+        <div class="price"><span class="now">£5.99</span></div>
         <p class="under">a month, cancel any time</p>
         <ul class="perks">
           <li><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 10.5l4 4 8-9"/></svg><span>Everything in Premium</span></li>
           <li><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 10.5l4 4 8-9"/></svg><span>Stop whenever you like</span></li>
-          <li><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 10.5l4 4 8-9"/></svg><span>£83.88 over a year</span></li>
+          <li><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 10.5l4 4 8-9"/></svg><span>£71.88 over a year</span></li>
         </ul>
         <div class="go"><a class="btn" href="#" aria-disabled="true">Coming soon</a></div>
         <p class="fine">7 days free first</p>
@@ -344,7 +345,7 @@ body[data-mode="dark"] .plan.once { --gold: #f0b429; }
       <article class="plan lead">
         <div class="plan-top">
           <span class="plan-name">Yearly</span>
-          <span class="chip rec">Save 50%</span>
+          <span class="chip rec">Save 42%</span>
         </div>
         <div class="price"><span class="now">£3.49</span></div>
         <p class="under">a month, billed £41.99 a year</p>
@@ -406,7 +407,7 @@ function bill(key) {
   const yearly = key === 'y';
   now.textContent = yearly ? pro.dataset.y : pro.dataset.m;
   under.textContent = yearly ? pro.dataset.yUnder : pro.dataset.mUnder;
-  fine.textContent = yearly ? '7 days free, then £41.99 a year' : '7 days free, then £6.99 a month';
+  fine.textContent = yearly ? '7 days free, then £41.99 a year' : '7 days free, then £5.99 a month';
   for (const b of document.querySelectorAll('[data-bill]')) b.setAttribute('aria-pressed', String(b.dataset.bill === key));
 }
 for (const b of document.querySelectorAll('[data-bill]')) b.addEventListener('click', () => bill(b.dataset.bill));
