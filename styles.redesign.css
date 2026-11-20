@@ -743,3 +743,7 @@ video::-webkit-media-controls, video::-webkit-media-controls-enclosure { display
 :root[data-theme="light"] .theme-toggle .moon { display: block; }
 /* it stays on small screens, where the text links collapse */
 @media (max-width: 760px) { .theme-toggle { width: 36px; height: 36px; } }
+
+/* the standing tagline under the footer mark: the brand line, so it reads
+   a step up from the copy beneath it */
+.fbrand .ftag { margin: 10px 0 2px; font-weight: 700; font-size: 1.05rem; color: var(--ink); }
