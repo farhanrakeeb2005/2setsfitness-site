@@ -522,6 +522,46 @@ video::-webkit-media-controls, video::-webkit-media-controls-enclosure { display
   .hero-visual.phones { min-height: 600px; }
   .hero-visual.phones .phone { width: 270px; }
 }
+/* ── the backdrop ──────────────────────────────────────────────────────────
+   The summit at dawn behind the whole page, the nav and the logo included
+   (the drafts are in bg-drafts.html, which tried four of these). The hero
+   fills the screen so the photograph IS the page rather than a band across
+   the top of it, and the copy over it flips to light. */
+.scene { position: fixed; inset: 0; z-index: 0; overflow: hidden; pointer-events: none; }
+.scene .photo { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; }
+.scene .scrim {
+  position: absolute; inset: 0;
+  background: linear-gradient(100deg, rgba(8,11,16,.80) 0%, rgba(8,11,16,.52) 46%, rgba(8,11,16,.30) 100%);
+}
+.nav, main { position: relative; z-index: 1; }
+
+.hero { min-height: calc(100svh - 128px); display: flex; align-items: center; padding-bottom: clamp(36px, 7vw, 72px); }
+.hero > .wrap { width: 100%; }
+
+/* over a photograph the nav drops its white blur and goes light */
+.nav { background: transparent; -webkit-backdrop-filter: none; backdrop-filter: none; border-bottom-color: transparent; }
+.nav .brand { color: #fff; }
+.nav-links a:not(.btn) { color: #ded7d6; }
+.nav-links a:not(.btn):hover { color: #fff; }
+
+/* out to the corners: a wider field than the rest of the page */
+.nav .wrap, .hero .wrap {
+  max-width: 1460px;
+  padding-inline: max(22px, env(safe-area-inset-left, 0px)) max(22px, env(safe-area-inset-right, 0px));
+}
+@media (min-width: 1100px) {
+  .nav .wrap, .hero .wrap { padding-inline: clamp(32px, 4.4vw, 76px); }
+  .hero-inner { grid-template-columns: 1.06fr 0.94fr; gap: clamp(40px, 5vw, 76px); }
+  .hero h1 { font-size: clamp(3.1rem, 5.4vw, 5.2rem); max-width: 15ch; line-height: 1.02; }
+  .hero .lede { max-width: 44rem; font-size: 1.22rem; }
+  .facts { max-width: 46rem; row-gap: 10px; }
+}
+.hero h1 { color: #fff; }
+.hero .lede, .hero .facts li, .hero .cta-note { color: #e9e3e2; }
+.hero h1 .red { color: #ff5257; }
+.hero .btn.soon { background: rgba(255,255,255,.1); border-color: rgba(255,255,255,.34); color: #fff; }
+.hero .facts a { color: #ff8488; }
+
 /* one phone beside a column of copy (Make it yours) */
 .split .solo-shot { width: min(260px, 72vw); justify-self: center; }
 

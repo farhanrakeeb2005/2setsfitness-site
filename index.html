@@ -25,7 +25,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <!-- reuse the current site's display font (Outfit) -->
 <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="styles.redesign.css?v=29">
+<link rel="stylesheet" href="styles.redesign.css?v=30">
 <!-- the saved light/dark choice, read before a pixel is painted -->
 <script>try{var t=localStorage.getItem('2s-theme');if(t==='dark'||t==='light')document.documentElement.dataset.theme=t;}catch(e){}</script>
 </head>
@@ -47,9 +47,17 @@
 --------------------------------------------------------------------- -->
 
 <!-- ======================= NAV ======================= -->
+<!-- The page's backdrop: the summit at dawn (bg-drafts.html tried four, this
+     is the one that was picked). It sits outside the nav and main so the
+     header sits on the photograph rather than in front of a white bar. -->
+<div class="scene" aria-hidden="true">
+  <img class="photo" src="img/bg/summit.jpg" alt="" width="2000" height="1333" fetchpriority="high">
+  <div class="scrim"></div>
+</div>
+
 <header class="nav" id="nav">
   <div class="wrap">
-    <a class="brand" href="#top"><img class="mk-dark" src="img/logo-2s.png" alt="" width="433" height="230"><img class="mk-light" src="img/logo-2s-light.png" alt="" width="433" height="230"><span class="word">2Sets<b>Fitness</b></span></a>
+    <a class="brand" href="#top"><img class="mk-dark" src="img/logo-2s.png?v=2" alt="" width="433" height="230"><img class="mk-light" src="img/logo-2s-light.png?v=2" alt="" width="433" height="230"><span class="word">2Sets<b>Fitness</b></span></a>
     <nav class="nav-links" aria-label="Primary">
       <a href="#features">Features</a>
       <a href="#see">See it</a>
