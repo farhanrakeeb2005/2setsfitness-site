@@ -522,6 +522,9 @@ video::-webkit-media-controls, video::-webkit-media-controls-enclosure { display
   .hero-visual.phones { min-height: 600px; }
   .hero-visual.phones .phone { width: 270px; }
 }
+/* one phone beside a column of copy (Make it yours) */
+.split .solo-shot { width: min(260px, 72vw); justify-self: center; }
+
 .see { display: grid; gap: 22px; align-items: start; }
 .see .phone.video { max-width: 340px; margin-inline: auto; }
 .see .phone.video video { aspect-ratio: 9 / 16; object-fit: cover; }
