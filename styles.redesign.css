@@ -1359,3 +1359,45 @@ main h2 span, main h2 .red { color: var(--accent); }
 
 @media (max-width: 980px) { .quad { grid-template-columns: repeat(2, 1fr); } }
 @media (max-width: 560px) { .quad { grid-template-columns: 1fr; } }
+
+
+/* ---- slide 2, shown rather than described ---- */
+.phones3 {
+  margin: clamp(30px, 5vw, 52px) 0 0;
+  display: flex; align-items: flex-end; justify-content: center;
+  gap: clamp(10px, 2.4vw, 30px);
+}
+.ph { margin: 0; text-align: center; }
+/* A whole phone screen is nearly three times as tall as it is wide, so
+   three of them side by side run off the bottom and take the captions
+   with them. Each is cropped to a window on the part that makes its
+   point -- the sports grid at the top of one, the fan in the middle of
+   the next, the food sheet at the foot of the last. */
+.ph img {
+  display: block; width: 100%; height: clamp(300px, 44vh, 440px);
+  object-fit: cover; border-radius: 20px;
+  border: 1px solid rgba(255,255,255,.14);
+  box-shadow: 0 30px 70px rgba(0,0,0,.62);
+}
+.ph.side:first-child img { object-position: 50% 16%; }
+.ph.main img { object-position: 50% 64%; }
+.ph.side:last-child img { object-position: 50% 100%; }
+/* the middle one is the point, so it stands forward and the other two
+   turn slightly away from it */
+.ph.main { width: min(286px, 27vw); z-index: 2; }
+.ph.side { width: min(232px, 22vw); z-index: 1; opacity: .96; }
+.ph.side:first-child img { transform: perspective(1200px) rotateY(9deg); }
+.ph.side:last-child img { transform: perspective(1200px) rotateY(-9deg); }
+.ph figcaption {
+  margin-top: 16px; font-size: .74rem; font-weight: 800;
+  letter-spacing: .15em; text-transform: uppercase; color: #cdd4df;
+  text-shadow: 0 2px 14px rgba(0,0,0,.75);
+}
+.ph.main figcaption { color: #fff; }
+
+/* narrow: the two at the sides are unreadable long before they are
+   small, so the one that says everything carries it alone */
+@media (max-width: 760px) {
+  .ph.side { display: none; }
+  .ph.main { width: min(272px, 64vw); }
+}
