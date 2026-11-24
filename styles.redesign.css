@@ -1274,3 +1274,18 @@ main h2 span, main h2 .red { color: var(--accent); }
       rgba(7,8,12,0.7) 84%, rgba(7,8,12,0.88) 100%);
   }
 }
+
+
+/* The x-ray tile was the full width of the page, so it covered the
+   mountain behind it from edge to edge. Pulled in and centred: the
+   background runs down both sides of it. */
+.tile.feature-big {
+  max-width: 1080px;
+  margin-inline: auto;
+}
+@media (min-width: 900px) {
+  .big-split { grid-template-columns: 0.92fr 1.08fr; gap: 24px; }
+}
+
+/* the one on show, while it is going round by itself */
+.ex-chips button { transition: background-color .25s, border-color .25s, color .25s; }
