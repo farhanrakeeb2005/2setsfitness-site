@@ -1,0 +1,310 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>2SetsFitness &middot; Header drafts</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="icon" href="img/favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Outfit:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+/* ---------------------------------------------------------------------
+   Twenty-five headers, each sitting on the real photograph in the real
+   composition -- the picture held to the right, black to its left -- so
+   they are judged where they are going to live rather than on white.
+
+   Self-contained on purpose: it borrows nothing from
+   styles.redesign.css, so trying one of these out is copying its rule
+   across, not untangling it from the live sheet.
+--------------------------------------------------------------------- */
+:root {
+  --red: #E31E24;
+  --ink: #EEF1F6;
+  --dim: #D3D8E1;
+  --page: #07080c;
+  --font: "Outfit", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+}
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--page); color: var(--ink); font: 400 16px/1.5 var(--font); }
+
+.head { padding: 42px max(20px, 4vw) 10px; max-width: 1360px; margin: 0 auto; }
+.head h1 { font-family: "Anton", var(--font); font-weight: 400; text-transform: uppercase;
+  letter-spacing: .012em; line-height: .94; font-size: clamp(2rem, 5vw, 3.1rem); margin: 0 0 10px; }
+.head p { margin: 0; color: #9aa3b2; max-width: 46rem; }
+.head code { background: #141922; padding: 2px 7px; border-radius: 5px; font-size: .88em; }
+
+.list { max-width: 1360px; margin: 0 auto; padding: 18px max(20px, 4vw) 90px;
+  display: flex; flex-direction: column; gap: 34px; }
+
+.lab { display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap; margin: 0 0 9px; }
+.lab b { font-family: "Anton", var(--font); font-weight: 400; font-size: 1.1rem;
+  color: var(--red); letter-spacing: .04em; }
+.lab h2 { margin: 0; font-size: 1.02rem; font-weight: 800; letter-spacing: .01em; }
+.lab p { margin: 0; color: #8d96a6; font-size: .88rem; }
+
+/* the shot: the live composition, shrunk to a strip */
+.shot { position: relative; border-radius: 12px; overflow: hidden;
+  border: 1px solid #1b212c; background: var(--page); }
+.shot::after { content: ""; position: absolute; inset: 0; pointer-events: none; z-index: 1; }
+/* the picture is its own element, held to the right at its own proportions
+   and faded out along its left edge -- the same construction the live page
+   uses, so these strips are not a flattering fake */
+.shot .pic {
+  position: absolute; top: -30px; right: -10px; height: 520px; width: auto;
+  display: block; pointer-events: none;
+  -webkit-mask-image: linear-gradient(90deg, rgba(0,0,0,0) 0%, rgba(0,0,0,.4) 14%, #000 42%);
+  mask-image: linear-gradient(90deg, rgba(0,0,0,0) 0%, rgba(0,0,0,.4) 14%, #000 42%);
+}
+.shot::after {
+  background: linear-gradient(96deg, rgba(7,8,12,.94) 0%, rgba(7,8,12,.9) 30%,
+    rgba(7,8,12,.62) 46%, rgba(7,8,12,.34) 62%, rgba(7,8,12,.2) 82%, rgba(7,8,12,.18) 100%);
+}
+.shotin { position: relative; z-index: 2; height: 150px; padding: 0 max(18px, 2.4vw); }
+
+/* the header itself, the same pieces in every draft */
+.bar { position: relative; display: flex; align-items: center; justify-content: space-between;
+  gap: 18px; padding-block: 15px; }
+.brand { display: inline-flex; align-items: center; gap: 11px; text-decoration: none; color: #fff; }
+.brand img { height: 26px; width: auto; display: block; }
+.word { font-weight: 800; font-size: 1.14rem; letter-spacing: -.01em; }
+.word b { color: var(--red); font-weight: 800; }
+.links { display: flex; align-items: center; gap: 24px; }
+.links a { text-decoration: none; color: var(--dim); font-weight: 500; font-size: .95rem;
+  white-space: nowrap; }
+.links a:hover { color: #fff; }
+.sep { width: 1px; height: 22px; background: rgba(255,255,255,.18); }
+.cta { background: var(--red); color: #fff !important; font-weight: 700;
+  padding: 11px 19px; border-radius: 999px; }
+.cta:hover { filter: brightness(1.08); }
+
+/* ---- the twenty-five ---- */
+.v1 .bar { background: none; }
+.v1 .links a:not(.cta) { text-transform: uppercase; font-size: .78rem; letter-spacing: .13em; }
+.v2 .sep { width: 1px; height: 26px; background: rgba(255,255,255,.26); margin: 0 6px; }
+.v3 .bar { border-bottom: 1px solid rgba(255,255,255,.16); }
+.v4 .bar::before { content:""; position:absolute; inset:-14px 0 -30px; z-index:-1;
+  background: linear-gradient(180deg, rgba(5,7,11,.88), rgba(5,7,11,0)); }
+.v5 .bar { margin: 0 26px; padding: 10px 18px; border-radius: 999px;
+  background: rgba(14,18,26,.52); border: 1px solid rgba(255,255,255,.1);
+  -webkit-backdrop-filter: blur(16px); backdrop-filter: blur(16px); }
+.v6 .links { padding: 8px 10px 8px 20px; border-radius: 999px;
+  background: rgba(14,18,26,.55); border: 1px solid rgba(255,255,255,.1);
+  -webkit-backdrop-filter: blur(16px); backdrop-filter: blur(16px); }
+.v6 .sep { display: none; }
+.v7 .links a:not(.cta) { position: relative; padding-bottom: 6px; }
+.v7 .links a:not(.cta)::after { content:""; position:absolute; left:0; right:0; bottom:0;
+  height:2px; background: var(--red); transform: scaleX(0); transition: transform .2s; }
+.v7 .links a:nth-child(1)::after, .v7 .links a:hover::after { transform: scaleX(1); }
+.v8 .bar { border-bottom: 2px solid var(--red); }
+.v9 .links a:not(.cta) { text-transform: uppercase; font-size: .7rem; letter-spacing: .2em; font-weight: 700; }
+.v9 .links { gap: 30px; }
+.v9 .cta { font-size: .72rem; letter-spacing: .14em; text-transform: uppercase; }
+.v10 .cta { background: none; border: 1.5px solid rgba(255,255,255,.55); color: #fff; }
+.v10 .cta:hover { background: var(--red); border-color: var(--red); }
+.v11 .cta { text-transform: uppercase; letter-spacing: .13em; font-size: .74rem; padding: 12px 20px; }
+.v11 .cta em { font-style: normal; margin-left: 4px; }
+.v12 .links a i { font-style: normal; font-size: .62rem; color: var(--red);
+  margin-right: 6px; vertical-align: 3px; font-weight: 800; }
+.v12 .links { gap: 26px; }
+.v13 .stackb span { display: flex; flex-direction: column; align-items: flex-start; gap: 1px; }
+.v13 .stackb em { font-style: normal; font-size: .62rem; letter-spacing: .18em;
+  text-transform: uppercase; color: rgba(255,255,255,.52); }
+.v14 .bar { justify-content: space-between; }
+.v14 .lft, .v14 .rgt { flex: 1 1 0; }
+.v14 .rgt { justify-content: flex-end; }
+.v14 .brand { flex: 0 0 auto; }
+.v15 .bar { padding-block: 26px; }
+.v15 .links a:not(.cta) { font-size: 1.04rem; }
+.v15 .word { font-size: 1.3rem; }
+.v16 .bar { padding-block: 7px; }
+.v16 .links a:not(.cta) { font-size: .84rem; }
+.v16 .links { gap: 18px; }
+.v16 .cta { padding: 8px 15px; font-size: .84rem; }
+.v16 .brand img { height: 20px; }
+.v16 .word { font-size: 1rem; }
+.v17 .links { gap: 0; }
+.v17 .links a:not(.cta) { padding: 0 16px; position: relative; }
+.v17 .links a:not(.cta) + a:not(.cta)::before { content:"/"; position:absolute; left:-3px;
+  color: rgba(255,255,255,.2); }
+.v17 .sep { margin-left: 14px; }
+.v18 .links { gap: 0; }
+.v18 .links a:not(.cta) { padding: 0 15px; position: relative; }
+.v18 .links a:not(.cta) + a:not(.cta)::before { content:""; position:absolute; left:-2px; top:50%;
+  width:4px; height:4px; border-radius:50%; background: var(--red); transform: translateY(-50%); }
+.v18 .sep { margin-left: 14px; }
+.v19 .burger { background:none; border:0; cursor:pointer; display:flex; flex-direction:column;
+  gap:5px; padding:8px 2px; }
+.v19 .burger i { display:block; width:24px; height:2px; background:#fff; border-radius:2px; }
+.v19 .burger i:last-child { width: 15px; }
+.v20 .brand { background: var(--red); margin-left: -40px; padding: 12px 22px 12px 40px;
+  border-radius: 0 6px 6px 0; }
+.v20 .brand .word b { color: #fff; }
+.v20 .brand img { filter: brightness(0) invert(1); }
+.v20 .cta { background: #fff; color: #11141b !important; }
+.v21 .tier { display:flex; gap:26px; padding: 7px 0; font-size:.68rem; letter-spacing:.14em;
+  text-transform:uppercase; color: rgba(255,255,255,.5); border-bottom: 1px solid rgba(255,255,255,.1); }
+.v21 .bar { padding-block: 13px; }
+.v22 .bar::before { content:""; position:absolute; inset:-14px 0 0; z-index:-1;
+  background: rgba(10,13,19,.72); clip-path: polygon(0 0, 100% 0, 100% 62%, 0 100%); }
+.v22 .cta { border-radius: 2px; transform: skewX(-12deg); }
+.v22 .cta span, .v22 .cta em { display: inline-block; transform: skewX(12deg); }
+.v23 .bar { background: rgba(255,255,255,.07); border: 1px solid rgba(255,255,255,.14);
+  -webkit-backdrop-filter: blur(22px) saturate(1.3); backdrop-filter: blur(22px) saturate(1.3);
+  border-radius: 14px; margin: 0 20px; padding: 11px 18px; }
+.v24 .bar { border: 1px solid rgba(255,255,255,.3); border-radius: 4px;
+  margin: 0 20px; padding: 10px 18px; }
+.v24 .cta { border-radius: 3px; }
+.v25 { --rail: 1; }
+.v25 .bar { flex-direction: column; align-items: flex-start; gap: 16px; padding: 18px 0 0; height: 100%; }
+.v25 .links { flex-direction: column; align-items: flex-start; gap: 9px; }
+.v25 .links a:not(.cta) { font-size: .78rem; text-transform: uppercase; letter-spacing: .14em; }
+.v25 .cta { margin-top: 6px; }
+.v25 .shotin { height: 330px; }
+
+@media (max-width: 1080px) {
+  .links a:not(.cta) { display: none; }
+  .sep { display: none; }
+  .v25 .links a:not(.cta) { display: inline; }
+}
+</style>
+</head>
+<body>
+
+<div class="head">
+  <h1>Twenty-five headers</h1>
+  <p>Each one is the real bar on the real photograph, in the live composition. Tell me a
+  number and I will put it on the site &mdash; every draft is self-contained, so it is one
+  block of CSS moving across. Number <code>01</code> is what is live now.</p>
+</div>
+
+<div class="list">
+<section class="d v1">
+  <header class="lab"><b>01</b><h2>Bare</h2><p>Nothing but the words. Exactly the mockup.</p></header>
+  <div class="shot"><img class="pic" src="img/bg/summit-rig.jpg" alt="" width="1600" height="1540"><div class="shotin"><div class="bar"><a class="brand" href="#"><img src="img/logo-2s.png" alt="" width="433" height="230"><span class="word">2Sets<b>Fitness</b></span></a><nav class="links"><a href="#">Features</a><a href="#">See it</a><a href="#">AI coach</a><a href="#">Friends</a><a href="#">Pricing</a><span class="sep"></span><a class="cta" href="#">Try it free <em>&#8599;</em></a></nav></div></div></div>
+</section>
+
+<section class="d v2">
+  <header class="lab"><b>02</b><h2>Divider</h2><p>A hairline standing between the links and the button.</p></header>
+  <div class="shot"><img class="pic" src="img/bg/summit-rig.jpg" alt="" width="1600" height="1540"><div class="shotin"><div class="bar"><a class="brand" href="#"><img src="img/logo-2s.png" alt="" width="433" height="230"><span class="word">2Sets<b>Fitness</b></span></a><nav class="links"><a href="#">Features</a><a href="#">See it</a><a href="#">AI coach</a><a href="#">Friends</a><a href="#">Pricing</a><span class="sep"></span><a class="cta" href="#">Try it free <em>&#8599;</em></a></nav></div></div></div>
+</section>
+
+<section class="d v3">
+  <header class="lab"><b>03</b><h2>Hairline</h2><p>One pale rule along the bottom, no fill.</p></header>
+  <div class="shot"><img class="pic" src="img/bg/summit-rig.jpg" alt="" width="1600" height="1540"><div class="shotin"><div class="bar"><a class="brand" href="#"><img src="img/logo-2s.png" alt="" width="433" height="230"><span class="word">2Sets<b>Fitness</b></span></a><nav class="links"><a href="#">Features</a><a href="#">See it</a><a href="#">AI coach</a><a href="#">Friends</a><a href="#">Pricing</a><span class="sep"></span><a class="cta" href="#">Try it free <em>&#8599;</em></a></nav></div></div></div>
+</section>
+
+<section class="d v4">
+  <header class="lab"><b>04</b><h2>Fade</h2><p>Dark at the very top, gone by the time it reaches the picture.</p></header>
+  <div class="shot"><img class="pic" src="img/bg/summit-rig.jpg" alt="" width="1600" height="1540"><div class="shotin"><div class="bar"><a class="brand" href="#"><img src="img/logo-2s.png" alt="" width="433" height="230"><span class="word">2Sets<b>Fitness</b></span></a><nav class="links"><a href="#">Features</a><a href="#">See it</a><a href="#">AI coach</a><a href="#">Friends</a><a href="#">Pricing</a><span class="sep"></span><a class="cta" href="#">Try it free <em>&#8599;</em></a></nav></div></div></div>
+</section>
+
+<section class="d v5">
+  <header class="lab"><b>05</b><h2>Capsule</h2><p>The whole bar floating as one rounded pane.</p></header>
+  <div class="shot"><img class="pic" src="img/bg/summit-rig.jpg" alt="" width="1600" height="1540"><div class="shotin"><div class="bar"><a class="brand" href="#"><img src="img/logo-2s.png" alt="" width="433" height="230"><span class="word">2Sets<b>Fitness</b></span></a><nav class="links"><a href="#">Features</a><a href="#">See it</a><a href="#">AI coach</a><a href="#">Friends</a><a href="#">Pricing</a><span class="sep"></span><a class="cta" href="#">Try it free <em>&#8599;</em></a></nav></div></div></div>
+</section>
+
+<section class="d v6">
+  <header class="lab"><b>06</b><h2>Split capsule</h2><p>Logo loose, the links gathered into their own pane.</p></header>
+  <div class="shot"><img class="pic" src="img/bg/summit-rig.jpg" alt="" width="1600" height="1540"><div class="shotin"><div class="bar"><a class="brand" href="#"><img src="img/logo-2s.png" alt="" width="433" height="230"><span class="word">2Sets<b>Fitness</b></span></a><nav class="links"><a href="#">Features</a><a href="#">See it</a><a href="#">AI coach</a><a href="#">Friends</a><a href="#">Pricing</a><span class="sep"></span><a class="cta" href="#">Try it free <em>&#8599;</em></a></nav></div></div></div>
+</section>
+
+<section class="d v7">
+  <header class="lab"><b>07</b><h2>Underline</h2><p>A red stroke under whichever page you are on.</p></header>
+  <div class="shot"><img class="pic" src="img/bg/summit-rig.jpg" alt="" width="1600" height="1540"><div class="shotin"><div class="bar"><a class="brand" href="#"><img src="img/logo-2s.png" alt="" width="433" height="230"><span class="word">2Sets<b>Fitness</b></span></a><nav class="links"><a href="#">Features</a><a href="#">See it</a><a href="#">AI coach</a><a href="#">Friends</a><a href="#">Pricing</a><span class="sep"></span><a class="cta" href="#">Try it free <em>&#8599;</em></a></nav></div></div></div>
+</section>
+
+<section class="d v8">
+  <header class="lab"><b>08</b><h2>Red rule</h2><p>A thin red line the width of the page.</p></header>
+  <div class="shot"><img class="pic" src="img/bg/summit-rig.jpg" alt="" width="1600" height="1540"><div class="shotin"><div class="bar"><a class="brand" href="#"><img src="img/logo-2s.png" alt="" width="433" height="230"><span class="word">2Sets<b>Fitness</b></span></a><nav class="links"><a href="#">Features</a><a href="#">See it</a><a href="#">AI coach</a><a href="#">Friends</a><a href="#">Pricing</a><span class="sep"></span><a class="cta" href="#">Try it free <em>&#8599;</em></a></nav></div></div></div>
+</section>
+
+<section class="d v9">
+  <header class="lab"><b>09</b><h2>Small caps</h2><p>Links shrunk and spaced out, so the logo leads.</p></header>
+  <div class="shot"><img class="pic" src="img/bg/summit-rig.jpg" alt="" width="1600" height="1540"><div class="shotin"><div class="bar"><a class="brand" href="#"><img src="img/logo-2s.png" alt="" width="433" height="230"><span class="word">2Sets<b>Fitness</b></span></a><nav class="links"><a href="#">Features</a><a href="#">See it</a><a href="#">AI coach</a><a href="#">Friends</a><a href="#">Pricing</a><span class="sep"></span><a class="cta" href="#">Try it free <em>&#8599;</em></a></nav></div></div></div>
+</section>
+
+<section class="d v10">
+  <header class="lab"><b>10</b><h2>Ghost button</h2><p>An outline instead of a filled button.</p></header>
+  <div class="shot"><img class="pic" src="img/bg/summit-rig.jpg" alt="" width="1600" height="1540"><div class="shotin"><div class="bar"><a class="brand" href="#"><img src="img/logo-2s.png" alt="" width="433" height="230"><span class="word">2Sets<b>Fitness</b></span></a><nav class="links"><a href="#">Features</a><a href="#">See it</a><a href="#">AI coach</a><a href="#">Friends</a><a href="#">Pricing</a><span class="sep"></span><a class="cta" href="#">Try it free <em>&#8599;</em></a></nav></div></div></div>
+</section>
+
+<section class="d v11">
+  <header class="lab"><b>11</b><h2>Arrow</h2><p>The button points out of the page.</p></header>
+  <div class="shot"><img class="pic" src="img/bg/summit-rig.jpg" alt="" width="1600" height="1540"><div class="shotin"><div class="bar"><a class="brand" href="#"><img src="img/logo-2s.png" alt="" width="433" height="230"><span class="word">2Sets<b>Fitness</b></span></a><nav class="links"><a href="#">Features</a><a href="#">See it</a><a href="#">AI coach</a><a href="#">Friends</a><a href="#">Pricing</a><span class="sep"></span><a class="cta" href="#">Try it free <em>&#8599;</em></a></nav></div></div></div>
+</section>
+
+<section class="d v12">
+  <header class="lab"><b>12</b><h2>Numbered</h2><p>Each link indexed, like a contents page.</p></header>
+  <div class="shot"><img class="pic" src="img/bg/summit-rig.jpg" alt="" width="1600" height="1540"><div class="shotin"><div class="bar"><a class="brand" href="#"><img src="img/logo-2s.png" alt="" width="433" height="230"><span class="word">2Sets<b>Fitness</b></span></a><nav class="links"><a href="#"><i>01</i>Features</a><a href="#"><i>02</i>See it</a><a href="#"><i>03</i>AI coach</a><a href="#"><i>04</i>Friends</a><a href="#"><i>05</i>Pricing</a><span class="sep"></span><a class="cta" href="#">Try it free</a></nav></div></div></div>
+</section>
+
+<section class="d v13">
+  <header class="lab"><b>13</b><h2>Stacked logo</h2><p>The line under the name does the selling.</p></header>
+  <div class="shot"><img class="pic" src="img/bg/summit-rig.jpg" alt="" width="1600" height="1540"><div class="shotin"><div class="bar"><a class="brand stackb" href="#"><img src="img/logo-2s.png" alt="" width="433" height="230"><span><span class="word">2Sets<b>Fitness</b></span><em>More than a gym app</em></span></a><nav class="links"><a href="#">Features</a><a href="#">See it</a><a href="#">AI coach</a><a href="#">Friends</a><a href="#">Pricing</a><a class="cta" href="#">Try it free <em>&#8599;</em></a></nav></div></div></div>
+</section>
+
+<section class="d v14">
+  <header class="lab"><b>14</b><h2>Centred logo</h2><p>Links either side of the mark.</p></header>
+  <div class="shot"><img class="pic" src="img/bg/summit-rig.jpg" alt="" width="1600" height="1540"><div class="shotin"><div class="bar"><nav class="links lft"><a href="#">Features</a><a href="#">See it</a><a href="#">AI coach</a></nav><a class="brand" href="#"><img src="img/logo-2s.png" alt="" width="433" height="230"><span class="word">2Sets<b>Fitness</b></span></a><nav class="links rgt"><a href="#">Friends</a><a href="#">Pricing</a><a class="cta" href="#">Try it free</a></nav></div></div></div>
+</section>
+
+<section class="d v15">
+  <header class="lab"><b>15</b><h2>Tall</h2><p>Room to breathe; the type grows with it.</p></header>
+  <div class="shot"><img class="pic" src="img/bg/summit-rig.jpg" alt="" width="1600" height="1540"><div class="shotin"><div class="bar"><a class="brand" href="#"><img src="img/logo-2s.png" alt="" width="433" height="230"><span class="word">2Sets<b>Fitness</b></span></a><nav class="links"><a href="#">Features</a><a href="#">See it</a><a href="#">AI coach</a><a href="#">Friends</a><a href="#">Pricing</a><span class="sep"></span><a class="cta" href="#">Try it free <em>&#8599;</em></a></nav></div></div></div>
+</section>
+
+<section class="d v16">
+  <header class="lab"><b>16</b><h2>Compact</h2><p>Half the height, out of the picture’s way.</p></header>
+  <div class="shot"><img class="pic" src="img/bg/summit-rig.jpg" alt="" width="1600" height="1540"><div class="shotin"><div class="bar"><a class="brand" href="#"><img src="img/logo-2s.png" alt="" width="433" height="230"><span class="word">2Sets<b>Fitness</b></span></a><nav class="links"><a href="#">Features</a><a href="#">See it</a><a href="#">AI coach</a><a href="#">Friends</a><a href="#">Pricing</a><span class="sep"></span><a class="cta" href="#">Try it free <em>&#8599;</em></a></nav></div></div></div>
+</section>
+
+<section class="d v17">
+  <header class="lab"><b>17</b><h2>Slashes</h2><p>Links divided by faint strokes.</p></header>
+  <div class="shot"><img class="pic" src="img/bg/summit-rig.jpg" alt="" width="1600" height="1540"><div class="shotin"><div class="bar"><a class="brand" href="#"><img src="img/logo-2s.png" alt="" width="433" height="230"><span class="word">2Sets<b>Fitness</b></span></a><nav class="links"><a href="#">Features</a><a href="#">See it</a><a href="#">AI coach</a><a href="#">Friends</a><a href="#">Pricing</a><span class="sep"></span><a class="cta" href="#">Try it free <em>&#8599;</em></a></nav></div></div></div>
+</section>
+
+<section class="d v18">
+  <header class="lab"><b>18</b><h2>Red dots</h2><p>A red full stop between each one.</p></header>
+  <div class="shot"><img class="pic" src="img/bg/summit-rig.jpg" alt="" width="1600" height="1540"><div class="shotin"><div class="bar"><a class="brand" href="#"><img src="img/logo-2s.png" alt="" width="433" height="230"><span class="word">2Sets<b>Fitness</b></span></a><nav class="links"><a href="#">Features</a><a href="#">See it</a><a href="#">AI coach</a><a href="#">Friends</a><a href="#">Pricing</a><span class="sep"></span><a class="cta" href="#">Try it free <em>&#8599;</em></a></nav></div></div></div>
+</section>
+
+<section class="d v19">
+  <header class="lab"><b>19</b><h2>Menu only</h2><p>Logo, button, and everything else behind a menu.</p></header>
+  <div class="shot"><img class="pic" src="img/bg/summit-rig.jpg" alt="" width="1600" height="1540"><div class="shotin"><div class="bar"><a class="brand" href="#"><img src="img/logo-2s.png" alt="" width="433" height="230"><span class="word">2Sets<b>Fitness</b></span></a><nav class="links"><a class="cta" href="#">Try it free</a><button class="burger" type="button" aria-label="Menu"><i></i><i></i><i></i></button></nav></div></div></div>
+</section>
+
+<section class="d v20">
+  <header class="lab"><b>20</b><h2>Boxed mark</h2><p>The logo sits in red that runs off the edge.</p></header>
+  <div class="shot"><img class="pic" src="img/bg/summit-rig.jpg" alt="" width="1600" height="1540"><div class="shotin"><div class="bar"><a class="brand" href="#"><img src="img/logo-2s.png" alt="" width="433" height="230"><span class="word">2Sets<b>Fitness</b></span></a><nav class="links"><a href="#">Features</a><a href="#">See it</a><a href="#">AI coach</a><a href="#">Friends</a><a href="#">Pricing</a><span class="sep"></span><a class="cta" href="#">Try it free <em>&#8599;</em></a></nav></div></div></div>
+</section>
+
+<section class="d v21">
+  <header class="lab"><b>21</b><h2>Two tier</h2><p>A thin strip of facts above the bar itself.</p></header>
+  <div class="shot"><img class="pic" src="img/bg/summit-rig.jpg" alt="" width="1600" height="1540"><div class="shotin"><div class="tier"><span>Free, no card</span><span>25 languages</span><span>Android early access</span></div><div class="bar"><a class="brand" href="#"><img src="img/logo-2s.png" alt="" width="433" height="230"><span class="word">2Sets<b>Fitness</b></span></a><nav class="links"><a href="#">Features</a><a href="#">See it</a><a href="#">AI coach</a><a href="#">Friends</a><a href="#">Pricing</a><a class="cta" href="#">Try it free</a></nav></div></div></div>
+</section>
+
+<section class="d v22">
+  <header class="lab"><b>22</b><h2>Slanted</h2><p>The bar and the button cut on the same angle.</p></header>
+  <div class="shot"><img class="pic" src="img/bg/summit-rig.jpg" alt="" width="1600" height="1540"><div class="shotin"><div class="bar"><a class="brand" href="#"><img src="img/logo-2s.png" alt="" width="433" height="230"><span class="word">2Sets<b>Fitness</b></span></a><nav class="links"><a href="#">Features</a><a href="#">See it</a><a href="#">AI coach</a><a href="#">Friends</a><a href="#">Pricing</a><span class="sep"></span><a class="cta" href="#">Try it free <em>&#8599;</em></a></nav></div></div></div>
+</section>
+
+<section class="d v23">
+  <header class="lab"><b>23</b><h2>Glass</h2><p>A pane you can see the mountain through.</p></header>
+  <div class="shot"><img class="pic" src="img/bg/summit-rig.jpg" alt="" width="1600" height="1540"><div class="shotin"><div class="bar"><a class="brand" href="#"><img src="img/logo-2s.png" alt="" width="433" height="230"><span class="word">2Sets<b>Fitness</b></span></a><nav class="links"><a href="#">Features</a><a href="#">See it</a><a href="#">AI coach</a><a href="#">Friends</a><a href="#">Pricing</a><span class="sep"></span><a class="cta" href="#">Try it free <em>&#8599;</em></a></nav></div></div></div>
+</section>
+
+<section class="d v24">
+  <header class="lab"><b>24</b><h2>Outline</h2><p>A drawn rectangle, nothing filled in.</p></header>
+  <div class="shot"><img class="pic" src="img/bg/summit-rig.jpg" alt="" width="1600" height="1540"><div class="shotin"><div class="bar"><a class="brand" href="#"><img src="img/logo-2s.png" alt="" width="433" height="230"><span class="word">2Sets<b>Fitness</b></span></a><nav class="links"><a href="#">Features</a><a href="#">See it</a><a href="#">AI coach</a><a href="#">Friends</a><a href="#">Pricing</a><span class="sep"></span><a class="cta" href="#">Try it free <em>&#8599;</em></a></nav></div></div></div>
+</section>
+
+<section class="d v25">
+  <header class="lab"><b>25</b><h2>Rail</h2><p>No bar: the links run down the left edge instead.</p></header>
+  <div class="shot"><img class="pic" src="img/bg/summit-rig.jpg" alt="" width="1600" height="1540"><div class="shotin"><div class="bar"><a class="brand" href="#"><img src="img/logo-2s.png" alt="" width="433" height="230"><span class="word">2Sets<b>Fitness</b></span></a><nav class="links"><a href="#">Features</a><a href="#">See it</a><a href="#">AI coach</a><a href="#">Friends</a><a href="#">Pricing</a><a class="cta" href="#">Try it free</a></nav></div></div></div>
+</section>
+</div>
+
+</body>
+</html>

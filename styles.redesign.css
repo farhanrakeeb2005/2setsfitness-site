@@ -859,12 +859,17 @@ section { position: relative; background: transparent; }
   -webkit-backdrop-filter: blur(12px); backdrop-filter: blur(12px);
 }
 
-/* the bar keeps its own veil, so the links hold up once the hero has gone by */
+/* no bar at all: the links sit straight on the photograph, as the mockup
+   has them. What keeps them readable once the hero has gone by is the
+   scrim's own darkness at the top of the screen, not a box. */
 .nav {
-  background: rgba(8, 11, 16, .46);
-  -webkit-backdrop-filter: blur(14px); backdrop-filter: blur(14px);
-  border-bottom: 1px solid rgba(255, 255, 255, .08);
+  background: transparent;
+  -webkit-backdrop-filter: none; backdrop-filter: none;
+  border-bottom: 0;
 }
+.nav.scrolled { border-bottom-color: transparent; }
+.nav .brand, .nav-links a { text-shadow: 0 1px 10px rgba(0, 0, 0, .65); }
+.nav-links a.btn { text-shadow: none; }
 
 /* fields were white paper with dark ink; over a photograph they are glass */
 .notify-form input, .contact-form input, .contact-form textarea, .contact-form select {
@@ -956,14 +961,6 @@ main h2 span, main h2 .red { color: var(--accent); }
   background: linear-gradient(104deg,
     rgba(8,10,14,0.93) 0%, rgba(8,10,14,0.86) 30%,
     rgba(8,10,14,0.56) 58%, rgba(8,10,14,0.10) 84%, rgba(8,10,14,0) 100%);
-}
-/* the angular red mark in the bottom-left corner of the mockup */
-.hero::after {
-  content: "";
-  position: absolute; left: 0; bottom: 0; z-index: 0; pointer-events: none;
-  width: clamp(110px, 20vw, 240px); height: 72px;
-  background: var(--accent);
-  clip-path: polygon(0 100%, 0 26%, 100% 100%);
 }
 .hero > .wrap { position: relative; z-index: 1; }
 .hero-inner { display: block; text-align: left; }
