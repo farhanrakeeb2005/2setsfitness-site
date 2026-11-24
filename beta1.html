@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex, nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Beta 1 &middot; 2SetsFitness · See every muscle you train. Free.</title>
+<meta name="description" content="A free fitness app: every exercise in x-ray with the muscles it works lit up, plates that grow with your weight, an AI coach that knows your week, one plan for gym and sport, and friends to race. Free in your browser on any phone or computer; Android in early access.">
+
+<!-- Social preview (img/og.png, 1200x630). -->
+<meta property="og:title" content="2SetsFitness — every step, every set, every summit">
+<meta property="og:description" content="Free fitness app: every exercise in x-ray, an AI coach that knows your week, gym and sport in one plan, friends to race.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://2setsfitness.com/">
+<meta property="og:site_name" content="2SetsFitness">
+<meta property="og:image" content="https://2setsfitness.com/img/og.png?v=1788fb99">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://2setsfitness.com/img/og.png?v=1788fb99">
+
+<link rel="icon" href="img/favicon.png?v=d049a90d">
+<link rel="icon" href="/favicon.ico?v=d049a90d" sizes="48x48">
+<link rel="apple-touch-icon" href="img/apple-touch-icon.png?v=d049a90d">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<!-- reuse the current site's display font (Outfit) -->
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Outfit:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.redesign.css?v=54">
+<!-- the saved light/dark choice, read before a pixel is painted -->
+<script>try{var t=localStorage.getItem('2s-theme');if(t==='dark'||t==='light')document.documentElement.dataset.theme=t;}catch(e){}</script>
+</head>
+<body>
+
+<!-- ===================================================================
+     BETA 1 -- the hero, by itself.
+
+     A place to settle one section at a time without the rest of the
+     page arguing with it. It borrows index.html's own stylesheet and
+     scene.js rather than copying them, so whatever is agreed here is
+     already true on the real page, and nothing can drift between the
+     two. The next section gets added below the hero when this one is
+     right.
+     =================================================================== -->
+
+<div class="scene" aria-hidden="true">
+  <!-- the picture, whole, at its own proportions. What fills the space
+       beside it is a tone on .scene, not a second blurred copy of the
+       picture: that copy read as the page being out of focus. -->
+  <img class="photo" src="img/bg/summit-rig.jpg?v=6" alt="" width="2200" height="1238" fetchpriority="high">
+  <div class="weather"><i class="drift"></i><i class="sun"></i></div>
+  <div class="scrim"></div>
+</div>
+
+<header class="nav" id="nav">
+  <div class="wrap">
+    <a class="brand" href="#top"><img class="mk-dark" src="img/logo-2s.png?v=2" alt="" width="433" height="230"><img class="mk-light" src="img/logo-2s-light.png?v=2" alt="" width="433" height="230"><span class="word">2Sets<b>Fitness</b></span></a>
+    <nav class="nav-links" aria-label="Primary">
+      <a href="#features">Features</a>
+      <a href="#see">See it</a>
+      <a href="#coach">AI coach</a>
+      <a href="#friends">Friends</a>
+      <a href="#pricing">Pricing</a>
+      <a href="#install">Install</a>
+      <a href="#faq">FAQ</a>
+      <button class="theme-toggle" id="theme-toggle" type="button" aria-pressed="false" aria-label="Switch to dark mode" title="Dark mode">
+        <svg class="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 14.5A8.5 8.5 0 0 1 9.5 4a8.5 8.5 0 1 0 10.5 10.5z"/></svg>
+        <svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.6v2.2M12 19.2v2.2M4.3 4.3l1.6 1.6M18.1 18.1l1.6 1.6M2.6 12h2.2M19.2 12h2.2M4.3 19.7l1.6-1.6M18.1 5.9l1.6-1.6"/></svg>
+      </button>
+    </nav>
+    <!-- ANDROID-CTA -->
+    <a class="btn primary sm navcta" href="https://fitness-app-5c48a.web.app" rel="noopener">Try it free</a>
+  </div>
+</header>
+
+<main id="main">
+  <span id="top"></span>
+
+  <!-- ======================= HERO =======================
+       The landing-page design: the photograph carries the page (.scene,
+       fixed behind everything), the copy sits on a dark wash over its left,
+       and the type is the condensed caps display face. -->
+  <section class="hero">
+    <div class="wrap hero-inner">
+      <div class="hero-copy">
+        <span class="eyebrow">More than a gym app</span>
+        <h1>Every step.<br>Every set.<br><span class="red">Every summit.</span></h1>
+        <p class="lede">One plan for gym, sport and progress.</p>
+        <div class="cta-row">
+          <a class="btn primary big" href="https://fitness-app-5c48a.web.app" rel="noopener">Try it on your browser</a>
+        </div>
+        <ul class="hstats">
+          <li>
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9v6M8 7v10M16 7v10M20 9v6M8 12h8"/></svg>
+            <b>343</b><span>exercises in x-ray</span>
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M11 3.5l1.6 4.3 4.3 1.6-4.3 1.6L11 15.3 9.4 11 5.1 9.4 9.4 7.8z"/><path d="M18 15.4l.7 1.9 1.9.7-1.9.7-.7 1.9-.7-1.9-1.9-.7 1.9-.7z"/></svg>
+            <span>AI coach</span>
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 3c3 3.4 3 14.2 0 18M3.4 9h17.2M3.4 15h17.2"/></svg>
+            <span>Gym + sport</span>
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="8" r="3.2"/><path d="M3 20c0-3.3 2.7-5.6 6-5.6s6 2.3 6 5.6"/><path d="M16.4 5.2a3.2 3.2 0 0 1 0 6.1M17.9 14.6c2.1.6 3.7 2.5 3.7 5.4"/></svg>
+            <span>Friends &amp; challenges</span>
+          </li>
+        </ul>
+        <!-- ANDROID-CTA -->
+        <p class="cta-note">Free, no card · 25 languages · Android in early access — <a href="#contact">ask for an invite</a></p>
+      </div>
+    </div>
+
+    <div class="herofoot">
+      <div class="wrap herofoot-in">
+        <a class="scrollcue" href="#features"><span>Scroll to explore</span><i aria-hidden="true"></i></a>
+        <a class="playcue" href="#see"><i aria-hidden="true"></i><span>Play video</span></a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<script src="scene.js?v=4" defer></script>
+</body>
+</html>
