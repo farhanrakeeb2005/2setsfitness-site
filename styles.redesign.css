@@ -1280,12 +1280,17 @@ main h2 span, main h2 .red { color: var(--accent); }
    mountain behind it from edge to edge. Pulled in and centred: the
    background runs down both sides of it. */
 .tile.feature-big {
-  max-width: 1080px;
+  max-width: 900px;
   margin-inline: auto;
 }
+/* the x-ray was setting the tile's height; capped, it sits in it */
+.feature-big .media.dark img { max-height: 460px; width: auto; margin-inline: auto; display: block; }
 @media (min-width: 900px) {
   .big-split { grid-template-columns: 0.92fr 1.08fr; gap: 24px; }
 }
 
 /* the one on show, while it is going round by itself */
 .ex-chips button { transition: background-color .25s, border-color .25s, color .25s; }
+
+/* with the buttons gone, the line carries the exercise's name */
+.ex-muscles .ex-name { color: #fff; }
