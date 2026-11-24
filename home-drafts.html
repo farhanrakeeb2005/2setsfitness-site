@@ -1,0 +1,359 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Home screen drafts &middot; 2SetsFitness</title>
+<link rel="icon" href="img/favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Outfit:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+/* ---------------------------------------------------------------------
+   Six Home screens in the website's language -- near-black, one red, the
+   condensed caps -- instead of the app's purple.
+
+   Every one carries the same evening and the same numbers, so what is
+   being compared is the design and nothing else. They are mockups: no
+   app code is touched until a direction is picked.
+--------------------------------------------------------------------- */
+* { box-sizing: border-box; margin: 0; }
+body { background: #0a0c11; color: #eef1f6;
+  font: 400 16px/1.5 Outfit, system-ui, sans-serif; padding-bottom: 80px; }
+a { text-decoration: none; }
+.head { max-width: 1240px; margin: 0 auto; padding: 44px max(20px,4vw) 6px; }
+.head h1 { font-family: Anton, sans-serif; font-weight: 400; text-transform: uppercase;
+  font-size: clamp(2rem,5vw,3rem); line-height: .94; }
+.head p { margin-top: 10px; color: #99a1b0; max-width: 46rem; }
+.grid { max-width: 1240px; margin: 0 auto; padding: 26px max(20px,4vw) 0;
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 34px 26px; }
+.draft header { margin-bottom: 12px; display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap; }
+.draft header b { font-family: Anton, sans-serif; font-weight: 400; color: #E31E24; font-size: 1.05rem; }
+.draft header h2 { font-size: 1rem; font-weight: 800; }
+.draft header p { width: 100%; margin: 2px 0 0; font-size: .84rem; color: #8b93a2; }
+
+/* the phone, and the bits every draft shares */
+.phone { width: 300px; height: 650px; border-radius: 30px; overflow: hidden;
+  border: 1px solid #222835; box-shadow: 0 26px 60px rgba(0,0,0,.6); }
+.sc { width: 100%; height: 100%; overflow: hidden; }
+.who { display: inline-flex; align-items: center; gap: 8px; font-size: 12px; }
+.who .av { width: 27px; height: 27px; border-radius: 50%; background: #1d222c; color: #fff;
+  display: grid; place-content: center; font-style: normal; font-weight: 800; font-size: 12px; }
+.who b { color: #fff; font-weight: 800; }
+.who em { font-style: normal; color: #78808f; font-size: 10.5px; }
+.streak { font-size: 12px; color: #e8b14e; font-weight: 800; }
+
+
+.d1 { background: #07080c; }
+.d1-top { position: relative; height: 420px; overflow: hidden; }
+.d1-photo { position: absolute; inset: 0; background: url("img/bg/summit-rig.jpg?v=8") center/cover; }
+.d1-wash { position: absolute; inset: 0;
+  background: linear-gradient(180deg, rgba(7,8,12,.5) 0%, rgba(7,8,12,.15) 34%, rgba(7,8,12,.86) 78%, #07080c 100%); }
+.d1 .row.top { position: relative; z-index: 2; display: flex; justify-content: space-between;
+  align-items: center; padding: 16px 18px; }
+.d1-copy { position: absolute; z-index: 2; left: 18px; right: 18px; bottom: 18px; }
+.d1 .kick { font-size: 10px; letter-spacing: .22em; text-transform: uppercase; color: #ff5257; font-weight: 800; }
+.d1 h1 { font-family: Anton, sans-serif; font-weight: 400; text-transform: uppercase;
+  font-size: 54px; line-height: .88; margin: 6px 0 8px; color: #fff; }
+.d1-copy p { margin: 0 0 16px; font-size: 12.5px; color: #cfd5df; }
+.d1 .go { display: inline-block; background: #E31E24; color: #fff; font-weight: 800;
+  font-size: 14px; padding: 13px 26px; border-radius: 999px; }
+.d1-body { padding: 16px 18px; display: grid; gap: 12px; }
+.d1 .tri { display: grid; grid-template-columns: repeat(3,1fr); gap: 9px; }
+.d1 .tri div { background: #11141b; border: 1px solid #1d222c; border-radius: 13px; padding: 12px 11px; }
+.d1 .tri span { display: block; font-size: 9px; letter-spacing: .16em; text-transform: uppercase; color: #78808f; }
+.d1 .tri b { font-family: Anton, sans-serif; font-weight: 400; font-size: 25px; color: #fff; }
+.d1 .tri i { font-style: normal; font-size: 14px; color: #6c7483; }
+.d1 .week { background: #11141b; border: 1px solid #1d222c; border-radius: 13px; padding: 13px; }
+.d1 .week > span { font-size: 9px; letter-spacing: .16em; text-transform: uppercase; color: #78808f; }
+.d1 .dots { display: flex; justify-content: space-between; margin-top: 10px; }
+.d1 .dots i { width: 24px; height: 24px; border-radius: 50%; background: #191d26; display: block; }
+.d1 .dots i.on { background: #E31E24; }
+.d1 .fuel { background: #11141b; border: 1px solid #1d222c; border-radius: 13px; padding: 13px;
+  display: flex; align-items: baseline; gap: 9px; }
+.d1 .fuel b { font-family: Anton, sans-serif; font-weight: 400; font-size: 27px; color: #fff; }
+.d1 .fuel span { font-size: 11.5px; color: #8a92a1; }
+
+
+.d2 { background: #08090d; padding: 16px 18px; display: flex; flex-direction: column; gap: 20px; }
+.d2-hero { border-left: 3px solid #E31E24; padding-left: 15px; margin-top: 18px; }
+.d2 .kick { font-size: 10px; letter-spacing: .24em; text-transform: uppercase; color: #ff5257; font-weight: 800; }
+.d2 h1 { font-family: Anton, sans-serif; font-weight: 400; text-transform: uppercase;
+  font-size: 48px; line-height: .9; margin: 8px 0 12px; color: #fff; }
+.d2 .meta { font-size: 12px; color: #828b9a; letter-spacing: .04em; }
+.d2 .meta b { color: #fff; font-weight: 800; }
+.d2 .meta i { color: #333a47; font-style: normal; margin: 0 5px; }
+.d2 .go { display: inline-block; margin-top: 18px; border: 1.5px solid #E31E24; color: #fff;
+  font-weight: 800; font-size: 13px; padding: 12px 22px; border-radius: 4px; letter-spacing: .1em;
+  text-transform: uppercase; }
+.d2-list { display: grid; gap: 1px; background: #171b23; border-top: 1px solid #171b23;
+  border-bottom: 1px solid #171b23; }
+.d2-list div { background: #08090d; display: flex; justify-content: space-between;
+  align-items: center; padding: 15px 2px; }
+.d2-list span { font-size: 10px; letter-spacing: .18em; text-transform: uppercase; color: #6f7786; }
+.d2-list b { font-size: 15px; color: #fff; font-weight: 800; }
+.d2-week { display: flex; gap: 7px; margin-top: auto; }
+.d2-week i { flex: 1; height: 4px; border-radius: 2px; background: #171b23; }
+.d2-week i.on { background: #E31E24; }
+
+
+.d3 { background: #07080c; position: relative; }
+.d3-bg { position: absolute; inset: 0; background: url("img/bg/summit-rig.jpg?v=8") 58% center/cover; }
+.d3-bg::after { content:""; position: absolute; inset: 0;
+  background: linear-gradient(180deg, rgba(7,8,12,.62), rgba(7,8,12,.78)); }
+.d3-in { position: relative; z-index: 1; padding: 16px 16px; display: grid; gap: 12px; align-content: start; }
+.d3 .card { background: rgba(255,255,255,.07); border: 1px solid rgba(255,255,255,.14);
+  -webkit-backdrop-filter: blur(16px); backdrop-filter: blur(16px);
+  border-radius: 17px; padding: 15px; }
+.d3 .card.big { padding: 20px; margin-top: 6px; }
+.d3 .kick { font-size: 10px; letter-spacing: .22em; text-transform: uppercase; color: #ff6b70; font-weight: 800; }
+.d3 h1 { font-family: Anton, sans-serif; font-weight: 400; text-transform: uppercase;
+  font-size: 40px; line-height: .92; margin: 8px 0 7px; color: #fff; }
+.d3 .card.big p { margin: 0 0 16px; font-size: 12px; color: #d4dae3; }
+.d3 .go { display: inline-block; background: #fff; color: #10131a; font-weight: 800;
+  font-size: 13.5px; padding: 12px 24px; border-radius: 999px; }
+.d3 .trio { display: grid; grid-template-columns: repeat(3,1fr); gap: 10px; }
+.d3 .trio .card { padding: 13px 11px; }
+.d3 .card span { display: block; font-size: 9px; letter-spacing: .15em; text-transform: uppercase; color: #b9c1cd; }
+.d3 .card b { display: block; margin-top: 6px; font-family: Anton, sans-serif; font-weight: 400;
+  font-size: 24px; color: #fff; }
+.d3 .card i { display: block; margin-top: 4px; font-style: normal; font-size: 11.5px; color: #c3cad5; }
+
+
+.d4 { background: #08090d; padding: 16px 18px; display: flex; flex-direction: column; }
+.d4-rings { position: relative; margin: 14px auto 0; width: 248px; height: 248px; }
+.d4-rings svg { width: 100%; height: 100%; transform: rotate(-90deg); }
+.d4-rings circle { fill: none; stroke-width: 13; stroke-linecap: round; }
+.d4 .t { stroke: #161a22; }
+.d4 .v { stroke-dasharray: 540; }
+.d4 .r1 { stroke: #E31E24; stroke-dashoffset: 410; }
+.d4 .r2 { stroke: #ff7a4d; stroke-dasharray: 428; stroke-dashoffset: 330; }
+.d4 .r3 { stroke: #5b6b86; stroke-dasharray: 314; stroke-dashoffset: 300; }
+.d4 .mid { position: absolute; inset: 0; display: grid; place-content: center; text-align: center; }
+.d4 .mid b { display: block; font-family: Anton, sans-serif; font-weight: 400; font-size: 54px; color: #fff; line-height: 1; }
+.d4 .mid span { font-size: 10px; letter-spacing: .2em; text-transform: uppercase; color: #78808f; }
+.d4-key { display: flex; flex-direction: column; gap: 8px; margin: 22px 0 0; }
+.d4-key span { display: flex; align-items: center; gap: 9px; font-size: 12px; color: #aab2c0; }
+.d4-key i { width: 9px; height: 9px; border-radius: 50%; }
+.d4 .k1 { background: #E31E24; } .d4 .k2 { background: #ff7a4d; } .d4 .k3 { background: #5b6b86; }
+.d4-quest { margin-top: auto; background: #11141b; border: 1px solid #1d222c; border-radius: 17px;
+  padding: 16px; display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+.d4 .kick { font-size: 9px; letter-spacing: .2em; text-transform: uppercase; color: #ff5257; font-weight: 800; }
+.d4 h1 { font-family: Anton, sans-serif; font-weight: 400; text-transform: uppercase;
+  font-size: 27px; margin: 5px 0 3px; color: #fff; }
+.d4-quest p { margin: 0; font-size: 11.5px; color: #818a99; }
+.d4 .go { background: #E31E24; color: #fff; font-weight: 800; font-size: 13px;
+  padding: 13px 20px; border-radius: 999px; flex: 0 0 auto; }
+
+
+.d5 { background: #07080c; display: flex; flex-direction: column; }
+.d5-top { position: relative; height: 362px; overflow: hidden; }
+.d5-top img { position: absolute; left: 50%; top: 36px; width: 300px; height: 300px;
+  transform: translateX(-50%); object-fit: contain; }
+.d5 .row.top { position: relative; z-index: 2; display: flex; justify-content: space-between;
+  align-items: center; padding: 16px 18px; }
+.d5-tag { position: absolute; left: 18px; bottom: 16px; z-index: 2; font-size: 10px;
+  letter-spacing: .16em; text-transform: uppercase; font-weight: 800; color: #fff;
+  background: rgba(227,30,36,.9); padding: 7px 12px; border-radius: 999px; }
+.d5-sheet { flex: 1; background: #F4F5F7; color: #10131a; border-radius: 26px 26px 0 0;
+  margin-top: -22px; padding: 22px 20px; position: relative; z-index: 3; }
+.d5 .kick { font-size: 10px; letter-spacing: .22em; text-transform: uppercase; color: #C3161B; font-weight: 800; }
+.d5 h1 { font-family: Anton, sans-serif; font-weight: 400; text-transform: uppercase;
+  font-size: 40px; line-height: .9; margin: 7px 0 6px; color: #10131a; }
+.d5-sheet > p { margin: 0 0 16px; font-size: 12.5px; color: #5c6370; }
+.d5 .go { display: inline-block; background: #10131a; color: #fff; font-weight: 800;
+  font-size: 13.5px; padding: 13px 26px; border-radius: 999px; }
+.d5-row { display: flex; justify-content: space-between; align-items: center;
+  padding: 14px 0; border-top: 1px solid #E2E4E9; margin-top: 2px; }
+.d5-row:first-of-type { margin-top: 20px; }
+.d5-row span { font-size: 10px; letter-spacing: .16em; text-transform: uppercase; color: #79808d; }
+.d5-row b { font-size: 15px; font-weight: 800; }
+
+
+.d6 { background: #08090d; display: flex; flex-direction: column; }
+.d6 .row.top { display: flex; justify-content: space-between; align-items: center; padding: 16px 18px; }
+.d6 .band { padding: 20px 20px; border-top: 1px solid #161a22; position: relative; }
+.d6 .band.b1 { border-top: 0; background:
+  linear-gradient(100deg, rgba(227,30,36,.16), rgba(227,30,36,0) 72%); padding-top: 10px; padding-bottom: 26px; }
+.d6 .kick { font-size: 9.5px; letter-spacing: .22em; text-transform: uppercase; color: #ff5257; font-weight: 800; }
+.d6 h1 { font-family: Anton, sans-serif; font-weight: 400; text-transform: uppercase;
+  font-size: 46px; line-height: .9; margin: 7px 0 7px; color: #fff; }
+.d6 .band.b1 p { margin: 0 0 17px; font-size: 12.5px; color: #99a1b0; }
+.d6 .go { display: inline-block; background: #E31E24; color: #fff; font-weight: 800;
+  font-size: 13.5px; padding: 13px 26px; border-radius: 999px; }
+.d6 .band b { display: block; margin-top: 8px; font-family: Anton, sans-serif; font-weight: 400;
+  font-size: 44px; line-height: 1; color: #fff; }
+.d6 .band i { font-style: normal; font-size: 22px; color: #5e6676; }
+.d6 .band em { display: block; margin-top: 5px; font-style: normal; font-size: 11.5px; color: #78808f; }
+.d6 .band.b2 { background: linear-gradient(100deg, rgba(255,255,255,.04), transparent 70%); }
+
+</style>
+</head>
+<body>
+
+<div class="head">
+  <h1>Six ways Home could look</h1>
+  <p>In the website's language rather than the app's: near-black, one red, the condensed
+  caps. Same evening and same numbers in all six, so the only thing being compared is the
+  design. Nothing in the app has been touched &mdash; say a number and I will build that one
+  for real.</p>
+</div>
+
+<div class="grid">
+<section class="draft">
+  <header><b>01</b><h2>Summit</h2><p>The site arriving in the app: the photograph behind the day, the condensed caps, the red pill.</p></header>
+  <div class="phone">
+<div class="sc d1">
+  <div class="d1-top">
+    <div class="d1-photo"></div>
+    <div class="d1-wash"></div>
+    <div class="row top">
+      <span class="who"><i class="av">A</i><b>Alex</b><em>Silver &middot; 4,870</em></span>
+      <span class="streak">&#128293; 12</span>
+    </div>
+    <div class="d1-copy">
+      <span class="kick">Today</span>
+      <h1>Arms<br>Day</h1>
+      <p>4 exercises &middot; ~25 min &middot; +117 pts</p>
+      <a class="go">Start quest</a>
+    </div>
+  </div>
+  <div class="d1-body">
+    <div class="tri">
+      <div><span>Workout</span><b>0<i>/12</i></b></div>
+      <div><span>Sleep</span><b>&ndash;</b></div>
+      <div><span>Water</span><b>0<i>/11</i></b></div>
+    </div>
+    <div class="week"><span>This week</span><div class="dots"><i></i><i class="on"></i><i></i><i></i><i></i><i></i><i></i></div></div>
+    <div class="fuel"><b>2,812</b><span>kcal left &middot; 156 g protein</span></div>
+  </div>
+</div></div>
+</section>
+
+<section class="draft">
+  <header><b>02</b><h2>Slate</h2><p>No photograph at all. Near-black, one red, and the type doing the work.</p></header>
+  <div class="phone">
+<div class="sc d2">
+  <div class="row top">
+    <span class="who"><i class="av">A</i><b>Alex</b><em>Silver &middot; 4,870</em></span>
+    <span class="streak">&#128293; 12</span>
+  </div>
+  <div class="d2-hero">
+    <span class="kick">Tonight</span>
+    <h1>Arms Day</h1>
+    <div class="meta"><b>4</b> exercises <i>/</i> <b>25</b> min <i>/</i> <b>+117</b> pts</div>
+    <a class="go">Start quest &rarr;</a>
+  </div>
+  <div class="d2-list">
+    <div><span>Workout</span><b>0 / 12</b></div>
+    <div><span>Sleep</span><b>Not yet</b></div>
+    <div><span>Water</span><b>0 / 11</b></div>
+    <div><span>Fuel</span><b>2,812 kcal left</b></div>
+  </div>
+  <div class="d2-week"><i></i><i class="on"></i><i></i><i></i><i></i><i></i><i></i></div>
+</div></div>
+</section>
+
+<section class="draft">
+  <header><b>03</b><h2>Glass</h2><p>The mountain all the way down, everything on it in glass.</p></header>
+  <div class="phone">
+<div class="sc d3">
+  <div class="d3-bg"></div>
+  <div class="d3-in">
+    <div class="row top">
+      <span class="who"><i class="av">A</i><b>Alex</b><em>Silver &middot; 4,870</em></span>
+      <span class="streak">&#128293; 12</span>
+    </div>
+    <div class="card big">
+      <span class="kick">Today</span>
+      <h1>Arms Day</h1>
+      <p>4 exercises &middot; ~25 min &middot; +117 pts</p>
+      <a class="go">Start quest</a>
+    </div>
+    <div class="trio">
+      <div class="card"><span>Workout</span><b>0/12</b></div>
+      <div class="card"><span>Sleep</span><b>&ndash;</b></div>
+      <div class="card"><span>Water</span><b>0/11</b></div>
+    </div>
+    <div class="card"><span>Workout fuel</span><b>2,812 kcal left</b><i>156 g protein to go</i></div>
+  </div>
+</div></div>
+</section>
+
+<section class="draft">
+  <header><b>04</b><h2>Rings</h2><p>The day as three rings. The quest underneath, not above.</p></header>
+  <div class="phone">
+<div class="sc d4">
+  <div class="row top">
+    <span class="who"><i class="av">A</i><b>Alex</b><em>Silver &middot; 4,870</em></span>
+    <span class="streak">&#128293; 12</span>
+  </div>
+  <div class="d4-rings">
+    <svg viewBox="0 0 200 200" aria-hidden="true">
+      <circle class="t" cx="100" cy="100" r="86"/><circle class="t" cx="100" cy="100" r="68"/><circle class="t" cx="100" cy="100" r="50"/>
+      <circle class="v r1" cx="100" cy="100" r="86"/>
+      <circle class="v r2" cx="100" cy="100" r="68"/>
+      <circle class="v r3" cx="100" cy="100" r="50"/>
+    </svg>
+    <div class="mid"><b>117</b><span>pts today</span></div>
+  </div>
+  <div class="d4-key">
+    <span><i class="k1"></i>Workout 0/12</span>
+    <span><i class="k2"></i>Water 0/11</span>
+    <span><i class="k3"></i>Sleep &ndash;</span>
+  </div>
+  <div class="d4-quest">
+    <div><span class="kick">Today</span><h1>Arms Day</h1><p>4 exercises &middot; ~25 min</p></div>
+    <a class="go">Start</a>
+  </div>
+</div></div>
+</section>
+
+<section class="draft">
+  <header><b>05</b><h2>Split</h2><p>The body on black up top, the day on a pale sheet below it.</p></header>
+  <div class="phone">
+<div class="sc d5">
+  <div class="d5-top">
+    <div class="row top">
+      <span class="who"><i class="av">A</i><b>Alex</b><em>Silver &middot; 4,870</em></span>
+      <span class="streak">&#128293; 12</span>
+    </div>
+    <img src="img/x/ex-barbell-curl.webp" alt="">
+    <span class="d5-tag">Biceps &middot; Forearms</span>
+  </div>
+  <div class="d5-sheet">
+    <span class="kick">Today</span>
+    <h1>Arms Day</h1>
+    <p>4 exercises &middot; ~25 min &middot; +117 pts</p>
+    <a class="go">Start quest</a>
+    <div class="d5-row"><span>Workout</span><b>0/12</b></div>
+    <div class="d5-row"><span>Water</span><b>0/11</b></div>
+    <div class="d5-row"><span>Fuel</span><b>2,812 kcal left</b></div>
+  </div>
+</div></div>
+</section>
+
+<section class="draft">
+  <header><b>06</b><h2>Stack</h2><p>One thing at a time, each a full-width band, scrolled through.</p></header>
+  <div class="phone">
+<div class="sc d6">
+  <div class="row top">
+    <span class="who"><i class="av">A</i><b>Alex</b><em>Silver &middot; 4,870</em></span>
+    <span class="streak">&#128293; 12</span>
+  </div>
+  <div class="band b1">
+    <span class="kick">Today</span>
+    <h1>Arms Day</h1>
+    <p>4 exercises &middot; ~25 min &middot; +117 pts</p>
+    <a class="go">Start quest</a>
+  </div>
+  <div class="band b2"><span class="kick">Workout</span><b>0<i>/12</i></b><em>points this week</em></div>
+  <div class="band b3"><span class="kick">Fuel</span><b>2,812</b><em>kcal left &middot; 156 g protein</em></div>
+  <div class="band b4"><span class="kick">Water</span><b>0<i>/11</i></b><em>glasses</em></div>
+</div></div>
+</section>
+</div>
+
+</body>
+</html>
