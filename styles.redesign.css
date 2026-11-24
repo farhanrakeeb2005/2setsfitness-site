@@ -902,3 +902,11 @@ footer .wrap {
 .fsocial a:hover { background: rgba(255, 255, 255, .13); border-color: var(--dim); transform: translateY(-1px); }
 .fsocial a:focus-visible { outline: 3px solid rgba(227, 30, 36, .35); outline-offset: 2px; }
 .fsocial svg { width: 20px; height: 20px; }
+/* Instagram in its own colours: the glyph is white on the brand gradient,
+   which is how it is meant to be shown, and it is the one spot of a colour
+   that is not ours on the whole page. */
+.fsocial a.ig {
+  background: linear-gradient(45deg, #FEDA75 0%, #FA7E1E 25%, #D62976 50%, #962FBF 75%, #4F5BD5 100%);
+  border-color: transparent; color: #fff;
+}
+.fsocial a.ig:hover { filter: brightness(1.1); background: linear-gradient(45deg, #FEDA75 0%, #FA7E1E 25%, #D62976 50%, #962FBF 75%, #4F5BD5 100%); border-color: transparent; }
