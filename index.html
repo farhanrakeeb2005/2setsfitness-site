@@ -25,7 +25,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <!-- reuse the current site's display font (Outfit) -->
 <link href="https://fonts.googleapis.com/css2?family=Anton&family=Outfit:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="styles.redesign.css?v=40">
+<link rel="stylesheet" href="styles.redesign.css?v=41">
 <!-- the saved light/dark choice, read before a pixel is painted -->
 <script>try{var t=localStorage.getItem('2s-theme');if(t==='dark'||t==='light')document.documentElement.dataset.theme=t;}catch(e){}</script>
 </head>
@@ -47,27 +47,15 @@
 --------------------------------------------------------------------- -->
 
 <!-- ======================= NAV ======================= -->
-<!-- The page's backdrop: the summit at dawn (bg-drafts.html tried four, this
-     is the one that was picked). It sits outside the nav and main so the
-     header sits on the photograph rather than in front of a white bar. -->
+<!-- The page's backdrop: the rig on the summit at sunrise, from the
+     landing-page mockup. It is composed the way the mockup composes it --
+     the photograph held to the right at full height, black to the left of
+     it, and the bottom of the screen fading away into it (see .scene in
+     styles.redesign.css). It sits outside the nav and main so the header
+     sits on the photograph rather than in front of a white bar. -->
 <div class="scene" aria-hidden="true">
-  <img class="photo" src="img/bg/summit.jpg" alt="" width="2000" height="1333" fetchpriority="high">
+  <img class="photo" src="img/bg/summit-rig.jpg" alt="" width="1600" height="1540" fetchpriority="high">
   <div class="scrim"></div>
-</div>
-<!-- Somebody on the ridge, climbing while you read. Behind everything,
-     above the photograph: scene.js walks it up as the page goes down. -->
-<div class="climber" aria-hidden="true">
-  <svg viewBox="0 0 40 64" width="40" height="64" fill="none" stroke="#EEF2F8" stroke-width="3.4"
-       stroke-linecap="round" stroke-linejoin="round">
-    <circle cx="21" cy="8" r="5.2" fill="#EEF2F8" stroke="none"/>
-    <path d="M21 13.5 L19 31"/>
-    <path d="M19 31 L13 46 L11 60"/>
-    <path d="M19 31 L26 44 L31 58"/>
-    <path d="M20 18 L10 26"/>
-    <path d="M20 18 L30 13"/>
-    <path d="M30 13 L33 36"/>
-    <path d="M23 13 q7 2 6 10 q-1 5 -7 5" stroke-width="5" stroke="#EEF2F8"/>
-  </svg>
 </div>
 
 <header class="nav" id="nav">
@@ -735,6 +723,6 @@
 })();
 </script>
 <script src="theme.js" defer></script>
-<script src="scene.js?v=2" defer></script>
+<script src="scene.js?v=3" defer></script>
 </body>
 </html>
