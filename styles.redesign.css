@@ -1074,9 +1074,10 @@ main h2 span, main h2 .red { color: var(--accent); }
    ====================================================================== */
 .scene { background: #07080c; }
 .scene .photo {
-  /* dropped clear of the nav bar, so his head is not behind it -- what it
-     costs at the bottom is inside the fade anyway */
-  top: 62px; right: 0; bottom: auto; left: auto;
+  /* hard to the top edge: an offset here would leave a black strip
+     exactly the height of the nav, which is the bar all over again. The
+     nav has no fill now, so the picture simply runs behind it. */
+  top: 0; right: 0; bottom: auto; left: auto;
   width: auto; height: 100%;
   min-width: 56%;              /* on a very wide screen it still fills its side */
   object-fit: cover; object-position: center;
