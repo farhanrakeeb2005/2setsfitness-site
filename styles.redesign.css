@@ -804,3 +804,62 @@ video::-webkit-media-controls, video::-webkit-media-controls-enclosure { display
 /* the standing tagline under the footer mark: the brand line, so it reads
    a step up from the copy beneath it */
 .fbrand .ftag { margin: 10px 0 2px; font-weight: 700; font-size: 1.05rem; color: var(--ink); }
+
+/* ==========================================================================
+   THE SUMMIT, ALL THE WAY DOWN
+   The photograph is behind the whole page now, not just the hero, so every
+   section has to let it through and every colour has to read against it.
+   A photograph and a light theme cannot both be true: the palette is the
+   dark one whatever the toggle says, and the toggle goes with it.
+   ========================================================================== */
+:root,
+:root[data-theme="light"],
+:root[data-theme="dark"] {
+  --bg:        transparent;
+  --bg-soft:   transparent;
+  --surface:   rgba(16, 20, 28, .66);
+  --surface-2: rgba(9, 12, 18, .60);
+  --line:      rgba(255, 255, 255, .15);
+  --tile:      rgba(9, 12, 18, .58);
+  --ink:       #f6f8fb;
+  --dim:       #c6cedb;             /* ~8:1 over the veiled photograph */
+  --accent-ink: #ff8a8d;
+  --good: #52e08a;
+  --cool: #7cc7e8;
+  --shadow: 0 30px 60px rgba(0, 0, 0, .55);
+  --soft:   0 1px 0 rgba(255, 255, 255, .06), 0 10px 28px rgba(0, 0, 0, .45);
+  --ring:   0 10px 24px rgba(227, 30, 36, .35);
+  color-scheme: dark;
+}
+body { background: transparent; }
+
+/* each section carries just enough veil of its own to hold text over a photo,
+   and the bands stay a shade heavier so the rhythm still reads */
+section { position: relative; }
+.band { background: rgba(8, 11, 16, .52); }
+section:not(.band):not(.hero) { background: rgba(8, 11, 16, .34); }
+.hero { background: transparent; }
+
+/* the cards are glass over the mountain rather than paper on a page */
+.tile, .notify, .wall figure, .shots .phone, .faq details, .plan, .price-card {
+  -webkit-backdrop-filter: blur(12px); backdrop-filter: blur(12px);
+}
+
+/* the bar keeps its own veil, so the links hold up once the hero has gone by */
+.nav {
+  background: rgba(8, 11, 16, .46);
+  -webkit-backdrop-filter: blur(14px); backdrop-filter: blur(14px);
+  border-bottom: 1px solid rgba(255, 255, 255, .08);
+}
+
+/* fields were white paper with dark ink; over a photograph they are glass */
+.notify-form input, .contact-form input, .contact-form textarea, .contact-form select {
+  background: rgba(9, 12, 18, .66); color: var(--ink); border-color: var(--line);
+  -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px);
+}
+.notify-form input::placeholder, .contact-form input::placeholder, .contact-form textarea::placeholder { color: #93a0b2; }
+
+/* the footer sits on the picture too */
+footer, .foot, .site-foot { background: rgba(6, 9, 13, .62); }
+
+.theme-toggle { display: none !important; }
