@@ -812,9 +812,14 @@ video::-webkit-media-controls, video::-webkit-media-controls-enclosure { display
    A photograph and a light theme cannot both be true: the palette is the
    dark one whatever the toggle says, and the toggle goes with it.
    ========================================================================== */
-:root,
-:root[data-theme="light"],
-:root[data-theme="dark"] {
+/* Three deep on purpose. The dark block above is scoped
+   :root:not([data-theme="light"]) inside a prefers-color-scheme query, which
+   is (0,2,0) -- a plain :root is (0,1,0) and loses to it no matter how late
+   it comes, so half of this block was being ignored and the footer kept the
+   old dim grey. */
+:root:root:root,
+:root:root[data-theme="light"],
+:root:root[data-theme="dark"] {
   --bg:        transparent;
   --bg-soft:   transparent;
   --surface:   rgba(16, 20, 28, .66);
@@ -863,3 +868,37 @@ section:not(.band):not(.hero) { background: rgba(8, 11, 16, .34); }
 footer, .foot, .site-foot { background: rgba(6, 9, 13, .62); }
 
 .theme-toggle { display: none !important; }
+
+/* ---------- the footer, on the picture ----------
+   It was invisible. .scene is position:fixed with z-index 0, and a
+   positioned element with z-index 0 paints above the content of a static
+   one -- so the photograph was drawn straight over the footer. .nav and
+   main were already lifted out of its way; the footer never was.
+   While it is being fixed it also spreads: the brand sat in a 1.6fr column
+   with the three link columns crammed into the 2fr beside it, which left
+   half the width empty and the links in a huddle. All four are columns of
+   the same grid now, out to the same gutters the header uses. */
+footer { position: relative; z-index: 1; }
+footer .wrap {
+  max-width: 1460px;
+  padding-inline: max(22px, env(safe-area-inset-left, 0px)) max(22px, env(safe-area-inset-right, 0px));
+}
+@media (min-width: 1100px) { footer .wrap { padding-inline: clamp(32px, 4.4vw, 76px); } }
+@media (min-width: 900px) {
+  .ftop { grid-template-columns: 1.5fr 1fr 1fr 1fr; gap: clamp(28px, 4vw, 64px); align-items: start; }
+  .fcols { display: contents; }   /* the three nav columns join the same grid */
+}
+.fbrand .brand img { height: 38px; }
+.fbrand p { max-width: 34ch; }
+
+/* where to find us */
+.fsocial { display: flex; gap: 10px; margin-top: 18px; }
+.fsocial a {
+  display: inline-grid; place-items: center; width: 42px; height: 42px;
+  border-radius: 13px; border: 1px solid var(--line);
+  background: rgba(255, 255, 255, .06); color: var(--ink); text-decoration: none;
+  transition: background .2s ease, border-color .2s ease, transform .2s ease;
+}
+.fsocial a:hover { background: rgba(255, 255, 255, .13); border-color: var(--dim); transform: translateY(-1px); }
+.fsocial a:focus-visible { outline: 3px solid rgba(227, 30, 36, .35); outline-offset: 2px; }
+.fsocial svg { width: 20px; height: 20px; }
