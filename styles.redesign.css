@@ -1114,7 +1114,7 @@ main h2 span, main h2 .red { color: var(--accent); }
    the rig in frame, and the wash runs down rather than across */
 @media (max-width: 900px) {
   .scene .photo {
-    top: 0; left: 0; right: 0; width: 100%; min-width: 0; object-position: 58% center;
+    top: 0; left: 0; right: 0; width: 100%; min-width: 0; object-position: 42% center;
     -webkit-mask-image: none; mask-image: none; transform-origin: center;
   }
   .scene .scrim {
@@ -1140,11 +1140,16 @@ main h2 span, main h2 .red { color: var(--accent); }
    own proportions -- so the rock it is standing on is in frame. The few
    per cent of slack top and bottom is what the scroll drift moves
    through, so nothing ever pulls a gap in at an edge. */
+/* One picture across the whole screen. It is 16:9 and it carries its own
+   darkness down the left -- that fade is part of the photograph, not a
+   panel laid over it -- so nothing here masks, fills or washes a side.
+   Being the screen's own shape, covering it costs a few per cent at an
+   edge rather than half the composition. */
 .scene .photo {
-  top: -3%; right: 0; bottom: auto; left: auto;
-  width: auto; height: 106%; min-width: 0;
-  -webkit-mask-image: linear-gradient(90deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0.55) 7%, #000 22%);
-  mask-image: linear-gradient(90deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0.55) 7%, #000 22%);
+  top: -3%; right: 0; bottom: auto; left: 0;
+  width: 100%; height: 106%; min-width: 0;
+  object-fit: cover; object-position: 50% 50%;
+  -webkit-mask-image: none; mask-image: none;
 }
 
 /* What sits beside the picture. It was a blurred copy of the picture
@@ -1195,9 +1200,10 @@ main h2 span, main h2 .red { color: var(--accent); }
       rgba(7,8,12,0.66) 92%, rgba(7,8,12,0.84) 100%),
     /* a quarter dark, three quarters picture: clear by 25% rather than
        hanging on to nearly half the screen */
+    /* the picture's own fade does this now, so this is a whisper */
     linear-gradient(96deg,
-      rgba(7,8,12,0.82) 0%, rgba(7,8,12,0.5) 12%, rgba(7,8,12,0.2) 25%,
-      rgba(7,8,12,0.08) 40%, rgba(7,8,12,0.04) 70%, rgba(7,8,12,0.03) 100%);
+      rgba(7,8,12,0.3) 0%, rgba(7,8,12,0.18) 14%, rgba(7,8,12,0.07) 28%,
+      rgba(7,8,12,0.03) 44%, rgba(7,8,12,0.02) 100%);
 }
 
 /* ---- the header: the mark alone, and the links down the middle ---- */
@@ -1252,6 +1258,19 @@ main h2 span, main h2 .red { color: var(--accent); }
   content: "";
   position: absolute; z-index: -1; inset: -70px -140px -60px -200px;
   background: radial-gradient(62% 58% at 34% 52%,
-    rgba(5,7,11,0.78), rgba(5,7,11,0.42) 52%, rgba(5,7,11,0.12) 74%, transparent 86%);
+    rgba(5,7,11,0.34), rgba(5,7,11,0.18) 52%, rgba(5,7,11,0.05) 74%, transparent 86%);
   pointer-events: none;
+}
+
+
+/* Portrait, last word. The rules above are not in a media query, so they
+   were beating the narrow-screen ones further up the file -- same
+   specificity, later wins. These come after everything. */
+@media (max-width: 900px) {
+  .scene .photo { object-position: 42% center; }
+  .scene .scrim {
+    background: linear-gradient(180deg,
+      rgba(7,8,12,0.84) 0%, rgba(7,8,12,0.66) 30%, rgba(7,8,12,0.5) 58%,
+      rgba(7,8,12,0.7) 84%, rgba(7,8,12,0.88) 100%);
+  }
 }
