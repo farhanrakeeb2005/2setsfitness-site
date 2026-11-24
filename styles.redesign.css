@@ -1080,7 +1080,10 @@ main h2 span, main h2 .red { color: var(--accent); }
   top: 0; right: 0; bottom: auto; left: auto;
   width: auto; height: 100%;
   min-width: 56%;              /* on a very wide screen it still fills its side */
-  object-fit: cover; object-position: center;
+  object-fit: cover;
+  /* when min-width forces a crop -- a wide, short window -- it is taken
+     off the bottom, which the fade covers, and not off his head */
+  object-position: 50% 6%;
   /* its own left edge dissolves into the black rather than ending on a
      line -- a gradient in the scrim cannot do this, because where that
      edge falls depends on the shape of the window */
