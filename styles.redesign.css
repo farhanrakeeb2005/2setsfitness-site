@@ -1294,3 +1294,13 @@ main h2 span, main h2 .red { color: var(--accent); }
 
 /* with the buttons gone, the line carries the exercise's name */
 .ex-muscles .ex-name { color: #fff; }
+
+
+/* The name, in the line that was already there rather than as another
+   thing on the screen. The mark alone says it in the header; down here,
+   where someone is reading rather than glancing, it is worth spelling. */
+.hero .eyebrow b { color: #fff; font-weight: 800; letter-spacing: .14em; }
+.hero .eyebrow i {
+  display: inline-block; width: 4px; height: 4px; border-radius: 50%;
+  background: var(--accent); vertical-align: 3px; margin: 0 3px;
+}
