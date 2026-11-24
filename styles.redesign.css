@@ -1437,3 +1437,36 @@ main h2 span, main h2 .red { color: var(--accent); }
     -webkit-mask-image: none; mask-image: none;
   }
 }
+
+
+/* ======================================================================
+   THE MOCKUP'S OWN FRAMING
+   The picture is the whole 16:9 frame again, edge to edge, as in the
+   file. What makes the repair invisible is not more repairing -- it is
+   putting our type where its type was. The headline was printed across
+   x 4%-51% of that frame; ours stopped at 33%, which is precisely the
+   band that was showing. Sized to match, the rebuilt pixels are behind
+   the words that replaced them.
+   ====================================================================== */
+.scene .photo {
+  top: -3%; right: 0; bottom: auto; left: 0;
+  width: 100%; height: 106%; min-width: 0;
+  object-fit: cover; object-position: 50% 50%;
+  -webkit-mask-image: none; mask-image: none;
+}
+.scene { background: #07080c; }
+.scene .scrim {
+  background:
+    linear-gradient(180deg, rgba(7,8,12,0) 62%, rgba(7,8,12,.16) 80%,
+      rgba(7,8,12,.48) 93%, rgba(7,8,12,.68) 100%),
+    linear-gradient(96deg, rgba(7,8,12,.3) 0%, rgba(7,8,12,.18) 14%,
+      rgba(7,8,12,.07) 28%, rgba(7,8,12,.03) 44%, rgba(7,8,12,.02) 100%);
+}
+/* the mockup's scale, so the words cover what they are standing on */
+.hero h1 { font-size: clamp(2.6rem, 10.4vw, 6.2rem); }
+.hero-copy { max-width: 64rem; }
+.hero .lede { font-size: clamp(1.05rem, 3.1vw, 1.45rem); max-width: 34rem; }
+
+@media (max-width: 900px) {
+  .scene .photo { top: 0; object-position: 42% center; }
+}
