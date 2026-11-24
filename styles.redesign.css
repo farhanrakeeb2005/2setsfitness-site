@@ -1196,8 +1196,8 @@ main h2 span, main h2 .red { color: var(--accent); }
 .scene .scrim {
   background:
     linear-gradient(180deg,
-      rgba(7,8,12,0) 56%, rgba(7,8,12,0.26) 76%,
-      rgba(7,8,12,0.66) 92%, rgba(7,8,12,0.84) 100%),
+      rgba(7,8,12,0) 62%, rgba(7,8,12,0.16) 80%,
+      rgba(7,8,12,0.48) 93%, rgba(7,8,12,0.68) 100%),
     /* a quarter dark, three quarters picture: clear by 25% rather than
        hanging on to nearly half the screen */
     /* the picture's own fade does this now, so this is a whisper */
@@ -1213,7 +1213,7 @@ main h2 span, main h2 .red { color: var(--accent); }
 }
 .nav .brand { flex: 0 0 auto; }
 .nav .brand .word { display: none; }       /* the mark says it by itself */
-.nav .brand img { height: 30px; width: auto; }
+.nav .brand img { height: 42px; width: auto; }
 .nav-links { justify-content: center; gap: 26px; }
 .navcta { flex: 0 0 auto; }
 
