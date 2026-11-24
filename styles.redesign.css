@@ -1304,3 +1304,58 @@ main h2 span, main h2 .red { color: var(--accent); }
   display: inline-block; width: 4px; height: 4px; border-radius: 50%;
   background: var(--accent); vertical-align: 3px; margin: 0 3px;
 }
+
+
+/* ---- slide 2: gym, sport, food, sleep ---- */
+.allin { padding-block: clamp(64px, 11vw, 132px); position: relative; z-index: 1; }
+/* The section scrolls across the bright half of the picture, so it brings
+   its own shade -- fading in and out at top and bottom so it has no edge,
+   and sitting behind its own content but in front of the photograph. */
+.allin::before {
+  content: ""; position: absolute; inset: 0; z-index: -1; pointer-events: none;
+  background: linear-gradient(180deg,
+    rgba(5,7,11,0) 0%, rgba(5,7,11,.74) 16%, rgba(5,7,11,.8) 50%,
+    rgba(5,7,11,.74) 84%, rgba(5,7,11,0) 100%);
+}
+.allin .sec-head h2, .allin .sec-head > p, .allin-foot {
+  text-shadow: 0 2px 16px rgba(0,0,0,.7);
+}
+.allin .sec-head { text-align: center; max-width: 42rem; margin: 0 auto; }
+.allin .sec-head .eyebrow {
+  display: inline-flex; align-items: center; gap: 12px;
+  text-transform: uppercase; letter-spacing: .2em; font-size: .74rem;
+}
+.allin .sec-head .eyebrow::before, .allin .sec-head .eyebrow::after {
+  content: ""; width: 28px; height: 2px; border-radius: 2px; background: var(--accent);
+}
+.allin .sec-head h2 { margin: 16px 0 0; }
+.allin .sec-head > p { margin: 16px auto 0; color: var(--dim); font-size: 1.05rem; }
+
+.quad {
+  list-style: none; margin: clamp(32px, 5vw, 54px) 0 0; padding: 0;
+  display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px;
+}
+.quad li {
+  padding: 26px 22px 28px; border-radius: 16px;
+  background: rgba(13, 16, 23, .58); border: 1px solid rgba(255,255,255,.1);
+  -webkit-backdrop-filter: blur(14px); backdrop-filter: blur(14px);
+}
+.quad svg {
+  width: 26px; height: 26px; display: block; margin-bottom: 16px;
+  fill: none; stroke: var(--accent); stroke-width: 1.8;
+  stroke-linecap: round; stroke-linejoin: round;
+}
+.quad h3 {
+  margin: 0 0 10px; font-size: 1.02rem; font-weight: 800;
+  text-transform: uppercase; letter-spacing: .14em; color: #fff;
+}
+.quad p { margin: 0; color: var(--dim); font-size: .95rem; line-height: 1.55; }
+
+.allin-foot {
+  margin: clamp(28px, 4vw, 44px) 0 0; text-align: center;
+  font-size: .78rem; font-weight: 800; letter-spacing: .18em;
+  text-transform: uppercase; color: #aeb6c4;
+}
+
+@media (max-width: 980px) { .quad { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 560px) { .quad { grid-template-columns: 1fr; } }
