@@ -1124,3 +1124,112 @@ main h2 span, main h2 .red { color: var(--accent); }
         rgba(7,8,12,0.84) 86%, #07080c 100%);
   }
 }
+
+
+/* ======================================================================
+   THE WHOLE PICTURE, AND WEATHER IN IT
+   ====================================================================== */
+
+/* The pale band across the top was the hero's own wash: it starts below
+   the header, so the header had no wash over it and read lighter. There
+   is only one wash now, in the scrim, which is fixed over the whole
+   screen and therefore has no edge to show. */
+.hero::before { background: none; }
+
+/* The picture is never cropped now -- height and width both follow its
+   own proportions -- so the rock it is standing on is in frame. The few
+   per cent of slack top and bottom is what the scroll drift moves
+   through, so nothing ever pulls a gap in at an edge. */
+.scene .photo {
+  top: -3%; right: 0; bottom: auto; left: auto;
+  width: auto; height: 106%; min-width: 0;
+  -webkit-mask-image: linear-gradient(90deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0.5) 10%, #000 30%);
+  mask-image: linear-gradient(90deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0.5) 10%, #000 30%);
+}
+
+/* the out-of-focus fill beside it */
+.scene .haze {
+  position: absolute; inset: 0; width: 100%; height: 100%;
+  object-fit: cover; object-position: 50% 30%; display: block;
+  filter: blur(42px) saturate(0.8) brightness(0.46);
+  transform: scale(1.22);           /* past the blur's soft edges */
+}
+
+/* ---- weather: haze blowing across the sky, and the sun breathing ---- */
+.scene .weather { position: absolute; inset: 0; overflow: hidden; pointer-events: none; }
+.scene .weather i { position: absolute; display: block; }
+.scene .drift {
+  top: -6%; left: -55%; width: 210%; height: 66%;
+  mix-blend-mode: screen; opacity: 0.55;
+  background:
+    radial-gradient(38% 46% at 22% 52%, rgba(255,255,255,0.1), transparent 70%),
+    radial-gradient(30% 38% at 46% 28%, rgba(255,238,214,0.11), transparent 72%),
+    radial-gradient(42% 44% at 68% 58%, rgba(255,255,255,0.075), transparent 72%),
+    radial-gradient(26% 34% at 86% 34%, rgba(255,226,196,0.09), transparent 74%);
+  animation: fcDrift 78s ease-in-out infinite alternate;
+}
+.scene .sun {
+  right: 4%; top: 22%; width: 30vw; height: 30vw; max-width: 460px; max-height: 460px;
+  border-radius: 50%; mix-blend-mode: screen;
+  background: radial-gradient(circle, rgba(255,198,126,0.24), rgba(255,170,90,0.08) 46%, transparent 68%);
+  animation: fcBreathe 11s ease-in-out infinite alternate;
+}
+@keyframes fcDrift {
+  from { transform: translate3d(0, 0, 0); }
+  to   { transform: translate3d(22%, -1.4%, 0); }
+}
+@keyframes fcBreathe {
+  from { opacity: 0.5; transform: scale(1); }
+  to   { opacity: 1; transform: scale(1.14); }
+}
+
+/* the fill carries the left now, so the wash over the picture can be
+   light, and the bottom fades without going all the way to black --
+   otherwise it swallows the rock */
+.scene .scrim {
+  background:
+    linear-gradient(180deg,
+      rgba(7,8,12,0) 56%, rgba(7,8,12,0.26) 76%,
+      rgba(7,8,12,0.66) 92%, rgba(7,8,12,0.84) 100%),
+    linear-gradient(96deg,
+      rgba(7,8,12,0.9) 0%, rgba(7,8,12,0.8) 26%, rgba(7,8,12,0.48) 46%,
+      rgba(7,8,12,0.2) 64%, rgba(7,8,12,0.09) 86%, rgba(7,8,12,0.07) 100%);
+}
+
+/* ---- the header: the mark alone, and the links down the middle ---- */
+.nav .wrap {
+  display: grid; grid-template-columns: 1fr auto 1fr; align-items: center;
+}
+.nav .brand { justify-self: start; }
+.nav .brand .word { display: none; }       /* the mark says it by itself */
+.nav .brand img { height: 30px; width: auto; }
+.nav-links { justify-content: center; gap: 26px; }
+.navcta { justify-self: end; }
+
+/* ---- shorter, smaller ---- */
+.hero { min-height: min(84svh, 740px); }
+.hero h1 { font-size: clamp(2.3rem, 7.4vw, 4.4rem); }
+.hero .lede { font-size: clamp(1rem, 2.8vw, 1.2rem); margin-top: 16px; }
+.hero .cta-row { margin-top: 24px; }
+.hstats { margin-top: 24px; }
+
+@media (max-width: 900px) {
+  .scene .photo {
+    top: -3%; left: 0; right: 0; width: 100%; height: 106%;
+    object-fit: cover; object-position: 58% 40%;
+    -webkit-mask-image: none; mask-image: none;
+  }
+  .scene .haze { display: none; }
+  .scene .sun { width: 56vw; height: 56vw; top: 16%; }
+  /* nothing is held to one side here, so the wash runs down the screen --
+     without this the headline sits on open sky and stops reading */
+  .scene .scrim {
+    background: linear-gradient(180deg,
+      rgba(7,8,12,0.86) 0%, rgba(7,8,12,0.72) 30%, rgba(7,8,12,0.58) 58%,
+      rgba(7,8,12,0.74) 84%, rgba(7,8,12,0.9) 100%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .scene .drift, .scene .sun { animation: none; }
+}

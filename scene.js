@@ -25,7 +25,7 @@
     // moves with you instead of being a flat backdrop pinned behind glass
     photo.style.transform = reduce.matches
       ? ''
-      : `translate3d(0, ${(t * 4.5).toFixed(2)}%, 0) scale(1.08)`;
+      : `translate3d(0, ${(t * 2.5).toFixed(2)}%, 0)`;
   };
 
   const onScroll = () => {
