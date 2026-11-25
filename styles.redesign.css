@@ -1487,3 +1487,23 @@ main h2 span, main h2 .red { color: var(--accent); }
   .hero .eyebrow i, .hero .eyebrow .tagline { display: none; }
   .hero { padding-top: clamp(40px, 13vw, 76px); }
 }
+
+
+/* ---- the backdrop must not follow the URL bar ----
+   .scene is fixed with inset:0, so its box is the visual viewport -- and
+   on a phone that grows and shrinks by the height of the browser's own
+   bar as you scroll. The picture is sized from that box, so every time
+   the bar hid or came back the mountain rescaled: the background
+   "changing" as the page moves.
+
+   Pinned to the large viewport instead: the height the screen has with
+   the bar hidden, which does not change. The few pixels of overhang sit
+   behind the bar while it is showing, where nobody can see them. */
+.scene { bottom: auto; height: 100vh; height: 100lvh; }
+
+/* And no scroll drift on a touch screen. It is a slow, pretty thing on a
+   desktop; on a phone it rides on top of the bar's own resizing and both
+   together read as the picture jumping. */
+@media (pointer: coarse) {
+  .scene .photo { transform: none !important; }
+}

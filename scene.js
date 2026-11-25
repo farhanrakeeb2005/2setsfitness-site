@@ -13,6 +13,11 @@
   if (!photo) return;
 
   const reduce = window.matchMedia('(prefers-reduced-motion: reduce)');
+  // A touch screen's browser bar hides and reappears as you scroll, which
+  // resizes the viewport the backdrop is measured from. Drifting the
+  // picture on top of that reads as the background jumping about, so on a
+  // phone it simply sits still (the stylesheet pins it too).
+  const touch = window.matchMedia('(pointer: coarse)');
 
   let ticking = false;
   const draw = () => {
@@ -23,7 +28,7 @@
 
     // the mountain sinks a little as the page goes down, so the picture
     // moves with you instead of being a flat backdrop pinned behind glass
-    photo.style.transform = reduce.matches
+    photo.style.transform = (reduce.matches || touch.matches)
       ? ''
       : `translate3d(0, ${(t * 2.5).toFixed(2)}%, 0)`;
   };
