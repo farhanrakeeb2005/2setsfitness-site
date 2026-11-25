@@ -1470,3 +1470,20 @@ main h2 span, main h2 .red { color: var(--accent); }
 @media (max-width: 900px) {
   .scene .photo { top: 0; object-position: 42% center; }
 }
+
+
+/* ---- the phone, tidied ----
+   The bar was a logo and a button, and the button went to the same place
+   as the big one three lines below it. The links are already hidden at
+   this width, so the bar had nothing left to do but take the top of the
+   screen. The hero says the name in its own first line.
+
+   That line then had to stop wrapping: "2SETSFITNESS - MORE THAN A GYM
+   APP" broke after the dot and left it stranded at the end of a line. On
+   a phone it is the name on its own; the headline underneath says what
+   the app is well enough. */
+@media (max-width: 760px) {
+  .nav { display: none; }
+  .hero .eyebrow i, .hero .eyebrow .tagline { display: none; }
+  .hero { padding-top: clamp(40px, 13vw, 76px); }
+}
